@@ -3,6 +3,7 @@
 	"description": "Chef language support and snippets for Visual Studio Code",
 	"version": "0.1.0",
 	"publisher": "Pendrica",
+	"icon": "images/chef-logo.svg",
 	"author": {
 		"name": "Stuart Preston (stuart@pendrica.com)"
 	},
