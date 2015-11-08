@@ -1,0 +1,356 @@
+{
+	"apt_package": {
+		"prefix": "apt_package",
+		"body": "apt_package '${1:package_name}' do\r\n  action :${2:install}\r\nend\r\n",
+		"description": "Use the apt_package resource to manage packages for the Debian and Ubuntu platforms.",
+		"scope": "source.ruby.chef"
+	},
+	"bash": {
+		"prefix": "bash",
+		"body": "bash '${1:name}' do\r\n  code <<-EOH\r\n  ${5:script commands}\r\n  EOH\r\n  action :${2:run}\r\nend\r\n",
+		"description": "A bash resource block executes scripts using Bash.",
+		"scope": "source.ruby.chef"
+	},
+	"batch": {
+		"prefix": "batch",
+		"body": "batch '${1:name}' do\r\n  code <<-EOH\r\n  ${5:batch commands}\r\n  EOH\r\n  action :${2:run}\r\nend\r\n",
+		"description": "A batch resource block executes a batch script using the cmd.exe interpreter.",
+		"scope": "source.ruby.chef"
+	},
+	"bff_package": {
+		"prefix": "bff_package",
+		"body": "bff_package '${1:package_name}' do\r\n  action :${2:install}\r\nend\r\n",
+		"description": "Use the bff_package resource to manage packages for the Aix platform.",
+		"scope": "source.ruby.chef"
+	},
+	"breakpoint": {
+		"prefix": "breakpoint",
+		"body": "breakpoint '${1:name}' do\r\n  action :${2:break}\r\nend\r\n",
+		"description": "A breakpoint resource block creates a breakpoint in a recipe.",
+		"scope": "source.ruby.chef"
+	},
+	"chef_gem": {
+		"prefix": "chef_gem",
+		"body": "chef_gem '${1:package_name}' do\r\n  action :${2:break}\r\nend\r\n",
+		"description": "A chef_gem resource block manages a package on a node, typically by installing it.",
+		"scope": "source.ruby.chef"
+	},
+	"chef_handler": {
+		"prefix": "chef_handler",
+		"body": "chef_handler '${1:package_name}' do\r\n  source '${2:/path/to/handler/handler_name}'\r\n  action :${3:enable}\r\nend\r\n",
+		"description": "Exception and report handlers are used to trigger certain behaviors in response to specific situations, typically identified during a chef-client run.",
+		"scope": "source.ruby.chef"
+	},
+	"cookbook_file": {
+	  "prefix": "cookbook_file",
+	  "body": "cookbook_file '${1:/path/to/file}' do\r\n  source '${2:filename}'\r\n  owner '${3:root}'\r\n  group '${4:$3}'\r\n  mode '${5:0755}'\r\n  action :${6:create}\r\nend\r\n",
+	  "description": "A cookbook_file resource block manages files by using files that exist within a cookbook’s /files directory",
+	  "scope": "source.ruby.chef"
+	},
+	"cron": {
+		"prefix": "cron",
+		"body": "cron '${1:name}' do\r\n  hour '${2:5}'\r\n  minute '${3:5}'\r\n  command '${3:/bin/script}'\r\nend\r\n",
+		"description": "A cron resource block manage cron entries.",
+		"scope": "source.ruby.chef"
+	},
+	"csh": {
+		"prefix": "csh",
+		"body": "csh '${1:name}' do\r\n  code <<-EOH\r\n  ${5:script commands}\r\n  EOH\r\n  action :${6:run}\r\nend\r\n",
+		"description": "A csh resource block executes scripts using csh.",
+		"scope": "source.ruby.chef"
+	},
+	"deploy": {
+		"prefix": "deploy",
+		"body": "deploy '${1:private_repo}' do\r\n  repo '${2:git@github.com/acctname/private-repo.git}'\r\n  user '${3:ubuntu}'\r\n  deploy_to '${4:/tmp/private_code}'\r\n  ssh_wrapper '${5:/tmp/private_code/wrap-ssh4git.sh}'\r\n  action :${6:deploy}\r\nend\r\n",
+		"description": "A deploy resource block manages and controls deployments.",
+		"scope": "source.ruby.chef"
+	},
+	"directory": {
+	  "prefix": "directory",
+	  "body": "directory '${1:/path/to/directory}' do\r\n  owner '${2:root}'\r\n  group '${3:$2}'\r\n  mode '${4:0755}'\r\n  action :${5:create}\r\nend\r\n",
+	  "description": "A directory resource block declares a directory and the permissions needed on that directory.",
+	  "scope": "source.ruby.chef"
+	},
+	"dpkg_package": {
+		"prefix": "dpkg_package",
+		"body": "dpkg_package '${1:package_name}' do\r\n  action :${2:install}\r\nend\r\n",
+		"description": "Use the apt_package resource to manage packages for the dpkg platform.",
+		"scope": "source.ruby.chef"
+	},
+	"dsc_script": {
+		"prefix": "dsc_script",
+		"body": "dsc_script '${1:name}' do\r\n  code <<-EOH\r\n  ${5:DSC code}\r\n  EOH\r\nend\r\n",
+		"description": "A dsc_script resource block embeds the code that defines a DSC configuration directly within a Chef recipe.",
+		"scope": "source.ruby.chef"
+	},
+	"easy_install_package": {
+		"prefix": "easy_install_package",
+		"body": "easy_install_package '${1:package_name}' do\r\n  action :${2:install}\r\nend\r\n",
+		"description": "Use the easy_install_package resource to manage packages for the Python platform.",
+		"scope": "source.ruby.chef"
+	},
+	"env": {
+		"prefix": "env",
+		"body": "env '${1:name}' do\r\n  value '${2:value}'\r\nend\r\n",
+		"description": "Use the env resource to manage environment keys in Microsoft Windows.",
+		"scope": "source.ruby.chef"
+	},
+	"erl_call": {
+		"prefix": "erl_call",
+		"body": "erl_call '${1:name}' do\r\n  code '${2:value}'\r\n  distributed '${3:true}'\r\n  node_name '${4:node_name}'\r\nend\r\n",
+		"description": "Use the erl_call resource to connect to a node located within a distributed Erlang system.",
+		"scope": "source.ruby.chef"
+	},
+	"execute": {
+		"prefix": "execute",
+		"body": "execute '${1:name}' do\r\n  command '${2:command}'\r\n  action :${3:run}\r\nend\r\n",
+		"description": "Use the execute resource to execute a single command.",
+		"scope": "source.ruby.chef"
+	},
+	"file": {
+		"prefix": "file",
+		"body": "file '${1:/path/to/file}' do\r\n  content '${2:content}'\r\n  owner '${3:root}'\r\n  group '${4:$3}'\r\n  mode '${5:0755}'\r\n  action :${6:create}\r\nend\r\n",
+		"description": "A cookbook_file resource block manages files by using files that exist within a cookbook’s /files directory",
+		"scope": "source.ruby.chef"
+	},
+	"freebsd_package": {
+		"prefix": "freebsd_package",
+		"body": "freebsd_package '${1:package_name}' do\r\n  action :${2:install}\r\nend\r\n",
+		"description": "Use the freebsd_package resource to manage packages for the FreeBSD platform.",
+		"scope": "source.ruby.chef"
+	},
+	"gem_package": {
+		"prefix": "gem_package",
+		"body": "gem_package '${1:package_name}' do\r\n  action :${2:install}\r\nend\r\n",
+		"description": "A gem_package resource block manages a package on a node.",
+		"scope": "source.ruby.chef"
+	},
+	"git": {
+		"prefix": "git",
+		"body": "git '${1:destination}' do\r\n  repository '${2:git_repository}'\r\n  revision '${3:revision}'\r\n  action :${4:sync}\r\nend\r\n",
+		"description": "A git resource block manages source control resources that exist in a git repository.",
+		"scope": "source.ruby.chef"
+	},
+	"group": {
+		"prefix": "group",
+		"body": "group '${1:group_name}' do\r\n  members '${2:members}'\r\n  action :${3:create}\r\nend\r\n",
+		"description": "Use the group resource to manage a local group.",
+		"scope": "source.ruby.chef"
+	},
+	"homebrew_package": {
+		"prefix": "homebrew_package",
+		"body": "homebrew_package '${1:package_name}' do\r\n  action :${2:install}\r\nend\r\n",
+		"description": "Use the homebrew_package resource to manage packages for the Mac OS X platform.",
+		"scope": "source.ruby.chef"
+	},
+	"http_request": {
+		"prefix": "http_request",
+		"body": "http_request '${1:name}' do\r\n  url '${2:url}'\r\n  action :${3:get}\r\nend\r\n",
+		"description": "Use the http_request resource to send an HTTP request.",
+		"scope": "source.ruby.chef"
+	},
+	"ifconfig": {
+		"prefix": "ifconfig",
+		"body": "ifconfig '${1:name}' do\r\n  device '${2:eth1}'\r\n  action :${3:create}\r\nend\r\n",
+		"description": "Use the ifconfig resource to manage interfaces.",
+		"scope": "source.ruby.chef"
+	},
+	"ips_package": {
+		"prefix": "ips_package",
+		"body": "ips_package '${1:package_name}' do\r\n  action :${2:install}\r\nend\r\n",
+		"description": "Use the ips_package resource to manage packages for the Solaris 11 platform.",
+		"scope": "source.ruby.chef"
+	},
+	"link": {
+		"prefix": "link",
+		"body": "link '${1:source_path}' do\r\n  to '${2:target_path}'\r\n  link_type :${3:hard}\r\nend\r\n",
+		"description": "Use the link resource to create symbolic or hard links.",
+		"scope": "source.ruby.chef"
+	},
+	"log": {
+		"prefix": "log",
+		"body": "log '${1:message}' do\r\n  level :${2:info}\r\nend\r\n",
+		"description": "Use the log resource to to create log entries.",
+		"scope": "source.ruby.chef"
+	},
+	"macports_package": {
+		"prefix": "macports_package",
+		"body": "macports_package '${1:package_name}' do\r\n  action :${2:install}\r\nend\r\n",
+		"description": "Use the macports_package resource to manage packages for the Mac OSX platform.",
+		"scope": "source.ruby.chef"
+	},
+	"mdadm": {
+		"prefix": "mdadm",
+		"body": "mdadm '${1:/dev/md0}' do\r\n  devices ['${2:/dev/sda}']\r\n  action :${3:create}\r\nend\r\n",
+		"description": "Use the mdadm resource to manage RAID devices in a Linux environment.",
+		"scope": "source.ruby.chef"
+	},
+	"mount": {
+		"prefix": "mount",
+		"body": "mount '${1:path}' do\r\n  device ['${2:device}']\r\n  fstype '${2:fs_type}'\r\n  action :${4:mount}\r\nend\r\n",
+		"description": "Use the mount resource to manage a mounted file system.",
+		"scope": "source.ruby.chef"
+	},
+	"ohai": {
+		"prefix": "ohai",
+		"body": "ohai '${1:name}' do\r\n  action :${2:reload}\r\nend\r\n",
+		"description": "Use the ohai resource to reload the Ohai configuration on a node.",
+		"scope": "source.ruby.chef"
+	},
+	"openbsd_package": {
+		"prefix": "openbsd_package",
+		"body": "openbsd_package '${1:package_name}' do\r\n  action :${2:install}\r\nend\r\n",
+		"description": "Use the openbsd_package resource to manage packages for the OpenBSD platform.",
+		"scope": "source.ruby.chef"
+	},
+	"package": {
+		"prefix": "package",
+		"body": "package '${1:package_name}' do\r\n  action :${2:install}\r\nend\r\n",
+		"description": "Use the package resource to manage packages.",
+		"scope": "source.ruby.chef"
+	},
+	"pacman_package": {
+		"prefix": "pacman_package",
+		"body": "pacman_package '${1:package_name}' do\r\n  action :${2:install}\r\nend\r\n",
+		"description": "Use the pacman_package resource to manage packages for the ArchLinux platform.",
+		"scope": "source.ruby.chef"
+	},
+	"paludis_package": {
+		"prefix": "paludis_package",
+		"body": "paludis_package '${1:package_name}' do\r\n  action :${2:install}\r\nend\r\n",
+		"description": "Use the paludis_package resource to manage packages for the Paludis platform.",
+		"scope": "source.ruby.chef"
+	},
+	"perl": {
+		"prefix": "perl",
+		"body": "perl '${1:name}' do\r\n  code <<-EOH\r\n  ${2:perl code}\r\n  EOH\r\nend\r\n",
+		"description": "A perl resource block executes Perl scripts.",
+		"scope": "source.ruby.chef"
+	},
+	"portage_package": {
+		"prefix": "portage_package",
+		"body": "portage_package '${1:package_name}' do\r\n  action :${2:install}\r\nend\r\n",
+		"description": "Use the portage_package resource to manage packages for the Gentoo platform.",
+		"scope": "source.ruby.chef"
+	},
+	"powershell_script": {
+		"prefix": "powershell_script",
+		"body": "powershell_script '${1:name}' do\r\n  code <<-EOH\r\n  ${2:powershell code}\r\n  EOH\r\nend\r\n",
+		"description": "Use the powershell_script resource to execute a script using the Windows PowerShell interpreter.",
+		"scope": "source.ruby.chef"
+	},
+	"python": {
+		"prefix": "python",
+		"body": "python '${1:name}' do\r\n  code <<-EOH\r\n  ${2:python code}\r\n  EOH\r\nend\r\n",
+		"description": "Use the python resource to execute a script using the Python interpreter.",
+		"scope": "source.ruby.chef"
+	},
+	"reboot": {
+		"prefix": "reboot",
+		"body": "reboot '${1:name}' do\r\n  action :${2:request_reboot}\r\n  reason '${3:reason}'\r\n  delay_mins ${4:minutes}\r\nend\r\n",
+		"description": "A reboot resource block reboots a node.",
+		"scope": "source.ruby.chef"
+	},
+	"registry_key": {
+		"prefix": "registry_key",
+		"body": "registry_key '${1:key_name}' do\r\n  values [{\r\n    name: '${2:name}',\r\n    type: '${3:type}',\r\n    data: '${4:data}'\r\n  }]\r\naction :${5:create}\r\nend\r\n",
+		"description": "Use the registry_key resource to create and delete registry keys in Microsoft Windows.",
+		"scope": "source.ruby.chef"
+	},
+	"remote_directory": {
+	  "prefix": "remote_directory",
+	  "body": "remote_directory '${1:/path/to/directory}' do\r\n  source '${2:source_directory}'\r\n  owner '${3:root}'\r\n  group '${4:$3}'\r\n  mode '${5:0755}'\r\n  action :${6:create}\r\nend\r\n",
+	  "description": "A remote_directory resource block transfers a directory from a cookbook to a node, and then assigns the permissions needed on that directory.",
+	  "scope": "source.ruby.chef"
+	},
+	"remote_file": {
+	  "prefix": "remote_file",
+	  "body": "remote_file '${1:/path/to/file}' do\r\n  source '${2:source_file}'\r\n  owner '${3:root}'\r\n  group '${4:$3}'\r\n  mode '${5:0755}'\r\n  action :${6:create}\r\nend\r\n",
+	  "description": "Use the remote_file resource to transfer a file from a remote location using file specificity.",
+	  "scope": "source.ruby.chef"
+	},
+	"route": {
+		"prefix": "route",
+		"body": "route '${1:10.0.1.10/32}' do\r\n  gateway '${2:10.0.0.1}'\r\n  device '${3:eth1}'\r\nend\r\n",
+		"description": "Use the route resource to manage the system routing table in a Linux environment.",
+		"scope": "source.ruby.chef"
+	},
+	"rpm_package": {
+		"prefix": "rpm_package",
+		"body": "rpm_package '${1:package_name}' do\r\n  action :${2:install}\r\nend\r\n",
+		"description": "Use the rpm_package resource to manage packages for the RPM platform.",
+		"scope": "source.ruby.chef"
+	},
+	"ruby": {
+		"prefix": "ruby",
+		"body": "ruby '${1:name}' do\r\n  code <<-EOH\r\n  ${2:ruby code}\r\n  EOH\r\nend\r\n",
+		"description": "Use the ruby resource to execute a script using Ruby.",
+		"scope": "source.ruby.chef"
+	},
+	"ruby_block": {
+		"prefix": "ruby_block",
+		"body": "ruby_block '${1:name}' do\r\n  block do\r\n    ${2:code}\r\n  end\r\n  action :${3:run}\r\nend\r\n",
+		"description": "Use the ruby_block resource to execute a script block using Ruby.",
+		"scope": "source.ruby.chef"
+	},
+	"script": {
+		"prefix": "script",
+		"body": "ruby '${1:name}' do\r\n  interpreter '${2:bash}'\r\n  code <<-EOH\r\n  ${3:code}\r\n  EOH\r\nend\r\n",
+		"description": "Use the script resource to execute a script using a specified interpreter.",
+		"scope": "source.ruby.chef"
+	},
+	"service": {
+		"prefix": "service",
+		"body": "service '${1:service_name}' do\r\n  action :${2:start}\r\nend\r\n",
+		"description": "Use the service resource to manage a service.",
+		"scope": "source.ruby.chef"
+	},
+	"smartos_package": {
+		"prefix": "smartos_package",
+		"body": "smartos_package '${1:package_name}' do\r\n  action :${2:install}\r\nend\r\n",
+		"description": "Use the smartos_package resource to manage packages for the SmartOS platform.",
+		"scope": "source.ruby.chef"
+	},
+	"solaris_package": {
+		"prefix": "solaris_package",
+		"body": "solaris_package '${1:package_name}' do\r\n  action :${2:install}\r\nend\r\n",
+		"description": "Use the solaris_package resource to manage packages for the Solaris platform.",
+		"scope": "source.ruby.chef"
+	},
+	"subversion": {
+		"prefix": "subversion",
+		"body": "subversion '${1:name}' do\r\n  repository '${2:svn_repository}'\r\n  revision '${3:HEAD}'\r\n  destination '${4:destination_path}'\r\naction :${5:sync}\r\nend\r\n",
+		"description": "Use the subversion resource to manage source control resources that exist in a Subversion repository.",
+		"scope": "source.ruby.chef"
+	},
+	"template": {
+		"prefix": "template",
+		"body": "template '${1:destination_path}' do\r\n  source '${2:source_file}'\r\n  owner '${3:root}'\r\n  group '${4:3}'\r\nmode '${5:0755}'\r\n  action :${6:create}\r\nend\r\n",
+		"description": "Use the template resource to manage the contents of a file using an Embedded Ruby (ERB) template.",
+		"scope": "source.ruby.chef"
+	},
+	"user": {
+		"prefix": "user",
+		"body": "user '${1:user_name}' do\r\n  comment '${2:comment}'\r\n  uid '${3:uid}'\r\n  gid '${4:gid}'\r\n  home '${5:home_folder}'\r\n  shell '${6:shell}'\r\n  password '${7:password}'\r\n  action :${8:create}\r\nend\r\n",
+		"description": "Use the user resource to add users, update existing users, remove users, and to lock/unlock user passwords.",
+		"scope": "source.ruby.chef"
+	},
+	"windows_package": {
+		"prefix": "windows_package",
+		"body": "windows_package '${1:package_name}' do\r\n  action :${2:install}\r\nend\r\n",
+		"description": "Use the windows_package resource to manage packages for the Windows platform.",
+		"scope": "source.ruby.chef"
+	},
+	"windows_service": {
+		"prefix": "windows_service",
+		"body": "windows_service '${1:service_name}' do\r\n  action :${2:start}\r\n  startup_type :${2:manual}\r\nend\r\n",
+		"description": "Use the windows_service resource to manage a Windows service.",
+		"scope": "source.ruby.chef"
+	},
+	"yum_package": {
+		"prefix": "yum_package",
+		"body": "yum_package '${1:package_name}' do\r\n  action :${2:install}\r\nend\r\n",
+		"description": "Use the yum_package resource to manage packages for the RedHat and CentOS platforms.",
+		"scope": "source.ruby.chef"
+	}
+}

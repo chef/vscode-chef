@@ -1,0 +1,39 @@
+{
+	"name": "Chef",
+	"description": "Chef language support and snippets for Visual Studio Code",
+	"version": "0.1.0",
+	"publisher": "Pendrica",
+	"author": {
+		"name": "Stuart Preston (stuart@pendrica.com)"
+	},
+	"displayName": "Chef Extensions for Visual Studio Code",
+	"engines": {
+		"vscode": ">=0.10.x"
+	},
+	"categories": [
+		"Languages",
+		"Snippets",
+		"Linters"
+	],
+	"contributes": {
+		"languages": [{
+			"id": "ruby",
+			"aliases": ["Ruby", "Ruby"],
+			"extensions": ["chefignore", "Berksfile", "Policyfile"]
+		}],
+		"grammars": [{
+			"language": "ruby",
+			"scopeName": "source.ruby.chef",
+			"path": "./syntaxes/chef.plist"
+		}],
+		"snippets": [
+			{
+				"language": "ruby",
+				"path": "./snippets/snippets.json"
+			}
+		]
+	},
+	"extensionDependencies": [
+        "vscode.ruby"
+  ]
+}

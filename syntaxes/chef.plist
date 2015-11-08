@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>fileTypes</key>
+	<array>
+		<string>rb</string>
+	</array>
+	<key>name</key>
+	<string>Chef</string>
+	<key>patterns</key>
+	<array>
+		<dict>
+			<key>include</key>
+			<string>source.ruby</string>
+		</dict>
+		<dict>
+			<key>match</key>
+			<string>\b(not_if|only_if)</string>
+			<key>name</key>
+			<string>keyword.operator.logical.ruby</string>
+		</dict>
+		<!-- Chef Recipe DSL methods - https://docs.chef.io/dsl_recipe.html -->
+		<dict>
+			<key>match</key>
+			<string>(?&lt;!\.)\b(attribute\?|control|control_group|cookbook_name|data_bag|data_bag_item|platform\?|platform_family\?|reboot_pending\?|recipe_name|registry_data_exists|registry_get_subkeys|registry_get_values|registry_has_subkeys|registry_key_exists|registry_value_exists|resources|search|shell_out|shell_out|shell_out_with_systems_locale|tag|tagged\?|untag|value_for_platform|value_for_platform_family)\b(?![?!])</string>
+			<key>name</key>
+			<string>keyword.control.pseudo-method.ruby</string>
+		</dict>
+		<!-- Chef Custom Resource DSL - https://docs.chef.io/dsl_custom_resource.html -->
+		<dict>
+			<key>match</key>
+			<string>(?&lt;!\.)\b(converge_if_changed|load_current_value)\b(?![?!])</string>
+			<key>name</key>
+			<string>keyword.control.pseudo-method.ruby</string>
+		</dict>
+		<!-- Chef built-in Resources - https://docs.chef.io/resources.html -->
+		<dict>
+			<key>match</key>
+			<string>(?&lt;!\.)\b(apt_package|bash|batch|bff_package|breakpoint|chef_gem|chef_handler|cookbook_file|cron|csh|deploy|directory|dpkg_package|dsc_resource|dsc_script|easy_install_package|env|erl_call|execute|file|freebsd_package|gem_package|git|group|homebrew_package|http_request|ifconfig|ips_package|link|log|macports_package|mdadm|mount|ohai|openbsd_package|package|pacman_package|paludis_package|perl|portage_package|powershell_script|python|reboot|registry_key|remote_directory|remote_file|route|rpm_package|ruby|ruby_block|script|service|smartos_package|solaris_package|subversion|template|user|windows_package|windows_service|yum_package)\b(?![?!])</string>
+			<key>name</key>
+			<string>keyword.other.special-method.ruby</string>
+		</dict>
+		<!-- Chef Provisioning Resources - https://docs.chef.io/provisioning.html -->
+		<dict>
+			<key>match</key>
+			<string>(?&lt;!\.)\b(load_balancer|machine|machine_batch|machine_execute|machine_file|machine_image)\b(?![?!])</string>
+			<key>name</key>
+			<string>keyword.other.special-method.ruby</string>
+		</dict>
+	</array>
+	<key>scopeName</key>
+	<string>source.ruby.chef</string>
+</dict>
+</plist>
