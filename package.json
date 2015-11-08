@@ -7,7 +7,7 @@
 	"author": {
 		"name": "Stuart Preston (stuart@pendrica.com)"
 	},
-	"displayName": "Chef Extensions for Visual Studio Code",
+	"displayName": "Chef Extension for Visual Studio Code",
 	"engines": {
 		"vscode": ">=0.10.x"
 	},
