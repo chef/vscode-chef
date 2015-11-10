@@ -9,12 +9,16 @@
 	},
 	"displayName": "Chef Extension for Visual Studio Code",
 	"engines": {
-		"vscode": ">=0.10.x"
+		"vscode": "0.10.x"
 	},
 	"categories": [
 		"Languages",
 		"Snippets"
 	],
+	"activationEvents": [
+		"onCommand:extension.rubocop"
+	],
+	"main": "./out/extension",
 	"contributes": {
 		"languages": [{
 			"id": "ruby",
@@ -26,12 +30,22 @@
 			"scopeName": "source.ruby.chef",
 			"path": "./syntaxes/chef.plist"
 		}],
-		"snippets": [
-			{
+		"snippets": [{
 				"language": "ruby",
 				"path": "./snippets/snippets.json"
-			}
-		]
+		}]
+		// ,
+		// "commands": [{
+		// 	"command": "extension.rubocop",
+		// 	"title": "Rubocop"
+		// }]
+	},
+	"scripts": {
+		"vscode:prepublish": "node ./node_modules/vscode/bin/compile",
+		"compile": "node ./node_modules/vscode/bin/compile -watch -p ./"
+	},
+	"devDependencies": {
+		"vscode": "0.10.x"
 	},
 	"extensionDependencies": [
         "vscode.ruby"
