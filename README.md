@@ -1,15 +1,17 @@
 # Chef Extension for Visual Studio Code
 
-The Chef Extension for Visual Studio Code offers rich language support for Chef DSL when using VS Code, including:
+The Chef Extension for Visual Studio Code offers rich language support Chef DSL and snippets when using [Visual Studio Code](http://code.visualstudio.com).
 
-* Syntax highlighting:
+![install and demo](https://github.com/pendrica/vscode-chef/raw/master/images/vscode-chef-install.gif)
 
+## Features
+#### Syntax/keyword highlighting:
  * Chef Recipe DSL
  * Chef Provisioning DSL
- * Chef built-in Resources*
+ * Chef built-in Resources
  * Chef Custom Resources
-* Snippet support for all Chef built-in Resources:
 
+#### Snippet support (with tabbing) for all Chef built-in Resources:
  * apt_package
  * bash
  * batch
@@ -79,7 +81,7 @@ The Chef Extension for Visual Studio Code offers rich language support for Chef 
 
  * You will need to install Visual Studio Code `0.10.0` or higher.
  * Launch Code with access to the extension gallery with `code --enableExtensionGallery`.
- * From the command palette <kbd>Ctrl-Shift-P</kbd> (Windows, Linux) or <kbd>Cmd-Shift-P</kbd> (OSX) select `Install Extension`, choose `Chef` and reload Visual Studio Code.  
+ * From the command palette ```Ctrl-Shift-P``` (Windows, Linux) or ```Cmd-Shift-P``` (OSX) select `Install Extension`, choose `Chef` and reload Visual Studio Code.  
 
 ## Backlog
 
@@ -94,7 +96,7 @@ Contributions are welcomed, please file issues and pull requests via the [projec
 
 ## Author
 
-This extension was written by Stuart Preston (stuart@pendrica.com)
+This extension was written by Stuart Preston [stuart@pendrica.com](stuart@pendrica.com)
 
 ## License
 This extension is licensed under an [Apache 2](LICENSE.md) license.
