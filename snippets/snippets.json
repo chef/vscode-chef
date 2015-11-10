@@ -77,6 +77,12 @@
 		"description": "Use the apt_package resource to manage packages for the dpkg platform.",
 		"scope": "source.ruby.chef"
 	},
+	"dsc_resource": {
+		"prefix": "dsc_resource",
+		"body": "dsc_resource '${1:name}' do\r\n  resource :${2:resource_name}\r\n  property :${3:property_name}, '${4:property_value}'\r\nend\r\n",
+		"description": "A dsc_resource resource block allows DSC resource to be used in a Chef recipe.",
+		"scope": "source.ruby.chef"
+	},
 	"dsc_script": {
 		"prefix": "dsc_script",
 		"body": "dsc_script '${1:name}' do\r\n  code <<-EOH\r\n  ${5:DSC code}\r\n  EOH\r\nend\r\n",
