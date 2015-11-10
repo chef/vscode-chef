@@ -34,11 +34,6 @@
 				"language": "ruby",
 				"path": "./snippets/snippets.json"
 		}]
-		// ,
-		// "commands": [{
-		// 	"command": "extension.rubocop",
-		// 	"title": "Rubocop"
-		// }]
 	},
 	"scripts": {
 		"vscode:prepublish": "node ./node_modules/vscode/bin/compile",
