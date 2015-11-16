@@ -10,6 +10,8 @@ The Chef Extension for Visual Studio Code offers rich language support for Chef 
  * Chef Provisioning DSL
  * Chef built-in Resources
  * Chef Custom Resources
+ 
+#### Rubocop linting:
 
 #### Snippet support (with tabbing) for all Chef built-in Resources:
  * apt_package
