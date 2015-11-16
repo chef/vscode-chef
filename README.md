@@ -12,6 +12,10 @@ The Chef Extension for Visual Studio Code offers rich language support for Chef 
  * Chef Custom Resources
  
 #### Rubocop linting:
+ * Enabled by default (disable by adding ```{ "rubocop.enable": false }``` in workspace settings)
+ * Entire repo will be linted when files are saved.
+ * If you have the [ChefDK](http://downloads.chef.io/chef-dk) installed, linting it should "just work" on Windows, Mac OS X and Linux (Ubuntu)
+ * If you do not have the ChefDK but do have Rubocop, you can set the executable path by setting ```{ "rubocop.path": "c:\\path\\to\\rubocop.bat"}``` in workspace settings).
 
 #### Snippet support (with tabbing) for all Chef built-in Resources:
  * apt_package
@@ -82,14 +86,12 @@ The Chef Extension for Visual Studio Code offers rich language support for Chef 
 ##Installation
 
  * You will need to install Visual Studio Code `0.10.0` or higher.
- * Launch Code with access to the extension gallery with `code --enableExtensionGallery`.
  * From the command palette ```Ctrl-Shift-P``` (Windows, Linux) or ```Cmd-Shift-P``` (OSX) select `Install Extension`, choose `Chef` and reload Visual Studio Code.  
 
 ## Backlog
 
- * Extend syntax highlight/colouring.
- * Add Rubocop linter.
- * Add FoodCritic linter.
+ * Investigate auto-suggestions and extend syntax highlighting/colouring.
+ * Investigate auto-correct options on Rubocop findings.
  * Investigate integration with ChefSpec.
 
 ## Contributions

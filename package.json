@@ -1,7 +1,7 @@
 {
 	"name": "Chef",
 	"description": "Chef language support and snippets for Visual Studio Code",
-	"version": "0.3.0",
+	"version": "0.3.2",
 	"publisher": "Pendrica",
 	"icon": "images/chef-logo.svg",
      	"displayName": "Chef Extension for Visual Studio Code",
@@ -14,8 +14,7 @@
 		"url": "https://github.com/pendrica/vscode-chef/issues"
 	},
  	"engines": {
-		"vscode": "0.10.x",
-		"node": "*"
+		"vscode": "0.10.x"
 	},
 	"activationEvents": [
 		"onLanguage:ruby"
@@ -27,11 +26,10 @@
 	},
 	"devDependencies": {
 		"vscode": "0.10.x",
-		"vscode-languageclient": "0.10.x",
-		"vscode-languageserver": "0.10.x"
+		"typescript": "^1.6.2"
 	},
 	"extensionDependencies": 
-		["vscode.ruby"],		
+		["vscode.ruby"],
 	"categories": [
 		"Languages",
 		"Snippets",

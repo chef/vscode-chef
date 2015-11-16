@@ -8,3 +8,4 @@ test/**
 tsconfig.json
 vsc-extension-quickstart.md
 vscode-chef-install.gif
+**/*.vsix
