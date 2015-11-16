@@ -4,26 +4,44 @@
 	"version": "0.2.0",
 	"publisher": "Pendrica",
 	"icon": "images/chef-logo.svg",
-	"author": {
-		"name": "Stuart Preston (stuart@pendrica.com)"
+     	"displayName": "Chef Extension for Visual Studio Code",
+	"license": "Apache-2.0",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/pendrica/vscode-chef.git"
 	},
-	"displayName": "Chef Extension for Visual Studio Code",
-	"engines": {
-		"vscode": "0.10.x"
+	"bugs": {
+		"url": "https://github.com/pendrica/vscode-chef/issues"
 	},
-	"categories": [
-		"Languages",
-		"Snippets"
-	],
+ 	"engines": {
+		"vscode": "0.10.x",
+		"node": "*"
+	},
 	"activationEvents": [
-		"onCommand:extension.rubocop"
+		"onLanguage:ruby"
 	],
 	"main": "./out/extension",
+	"dependencies": {
+		"vscode-languageclient": "0.10.x",
+		"vscode-languageserver": "0.10.x"
+	},
+	"devDependencies": {
+		"vscode": "0.10.x",
+		"vscode-languageclient": "0.10.x",
+		"vscode-languageserver": "0.10.x"
+	},
+	"extensionDependencies": 
+		["vscode.ruby"],		
+	"categories": [
+		"Languages",
+		"Snippets",
+ 		"Linters"
+	],
 	"contributes": {
 		"languages": [{
 			"id": "ruby",
 			"aliases": ["Ruby", "Ruby"],
-			"extensions": ["chefignore", "Berksfile", "Policyfile"]
+			"extensions": ["chefignore", "Berksfile", "Policyfile", ".rb"]
 		}],
 		"grammars": [{
 			"language": "ruby",
@@ -33,16 +51,26 @@
 		"snippets": [{
 				"language": "ruby",
 				"path": "./snippets/snippets.json"
-		}]
+		}],
+		"configuration": {
+        	"type": "object",
+        	"title": "Rubocop worker configuration",
+        	"properties": {
+            	"rubocop.enable": {
+                	"type": "boolean",
+                	"default": true,
+                	"description": "Control whether rubocop is enabled for Ruby files or not."
+            	},
+  				"rubocop.path": {
+       	        	"type": "string",
+                	"default": "",
+                	"description": "Full path to rubocop, change this if you have the ChefDK installed in a non-standard location."
+            	}
+			}
+	   	}
 	},
 	"scripts": {
 		"vscode:prepublish": "node ./node_modules/vscode/bin/compile",
 		"compile": "node ./node_modules/vscode/bin/compile -watch -p ./"
-	},
-	"devDependencies": {
-		"vscode": "0.10.x"
-	},
-	"extensionDependencies": [
-        "vscode.ruby"
-  ]
+	}
 }
