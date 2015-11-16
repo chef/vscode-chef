@@ -116,7 +116,7 @@
 	"file": {
 		"prefix": "file",
 		"body": "file '${1:/path/to/file}' do\r\n  content '${2:content}'\r\n  owner '${3:root}'\r\n  group '${4:$3}'\r\n  mode '${5:0755}'\r\n  action :${6:create}\r\nend\r\n",
-		"description": "A cookbook_file resource block manages files by using files that exist within a cookbook’s /files directory",
+		"description": "A file resource block manages files that exist on nodes.",
 		"scope": "source.ruby.chef"
 	},
 	"freebsd_package": {
