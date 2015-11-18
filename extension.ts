@@ -6,6 +6,7 @@ let config: vscode.WorkspaceConfiguration;
 let rubocopPath: string;
 
 export function activate(context: vscode.ExtensionContext): void {
+	
 	diagnosticCollection = vscode.languages.createDiagnosticCollection("ruby");
 	context.subscriptions.push(diagnosticCollection);
 	
@@ -38,11 +39,19 @@ function convertSeverity(severity: string): vscode.DiagnosticSeverity {
 			return vscode.DiagnosticSeverity.Warning;
 	}
 }
-	
+
+function fileUrl(str): string {
+    let pathName = path.resolve(str).replace(/\\/g, "/");
+    if (pathName[0] !== "/") {
+        pathName = "/" + pathName;
+    }
+    return encodeURI("file://" + pathName);
+};
+
 function validateWorkspace(): void {
 	try {
 		let spawn = require("child_process").spawnSync;
-		let rubocop = spawn(rubocopPath, ["-f", "j", vscode.workspace.rootPath]);
+		let rubocop = spawn(rubocopPath, ["-f", "j", vscode.workspace.rootPath], { cwd: vscode.workspace.rootPath });
 		let rubocopOutput = JSON.parse(rubocop.stdout);
 		let arr = []; 
 		for (var r = 0; r < rubocopOutput.files.length; r++) {
@@ -73,6 +82,9 @@ function validateWorkspace(): void {
 
 function startLintingOnSaveWatcher() {
 	return vscode.workspace.onDidSaveTextDocument(document => {
+		
+		console.log(document.uri);
+		
 		if(document.languageId != "ruby") {
 			return;
 		}
