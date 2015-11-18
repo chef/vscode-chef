@@ -1,7 +1,7 @@
 {
 	"name": "Chef",
 	"description": "Chef language support and snippets for Visual Studio Code",
-	"version": "0.3.2",
+	"version": "0.4.0",
 	"publisher": "Pendrica",
 	"icon": "images/chef-logo.svg",
      	"displayName": "Chef Extension for Visual Studio Code",
@@ -21,8 +21,6 @@
 	],
 	"main": "./out/extension",
 	"dependencies": {
-		"vscode-languageclient": "0.10.x",
-		"vscode-languageserver": "0.10.x"
 	},
 	"devDependencies": {
 		"vscode": "0.10.x",
