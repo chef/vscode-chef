@@ -79,7 +79,7 @@ The Chef Extension for Visual Studio Code offers rich language support for Chef 
  * windows_service
  * yum_package
 
- Press ```Ctrl+Space``` (Windows, Linux) or ```Cmd+Space``` (OSX) to activate snippets from within the editor.
+ Press ```Ctrl+Space``` (Windows, Linux) or ```Control+Space``` (OSX) to activate snippets from within the editor.
 
  With more features yet to come, stay tuned.
 
