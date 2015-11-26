@@ -331,7 +331,7 @@
 	},
 	"template": {
 		"prefix": "template",
-		"body": "template '${1:destination_path}' do\r\n  source '${2:source_file}'\r\n  owner '${3:root}'\r\n  group '${4:3}'\r\nmode '${5:0755}'\r\n  action :${6:create}\r\nend\r\n",
+		"body": "template '${1:destination_path}' do\r\n  source '${2:source_file}'\r\n  owner '${3:root}'\r\n  group '${4:3}'\r\n  mode '${5:0755}'\r\n  action :${6:create}\r\nend\r\n",
 		"description": "Use the template resource to manage the contents of a file using an Embedded Ruby (ERB) template.",
 		"scope": "source.ruby.chef"
 	},
