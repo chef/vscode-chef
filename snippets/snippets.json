@@ -259,7 +259,7 @@
 	},
 	"registry_key": {
 		"prefix": "registry_key",
-		"body": "registry_key '${1:key_name}' do\r\n  values [{\r\n    name: '${2:name}',\r\n    type: '${3:type}',\r\n    data: '${4:data}'\r\n  }]\r\naction :${5:create}\r\nend\r\n",
+		"body": "registry_key '${1:key_name}' do\r\n  values [{\r\n    name: '${2:name}',\r\n    type: '${3:type}',\r\n    data: '${4:data}'\r\n  }]\r\n  action :${5:create}\r\nend\r\n",
 		"description": "Use the registry_key resource to create and delete registry keys in Microsoft Windows.",
 		"scope": "source.ruby.chef"
 	},
@@ -325,7 +325,7 @@
 	},
 	"subversion": {
 		"prefix": "subversion",
-		"body": "subversion '${1:name}' do\r\n  repository '${2:svn_repository}'\r\n  revision '${3:HEAD}'\r\n  destination '${4:destination_path}'\r\naction :${5:sync}\r\nend\r\n",
+		"body": "subversion '${1:name}' do\r\n  repository '${2:svn_repository}'\r\n  revision '${3:HEAD}'\r\n  destination '${4:destination_path}'\r\n  action :${5:sync}\r\nend\r\n",
 		"description": "Use the subversion resource to manage source control resources that exist in a Subversion repository.",
 		"scope": "source.ruby.chef"
 	},
