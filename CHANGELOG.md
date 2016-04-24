@@ -1,3 +1,13 @@
+## 0.5.1 (2016-04-25)
+Bugfixes:
+ - Embed README.md in packaged .vsix file (@stuartpreston)
+
+## 0.5.0 (2016-04-25)
+
+Features: 
+ - Experimental support for Foodcritic (enable by setting the ```foodcritic.enable``` to ```true``` in your settings.json) (@stuartpreston)
+ - Rubocop messages that originated at Convention/Refactor level are now shown at at Informational level in VS Code (previously the default level was "warning") (@stuartpreston)
+
 ## 0.4.4 (2015-12-19)
 
 Bugfixes:

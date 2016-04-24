@@ -10,17 +10,9 @@
 			"args": ["--extensionDevelopmentPath=${workspaceRoot}"],
 			"stopOnEntry": false,
 			"sourceMaps": true,
-			"outDir": "../../vscode-chef/out",
+			"outDir": "${workspaceRoot}/out",
 			"preLaunchTask": "npm"
-		},
-		{
-			"name": "Attach Rubocop Server",
-			"type": "node",
-			"request": "attach",
-			"port": 6004,
-			"sourceMaps": true,
-			"outDir": "../../vscode-chef/out"
 		}
 	]
 }
-
+ 
