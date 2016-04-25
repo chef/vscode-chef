@@ -1,4 +1,11 @@
+## 0.5.2 (2016-04-26)
+
+Bugfixes:
+ - Move cookbook folder selection inside feature flag for Foodcritic (@stuartpreston)
+
+
 ## 0.5.1 (2016-04-25)
+
 Bugfixes:
  - Embed README.md in packaged .vsix file (@stuartpreston)
 

@@ -15,7 +15,6 @@ export function activate(context: vscode.ExtensionContext): void {
 	diagnosticCollectionFoodcritic = vscode.languages.createDiagnosticCollection("foodcritic");
 	context.subscriptions.push(diagnosticCollectionRubocop);
 	context.subscriptions.push(diagnosticCollectionFoodcritic);
-  recalculateValidCookbookPaths();	
 
 	if (vscode.workspace.getConfiguration("rubocop")["path"] == "") {
 		if (process.platform == "win32") {
@@ -77,6 +76,7 @@ function convertSeverity(severity: string): vscode.DiagnosticSeverity {
 
 function validateWorkspace(): void {
 	try {
+		recalculateValidCookbookPaths();	
 		let spawn = require("child_process").spawnSync;
 		let rubocop = spawn(rubocopPath, ["-f", "j", vscode.workspace.rootPath], { cwd: vscode.workspace.rootPath });
 		let rubocopOutput = JSON.parse(rubocop.stdout);

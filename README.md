@@ -19,7 +19,7 @@ The Chef Extension for Visual Studio Code offers rich language support for Chef 
 
 #### Foodcritic analysis (experimental):
  * Disabled by default (enable by adding ```{ "foodcritic.enable": true }``` in user/workspace settings)
- * Entire repo will be linted when files are saved.
+ * When Ruby files are saved, the entire repo will be enumerated for cookbooks and Foodcritic run against each one.
  * If you have the [ChefDK](http://downloads.chef.io/chef-dk) installed, Foodcritic should "just work" on Windows, Mac OS X and Linux (Ubuntu)
  * If you do not have the ChefDK but do have Foodcritic installed, you can set the executable path by setting ```{ "foodcritic.path": "c:\\path\\to\\foodcritic.bat"}``` in user/workspace settings).
 
