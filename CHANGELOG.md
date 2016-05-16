@@ -1,8 +1,15 @@
+## 0.6.0 (2016-05-16)
+ - Bug: Foodcritic was only displaying the first warning from each file inspected
+ - Bug: Cookbook folders opened directly were not being detected as a cookbook (#7)
+ - Bug: Cookbook folder detection occurred for Foodcritic on each document save even when foodcritic.enable was set to false
+ - Improve end-to-end Foodcritic performance by only checking cookbooks with a metadata.rb
+ - Change default location of Rubocop and Foodcritic to /opt/chefdk/embedded/bin (and respective location on Windows) for compatibility with ChefDK 0.13+ 
+ - Foodcritic would not return the complete set of results across multiple cookbooks in a "mega-repo"
+
 ## 0.5.2 (2016-04-26)
 
 Bugfixes:
  - Move cookbook folder selection inside feature flag for Foodcritic (@stuartpreston)
-
 
 ## 0.5.1 (2016-04-25)
 

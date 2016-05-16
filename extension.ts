@@ -7,8 +7,7 @@ let diagnosticCollectionFoodcritic: vscode.DiagnosticCollection;
 let config: vscode.WorkspaceConfiguration;
 let rubocopPath: string;
 let foodcriticPath: string;
-let statusBarItem: vscode.StatusBarItem;
-let cookbookPaths: Array<string>;
+let cookbookPaths: Array<string> = [];
 
 export function activate(context: vscode.ExtensionContext): void {
 	diagnosticCollectionRubocop = vscode.languages.createDiagnosticCollection("rubocop");
@@ -18,9 +17,9 @@ export function activate(context: vscode.ExtensionContext): void {
 
 	if (vscode.workspace.getConfiguration("rubocop")["path"] == "") {
 		if (process.platform == "win32") {
-			rubocopPath = "C:\\opscode\\chefdk\\bin\\rubocop.bat";
+			rubocopPath = "C:\\opscode\\chefdk\\embedded\\bin\\rubocop.bat";
 		} else {
-			rubocopPath = "/opt/chefdk/bin/rubocop";
+			rubocopPath = "/opt/chefdk/embedded/bin/rubocop";
 		}
 	}
 	else {
@@ -32,31 +31,43 @@ export function activate(context: vscode.ExtensionContext): void {
 		context.subscriptions.push(startLintingOnSaveWatcher());
 		context.subscriptions.push(startLintingOnConfigurationChangeWatcher());
 	}
-	
+
 	if (vscode.workspace.getConfiguration("foodcritic")["path"] == "") {
 		if (process.platform == "win32") {
-			foodcriticPath = "C:\\opscode\\chefdk\\bin\\foodcritic.bat";
+			foodcriticPath = "C:\\opscode\\chefdk\\embedded\\bin\\foodcritic.bat";
 		} else {
-			foodcriticPath = "/opt/chefdk/bin/foodcritic";
+			foodcriticPath = "/opt/chefdk/embedded/bin/foodcritic";
 		}
 	}
 	else {
 		foodcriticPath = vscode.workspace.getConfiguration("foodcritic")["path"];
 		console.log("Using custom Foodcritic path:" + foodcriticPath);
 	}
+	
 	if (vscode.workspace.getConfiguration("foodcritic")["enable"]) {
-		validateCookbooks();
+		recalculateValidCookbookPaths();
 		context.subscriptions.push(startCookbookAnalysisOnSaveWatcher());
 		context.subscriptions.push(startCookbookAnalysisOnConfigurationChangeWatcher());
 	}
 }
 
 function recalculateValidCookbookPaths(): void {
-	cookbookPaths = [];
-  let cookbookNames = getCookbookPaths(path.join(vscode.workspace.rootPath, "cookbooks"));
-	for (let cookbookName of cookbookNames) {
-		cookbookPaths.push("cookbooks" + "/" + cookbookName)
-	}
+	let cookbookPathToAdd: string;
+	vscode.workspace.findFiles('**/metadata.rb', '', Infinity).then(files => {
+		cookbookPaths = [];
+		files.forEach(file => {
+			if (path.dirname(file.fsPath) == vscode.workspace.rootPath) {
+				cookbookPathToAdd = ".";
+			}
+			else {
+				cookbookPathToAdd = path.dirname(file.fsPath).replace(vscode.workspace.rootPath + path.sep, '').replace(path.sep, '/');
+			}
+			cookbookPaths.push(cookbookPathToAdd);
+			console.log(cookbookPathToAdd);
+			
+		});
+		validateCookbooks();
+	});
 }
 
 function convertSeverity(severity: string): vscode.DiagnosticSeverity {
@@ -66,7 +77,7 @@ function convertSeverity(severity: string): vscode.DiagnosticSeverity {
 			return vscode.DiagnosticSeverity.Error;
 		case "warning":
 			return vscode.DiagnosticSeverity.Warning;
-    case "convention":
+		case "convention":
 		case "refactor":
 			return vscode.DiagnosticSeverity.Information;
 		default:
@@ -76,30 +87,34 @@ function convertSeverity(severity: string): vscode.DiagnosticSeverity {
 
 function validateWorkspace(): void {
 	try {
-		recalculateValidCookbookPaths();	
 		let spawn = require("child_process").spawnSync;
 		let rubocop = spawn(rubocopPath, ["-f", "j", vscode.workspace.rootPath], { cwd: vscode.workspace.rootPath });
 		let rubocopOutput = JSON.parse(rubocop.stdout);
-		let arr = [];
-		for (var r = 0; r < rubocopOutput.files.length; r++) {
-			var rubocopFile = rubocopOutput.files[r];
-			let uri: vscode.Uri = vscode.Uri.file((path.join(vscode.workspace.rootPath, rubocopFile.path)));
-			var offenses = rubocopFile.offenses;
-			let diagnostics: vscode.Diagnostic[] = [];
-			for (var i = 0; i < offenses.length; i++) {
-				let _line = parseInt(offenses[i].location.line) - 1;
-				let _start = parseInt(offenses[i].location.column) - 1;
-				let _end = parseInt(_start + offenses[i].location.length);
-				let diagRange = new vscode.Range(_line, _start, _line, _end);
-				let diagMsg = `${offenses[i].message} (${offenses[i].cop_name})`;
-				let diagSeverity = convertSeverity(offenses[i].severity);
-				let diagnostic = new vscode.Diagnostic(diagRange, diagMsg, diagSeverity);
-				diagnostics.push(diagnostic);
+		if (rubocop.status < 2) {
+			let arr = [];
+			for (var r = 0; r < rubocopOutput.files.length; r++) {
+				var rubocopFile = rubocopOutput.files[r];
+				let uri: vscode.Uri = vscode.Uri.file((path.join(vscode.workspace.rootPath, rubocopFile.path)));
+				var offenses = rubocopFile.offenses;
+				let diagnostics: vscode.Diagnostic[] = [];
+				for (var i = 0; i < offenses.length; i++) {
+					let _line = parseInt(offenses[i].location.line) - 1;
+					let _start = parseInt(offenses[i].location.column) - 1;
+					let _end = parseInt(_start + offenses[i].location.length);
+					let diagRange = new vscode.Range(_line, _start, _line, _end);
+					let diagMsg = `${offenses[i].message} (${offenses[i].cop_name})`;
+					let diagSeverity = convertSeverity(offenses[i].severity);
+					let diagnostic = new vscode.Diagnostic(diagRange, diagMsg, diagSeverity);
+					diagnostics.push(diagnostic);
+				}
+				arr.push([uri, diagnostics]);
 			}
-			arr.push([uri, diagnostics]);
+			diagnosticCollectionRubocop.clear();
+			diagnosticCollectionRubocop.set(arr);
 		}
-		diagnosticCollectionRubocop.clear();
-		diagnosticCollectionRubocop.set(arr);
+		else {
+			console.log("Rubocop executed but exited with status: " + rubocop.status + rubocop.stdout);
+		}
 	}
 	catch (err) {
 		console.log(err);
@@ -109,6 +124,7 @@ function validateWorkspace(): void {
 
 function startLintingOnSaveWatcher() {
 	return vscode.workspace.onDidSaveTextDocument(document => {
+		console.log("onDidSaveTextDocument event received (rubocop).");
 		if (document.languageId != "ruby") {
 			return;
 		}
@@ -118,30 +134,51 @@ function startLintingOnSaveWatcher() {
 
 function startLintingOnConfigurationChangeWatcher() {
 	return vscode.workspace.onDidChangeConfiguration(params => {
+		console.log("Workspace configuration changed, validating workspace.");
 		validateWorkspace();
 	});
 }
 
 function validateCookbooks(): void {
+	console.log("in validate cookbooks");
+	if (cookbookPaths.length == 0) return;
 	try {
 		let spawn = require("child_process").spawnSync;
 		let foodcritic = spawn(foodcriticPath, cookbookPaths, { cwd: vscode.workspace.rootPath, encoding: 'utf8' });
-		let foodcriticOutput = foodcritic.stdout.trim().split('\n');
-		let arr = [];
-		for (var r = 0; r < foodcriticOutput.length; r++) {
-			let diagnostics: vscode.Diagnostic[] = [];
-			let fcId = foodcriticOutput[r].split(":")[0].trim();
-			let fcDescription = foodcriticOutput[r].split(":")[1].trim();
-			let fcPath = foodcriticOutput[r].split(":")[2].trim();
-			let lineNumber = parseInt(foodcriticOutput[r].split(":")[3].trim()) - 1;
-			let uri: vscode.Uri = vscode.Uri.file((path.join(vscode.workspace.rootPath, fcPath)));
-			let diagRange = new vscode.Range(lineNumber, 0, lineNumber, 0);
-			let diagnostic = new vscode.Diagnostic(diagRange, fcId + ": " + fcDescription, vscode.DiagnosticSeverity.Warning)
-			diagnostics.push(diagnostic);
-			arr.push([uri, diagnostics]);
+		if (foodcritic.status == 0) {
+			let foodcriticOutput = foodcritic.stdout.trim().split('\n');
+			let arr = [];
+			for (var r = 0; r < foodcriticOutput.length; r++) {
+				if (foodcriticOutput[r] != "") {
+					let diagnostics: vscode.Diagnostic[] = [];
+					let fcId = foodcriticOutput[r].split(":")[0].trim();
+					let fcDescription = foodcriticOutput[r].split(":")[1].trim();
+					let fcPath = foodcriticOutput[r].split(":")[2].trim();
+					let lineNumber = parseInt(foodcriticOutput[r].split(":")[3].trim()) - 1;
+					let uri: vscode.Uri = vscode.Uri.file((path.join(vscode.workspace.rootPath, fcPath)));
+					let diagRange = new vscode.Range(lineNumber, 0, lineNumber, 0);
+					let diagnostic = new vscode.Diagnostic(diagRange, fcId + ": " + fcDescription, vscode.DiagnosticSeverity.Warning)
+					let found: boolean = false;
+					diagnostics.push(diagnostic);	
+					for (var l = 0; l < arr.length; l++) {
+						if( arr[l][0].path == uri.path) {
+							arr[l][1].push(diagnostic);
+							found = true;
+						}
+						else {
+													
+						}
+					}
+					if (!found) arr.push([uri, diagnostics]);							
+				}
+			}
+		
+			diagnosticCollectionFoodcritic.clear();
+			diagnosticCollectionFoodcritic.set(arr);
 		}
-		diagnosticCollectionFoodcritic.clear();
-		diagnosticCollectionFoodcritic.set(arr);
+		else {
+			console.log("Foodcritic executed but exited with status: " + foodcritic.status + foodcritic.stdout);
+		}
 	}
 	catch (err) {
 		console.log(err);
@@ -151,6 +188,7 @@ function validateCookbooks(): void {
 
 function startCookbookAnalysisOnSaveWatcher() {
 	return vscode.workspace.onDidSaveTextDocument(document => {
+		console.log("onDidSaveTextDocument event received (foodcritic).");
 		if (document.languageId != "ruby") {
 			return;
 		}
@@ -159,14 +197,8 @@ function startCookbookAnalysisOnSaveWatcher() {
 }
 
 function startCookbookAnalysisOnConfigurationChangeWatcher() {
-	recalculateValidCookbookPaths();
 	return vscode.workspace.onDidChangeConfiguration(params => {
-		validateCookbooks();
-	});
-}
-
-function getCookbookPaths(srcpath) {
-	return fs.readdirSync(srcpath).filter(function (file) {
-		return fs.statSync(path.join(srcpath, file)).isDirectory();
+		console.log("Workspace configuration changed, recalculating valid cookbooks.");
+		recalculateValidCookbookPaths();
 	});
 }
