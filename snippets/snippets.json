@@ -67,7 +67,7 @@
 	},
 	"describe": {
 		"prefix": "describe",
-		"body": "describe '${1:action}' do\r\n	    let(:chef_run) { ChefSpec::SoloRunner.converge(described_recipe) }\r\n	it 'includes the `${2:1}` recipe' do\r\n	expect(chef_run).to include_recipe('ral_repo::default')\r\n	end",
+		"body": "describe '${1:action}' do\r\n	let(:chef_run) { ChefSpec::SoloRunner.converge(described_recipe) }\r\n\r\n	it 'includes the `${2:$1}` recipe' do\r\n	expect(chef_run).to include_recipe('ral_repo::default')\r\n	end\r\nend",
 		"description": "A describe block for writing a unit test",
 		"scope": "source.ruby.chef"
 	},
