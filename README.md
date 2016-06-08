@@ -35,6 +35,7 @@ The Chef Extension for Visual Studio Code offers rich language support for Chef 
  * cron
  * csh
  * deploy
+ * describe
  * directory
  * dpkg_package
  * dsc_resource

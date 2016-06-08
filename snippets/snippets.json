@@ -65,6 +65,12 @@
 		"description": "A deploy resource block manages and controls deployments.",
 		"scope": "source.ruby.chef"
 	},
+	"describe": {
+		"prefix": "describe",
+		"body": "describe '${1:action}' do\r\n	let(:chef_run) { ChefSpec::SoloRunner.converge(described_recipe) }\r\n\r\n	it 'includes the `${2:$1}` recipe' do\r\n	expect(chef_run).to include_recipe('${3:$1}')\r\n	end\r\nend",
+		"description": "A describe block for writing a unit test",
+		"scope": "source.ruby.chef"
+	},
 	"directory": {
 	  "prefix": "directory",
 	  "body": "directory '${1:/path/to/directory}' do\r\n  owner '${2:root}'\r\n  group '${3:$2}'\r\n  mode '${4:0755}'\r\n  action :${5:create}\r\nend\r\n",
