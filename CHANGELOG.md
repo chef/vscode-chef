@@ -1,3 +1,6 @@
+## 0.6.1 (2016-06-09)
+ - Adding ChefSpec 'describe' snippet (@jerry-locke)
+
 ## 0.6.0 (2016-05-16)
  - Bug: Foodcritic was only displaying the first warning from each file inspected
  - Bug: Cookbook folders opened directly were not being detected as a cookbook (#7)
