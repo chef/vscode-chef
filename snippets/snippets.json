@@ -67,7 +67,7 @@
 	},
 	"describe": {
 		"prefix": "describe",
-		"body": "describe '${1:action}' do\r\n	let(:chef_run) { ChefSpec::SoloRunner.converge(described_recipe) }\r\n\r\n	it 'includes the `${2:$1}` recipe' do\r\n	expect(chef_run).to include_recipe('${3:$1}')\r\n	end\r\nend",
+		"body": "describe '${1:COOKBOOK::RECIPE}' do\r\n	let(:chef_run) { ChefSpec::SoloRunner.converge(described_recipe) }\r\n\r\n	it 'DESCRIPTION_HERE' do\r\n	expect(chef_run).to ACTION_RESOURCE('NAME')\r\n	end\r\nend",
 		"description": "A describe block for writing a unit test",
 		"scope": "source.ruby.chef"
 	},
@@ -119,6 +119,12 @@
 		"description": "Use the execute resource to execute a single command.",
 		"scope": "source.ruby.chef"
 	},
+	"expect": {
+		"prefix": "expect",
+		"body": "expect(chef_run).to ACTION_RESOURCE('NAME')\r\n",
+		"description": "Use the expect resource to run the unit test",
+		"scope": "source.ruby.chef"
+	},	
 	"file": {
 		"prefix": "file",
 		"body": "file '${1:/path/to/file}' do\r\n  content '${2:content}'\r\n  owner '${3:root}'\r\n  group '${4:$3}'\r\n  mode '${5:0755}'\r\n  action :${6:create}\r\nend\r\n",
@@ -173,6 +179,18 @@
 		"description": "Use the ips_package resource to manage packages for the Solaris 11 platform.",
 		"scope": "source.ruby.chef"
 	},
+	"it": {
+		"prefix": "it",
+		"body": "it '${1:DESCRIPTION_HERE}' do\r\n\r\nend",
+		"description": "Used in unit test to describe what the test will do",
+		"scope": "source.ruby.chef"
+	},	
+	"let": {
+		"prefix": "let",
+		"body": "let(:chef_run) { ChefSpec::SoloRunner.converge(described_recipe) }\r\n\r\n",
+		"description": "Create the ChefSpec::SoloRunner and do a mock chef_run with run_list indicaded by the describe resource.",
+		"scope": "source.ruby.chef"
+	},		
 	"link": {
 		"prefix": "link",
 		"body": "link '${1:source_path}' do\r\n  to '${2:target_path}'\r\n  link_type :${3:hard}\r\nend\r\n",
