@@ -37,7 +37,7 @@
 		<!-- Chef built-in Resources - https://docs.chef.io/resources.html -->
 		<dict>
 			<key>match</key>
-			<string>(?&lt;!\.)\b(apt_package|bash|batch|bff_package|breakpoint|chef_gem|chef_handler|cookbook_file|cron|csh|deploy|describe|directory|dpkg_package|dsc_resource|dsc_script|easy_install_package|env|erl_call|execute|file|freebsd_package|gem_package|git|group|homebrew_package|http_request|ifconfig|ips_package|link|log|macports_package|mdadm|mount|ohai|openbsd_package|package|pacman_package|paludis_package|perl|portage_package|powershell_script|python|reboot|registry_key|remote_directory|remote_file|route|rpm_package|ruby|ruby_block|script|service|smartos_package|solaris_package|subversion|template|user|windows_package|windows_service|yum_package)\b(?![?!])</string>
+			<string>(?&lt;!\.)\b(apt_package|bash|batch|bff_package|breakpoint|chef_gem|chef_handler|cookbook_file|cron|csh|deploy|describe|directory|dpkg_package|dsc_resource|dsc_script|easy_install_package|env|erl_call|execute|expect|file|freebsd_package|gem_package|git|group|homebrew_package|http_request|ifconfig|ips_package|it|let|link|log|macports_package|mdadm|mount|ohai|openbsd_package|package|pacman_package|paludis_package|perl|portage_package|powershell_script|python|reboot|registry_key|remote_directory|remote_file|route|rpm_package|ruby|ruby_block|script|service|smartos_package|solaris_package|subversion|template|user|windows_package|windows_service|yum_package)\b(?![?!])</string>
 			<key>name</key>
 			<string>keyword.other.special-method.ruby</string>
 		</dict>
