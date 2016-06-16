@@ -44,6 +44,7 @@ The Chef Extension for Visual Studio Code offers rich language support for Chef 
  * env
  * erl_call
  * execute
+ * expect
  * file
  * freebsd_package
  * gem_package
@@ -53,6 +54,8 @@ The Chef Extension for Visual Studio Code offers rich language support for Chef 
  * http_request
  * ifconfig
  * ips_package
+ * it
+ * let
  * link
  * log
  * macports_package
