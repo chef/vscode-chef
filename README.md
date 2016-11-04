@@ -10,11 +10,11 @@ The Chef Extension for Visual Studio Code offers rich language support for Chef 
  * Chef Provisioning DSL
  * Chef built-in Resources
  * Chef Custom Resources
- 
+
 #### Rubocop linting:
  * Enabled by default (disable by adding ```{ "rubocop.enable": false }``` in user/workspace settings)
  * Entire repo will be linted when files are saved.
- * If you have the [ChefDK](http://downloads.chef.io/chef-dk) installed, linting should "just work" on Windows, Mac OS X and Linux (Ubuntu)
+ * If you have the [ChefDK](http://downloads.chef.io/chef-dk) installed, linting should "just work" on Windows, Mac OS X and Linux (Ubuntu.) [Cookstyle](https://github.com/chef/cookstyle) will be used by default.
  * If you do not have the ChefDK but do have Rubocop installed, you can set the executable path by setting ```{ "rubocop.path": "c:\\path\\to\\rubocop.bat"}``` in user/workspace settings).
 
 #### Foodcritic analysis (experimental):
