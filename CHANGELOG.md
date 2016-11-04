@@ -1,3 +1,6 @@
+## 0.6.2 (2016-11-04)
+ - Use Cookstyle in place of Rubocop by default (@smith)
+
 ## 0.6.1 (2016-06-09)
  - Adding ChefSpec 'describe' snippet (@jerry-locke)
 
