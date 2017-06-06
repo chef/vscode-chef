@@ -1,99 +1,101 @@
 {
-	"name": "Chef",
-	"description": "Chef language support and snippets for Visual Studio Code",
-	"version": "0.6.2",
-	"publisher": "Pendrica",
-	"icon": "images/chef-logo.svg",
-	"displayName": "Chef Extension for Visual Studio Code",
-	"license": "Apache-2.0",
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/pendrica/vscode-chef.git"
-	},
-	"bugs": {
-		"url": "https://github.com/pendrica/vscode-chef/issues"
-	},
-	"engines": {
-		"vscode": "^0.10.x"
-	},
-	"activationEvents": [
-		"onLanguage:ruby"
-	],
-	"main": "./out/extension",
-	"dependencies": {
-	},
-	"devDependencies": {
-		"vscode": "0.11.x",
-		"typescript": "^1.7",
-		"tslint": "^3"
-	},
-	"extensionDependencies": [
-		"vscode.ruby"
-	],
-	"categories": [
-		"Languages",
-		"Snippets",
-		"Linters"
-	],
-	"contributes": {
-		"languages": [
-			{
-				"id": "ruby",
-				"aliases": [
-					"Ruby",
-					"Ruby"
-				],
-				"extensions": [
-					"chefignore",
-					"Berksfile",
-					"Policyfile",
-					".rb"
-				]
-			}
-		],
-		"grammars": [
-			{
-				"language": "ruby",
-				"scopeName": "source.ruby.chef",
-				"path": "./syntaxes/chef.plist"
-			}
-		],
-		"snippets": [
-			{
-				"language": "ruby",
-				"path": "./snippets/snippets.json"
-			}
-		],
-		"configuration": {
-			"type": "object",
-			"title": "Chef Extension for Visual Studio Code configuration",
-			"properties": {
-				"rubocop.enable": {
-					"type": "boolean",
-					"default": true,
-					"description": "Control whether Rubocop analysis is enabled or not."
-				},
-				"rubocop.path": {
-					"type": "string",
-					"default": "",
-					"description": "Full path to Rubocop, only change this if you have the ChefDK installed in a non-standard location."
-				},
-				"foodcritic.enable": {
-					"type": "boolean",
-					"default": false,
-					"description": "Control whether Foodcritic analysis is enabled or not."
-				},
-				"foodcritic.path": {
-					"type": "string",
-					"default": "",
-					"description": "Full path to Foodcritic, only change this if you have the ChefDK installed in a non-standard location."
-				}
-			}
-		}
-	},
-	"scripts": {
-		"vscode:prepublish": "node ./node_modules/vscode/bin/compile",
-		"compile": "node ./node_modules/vscode/bin/compile -watch -p ./",
-		"postinstall": "node ./node_modules/vscode/bin/install"
-	}
+  "name": "Chef",
+  "description": "Chef language support and snippets for Visual Studio Code",
+  "version": "0.6.2",
+  "publisher": "Pendrica",
+  "icon": "images/chef-logo.svg",
+  "displayName": "Chef Extension for Visual Studio Code",
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/pendrica/vscode-chef.git"
+  },
+  "bugs": {
+    "url": "https://github.com/pendrica/vscode-chef/issues"
+  },
+  "engines": {
+    "vscode": "^0.10.x"
+  },
+  "activationEvents": [
+    "onLanguage:ruby"
+  ],
+  "main": "./out/extension",
+  "dependencies": {},
+  "devDependencies": {
+    "@types/node": "^7.0.28",
+    "fs": "0.0.1-security",
+    "path": "0.12.7",
+    "tslint": "5.4.3",
+    "typescript": "2.3.4",
+    "vscode": "1.1.0"
+  },
+  "extensionDependencies": [
+    "vscode.ruby"
+  ],
+  "categories": [
+    "Languages",
+    "Snippets",
+    "Linters"
+  ],
+  "contributes": {
+    "languages": [
+      {
+        "id": "ruby",
+        "aliases": [
+          "Ruby",
+          "Ruby"
+        ],
+        "extensions": [
+          "chefignore",
+          "Berksfile",
+          "Policyfile",
+          ".rb"
+        ]
+      }
+    ],
+    "grammars": [
+      {
+        "language": "ruby",
+        "scopeName": "source.ruby.chef",
+        "path": "./syntaxes/chef.plist"
+      }
+    ],
+    "snippets": [
+      {
+        "language": "ruby",
+        "path": "./snippets/snippets.json"
+      }
+    ],
+    "configuration": {
+      "type": "object",
+      "title": "Chef Extension for Visual Studio Code configuration",
+      "properties": {
+        "rubocop.enable": {
+          "type": "boolean",
+          "default": true,
+          "description": "Control whether Rubocop analysis is enabled or not."
+        },
+        "rubocop.path": {
+          "type": "string",
+          "default": "",
+          "description": "Full path to Rubocop, only change this if you have the ChefDK installed in a non-standard location."
+        },
+        "foodcritic.enable": {
+          "type": "boolean",
+          "default": false,
+          "description": "Control whether Foodcritic analysis is enabled or not."
+        },
+        "foodcritic.path": {
+          "type": "string",
+          "default": "",
+          "description": "Full path to Foodcritic, only change this if you have the ChefDK installed in a non-standard location."
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "node ./node_modules/vscode/bin/compile",
+    "compile": "node ./node_modules/vscode/bin/compile -watch -p ./",
+    "postinstall": "node ./node_modules/vscode/bin/install"
+  }
 }

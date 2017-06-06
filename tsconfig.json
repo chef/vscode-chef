@@ -4,7 +4,13 @@
 		"moduleResolution": "node",
 		"target": "ES5",
 		"outDir": "out",
-		"sourceMap": true
+		"sourceMap": true,
+		"typeRoots": [
+			"node_modules/@types"
+		],
+		"types": [
+			"node"
+		]
 	},
 	"exclude": [
 		"node_modules"
