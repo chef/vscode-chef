@@ -8,6 +8,7 @@ let diagnosticCollectionRubocop: vscode.DiagnosticCollection;
 let diagnosticCollectionFoodcritic: vscode.DiagnosticCollection;
 let config: vscode.WorkspaceConfiguration;
 let rubocopPath: string;
+let rubocopConfigFile: string;
 let foodcriticPath: string;
 let cookbookPaths: Array<string> = [];
 
@@ -25,8 +26,16 @@ export function activate(context: vscode.ExtensionContext): void {
 		}
 	} else {
 		rubocopPath = vscode.workspace.getConfiguration("rubocop").path;
-		console.log("Using custom Rubocop path:" + rubocopPath);
+		console.log("Using custom Rubocop path: " + rubocopPath);
 	}
+
+	if (vscode.workspace.getConfiguration("rubocop").configFile === "") {
+		console.log("No explicit config file set for Rubocop.");
+	} else {
+		rubocopConfigFile = vscode.workspace.getConfiguration("rubocop").configFile;
+		console.log("Using custom Rubocop config from: " + rubocopConfigFile);
+	}
+
 	if (vscode.workspace.getConfiguration("rubocop").enable) {
 		validateWorkspace();
 		context.subscriptions.push(startLintingOnSaveWatcher());
@@ -41,7 +50,7 @@ export function activate(context: vscode.ExtensionContext): void {
 		}
 	} else {
 		foodcriticPath = vscode.workspace.getConfiguration("foodcritic").path;
-		console.log("Using custom Foodcritic path:" + foodcriticPath);
+		console.log("Using custom Foodcritic path: " + foodcriticPath);
 	}
 
 	if (vscode.workspace.getConfiguration("foodcritic").enable) {
@@ -86,7 +95,12 @@ function convertSeverity(severity: string): vscode.DiagnosticSeverity {
 function validateWorkspace(): void {
 	try {
 		let spawn = require("child_process").spawnSync;
-		let rubocop = spawn(rubocopPath, ["-f", "j", vscode.workspace.rootPath], { cwd: vscode.workspace.rootPath });
+		let rubocop: any;
+		if (rubocopConfigFile) {
+			rubocop = spawn(rubocopPath, ["--config", rubocopConfigFile, "-f", "j", vscode.workspace.rootPath], { cwd: vscode.workspace.rootPath });
+		} else {
+			rubocop = spawn(rubocopPath, ["-f", "j", vscode.workspace.rootPath], { cwd: vscode.workspace.rootPath });
+		}
 		let rubocopOutput = JSON.parse(rubocop.stdout);
 		if (rubocop.status < 2) {
 			let arr = [];

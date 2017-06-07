@@ -1,3 +1,6 @@
+## 0.6.3 (2017-06-06)
+ - Allow `rubocop.configFile` workspace parameter (@stuartpreston)
+
 ## 0.6.2 (2016-11-04)
  - Use Cookstyle in place of Rubocop by default (@smith)
 
