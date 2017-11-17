@@ -94,7 +94,7 @@ The Chef Extension for Visual Studio Code offers rich language support for Chef 
 
  With more features yet to come, stay tuned.
 
-##Installation
+## Installation
 
  * You will need to install Visual Studio Code `1.0` or higher.
  * From the command palette ```Ctrl-Shift-P``` (Windows, Linux) or ```Cmd-Shift-P``` (OSX) select `Install Extension`, choose `Chef` and reload Visual Studio Code.  
