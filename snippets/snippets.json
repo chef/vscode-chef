@@ -113,12 +113,6 @@
 		"description": "A dsc_script resource block embeds the code that defines a DSC configuration directly within a Chef recipe.",
 		"scope": "source.ruby.chef"
 	},
-	"easy_install_package": {
-		"prefix": "easy_install_package",
-		"body": "easy_install_package '${1:package_name}' do\r\n  action :${2:install}\r\nend\r\n",
-		"description": "Use the easy_install_package resource to manage packages for the Python platform.",
-		"scope": "source.ruby.chef"
-	},
 	"env": {
 		"prefix": "env",
 		"body": "env '${1:name}' do\r\n  value '${2:value}'\r\nend\r\n",
