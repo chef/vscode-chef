@@ -5,6 +5,24 @@
 		"description": "Use the apt_package resource to manage packages for the Debian and Ubuntu platforms.",
 		"scope": "source.ruby.chef"
 	},
+	"apt_preference": {
+		"prefix": "apt_preference",
+		"body": "apt_preference '${1:name}' do\r\n  pin '${2:version 1.2.3}'\r\n  pin_priority ${3:700}\r\n  action :${4:add}\r\nend\r\n",
+		"description": "Use the apt_preference resource to manage APT preference files for the Debian and Ubuntu platforms.",
+		"scope": "source.ruby.chef"
+	},
+	"apt_repository": {
+		"prefix": "apt_repository",
+		"body": "apt_repository '${1:name}' do\r\n  uri '${2:https://example.com/deb}'\r\n  components ${3:['main']}\r\n  action :${4:add}\r\nend\r\n",
+		"description": "Use the apt_preference resource to manage APT repositories for the Debian and Ubuntu platforms.",
+		"scope": "source.ruby.chef"
+	},
+	"apt_update": {
+		"prefix": "apt_update",
+		"body": "apt_update '${1:name}' do\r\n  ignore_failure '${2:true}'\r\n  action :${3:update}\r\nend\r\n",
+		"description": "Use the apt_update resource to manage APT cache for the Debian and Ubuntu platforms.",
+		"scope": "source.ruby.chef"
+	},
 	"bash": {
 		"prefix": "bash",
 		"body": "bash '${1:name}' do\r\n  code <<-EOH\r\n  ${5:script commands}\r\n  EOH\r\n  action :${2:run}\r\nend\r\n",
@@ -93,12 +111,6 @@
 		"prefix": "dsc_script",
 		"body": "dsc_script '${1:name}' do\r\n  code <<-EOH\r\n  ${5:DSC code}\r\n  EOH\r\nend\r\n",
 		"description": "A dsc_script resource block embeds the code that defines a DSC configuration directly within a Chef recipe.",
-		"scope": "source.ruby.chef"
-	},
-	"easy_install_package": {
-		"prefix": "easy_install_package",
-		"body": "easy_install_package '${1:package_name}' do\r\n  action :${2:install}\r\nend\r\n",
-		"description": "Use the easy_install_package resource to manage packages for the Python platform.",
 		"scope": "source.ruby.chef"
 	},
 	"env": {
