@@ -154,8 +154,9 @@ function validateCookbooks(): void {
 	if (cookbookPaths.length === 0) { return; }
 	try {
 		let spawn = require("child_process").spawnSync;
+		cookbookPaths[cookbookPaths.length] = "--no-progress";
 		let foodcritic = spawn(foodcriticPath, cookbookPaths, { cwd: vscode.workspace.rootPath, encoding: "utf8" });
-		if (foodcritic.status === 0) {
+		if (foodcritic.status > 0) {
 			let foodcriticOutput = foodcritic.stdout.trim().split("\n");
 			let arr = [];
 			for (var r = 0; r < foodcriticOutput.length; r++) {

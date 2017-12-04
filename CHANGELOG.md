@@ -1,3 +1,8 @@
+## 0.6.4 (2016-12-04)
+ - Additional snippets from Chef 13 (@tas50)
+ - Fix to Foodcritic output formatting (@stuartpreston) [#16](https://github.com/pendrica/vscode-chef/issues/16)
+ - Logo switched to png to comply with publishing rules (@stuartpreston)
+
 ## 0.6.3 (2017-06-06)
  - Allow `rubocop.configFile` workspace parameter (@stuartpreston)
 
