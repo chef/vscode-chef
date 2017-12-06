@@ -14,7 +14,7 @@
 	"apt_repository": {
 		"prefix": "apt_repository",
 		"body": "apt_repository '${1:name}' do\r\n  uri '${2:https://example.com/deb}'\r\n  components ${3:['main']}\r\n  action :${4:add}\r\nend\r\n",
-		"description": "Use the apt_preference resource to manage APT repositories for the Debian and Ubuntu platforms.",
+		"description": "Use the apt_repository resource to manage APT repositories for the Debian and Ubuntu platforms.",
 		"scope": "source.ruby.chef"
 	},
 	"apt_update": {

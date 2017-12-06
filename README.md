@@ -26,6 +26,8 @@ The Chef Extension for Visual Studio Code offers rich language support for Chef 
 
 #### Snippet support (with tabbing) for all Chef built-in Resources:
  * apt_package
+ * apt_preference
+ * apt_repository
  * bash
  * batch
  * bff_package
@@ -41,7 +43,6 @@ The Chef Extension for Visual Studio Code offers rich language support for Chef 
  * dpkg_package
  * dsc_resource
  * dsc_script
- * easy_install_package
  * env
  * erl_call
  * execute
