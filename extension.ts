@@ -187,6 +187,7 @@ function validateCookbooks(): void {
 			diagnosticCollectionFoodcritic.set(arr);
 		} else {
 			console.log("Foodcritic executed but exited with status: " + foodcritic.status + foodcritic.stdout);
+			diagnosticCollectionFoodcritic.clear();
 		}
 	} catch (err) {
 		console.log(err);
