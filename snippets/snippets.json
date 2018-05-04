@@ -77,12 +77,6 @@
 		"description": "A csh resource block executes scripts using csh.",
 		"scope": "source.ruby.chef"
 	},
-	"deploy": {
-		"prefix": "deploy",
-		"body": "deploy '${1:private_repo}' do\r\n  repo '${2:git@github.com/acctname/private-repo.git}'\r\n  user '${3:ubuntu}'\r\n  deploy_to '${4:/tmp/private_code}'\r\n  ssh_wrapper '${5:/tmp/private_code/wrap-ssh4git.sh}'\r\n  action :${6:deploy}\r\nend\r\n",
-		"description": "A deploy resource block manages and controls deployments.",
-		"scope": "source.ruby.chef"
-	},
 	"describe": {
 		"prefix": "describe",
 		"body": "describe '${1:COOKBOOK::RECIPE}' do\r\n  ${2}\r\nend\r\n",
