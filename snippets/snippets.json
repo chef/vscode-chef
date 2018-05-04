@@ -107,12 +107,6 @@
 		"description": "A dsc_script resource block embeds the code that defines a DSC configuration directly within a Chef recipe.",
 		"scope": "source.ruby.chef"
 	},
-	"env": {
-		"prefix": "env",
-		"body": "env '${1:name}' do\r\n  value '${2:value}'\r\nend\r\n",
-		"description": "Use the env resource to manage environment keys in Microsoft Windows.",
-		"scope": "source.ruby.chef"
-	},
 	"execute": {
 		"prefix": "execute",
 		"body": "execute '${1:name}' do\r\n  command '${2:command}'\r\n  action :${3:run}\r\nend\r\n",
@@ -363,6 +357,12 @@
 		"prefix": "user",
 		"body": "user '${1:user_name}' do\r\n  comment '${2:comment}'\r\n  uid '${3:uid}'\r\n  gid '${4:gid}'\r\n  home '${5:home_folder}'\r\n  shell '${6:shell}'\r\n  password '${7:password}'\r\n  action :${8:create}\r\nend\r\n",
 		"description": "Use the user resource to add users, update existing users, remove users, and to lock/unlock user passwords.",
+		"scope": "source.ruby.chef"
+	},
+	"windows_env": {
+		"prefix": "windows_env",
+		"body": "windows_env '${1:name}' do\r\n  value '${2:value}'\r\nend\r\n",
+		"description": "Use the windows_env resource to manage environment keys in Microsoft Windows.",
 		"scope": "source.ruby.chef"
 	},
 	"windows_package": {
