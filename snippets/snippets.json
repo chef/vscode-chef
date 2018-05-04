@@ -113,12 +113,6 @@
 		"description": "Use the env resource to manage environment keys in Microsoft Windows.",
 		"scope": "source.ruby.chef"
 	},
-	"erl_call": {
-		"prefix": "erl_call",
-		"body": "erl_call '${1:name}' do\r\n  code '${2:value}'\r\n  distributed '${3:true}'\r\n  node_name '${4:node_name}'\r\nend\r\n",
-		"description": "Use the erl_call resource to connect to a node located within a distributed Erlang system.",
-		"scope": "source.ruby.chef"
-	},
 	"execute": {
 		"prefix": "execute",
 		"body": "execute '${1:name}' do\r\n  command '${2:command}'\r\n  action :${3:run}\r\nend\r\n",
