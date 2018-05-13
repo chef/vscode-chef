@@ -14,7 +14,7 @@
     "url": "https://github.com/pendrica/vscode-chef/issues"
   },
   "engines": {
-    "vscode": "^1.5.0"
+    "vscode": "^1.1.14"
   },
   "activationEvents": [
     "onLanguage:ruby"
@@ -27,7 +27,7 @@
     "path": "0.12.7",
     "tslint": "5.4.3",
     "typescript": "2.3.4",
-    "vscode": "^1.5.0"
+    "vscode": "^1.1.14"
   },
   "extensionDependencies": [
     "vscode.ruby"
