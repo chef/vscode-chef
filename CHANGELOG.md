@@ -1,4 +1,9 @@
-## 0.6.4 (2016-12-04)
+## 0.7.0 (2018-05-13)
+ - Additional snippets from Chef 14 (@kitforbes, @tas50)
+ - Set vscode NPM package to 1.1.14 (@SeanSith)
+ - Fixes to Foodcritic output on save (@SeanSith)
+
+## 0.6.4 (2017-12-04)
  - Additional snippets from Chef 13 (@tas50)
  - Fix to Foodcritic output formatting (@stuartpreston) [#16](https://github.com/pendrica/vscode-chef/issues/16)
  - Logo switched to png to comply with publishing rules (@stuartpreston)
