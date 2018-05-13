@@ -28,23 +28,25 @@ The Chef Extension for Visual Studio Code offers rich language support for Chef 
  * apt_package
  * apt_preference
  * apt_repository
+ * apt_update
  * bash
  * batch
  * bff_package
  * breakpoint
+ * cab_package
  * chef_gem
  * chef_handler
+ * chocolatey_package
  * cookbook_file
  * cron
  * csh
- * deploy
  * describe
  * directory
+ * dmg_package
+ * dnf_package
  * dpkg_package
  * dsc_resource
  * dsc_script
- * env
- * erl_call
  * execute
  * expect
  * file
@@ -52,30 +54,48 @@ The Chef Extension for Visual Studio Code offers rich language support for Chef 
  * gem_package
  * git
  * group
+ * homebrew_cask
  * homebrew_package
+ * homebrew_tap
+ * hostname
  * http_request
  * ifconfig
  * ips_package
  * it
+ * ksh
+ * launchd
  * let
  * link
  * log
+ * macos_userdefaults
  * macports_package
  * mdadm
  * mount
+ * msu_package
+ * ohai_hint
  * ohai
  * openbsd_package
+ * openssl_dhparam
+ * openssl_rsa_private_key
+ * openssl_rsa_public_key
+ * osx_profile
  * package
  * pacman_package
  * paludis_package
  * perl
  * portage_package
+ * powershell_package
  * powershell_script
  * python
  * reboot
  * registry_key
  * remote_directory
  * remote_file
+ * rhsm_errata_level
+ * rhsm_errata
+ * rhsm_register
+ * rhsm_repo
+ * rhsm_subscription
  * route
  * rpm_package
  * ruby
@@ -85,11 +105,30 @@ The Chef Extension for Visual Studio Code offers rich language support for Chef 
  * smartos_package
  * solaris_package
  * subversion
+ * sudo
+ * swap_file
+ * sysctl
+ * systemd_unit
  * template
  * user
+ * windows_ad_join
+ * windows_auto_run
+ * windows_env
+ * windows_feature
+ * windows_feature_dism
+ * windows_feature_powershell
+ * windows_font
  * windows_package
+ * windows_path
+ * windows_printer
+ * windows_printer_port
  * windows_service
+ * windows_shortcut
+ * windows_task
  * yum_package
+ * yum_repository
+ * zypper_package
+ * zypper_repository
 
  Press ```Ctrl+Space``` (Windows, Linux) or ```Control+Space``` (OSX) to activate snippets from within the editor.
 

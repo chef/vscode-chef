@@ -47,6 +47,12 @@
 		"description": "A breakpoint resource block creates a breakpoint in a recipe.",
 		"scope": "source.ruby.chef"
 	},
+	"cab_package": {
+		"prefix": "cab_package",
+		"body": "cab_package '${1:name}' do\r\n  source '${2:C:\\path\\to\\a.cab}'\r\n  action :${3:install}\r\nend\r\n",
+		"description": "Use the cab_package resource to install or remove Microsoft Windows cabinet (.cab) packages.",
+		"scope": "source.ruby.chef"
+	},
 	"chef_gem": {
 		"prefix": "chef_gem",
 		"body": "chef_gem '${1:package_name}' do\r\n  action :${2:break}\r\nend\r\n",
@@ -59,11 +65,17 @@
 		"description": "Exception and report handlers are used to trigger certain behaviors in response to specific situations, typically identified during a chef-client run.",
 		"scope": "source.ruby.chef"
 	},
+	"chocolatey_package": {
+		"prefix": "chocolatey_package",
+		"body": "chocolatey_package '${1:package_name}' do\r\n  action :${2:install}\r\nend\r\n",
+		"description": "Use the chocolatey_package resource to manage packages using Chocolatey on the Microsoft Windows platform.",
+		"scope": "source.ruby.chef"
+	},
 	"cookbook_file": {
-	  "prefix": "cookbook_file",
-	  "body": "cookbook_file '${1:/path/to/file}' do\r\n  source '${2:filename}'\r\n  owner '${3:root}'\r\n  group '${4:$3}'\r\n  mode '${5:0755}'\r\n  action :${6:create}\r\nend\r\n",
-	  "description": "A cookbook_file resource block manages files by using files that exist within a cookbook’s /files directory",
-	  "scope": "source.ruby.chef"
+		"prefix": "cookbook_file",
+		"body": "cookbook_file '${1:/path/to/file}' do\r\n  source '${2:filename}'\r\n  owner '${3:root}'\r\n  group '${4:$3}'\r\n  mode '${5:0755}'\r\n  action :${6:create}\r\nend\r\n",
+		"description": "A cookbook_file resource block manages files by using files that exist within a cookbook’s /files directory",
+		"scope": "source.ruby.chef"
 	},
 	"cron": {
 		"prefix": "cron",
@@ -84,10 +96,22 @@
 		"scope": "source.ruby.chef"
 	},
 	"directory": {
-	  "prefix": "directory",
-	  "body": "directory '${1:/path/to/directory}' do\r\n  owner '${2:root}'\r\n  group '${3:$2}'\r\n  mode '${4:0755}'\r\n  action :${5:create}\r\nend\r\n",
-	  "description": "A directory resource block declares a directory and the permissions needed on that directory.",
-	  "scope": "source.ruby.chef"
+		"prefix": "directory",
+		"body": "directory '${1:/path/to/directory}' do\r\n  owner '${2:root}'\r\n  group '${3:$2}'\r\n  mode '${4:0755}'\r\n  action :${5:create}\r\nend\r\n",
+		"description": "A directory resource block declares a directory and the permissions needed on that directory.",
+		"scope": "source.ruby.chef"
+	},
+	"dmg_package": {
+		"prefix": "dmg_package",
+		"body": "dmg_package '${1:app}' do\r\n  action :${2:install}\r\nend\r\n",
+		"description": "Use the dmg_package resource to install a package from a .dmg file. The resource will retrieve the file from a remote URL, mount it using OS X’s hdidutil, copy the application to the specified destination (/Applications), and detach the image using hdiutil. The .dmg file will be stored in the Chef::Config[:file_cache_path].",
+		"scope": "source.ruby.chef"
+	},
+	"dnf_package": {
+		"prefix": "dnf_package",
+		"body": "dnf_package '${1:package_name}' do\r\n  action :${2:install}\r\nend\r\n",
+		"description": "Use the dnf_package resource to install, upgrade, and remove packages with DNF for Fedora platforms. The dnf_package resource is able to resolve provides data for packages much like DNF can do when it is run from the command line. This allows a variety of options for installing packages, like minimum versions, virtual provides, and library names.",
+		"scope": "source.ruby.chef"
 	},
 	"dpkg_package": {
 		"prefix": "dpkg_package",
@@ -118,7 +142,7 @@
 		"body": "expect(chef_run).to ${1:ACTION}_${2:RESOURCE}('${3:NAME}')\r\n",
 		"description": "Use the expect resource to run the unit test",
 		"scope": "source.ruby.chef"
-	},	
+	},
 	"file": {
 		"prefix": "file",
 		"body": "file '${1:/path/to/file}' do\r\n  content '${2:content}'\r\n  owner '${3:root}'\r\n  group '${4:$3}'\r\n  mode '${5:0755}'\r\n  action :${6:create}\r\nend\r\n",
@@ -149,10 +173,28 @@
 		"description": "Use the group resource to manage a local group.",
 		"scope": "source.ruby.chef"
 	},
+	"homebrew_cask": {
+		"prefix": "homebrew_cask",
+		"body": "homebrew_cask '${1:cask_name}' do\r\n  action :${2:install}\r\nend\r\n",
+		"description": "Use the homebrew_cask resource to install binaries distributed via the Homebrew package manager.",
+		"scope": "source.ruby.chef"
+	},
 	"homebrew_package": {
 		"prefix": "homebrew_package",
 		"body": "homebrew_package '${1:package_name}' do\r\n  action :${2:install}\r\nend\r\n",
 		"description": "Use the homebrew_package resource to manage packages for the Mac OS X platform.",
+		"scope": "source.ruby.chef"
+	},
+	"homebrew_tap": {
+		"prefix": "homebrew_tap",
+		"body": "homebrew_tap '${1:tap_name}' do\r\n  action :${2:tap}\r\nend\r\n",
+		"description": "Use the homebrew_tap resource to add formula repositories to the Homebrew package manager.",
+		"scope": "source.ruby.chef"
+	},
+	"hostname": {
+		"prefix": "hostname",
+		"body": "hostname '${1:hostname}' do\r\n  action :${2:set}\r\nend\r\n",
+		"description": "The hostname resource sets the system’s hostname and hosts configuration, ensures that the hostname persists after a reboot, and then re-run the Ohai plugin so the hostname will be available in subsequent cookbooks.",
 		"scope": "source.ruby.chef"
 	},
 	"http_request": {
@@ -178,13 +220,25 @@
 		"body": "it '${1:DESCRIPTION_HERE}' do\r\n  ${2}\r\nend\r\n",
 		"description": "Used in unit test to describe what the test will do",
 		"scope": "source.ruby.chef"
-	},	
+	},
+	"ksh": {
+		"prefix": "ksh",
+		"body": "ksh '${1:name}' do\r\n  code <<-EOH\r\n  ${2:ksh code}\r\n  EOH\r\nend\r\n",
+		"description": "Use the ksh resource to execute scripts using the Korn shell (ksh) interpreter. This resource may also use any of the actions and properties that are available to the execute resource. Commands that are executed with this resource are (by their nature) not idempotent, as they are typically unique to the environment in which they are run. Use not_if and only_if to guard this resource for idempotence.",
+		"scope": "source.ruby.chef"
+	},
+	"launchd": {
+		"prefix": "launchd",
+		"body": "launchd '${1:name}' do\r\n  action :${2:create}\r\nend\r\n",
+		"description": "Use the launchd resource to manage system-wide services (daemons) and per-user services (agents) on the macOS platform.",
+		"scope": "source.ruby.chef"
+	},
 	"let": {
 		"prefix": "let",
 		"body": "let(:chef_run) { ChefSpec::SoloRunner.converge(described_recipe) }\r\n\r\n",
 		"description": "Create the ChefSpec::SoloRunner and do a mock chef_run with run_list indicaded by the describe resource.",
 		"scope": "source.ruby.chef"
-	},		
+	},
 	"link": {
 		"prefix": "link",
 		"body": "link '${1:source_path}' do\r\n  to '${2:target_path}'\r\n  link_type :${3:hard}\r\nend\r\n",
@@ -195,6 +249,12 @@
 		"prefix": "log",
 		"body": "log '${1:message}' do\r\n  level :${2:info}\r\nend\r\n",
 		"description": "Use the log resource to to create log entries.",
+		"scope": "source.ruby.chef"
+	},
+	"macos_userdefaults": {
+		"prefix": "macos_userdefaults",
+		"body": "macos_userdefaults '${1:description}' do\r\n  domain '${2:domain}'\r\n  global ${3:false}\r\n  value '${4:value}'\r\n  type '${5:type}'\r\n  action :${6:write}\r\nend\r\n",
+		"description": "Use the macos_userdefaults resource to manage the macOS user defaults system. The properties of the resource are passed to the defaults command, and the parameters follow the conventions of that command. See the defaults man page for additional information.",
 		"scope": "source.ruby.chef"
 	},
 	"macports_package": {
@@ -215,6 +275,18 @@
 		"description": "Use the mount resource to manage a mounted file system.",
 		"scope": "source.ruby.chef"
 	},
+	"msu_package": {
+		"prefix": "msu_package",
+		"body": "msu_package '${1:name}' do\r\n  source '${2:C:\\path\\to\\file}'\r\n  action :${3:install}\r\nend\r\n",
+		"description": "Use the msu_package resource to install Microsoft Update(MSU) packages on Microsoft Windows machines.",
+		"scope": "source.ruby.chef"
+	},
+	"ohai_hint": {
+		"prefix": "ohai_hint",
+		"body": "ohai_hint '${1:hint_name}' do\r\n  content Hash[:${2:key}, '${3:value}']\r\n  action :${4:create}\r\nend\r\n",
+		"description": "Use the ohai_hint resource to aid in configuration detection by passing hint data to Ohai.",
+		"scope": "source.ruby.chef"
+	},
 	"ohai": {
 		"prefix": "ohai",
 		"body": "ohai '${1:name}' do\r\n  action :${2:reload}\r\nend\r\n",
@@ -225,6 +297,30 @@
 		"prefix": "openbsd_package",
 		"body": "openbsd_package '${1:package_name}' do\r\n  action :${2:install}\r\nend\r\n",
 		"description": "Use the openbsd_package resource to manage packages for the OpenBSD platform.",
+		"scope": "source.ruby.chef"
+	},
+	"openssl_dhparam": {
+		"prefix": "openssl_dhparam",
+		"body": "openssl_dhparam '${1:path}' do\r\n  action :${2:create}\r\nend\r\n",
+		"description": "Use the openssl_dhparam resource to generate dhparam.pem files. If a valid dhparam.pem file is found at the specified location, no new file will be created. If a file is found at the specified location, but it is not a valid dhparam file, it will be overwritten.",
+		"scope": "source.ruby.chef"
+	},
+	"openssl_rsa_private_key": {
+		"prefix": "openssl_rsa_private_key",
+		"body": "openssl_rsa_private_key '${1:path}' do\r\n  action :${2:create}\r\nend\r\n",
+		"description": "Use the openssl_rsa_private_key resource to generate RSA private key files. If a valid RSA key file can be opened at the specified location, no new file will be created. If the RSA key file cannot be opened or does not exist, it will be overwritten.",
+		"scope": "source.ruby.chef"
+	},
+	"openssl_rsa_public_key": {
+		"prefix": "openssl_rsa_public_key",
+		"body": "openssl_rsa_public_key '${1:path}' do\r\n  action :${2:create}\r\nend\r\n",
+		"description": "Use the openssl_rsa_public_key resource to generate RSA public key files for a given RSA private key.",
+		"scope": "source.ruby.chef"
+	},
+	"osx_profile": {
+		"prefix": "osx_profile",
+		"body": "osx_profile '${1:profile_name}' do\r\n  profile '${2:profile}\r\n  action :${3:install}\r\nend\r\n",
+		"description": "Use the osx_profile resource to manage configuration profiles (.mobileconfig files) on the macOS platform. The osx_profile resource installs profiles by using the uuidgen library to generate a unique ProfileUUID, and then using the profiles command to install the profile on the system.",
 		"scope": "source.ruby.chef"
 	},
 	"package": {
@@ -257,6 +353,12 @@
 		"description": "Use the portage_package resource to manage packages for the Gentoo platform.",
 		"scope": "source.ruby.chef"
 	},
+	"powershell_package": {
+		"prefix": "powershell_package",
+		"body": "powershell_package '${1:package_name}' do\r\n  action :${2:install}\r\nend\r\n",
+		"description": "Use the powershell_package resource to install and manage packages via the Powershell Package Manager for the Microsoft Windows platform. The powershell_package resource requires administrative access, and a source must be configured in the Powershell Package Manager via the Register-PackageSource command",
+		"scope": "source.ruby.chef"
+	},
 	"powershell_script": {
 		"prefix": "powershell_script",
 		"body": "powershell_script '${1:name}' do\r\n  code <<-EOH\r\n  ${2:powershell code}\r\n  EOH\r\nend\r\n",
@@ -282,16 +384,46 @@
 		"scope": "source.ruby.chef"
 	},
 	"remote_directory": {
-	  "prefix": "remote_directory",
-	  "body": "remote_directory '${1:/path/to/directory}' do\r\n  source '${2:source_directory}'\r\n  owner '${3:root}'\r\n  group '${4:$3}'\r\n  mode '${5:0755}'\r\n  action :${6:create}\r\nend\r\n",
-	  "description": "A remote_directory resource block transfers a directory from a cookbook to a node, and then assigns the permissions needed on that directory.",
-	  "scope": "source.ruby.chef"
+		"prefix": "remote_directory",
+		"body": "remote_directory '${1:/path/to/directory}' do\r\n  source '${2:source_directory}'\r\n  owner '${3:root}'\r\n  group '${4:$3}'\r\n  mode '${5:0755}'\r\n  action :${6:create}\r\nend\r\n",
+		"description": "A remote_directory resource block transfers a directory from a cookbook to a node, and then assigns the permissions needed on that directory.",
+		"scope": "source.ruby.chef"
 	},
 	"remote_file": {
-	  "prefix": "remote_file",
-	  "body": "remote_file '${1:/path/to/file}' do\r\n  source '${2:source_file}'\r\n  owner '${3:root}'\r\n  group '${4:$3}'\r\n  mode '${5:0755}'\r\n  action :${6:create}\r\nend\r\n",
-	  "description": "Use the remote_file resource to transfer a file from a remote location using file specificity.",
-	  "scope": "source.ruby.chef"
+		"prefix": "remote_file",
+		"body": "remote_file '${1:/path/to/file}' do\r\n  source '${2:source_file}'\r\n  owner '${3:root}'\r\n  group '${4:$3}'\r\n  mode '${5:0755}'\r\n  action :${6:create}\r\nend\r\n",
+		"description": "Use the remote_file resource to transfer a file from a remote location using file specificity.",
+		"scope": "source.ruby.chef"
+	},
+	"rhsm_errata_level": {
+		"prefix": "rhsm_errata_level",
+		"body": "rhsm_errata_level '${1:errata_level}' do\r\n  action :${2:install}\r\nend\r\n",
+		"description": "Use the rhsm_errata resource to install all packages of a specified errata level from the Red Hat Subscription Manager. For example, you can ensure that all packages associated with errata marked at a “Critical” security level are installed.",
+		"scope": "source.ruby.chef"
+	},
+	"rhsm_errata": {
+		"prefix": "rhsm_errata",
+		"body": "rhsm_errata '${1:errata_id}' do\r\n  action :${2:install}'\r\nend\r\n",
+		"description": "Use the rhsm_errata resource to install packages associated with a given Red Hat Subscription Manager Errata ID.",
+		"scope": "source.ruby.chef"
+	},
+	"rhsm_register": {
+		"prefix": "rhsm_register",
+		"body": "rhsm_register '${1:server_host}' do\r\n  action :${2:register}\r\nend\r\n",
+		"description": "Use the rhsm_register resource to register a node with the Red Hat Subscription Manager or a local Red Hat Satellite server.",
+		"scope": "source.ruby.chef"
+	},
+	"rhsm_repo": {
+		"prefix": "rhsm_repo",
+		"body": "rhsm_repo '${1:repo_name}' do\r\n  action :${2:enable}\r\nend\r\n",
+		"description": "Use the rhsm_repo resource to enable or disable Red Hat Subscription Manager repositories that are made available via attached subscriptions.",
+		"scope": "source.ruby.chef"
+	},
+	"rhsm_subscription": {
+		"prefix": "rhsm_subscription",
+		"body": "rhsm_subscription '${1:pool_id}' do\r\n  action :${2:attach}\r\nend\r\n",
+		"description": "Use the rhsm_subscription to add and remove Redhat Subscription Manager subscriptions to your host. This can be used when a host’s activation_key does not attach all necessary subscriptions to your host.",
+		"scope": "source.ruby.chef"
 	},
 	"route": {
 		"prefix": "route",
@@ -347,6 +479,30 @@
 		"description": "Use the subversion resource to manage source control resources that exist in a Subversion repository.",
 		"scope": "source.ruby.chef"
 	},
+	"sudo": {
+		"prefix": "sudo",
+		"body": "sudo '${1:filename}' do\r\n  user '${2:user}'\r\n  action :${3:create}\r\nend\r\n",
+		"description": "Use the sudo resource to add or remove individual sudo entries using sudoers.d files. Sudo version 1.7.2 or newer is required to use the sudo resource, as it relies on the #includedir directive introduced in version 1.7.2. This resource does not enforce installation of the required sudo version. Chef-supported releases of Ubuntu, Debian and RHEL (6+) all support this feature.",
+		"scope": "source.ruby.chef"
+	},
+	"swap_file": {
+		"prefix": "swap_file",
+		"body": "swap_file '${1:path}' do\r\n  action :${2:create}\r\nend\r\n",
+		"description": "Use the swap_file resource to create or delete swap files on Linux systems, and optionally to manage the swappiness configuration for a host.",
+		"scope": "source.ruby.chef"
+	},
+	"sysctl": {
+		"prefix": "sysctl",
+		"body": "sysctl '${1:key}' do\r\n  value '${2:value}'\r\n  action :${3:apply}\r\nend\r\n",
+		"description": "Use the sysctl resource to set or remove kernel parameters using the sysctl command line tool and configuration files in the system’s sysctl.d directory. Configuration files managed by this resource are named 99-chef-KEYNAME.conf. If an existing value was already set, it will be backed up to the node and restored if the :remove action is used later.",
+		"scope": "source.ruby.chef"
+	},
+	"systemd_unit": {
+		"prefix": "systemd_unit",
+		"body": "systemd_unit '${1:unit}' do\r\n  content <<-EOU.gsub(/^\\s+/, '')\r\n  [Unit]\r\n  Description=Run system activity accounting tool every 10 minutes\r\n  \r\n  [Timer]\r\n  OnCalendar=*:00/10\r\n  \r\n  [Install]\r\n  WantedBy=sysstat.service\r\n  EOU\r\naction :${2:create}\r\nend\r\n",
+		"description": "Use the systemd_unit resource to create, manage, and run systemd units.",
+		"scope": "source.ruby.chef"
+	},
 	"template": {
 		"prefix": "template",
 		"body": "template '${1:destination_path}' do\r\n  source '${2:source_file}'\r\n  owner '${3:root}'\r\n  group '${4:3}'\r\n  mode '${5:0755}'\r\n  action :${6:create}\r\nend\r\n",
@@ -359,10 +515,46 @@
 		"description": "Use the user resource to add users, update existing users, remove users, and to lock/unlock user passwords.",
 		"scope": "source.ruby.chef"
 	},
+	"windows_ad_join": {
+		"prefix": "windows_ad_join",
+		"body": "windows_ad_join '${1:domain_name}' do\r\n  domain_user '${2:domain_user}'\r\n  domain_password '${3:domain_password}'\r\n  action :${4:join}\r\nend\r\n",
+		"description": "Use the windows_ad_join resource to join a Windows Active Directory domain.",
+		"scope": "source.ruby.chef"
+	},
+	"windows_auto_run": {
+		"prefix": "windows_auto_run",
+		"body": "windows_auto_run '${1:program_name}' do\r\n  path '${2:path}'\r\n  action :${3:create}\r\nend\r\n",
+		"description": "Use the windows_auto_run resource to set applications to run at login.",
+		"scope": "source.ruby.chef"
+	},
 	"windows_env": {
 		"prefix": "windows_env",
 		"body": "windows_env '${1:name}' do\r\n  value '${2:value}'\r\nend\r\n",
 		"description": "Use the windows_env resource to manage environment keys in Microsoft Windows.",
+		"scope": "source.ruby.chef"
+	},
+	"windows_feature": {
+		"prefix": "windows_feature",
+		"body": "windows_feature '${1:feature_name}' do\r\n  action :${2:install}\r\nend\r\n",
+		"description": "Use the windows_feature resource to add, remove or entirely delete Windows features and roles. This resource calls the windows_feature_dism or windows_feature_powershell resources depending on the specified installation method, and defaults to DISM, which is available on both Workstation and Server editions of Windows.",
+		"scope": "source.ruby.chef"
+	},
+	"windows_feature_dism": {
+		"prefix": "windows_feature_dism",
+		"body": "windows_feature_dism '${1:feature_name}' do\r\n  action :${2:install}\r\nend\r\n",
+		"description": "Use the windows_feature_dism resource to add, remove, or entirely delete Windows features and roles using DISM.",
+		"scope": "source.ruby.chef"
+	},
+	"windows_feature_powershell": {
+		"prefix": "windows_feature_powershell",
+		"body": "windows_feature_powershell '${1:feature_name}' do\r\n  action :${2:install}\r\nend\r\n",
+		"description": "Use the windows_feature_powershell resource to add, remove or entirely delete Windows features and roles via PowerShell. This resource offers significant speed benefits over the windows_feature_dism resource, but requires installation of the Remote Server Administration Tools on non-server releases of Windows.",
+		"scope": "source.ruby.chef"
+	},
+	"windows_font": {
+		"prefix": "windows_font",
+		"body": "windows_font '${1:font_name}' do\r\n  source '${2:source}\r\n  action :${3:install}\r\nend\r\n",
+		"description": "Use the windows_font resource to install font files on Windows. By default, the font is sourced from the cookbook using the resource, but a URI source can be specified as well.",
 		"scope": "source.ruby.chef"
 	},
 	"windows_package": {
@@ -371,16 +563,64 @@
 		"description": "Use the windows_package resource to manage packages for the Windows platform.",
 		"scope": "source.ruby.chef"
 	},
+	"windows_path": {
+		"prefix": "windows_path",
+		"body": "windows_path '${1:path}' do\r\n  action :${2:add}\r\nend\r\n",
+		"description": "Use the windows_path resource to manage the path environment variable on Microsoft Windows.",
+		"scope": "source.ruby.chef"
+	},
+	"windows_printer": {
+		"prefix": "windows_printer",
+		"body": "windows_printer '${1:package_name}' do\r\n  action :${2:install}\r\nend\r\n",
+		"description": "Use the windows_printer resource to setup Windows printers. This resource does not install a printer driver; you must already have the driver installed on the system.",
+		"scope": "source.ruby.chef"
+	},
+	"windows_printer_port": {
+		"prefix": "windows_printer_port",
+		"body": "windows_printer_port '${1:package_name}' do\r\n  action :${2:install}\r\nend\r\n",
+		"description": "",
+		"scope": "source.ruby.chef"
+	},
 	"windows_service": {
 		"prefix": "windows_service",
 		"body": "windows_service '${1:service_name}' do\r\n  action :${2:start}\r\n  startup_type :${2:manual}\r\nend\r\n",
 		"description": "Use the windows_service resource to manage a Windows service.",
 		"scope": "source.ruby.chef"
 	},
+	"windows_shortcut": {
+		"prefix": "windows_shortcut",
+		"body": "windows_shortcut '${1:service_name}' do\r\n  action :${2:start}\r\n  startup_type :${2:manual}\r\nend\r\n",
+		"description": "",
+		"scope": "source.ruby.chef"
+	},
+	"windows_task": {
+		"prefix": "windows_task",
+		"body": "windows_task '${1:service_name}' do\r\n  action :${2:start}\r\n  startup_type :${2:manual}\r\nend\r\n",
+		"description": "",
+		"scope": "source.ruby.chef"
+	},
 	"yum_package": {
 		"prefix": "yum_package",
 		"body": "yum_package '${1:package_name}' do\r\n  action :${2:install}\r\nend\r\n",
 		"description": "Use the yum_package resource to manage packages for the RedHat and CentOS platforms.",
+		"scope": "source.ruby.chef"
+	},
+	"yum_repository": {
+		"prefix": "yum_repository",
+		"body": "yum_repository '${1:package_name}' do\r\n  action :${2:install}\r\nend\r\n",
+		"description": "",
+		"scope": "source.ruby.chef"
+	},
+	"zypper_package": {
+		"prefix": "zypper_package",
+		"body": "zypper_package '${1:package_name}' do\r\n  action :${2:install}\r\nend\r\n",
+		"description": "",
+		"scope": "source.ruby.chef"
+	},
+	"zypper_repository": {
+		"prefix": "zypper_repository",
+		"body": "zypper_repository '${1:package_name}' do\r\n  action :${2:install}\r\nend\r\n",
+		"description": "",
 		"scope": "source.ruby.chef"
 	}
 }
