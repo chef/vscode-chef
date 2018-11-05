@@ -1,3 +1,6 @@
+## 0.7.1 (2018-11-05)
+ - Updated apt_upgrade snippet (@brooksa321, @rreilly-edr)
+
 ## 0.7.0 (2018-05-13)
  - Additional snippets from Chef 14 (@kitforbes, @tas50)
  - Set vscode NPM package to 1.1.14 (@SeanSith)
