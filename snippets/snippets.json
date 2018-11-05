@@ -19,7 +19,7 @@
 	},
 	"apt_update": {
 		"prefix": "apt_update",
-		"body": "apt_update '${1:name}' do\r\n\tignore_failure '${2:true}'\r\n\taction :${3:update}\r\nend\r\n",
+		"body": "apt_update '${1:name}' do\r\n\tignore_failure ${2:true}\r\n\taction :${3:update}\r\nend\r\n",
 		"description": "Use the apt_update resource to manage APT cache for the Debian and Ubuntu platforms.",
 		"scope": "source.ruby.chef"
 	},
