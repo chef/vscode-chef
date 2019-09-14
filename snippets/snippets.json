@@ -23,6 +23,12 @@
 		"description": "Use the apt_update resource to manage APT cache for the Debian and Ubuntu platforms.",
 		"scope": "source.ruby.chef"
 	},
+	"archive_file": {
+		"prefix": "archive_file",
+		"body": "archive_file '${1:name}' do\r\n\tpath '${2:/foo/bar/baz.zip}'\r\n\tdestination '${3:/example/}'\r\n\taction :${4:extract}\r\nend\r\n",
+		"description": "Use the archive_file resource to extract archive files to disk. This resource uses the libarchive library to extract multiple archive formats including tar, gzip, bzip, and zip formats.",
+		"scope": "source.ruby.chef"
+	},
 	"bash": {
 		"prefix": "bash",
 		"body": "bash '${1:name}' do\r\n\tcode <<-EOH\r\n\t${5:script commands}\r\n\tEOH\r\n\taction :${2:run}\r\nend\r\n",
@@ -47,6 +53,12 @@
 		"description": "A breakpoint resource block creates a breakpoint in a recipe.",
 		"scope": "source.ruby.chef"
 	},
+	"build_essential": {
+		"prefix": "build_essential",
+		"body": "build_essential '${1:name}' do\r\n\tcompile_time ${2:true}\r\n\taction :${3:install}\r\nend\r\n",
+		"description": "Use the build_essential resource to install the packages required for compiling C software from source.",
+		"scope": "source.ruby.chef"
+	},
 	"cab_package": {
 		"prefix": "cab_package",
 		"body": "cab_package '${1:name}' do\r\n\tsource '${2:C:\\path\\to\\a.cab}'\r\n\taction :${3:install}\r\nend\r\n",
@@ -61,14 +73,32 @@
 	},
 	"chef_handler": {
 		"prefix": "chef_handler",
-		"body": "chef_handler '${1:package_name}' do\r\n\tsource '${2:/path/to/handler/handler_name}'\r\n\taction :${3:enable}\r\nend\r\n",
+		"body": "chef_handler '${1:name}' do\r\n\tsource '${2:/path/to/handler/handler_name}'\r\n\taction :${3:enable}\r\nend\r\n",
 		"description": "Exception and report handlers are used to trigger certain behaviors in response to specific situations, typically identified during a chef-client run.",
+		"scope": "source.ruby.chef"
+	},
+	"chocolatey_config": {
+		"prefix": "chocolatey_config",
+		"body": "chocolatey_config '${1:name}' do\r\n\tvalue '${2:foo}'\r\n\taction :${3:set}\r\nend\r\n",
+		"description": "Use the chocolatey_config resource to add or remove Chocolatey configuration keys.",
+		"scope": "source.ruby.chef"
+	},
+	"chocolatey_feature": {
+		"prefix": "chocolatey_feature",
+		"body": "chocolatey_feature '${1:name}' do\r\n\taction :${2:enable}\r\nend\r\n",
+		"description": "Use the chocolatey_feature resource to enable and disable Chocolatey features.",
 		"scope": "source.ruby.chef"
 	},
 	"chocolatey_package": {
 		"prefix": "chocolatey_package",
 		"body": "chocolatey_package '${1:package_name}' do\r\n\taction :${2:install}\r\nend\r\n",
 		"description": "Use the chocolatey_package resource to manage packages using Chocolatey on the Microsoft Windows platform.",
+		"scope": "source.ruby.chef"
+	},
+	"chocolatey_source": {
+		"prefix": "chocolatey_source",
+		"body": "chocolatey_source '${1:name}' do\r\n\tbypass_proxy ${2:true}\r\n\tsource '${3:http://example.com/something}'\r\n\taction :${4:add}\r\nend\r\n",
+		"description": "Use the chocolatey_source resource to add, remove, enable, or disable Chocolatey sources.",
 		"scope": "source.ruby.chef"
 	},
 	"cookbook_file": {

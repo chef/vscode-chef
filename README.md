@@ -29,14 +29,19 @@ The Chef Extension for Visual Studio Code offers rich language support for Chef 
  * apt_preference
  * apt_repository
  * apt_update
+ * archive_file
  * bash
  * batch
  * bff_package
  * breakpoint
+ * build_essential
  * cab_package
  * chef_gem
  * chef_handler
+ * chocolatey_config
+ * chocolatey_feature
  * chocolatey_package
+ * chocolatey_source
  * cookbook_file
  * cron
  * csh
@@ -137,7 +142,7 @@ The Chef Extension for Visual Studio Code offers rich language support for Chef 
 ## Installation
 
  * You will need to install Visual Studio Code `1.0` or higher.
- * From the command palette ```Ctrl-Shift-P``` (Windows, Linux) or ```Cmd-Shift-P``` (OSX) select `Install Extension`, choose `Chef` and reload Visual Studio Code.  
+ * From the command palette ```Ctrl-Shift-P``` (Windows, Linux) or ```Cmd-Shift-P``` (OSX) select `Install Extension`, choose `Chef` and reload Visual Studio Code.
 
 ## Backlog
 
