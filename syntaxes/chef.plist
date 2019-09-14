@@ -41,13 +41,6 @@
 			<key>name</key>
 			<string>keyword.other.special-method.ruby</string>
 		</dict>
-		<!-- Chef Provisioning Resources - https://docs.chef.io/provisioning.html -->
-		<dict>
-			<key>match</key>
-			<string>(?&lt;!\.)\b(load_balancer|machine|machine_batch|machine_execute|machine_file|machine_image)\b(?![?!])</string>
-			<key>name</key>
-			<string>keyword.other.special-method.ruby</string>
-		</dict>
 	</array>
 	<key>scopeName</key>
 	<string>source.ruby.chef</string>
