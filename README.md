@@ -1,17 +1,19 @@
-# Chef Extension for Visual Studio Code
+# Chef Infra Extension for Visual Studio Code
 
-The Chef Extension for Visual Studio Code offers rich language support for Chef DSL and snippets when using [Visual Studio Code](http://code.visualstudio.com).
+The Chef Extension for Visual Studio Code offers rich language support for Chef Infra DSL and snippets when using [Visual Studio Code](http://code.visualstudio.com).
 
 ![install and demo](https://github.com/pendrica/vscode-chef/raw/master/images/vscode-chef-install.gif)
 
 ## Features
+
 #### Syntax/keyword highlighting:
- * Chef Recipe DSL
- * Chef Provisioning DSL
- * Chef built-in Resources
- * Chef Custom Resources
+
+ * Chef Infra Recipe DSL
+ * Chef Infra built-in Resources
+ * Chef Infra Custom Resources
 
 #### Rubocop linting:
+
  * Enabled by default (disable by adding ```{ "rubocop.enable": false }``` in user/workspace settings)
  * Entire repo will be linted when files are saved.
  * If you have the [ChefDK](http://downloads.chef.io/chef-dk) installed, linting should "just work" on Windows, Mac OS X and Linux (Ubuntu.) [Cookstyle](https://github.com/chef/cookstyle) will be used by default.
@@ -19,24 +21,31 @@ The Chef Extension for Visual Studio Code offers rich language support for Chef 
  * To override the config file used by Rubocop/Cookstyle, use the ```{ "rubocop.configFile": "path/to/config.yml" }``` in user/workspace settings.
 
 #### Foodcritic analysis (experimental):
+
  * Disabled by default (enable by adding ```{ "foodcritic.enable": true }``` in user/workspace settings)
  * When Ruby files are saved, the entire repo will be enumerated for cookbooks and Foodcritic run against each one.
  * If you have the [ChefDK](http://downloads.chef.io/chef-dk) installed, Foodcritic should "just work" on Windows, Mac OS X and Linux (Ubuntu)
  * If you do not have the ChefDK but do have Foodcritic installed, you can set the executable path by setting ```{ "foodcritic.path": "c:\\path\\to\\foodcritic.bat"}``` in user/workspace settings).
 
-#### Snippet support (with tabbing) for all Chef built-in Resources:
+#### Snippet support (with tabbing) for all Chef Infra built-in Resources:
+
  * apt_package
  * apt_preference
  * apt_repository
  * apt_update
+ * archive_file
  * bash
  * batch
  * bff_package
  * breakpoint
+ * build_essential
  * cab_package
  * chef_gem
  * chef_handler
+ * chocolatey_config
+ * chocolatey_feature
  * chocolatey_package
+ * chocolatey_source
  * cookbook_file
  * cron
  * csh
@@ -137,7 +146,7 @@ The Chef Extension for Visual Studio Code offers rich language support for Chef 
 ## Installation
 
  * You will need to install Visual Studio Code `1.0` or higher.
- * From the command palette ```Ctrl-Shift-P``` (Windows, Linux) or ```Cmd-Shift-P``` (OSX) select `Install Extension`, choose `Chef` and reload Visual Studio Code.  
+ * From the command palette ```Ctrl-Shift-P``` (Windows, Linux) or ```Cmd-Shift-P``` (OSX) select `Install Extension`, choose `Chef` and reload Visual Studio Code.
 
 ## Backlog
 
@@ -154,6 +163,7 @@ Contributions are welcomed, please file issues and pull requests via the [projec
 This extension was written by Stuart Preston [stuart@chef.io](stuart@chef.io)
 
 ## License
+
 This extension is licensed under an [Apache 2](LICENSE.md) license.
 
 (c) 2015-2017 Pendrica
