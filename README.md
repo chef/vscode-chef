@@ -1,6 +1,6 @@
 # Chef Infra Extension for Visual Studio Code
 
-The Chef Extension for Visual Studio Code offers rich language support for Chef Infra DSL and snippets when using [Visual Studio Code](http://code.visualstudio.com).
+The Chef Infra Extension for Visual Studio Code offers rich language support for Chef Infra DSL and snippets when using [Visual Studio Code](http://code.visualstudio.com).
 
 ![install and demo](https://github.com/pendrica/vscode-chef/raw/master/images/vscode-chef-install.gif)
 

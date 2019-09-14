@@ -4,7 +4,7 @@
   "version": "0.7.1",
   "publisher": "Pendrica",
   "icon": "images/chef-logo.png",
-  "displayName": "Chef Extension for Visual Studio Code",
+  "displayName": "Chef Infra Extension for Visual Studio Code",
   "license": "Apache-2.0",
   "repository": {
     "type": "git",
@@ -68,7 +68,7 @@
     ],
     "configuration": {
       "type": "object",
-      "title": "Chef Extension for Visual Studio Code configuration",
+      "title": "Chef Infra Extension for Visual Studio Code configuration",
       "properties": {
         "rubocop.enable": {
           "type": "boolean",
