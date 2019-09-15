@@ -1,4 +1,28 @@
 {
+	"include_recipe": {
+		"prefix": "include_recipe",
+		"body": "include_recipe '${1:cookbook::recipe}'",
+		"description": "Include a recipe to be run",
+		"scope": "source.chef.recipe"
+	},
+	"platform?": {
+		"prefix": "platform?",
+		"body": "platform?('${1:platform_name}')",
+		"description": "Check for one of more platforms",
+		"scope": "source.chef.recipe"
+	},
+	"platform_family?": {
+		"prefix": "platform_family?",
+		"body": "platform_family?('${1:platform_family_name}')",
+		"description": "Check for one of more platform families",
+		"scope": "source.chef.recipe"
+	},
+	"reboot_pending?": {
+		"prefix": "reboot_pending?",
+		"body": "reboot_pending?",
+		"description": "Check if there is a pending reboot",
+		"scope": "source.chef.recipe"
+	},
 	"apt_package": {
 		"prefix": "apt_package",
 		"body": "apt_package '${1:package_name}' do\r\n\taction :${2:install}\r\nend\r\n",
