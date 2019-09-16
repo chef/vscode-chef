@@ -84,16 +84,6 @@
           "type": "string",
           "default": "",
           "description": "Path to a Rubocop config file (e.g. .rubocop_shared.yml) - relative paths resolve inside the workspace."
-        },
-        "foodcritic.enable": {
-          "type": "boolean",
-          "default": false,
-          "description": "Control whether Foodcritic analysis is enabled or not."
-        },
-        "foodcritic.path": {
-          "type": "string",
-          "default": "",
-          "description": "Full path to Foodcritic, only change this if you have the ChefDK installed in a non-standard location."
         }
       }
     }
