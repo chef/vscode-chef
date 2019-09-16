@@ -133,8 +133,20 @@
 	},
 	"cron": {
 		"prefix": "cron",
-		"body": "cron '${1:name}' do\r\n\thour '${2:5}'\r\n\tminute '${3:5}'\r\n\tcommand '${3:/bin/script}'\r\nend\r\n",
+		"body": "cron '${1:name}' do\r\n\thour '${2:5}'\r\n\tminute '${3:5}'\r\n\tcommand '${4:/bin/script}'\r\nend\r\n",
 		"description": "A cron resource block manage cron entries.",
+		"scope": "source.ruby.chef"
+	},
+	"cron_d": {
+		"prefix": "cron_d",
+		"body": "cron_d '${1:name}' do\r\n\thour '${2:5}'\r\n\tminute '${3:5}'\r\n\tcommand '${4:/bin/script}'\r\nend\r\n",
+		"description": "Use the cron_d resource to manage cron job files in the /etc/cron.d directory.",
+		"scope": "source.ruby.chef"
+	},
+	"cron_access": {
+		"prefix": "cron_access",
+		"body": "cron_access '${1:name}'",
+		"description": "Use the cron_access resource to manage the /etc/cron.allow and /etc/cron.deny files.",
 		"scope": "source.ruby.chef"
 	},
 	"csh": {
@@ -157,7 +169,7 @@
 	},
 	"dmg_package": {
 		"prefix": "dmg_package",
-		"body": "dmg_package '${1:app}' do\r\n\taction :${2:install}\r\nend\r\n",
+		"body": "dmg_package '${1:app}' do\r\n\tsource '${2:https://example.com/app.dmg}'\r\n\tchecksum '${3:9435f79d5b52d0febeddfad392adf82db9df159196f496c1ab139a6957242ce9}'\r\n\taccept_eula ${4:true}\r\n\taction :${5:install}\r\nend\r\n",
 		"description": "Use the dmg_package resource to install a package from a .dmg file. The resource will retrieve the file from a remote URL, mount it using OS X’s hdidutil, copy the application to the specified destination (/Applications), and detach the image using hdiutil. The .dmg file will be stored in the Chef::Config[:file_cache_path].",
 		"scope": "source.ruby.chef"
 	},
@@ -275,6 +287,12 @@
 		"description": "Used in unit test to describe what the test will do",
 		"scope": "source.ruby.chef"
 	},
+	"kernel_module": {
+		"prefix": "kernel_module",
+		"body": "kernel_module '${1:name}' do\r\n\taction :${2:install}\r\nend\r\n",
+		"description": "Use the kernel_module resource to manage kernel modules on Linux systems. This resource can load, unload, blacklist, install, and uninstall modules.",
+		"scope": "source.ruby.chef"
+	},
 	"ksh": {
 		"prefix": "ksh",
 		"body": "ksh '${1:name}' do\r\n\tcode <<-EOH\r\n\t${2:ksh code}\r\n\tEOH\r\nend\r\n",
@@ -359,6 +377,18 @@
 		"description": "Use the openssl_dhparam resource to generate dhparam.pem files. If a valid dhparam.pem file is found at the specified location, no new file will be created. If a file is found at the specified location, but it is not a valid dhparam file, it will be overwritten.",
 		"scope": "source.ruby.chef"
 	},
+	"openssl_ec_private_key": {
+		"prefix": "openssl_ec_private_key",
+		"body": "openssl_ec_private_key '${1:path}' do\r\n\taction :${2:create}\r\nend\r\n",
+		"description": "Use the openssl_ec_private_key resource to generate elliptic curve (EC) private key files. If a valid EC key file can be opened at the specified location, no new file will be created. If the EC key file cannot be opened or does not exist, it will be overwritten.",
+		"scope": "source.ruby.chef"
+	},
+	"openssl_ec_public_key": {
+		"prefix": "openssl_ec_public_key",
+		"body": "openssl_ec_public_key '${1:path}' do\r\n\taction :${2:create}\r\nend\r\n",
+		"description": "Use the openssl_ec_public_key resource to generate elliptic curve (EC) public key files for a given EC private key.",
+		"scope": "source.ruby.chef"
+	},
 	"openssl_rsa_private_key": {
 		"prefix": "openssl_rsa_private_key",
 		"body": "openssl_rsa_private_key '${1:path}' do\r\n\taction :${2:create}\r\nend\r\n",
@@ -411,6 +441,12 @@
 		"prefix": "powershell_package",
 		"body": "powershell_package '${1:package_name}' do\r\n\taction :${2:install}\r\nend\r\n",
 		"description": "Use the powershell_package resource to install and manage packages via the Powershell Package Manager for the Microsoft Windows platform. The powershell_package resource requires administrative access, and a source must be configured in the Powershell Package Manager via the Register-PackageSource command",
+		"scope": "source.ruby.chef"
+	},
+	"powershell_package_source": {
+		"prefix": "powershell_package_source",
+		"body": "powershell_package_source '${1:name}' do\r\n\turl '${2:https://mygallery.company.co/api/v2/}'\r\n\tprovider_name '${3:NuGet}'\r\n\taction :${4:register}\r\nend\r\n",
+		"description": "Use the powershell_package_source resource to register a PowerShell package repository.",
 		"scope": "source.ruby.chef"
 	},
 	"powershell_script": {
@@ -521,10 +557,22 @@
 		"description": "Use the smartos_package resource to manage packages for the SmartOS platform.",
 		"scope": "source.ruby.chef"
 	},
+	"snap_package": {
+		"prefix": "snap_package",
+		"body": "snap_package '${1:package_name}' do\r\n\taction :${2:install}\r\nend\r\n",
+		"description": "Use the snap_package resource to manage snap packages on Debian and Ubuntu platforms.",
+		"scope": "source.ruby.chef"
+	},
 	"solaris_package": {
 		"prefix": "solaris_package",
 		"body": "solaris_package '${1:package_name}' do\r\n\taction :${2:install}\r\nend\r\n",
 		"description": "Use the solaris_package resource to manage packages for the Solaris platform.",
+		"scope": "source.ruby.chef"
+	},
+	"ssh_known_hosts_entry": {
+		"prefix": "ssh_known_hosts_entry",
+		"body": "ssh_known_hosts_entry '${1:example.com}' do\r\n\tkey '${2:node.example.com ssh-rsa ...}'\r\n\taction :${3:create}\r\nend\r\n",
+		"description": "Use the ssh_known_hosts_entry resource to add an entry for the specified host in /etc/ssh/ssh_known_hosts or a user’s known hosts file if specified.",
 		"scope": "source.ruby.chef"
 	},
 	"subversion": {
@@ -561,6 +609,12 @@
 		"prefix": "template",
 		"body": "template '${1:destination_path}' do\r\n\tsource '${2:source_file}'\r\n\towner '${3:root}'\r\n\tgroup '${4:$3}'\r\n\tmode '${5:0755}'\r\n\taction :${6:create}\r\nend\r\n",
 		"description": "Use the template resource to manage the contents of a file using an Embedded Ruby (ERB) template.",
+		"scope": "source.ruby.chef"
+	},
+	"timezone": {
+		"prefix": "timezone",
+		"body": "timezone '${1:name}' do\r\n\ttimezone '${2:UTC}'\r\n\taction :${3:set}\r\nend\r\n",
+		"description": "Use the timezone resource to change the system timezone on Windows, Linux, and macOS hosts. Timezones are specified in tz database format, with a complete list of available TZ values for Linux and macOS here: https://en.wikipedia.org/wiki/List_of_tz_database_time_zones and for Windows here: https://ss64.com/nt/timezones.html.",
 		"scope": "source.ruby.chef"
 	},
 	"user": {
@@ -603,6 +657,12 @@
 		"prefix": "windows_feature_powershell",
 		"body": "windows_feature_powershell '${1:feature_name}' do\r\n\taction :${2:install}\r\nend\r\n",
 		"description": "Use the windows_feature_powershell resource to add, remove or entirely delete Windows features and roles via PowerShell. This resource offers significant speed benefits over the windows_feature_dism resource, but requires installation of the Remote Server Administration Tools on non-server releases of Windows.",
+		"scope": "source.ruby.chef"
+	},
+	"windows_firewall_rule": {
+		"prefix": "windows_firewall_rule",
+		"body": "windows_firewall_rule '${1:App}' do\r\n\tlocal_port '${2:80}'\r\n\tprotocol '${3:TCP}'\r\n\tfirewall_action :${4:allow}\r\n\taction :${5:create}\r\nend\r\n",
+		"description": "Use the windows_firewall_rule resource to create, change or remove windows firewall rules.",
 		"scope": "source.ruby.chef"
 	},
 	"windows_font": {
