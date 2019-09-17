@@ -46,10 +46,19 @@
           "Ruby"
         ],
         "extensions": [
-          "chefignore",
           "Berksfile",
           "Policyfile",
           ".rb"
+        ]
+      },
+      {
+        "id": "chef_metadata",
+        "aliases": [
+          "Chef Metadata",
+          "chef metadata"
+        ],
+        "extensions": [
+          "metadata.rb"
         ]
       }
     ],
@@ -58,12 +67,21 @@
         "language": "ruby",
         "scopeName": "source.ruby.chef",
         "path": "./syntaxes/chef.plist"
+      },
+      {
+        "language": "chef_metadata",
+        "scopeName": "source.chef.metadata",
+        "path": "./syntaxes/chef_metadata.cson.json"
       }
     ],
     "snippets": [
       {
         "language": "ruby",
-        "path": "./snippets/snippets.json"
+        "path": "./snippets/chef.json"
+      },
+      {
+        "language": "chef_metadata",
+        "path": "./snippets/chef_metadata.json"
       }
     ],
     "configuration": {

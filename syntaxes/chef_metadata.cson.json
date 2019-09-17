@@ -1,0 +1,10 @@
+{
+	"name": "Chef Metadata",
+	"scopeName": "source.chef.metadata",
+	"fileTypes": ["metadata.rb"],
+	"patterns": [
+		{
+			"include": "source.ruby"
+		}
+	]
+}
