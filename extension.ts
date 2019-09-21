@@ -39,23 +39,6 @@ export function activate(context: vscode.ExtensionContext): void {
 	}
 }
 
-function recalculateValidCookbookPaths(): void {
-	let cookbookPathToAdd: string;
-	vscode.workspace.findFiles("**/metadata.rb", "", Infinity).then(files => {
-		cookbookPaths = [];
-		files.forEach(file => {
-			if (path.dirname(file.fsPath) === vscode.workspace.rootPath) {
-				cookbookPathToAdd = ".";
-			} else {
-				cookbookPathToAdd = path.dirname(file.fsPath).replace(vscode.workspace.rootPath + path.sep, "").replace(path.sep, "/");
-			}
-			cookbookPaths.push(cookbookPathToAdd);
-			console.log(cookbookPathToAdd);
-		});
-		validateCookbooks();
-	});
-}
-
 function convertSeverity(severity: string): vscode.DiagnosticSeverity {
 	switch (severity) {
 		case "fatal":
@@ -125,12 +108,5 @@ function startLintingOnConfigurationChangeWatcher():any {
 	return vscode.workspace.onDidChangeConfiguration(params => {
 		console.log("Workspace configuration changed, validating workspace.");
 		validateWorkspace();
-	});
-}
-
-function startCookbookAnalysisOnConfigurationChangeWatcher():any {
-	return vscode.workspace.onDidChangeConfiguration(params => {
-		console.log("Workspace configuration changed, recalculating valid cookbooks.");
-		recalculateValidCookbookPaths();
 	});
 }
