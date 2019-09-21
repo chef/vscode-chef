@@ -12,11 +12,11 @@ The Chef Infra Extension for Visual Studio Code offers rich language support for
  * Chef Infra built-in Resources
  * Chef Infra Custom Resources
 
-#### Rubocop linting:
+#### Cookstyle linting and source analysis:
 
- * Enabled by default (disable by adding ```{ "rubocop.enable": false }``` in user/workspace settings)
+ * Enabled by default (disable by adding ```{ "rubocop.enable": false }``` in user/workspace settings) and activated when the first Ruby file is loaded.
  * The entire repo will be linted when files are saved.
- * If you have [Chef Workstation](https://downloads.chef.io/chef-workstation) installed, linting should "just work" on Windows, Mac OS X and Linux (Ubuntu.) [Cookstyle](https://github.com/chef/cookstyle) will be used by default.
+ * If you have [Chef Workstation](https://downloads.chef.io/chef-workstation) installed, linting should "just work" on Windows, Mac OS X and Linux. [Cookstyle](https://github.com/chef/cookstyle) will be used by default.
  * If you do not have Chef Workstation but do have Rubocop installed, you can set the executable path by setting ```{ "rubocop.path": "c:\\path\\to\\rubocop.bat"}``` in user/workspace settings).
  * To override the config file used by Rubocop/Cookstyle, use the ```{ "rubocop.configFile": "path/to/config.yml" }``` in user/workspace settings.
 

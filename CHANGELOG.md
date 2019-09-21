@@ -1,3 +1,7 @@
+## 0.8.1 (2019-09-21)
+ - Shorten diagnostic messages, remove duplicate cop name (@stuartpreston)
+ - Use Chef Workstation instead of ChefDK on non-Win32 platforms (@stuartpreston)
+
 ## 0.8.0 (2019-09-21)
  - Change publisher from Pendrica to Chef Software (@stuartpreston)
  - Tidyup: Remove everything relating to Foodcritic (@stuartpreston)
