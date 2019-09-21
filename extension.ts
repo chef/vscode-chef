@@ -16,7 +16,7 @@ export function activate(context: vscode.ExtensionContext): void {
 
 	if (vscode.workspace.getConfiguration("rubocop").path === "") {
 		if (process.platform === "win32") {
-			rubocopPath = "C:\\opscode\\chefdk\\embedded\\bin\\cookstyle.bat";
+			rubocopPath = "C:\\opscode\\chef-workstation\\embedded\\bin\\cookstyle.bat";
 		} else {
 			rubocopPath = "/opt/chefdk/embedded/bin/cookstyle";
 		}
