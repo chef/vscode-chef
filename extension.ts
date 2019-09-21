@@ -18,7 +18,7 @@ export function activate(context: vscode.ExtensionContext): void {
 		if (process.platform === "win32") {
 			rubocopPath = "C:\\opscode\\chef-workstation\\embedded\\bin\\cookstyle.bat";
 		} else {
-			rubocopPath = "/opt/chefdk/embedded/bin/cookstyle";
+			rubocopPath = "/opt/chef-workstation/embedded/bin/cookstyle";
 		}
 	} else {
 		rubocopPath = vscode.workspace.getConfiguration("rubocop").path;
@@ -76,7 +76,7 @@ function validateWorkspace(): void {
 					let _start = parseInt(offenses[i].location.column, 10) - 1;
 					let _end = parseInt(_start + offenses[i].location.length, 10);
 					let diagRange = new vscode.Range(_line, _start, _line, _end);
-					let diagMsg = `${offenses[i].message} (${offenses[i].cop_name})`;
+					let diagMsg = `${offenses[i].message}`;
 					let diagSeverity = convertSeverity(offenses[i].severity);
 					let diagnostic = new vscode.Diagnostic(diagRange, diagMsg, diagSeverity);
 					diagnostics.push(diagnostic);
