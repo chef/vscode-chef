@@ -1,17 +1,17 @@
 {
   "name": "chef",
-  "description": "Chef language support and snippets for Visual Studio Code",
+  "description": "Chef Infra language support and snippets for Visual Studio Code",
   "version": "0.7.1",
-  "publisher": "Pendrica",
+  "publisher": "chef-software",
   "icon": "images/chef-logo.png",
   "displayName": "Chef Infra Extension for Visual Studio Code",
   "license": "Apache-2.0",
   "repository": {
     "type": "git",
-    "url": "https://github.com/pendrica/vscode-chef.git"
+    "url": "https://github.com/chef/vscode-chef.git"
   },
   "bugs": {
-    "url": "https://github.com/pendrica/vscode-chef/issues"
+    "url": "https://github.com/chef/vscode-chef/issues"
   },
   "engines": {
     "vscode": "^1.1.14"
@@ -96,7 +96,7 @@
         "rubocop.path": {
           "type": "string",
           "default": "",
-          "description": "Full path to Rubocop, only change this if you have the ChefDK installed in a non-standard location."
+          "description": "Full path to Rubocop, only change this if you have the Chef Workstation or ChefDK installed in a non-standard location."
         },
         "rubocop.configFile": {
           "type": "string",
