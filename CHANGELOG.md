@@ -1,3 +1,18 @@
+## 0.8.0 (2019-09-21)
+ - Change publisher from Pendrica to Chef Software (@stuartpreston)
+ - Tidyup: Remove everything relating to Foodcritic (@stuartpreston)
+ - Default to using the chef-workstation folder instead of chefdk (@stuartpreston)
+ - Change the extension category name [#43](https://github.com/chef/vscode-chef/issues/43) (@tas50)
+ - Add more resource snippets and fix a few others [#45](https://github.com/chef/vscode-chef/issues/45) (@tas50)
+ - Add a new "Chef Metadata" language and snippets [#44](https://github.com/chef/vscode-chef/issues/44) (@tas50)
+ - Change the extension category name [#43](https://github.com/chef/vscode-chef/issues/43) (@tas50)
+ - Add a few more useful snippets for cookbook development [#42](https://github.com/chef/vscode-chef/issues/42) (@tas50)
+ - Remove foodcritic support now that it's EOL [#41](https://github.com/chef/vscode-chef/issues/41) (@tas50)
+ - Rename to Chef Infra Extension [#40](https://github.com/chef/vscode-chef/issues/40) (@tas50)
+ - Add a few new resources from Chef Infra 14 / 15 [#39](https://github.com/chef/vscode-chef/issues/39) (@tas50)
+ - Remove matching on provisioning resources [#38](https://github.com/chef/vscode-chef/issues/38) (@tas50)
+ - Updated template snippet, fixes default group value [#35](https://github.com/chef/vscode-chef/issues/35) (@goldeelox)
+
 ## 0.7.1 (2018-11-05)
  - Updated apt_upgrade snippet (@brooksa321, @rreilly-edr)
 
@@ -8,7 +23,7 @@
 
 ## 0.6.4 (2017-12-04)
  - Additional snippets from Chef 13 (@tas50)
- - Fix to Foodcritic output formatting (@stuartpreston) [#16](https://github.com/pendrica/vscode-chef/issues/16)
+ - Fix to Foodcritic output formatting (@stuartpreston) [#16](https://github.com/chef/vscode-chef/issues/16)
  - Logo switched to png to comply with publishing rules (@stuartpreston)
 
 ## 0.6.3 (2017-06-06)
