@@ -685,7 +685,7 @@
 	},
 	"zypper_repository": {
 		"prefix": "zypper_repository",
-		"body": "zypper_repository '${1:repo_name}' do\r\n\baseurl '${2:https://example.com/zypper}'\r\n\path '${3:/opensuse}'\r\n\type '${4:rpm-md}'\r\n\priority '${5:/100}'\r\n\taction :${6:add}\r\nend\r\n",
+		"body": "zypper_repository '${1:repo_name}' do\r\n\tbaseurl '${2:https://example.com/zypper}'\r\n\tpath '${3:/opensuse}'\r\n\ttype '${4:rpm-md}'\r\n\tpriority '${5:/100}'\r\n\taction :${6:add}\r\nend\r\n",
 		"description": "",
 		"scope": "source.ruby.chef"
 	}
