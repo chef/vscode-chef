@@ -77,7 +77,15 @@
     "snippets": [
       {
         "language": "ruby",
-        "path": "./snippets/chef.json"
+        "path": "./snippets/chef_resources.json"
+      },
+      {
+        "language": "ruby",
+        "path": "./snippets/chef_dsl_and_helpers.json"
+      },
+      {
+        "language": "ruby",
+        "path": "./snippets/chefspec.json"
       },
       {
         "language": "chef_metadata",
