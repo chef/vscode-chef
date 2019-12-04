@@ -1,0 +1,26 @@
+{
+	"describe": {
+		"prefix": "describe",
+		"body": "describe '${1:COOKBOOK::RECIPE}' do\r\n\t${2}\r\nend\r\n",
+		"description": "A describe block for writing a unit test",
+		"scope": "source.ruby.chef"
+	},
+	"expect": {
+		"prefix": "expect",
+		"body": "expect(chef_run).to ${1:ACTION}_${2:RESOURCE}('${3:NAME}')\r\n",
+		"description": "Use the expect resource to run the unit test",
+		"scope": "source.ruby.chef"
+	},
+	"it": {
+		"prefix": "it",
+		"body": "it '${1:DESCRIPTION_HERE}' do\r\n\t${2}\r\nend\r\n",
+		"description": "Used in unit test to describe what the test will do",
+		"scope": "source.ruby.chef"
+	},
+	"let": {
+		"prefix": "let",
+		"body": "let(:chef_run) { ChefSpec::SoloRunner.converge(described_recipe) }\r\n\r\n",
+		"description": "Create the ChefSpec::SoloRunner and do a mock chef_run with run_list indicaded by the describe resource.",
+		"scope": "source.ruby.chef"
+	}
+}
