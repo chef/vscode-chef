@@ -421,7 +421,7 @@
 	},
 	"registry_key": {
 		"prefix": "registry_key",
-		"body": "registry_key '${1:key_name}' do\r\n\tvalues [{\r\n\t\tname: '${2:name}',\r\n\t\ttype: '${3:type}',\r\n\t\tdata: '${4:data}'\r\n\t}]\r\n\taction :${5:create}\r\nend\r\n",
+		"body": "registry_key '${1:key_name}' do\r\n\tvalues [{ name: '${2:name}', type: '${3:type}', data: '${4:data}' }]\r\n\taction :${5:create}\r\nend\r\n",
 		"description": "Use the registry_key resource to create and delete registry keys in Microsoft Windows.",
 		"scope": "source.ruby.chef"
 	},
