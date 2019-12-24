@@ -1,7 +1,7 @@
 {
   "name": "chef",
   "description": "Chef Infra language support and snippets for Visual Studio Code",
-  "version": "0.8.1",
+  "version": "0.8.3",
   "publisher": "chef-software",
   "icon": "images/chef-logo.png",
   "displayName": "Chef Infra Extension for Visual Studio Code",
