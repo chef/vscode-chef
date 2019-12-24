@@ -40,6 +40,7 @@ This project contains development launch settings. A recent Node.js LTS build is
 ### Install dependencies
 
 ```
+npm install
 npm install -g typescript
 npm install -g vsce
 ```
