@@ -57,6 +57,12 @@ C:\projects\chef\vscode-chef> vsce package                                      
  DONE  Packaged: C:\projects\chef\vscode-chef\chef-0.8.0.vsix (12 files, 33.51KB)
 ```
 
+To test the extension locally.
+
+```
+C:\projects\chef\vscode-chef> code --install-extension C:\projects\chef\vscode-chef\chef-0.8.0.vsix
+```
+
 To release requires a PAT token for the relevant publisher on the Visual Studio Marketplace.
 
 ```
