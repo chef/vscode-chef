@@ -1,0 +1,6 @@
+source "https://rubygems.org"
+
+gem "chef-utils"
+gem "rake"
+gem "yard"
+gem "pry"
