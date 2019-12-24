@@ -1,3 +1,7 @@
 out
 node_modules
 *.vsix
+Gemfile.lock
+.bundle
+vendor
+.yardoc
