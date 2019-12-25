@@ -1,8 +1,18 @@
+## 1.0.0 (2019-12-24)
+
+- Added all the new platform and architecture helpers included in Chef Infra 15.5+
+- Add Rakefile to auto generate chef-utils helpers from the Chef Infra codebase
+- Helpers and general Chef DSL broken out into their own snippet file
+- ChefSpec snippets broken out into their own snippet file
+- Various bug fixes to the resource snippets to fix typos
+
 ## 0.8.1 (2019-09-21)
+
  - Shorten diagnostic messages, remove duplicate cop name (@stuartpreston)
  - Use Chef Workstation instead of ChefDK on non-Win32 platforms (@stuartpreston)
 
 ## 0.8.0 (2019-09-21)
+
  - Change publisher from Pendrica to Chef Software (@stuartpreston)
  - Tidyup: Remove everything relating to Foodcritic (@stuartpreston)
  - Default to using the chef-workstation folder instead of chefdk (@stuartpreston)
@@ -44,7 +54,7 @@
  - Bug: Cookbook folders opened directly were not being detected as a cookbook (#7)
  - Bug: Cookbook folder detection occurred for Foodcritic on each document save even when foodcritic.enable was set to false
  - Improve end-to-end Foodcritic performance by only checking cookbooks with a metadata.rb
- - Change default location of Rubocop and Foodcritic to /opt/chefdk/embedded/bin (and respective location on Windows) for compatibility with ChefDK 0.13+ 
+ - Change default location of Rubocop and Foodcritic to /opt/chefdk/embedded/bin (and respective location on Windows) for compatibility with ChefDK 0.13+
  - Foodcritic would not return the complete set of results across multiple cookbooks in a "mega-repo"
 
 ## 0.5.2 (2016-04-26)
@@ -59,7 +69,7 @@ Bugfixes:
 
 ## 0.5.0 (2016-04-25)
 
-Features: 
+Features:
  - Experimental support for Foodcritic (enable by setting the ```foodcritic.enable``` to ```true``` in your settings.json) (@stuartpreston)
  - Rubocop messages that originated at Convention/Refactor level are now shown at at Informational level in VS Code (previously the default level was "warning") (@stuartpreston)
 
@@ -80,5 +90,4 @@ Features:
  - Initial release to coincide with Microsoft Connect conference.
  - Syntax/keyword highlighting
  - Rubocop linting
- - Snippet support 
- 
+ - Snippet support
