@@ -9,3 +9,4 @@ tsconfig.json
 vsc-extension-quickstart.md
 images/vscode-chef-install.gif
 **/*.vsix
+autogeneration
