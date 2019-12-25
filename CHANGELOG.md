@@ -1,3 +1,8 @@
+## 1.0.1 (2019-12-24)
+
+- Don't ship the 3.5 meg autogeneration folder
+- Use the correct scope in all snippets
+
 ## 1.0.0 (2019-12-24)
 
 - Added all the new platform and architecture helpers included in Chef Infra 15.5+
