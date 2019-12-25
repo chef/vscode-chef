@@ -3,552 +3,552 @@
     "prefix": "linuxmint?",
     "body": "linuxmint?",
     "description": "Determine if the current node is linux mint.",
-    "scope": "source.chef.recipe"
+    "scope": "source.ruby.chef"
   },
   "mint?": {
     "prefix": "mint?",
     "body": "mint?",
     "description": "Determine if the current node is linux mint.\nchef-sugar backcompat methods",
-    "scope": "source.chef.recipe"
+    "scope": "source.ruby.chef"
   },
   "linux_mint?": {
     "prefix": "linux_mint?",
     "body": "linux_mint?",
     "description": "Determine if the current node is linux mint.",
-    "scope": "source.chef.recipe"
+    "scope": "source.ruby.chef"
   },
   "linuxmint_platform?": {
     "prefix": "linuxmint_platform?",
     "body": "linuxmint_platform?",
     "description": "Determine if the current node is linux mint.",
-    "scope": "source.chef.recipe"
+    "scope": "source.ruby.chef"
   },
   "ubuntu?": {
     "prefix": "ubuntu?",
     "body": "ubuntu?",
     "description": "Determine if the current node is ubuntu.",
-    "scope": "source.chef.recipe"
+    "scope": "source.ruby.chef"
   },
   "ubuntu_platform?": {
     "prefix": "ubuntu_platform?",
     "body": "ubuntu_platform?",
     "description": "Determine if the current node is ubuntu.",
-    "scope": "source.chef.recipe"
+    "scope": "source.ruby.chef"
   },
   "raspbian?": {
     "prefix": "raspbian?",
     "body": "raspbian?",
     "description": "Determine if the current node is raspbian.",
-    "scope": "source.chef.recipe"
+    "scope": "source.ruby.chef"
   },
   "raspbian_platform?": {
     "prefix": "raspbian_platform?",
     "body": "raspbian_platform?",
     "description": "Determine if the current node is raspbian.",
-    "scope": "source.chef.recipe"
+    "scope": "source.ruby.chef"
   },
   "debian_platform?": {
     "prefix": "debian_platform?",
     "body": "debian_platform?",
     "description": "Determine if the current node is debian.",
-    "scope": "source.chef.recipe"
+    "scope": "source.ruby.chef"
   },
   "amazon_platform?": {
     "prefix": "amazon_platform?",
     "body": "amazon_platform?",
     "description": "Determine if the current node is amazon linux.",
-    "scope": "source.chef.recipe"
+    "scope": "source.ruby.chef"
   },
   "redhat?": {
     "prefix": "redhat?",
     "body": "redhat?",
     "description": "Determine if the current node is redhat enterprise.",
-    "scope": "source.chef.recipe"
+    "scope": "source.ruby.chef"
   },
   "redhat_enterprise?": {
     "prefix": "redhat_enterprise?",
     "body": "redhat_enterprise?",
     "description": "Determine if the current node is redhat enterprise.\nchef-sugar backcompat methods",
-    "scope": "source.chef.recipe"
+    "scope": "source.ruby.chef"
   },
   "redhat_enterprise_linux?": {
     "prefix": "redhat_enterprise_linux?",
     "body": "redhat_enterprise_linux?",
     "description": "Determine if the current node is redhat enterprise.",
-    "scope": "source.chef.recipe"
+    "scope": "source.ruby.chef"
   },
   "redhat_platform?": {
     "prefix": "redhat_platform?",
     "body": "redhat_platform?",
     "description": "Determine if the current node is redhat enterprise.",
-    "scope": "source.chef.recipe"
+    "scope": "source.ruby.chef"
   },
   "centos?": {
     "prefix": "centos?",
     "body": "centos?",
     "description": "Determine if the current node is centos.",
-    "scope": "source.chef.recipe"
+    "scope": "source.ruby.chef"
   },
   "centos_platform?": {
     "prefix": "centos_platform?",
     "body": "centos_platform?",
     "description": "Determine if the current node is centos.",
-    "scope": "source.chef.recipe"
+    "scope": "source.ruby.chef"
   },
   "oracle?": {
     "prefix": "oracle?",
     "body": "oracle?",
     "description": "Determine if the current node is oracle linux.",
-    "scope": "source.chef.recipe"
+    "scope": "source.ruby.chef"
   },
   "oracle_linux?": {
     "prefix": "oracle_linux?",
     "body": "oracle_linux?",
     "description": "Determine if the current node is oracle linux.\nchef-sugar backcompat methods",
-    "scope": "source.chef.recipe"
+    "scope": "source.ruby.chef"
   },
   "oracle_platform?": {
     "prefix": "oracle_platform?",
     "body": "oracle_platform?",
     "description": "Determine if the current node is oracle linux.",
-    "scope": "source.chef.recipe"
+    "scope": "source.ruby.chef"
   },
   "scientific?": {
     "prefix": "scientific?",
     "body": "scientific?",
     "description": "Determine if the current node is scientific linux.",
-    "scope": "source.chef.recipe"
+    "scope": "source.ruby.chef"
   },
   "scientific_linux?": {
     "prefix": "scientific_linux?",
     "body": "scientific_linux?",
     "description": "Determine if the current node is scientific linux.\nchef-sugar backcompat methods",
-    "scope": "source.chef.recipe"
+    "scope": "source.ruby.chef"
   },
   "scientific_platform?": {
     "prefix": "scientific_platform?",
     "body": "scientific_platform?",
     "description": "Determine if the current node is scientific linux.",
-    "scope": "source.chef.recipe"
+    "scope": "source.ruby.chef"
   },
   "clearos?": {
     "prefix": "clearos?",
     "body": "clearos?",
     "description": "Determine if the current node is clearos.",
-    "scope": "source.chef.recipe"
+    "scope": "source.ruby.chef"
   },
   "clearos_platform?": {
     "prefix": "clearos_platform?",
     "body": "clearos_platform?",
     "description": "Determine if the current node is clearos.",
-    "scope": "source.chef.recipe"
+    "scope": "source.ruby.chef"
   },
   "fedora_platform?": {
     "prefix": "fedora_platform?",
     "body": "fedora_platform?",
     "description": "Determine if the current node is fedora.",
-    "scope": "source.chef.recipe"
+    "scope": "source.ruby.chef"
   },
   "arch_platform?": {
     "prefix": "arch_platform?",
     "body": "arch_platform?",
     "description": "Determine if the current node is arch",
-    "scope": "source.chef.recipe"
+    "scope": "source.ruby.chef"
   },
   "solaris2_platform?": {
     "prefix": "solaris2_platform?",
     "body": "solaris2_platform?",
     "description": "Determine if the current node is solaris2",
-    "scope": "source.chef.recipe"
+    "scope": "source.ruby.chef"
   },
   "smartos_platform?": {
     "prefix": "smartos_platform?",
     "body": "smartos_platform?",
     "description": "Determine if the current node is smartos",
-    "scope": "source.chef.recipe"
+    "scope": "source.ruby.chef"
   },
   "omnios?": {
     "prefix": "omnios?",
     "body": "omnios?",
     "description": "Determine if the current node is omnios",
-    "scope": "source.chef.recipe"
+    "scope": "source.ruby.chef"
   },
   "omnios_platform?": {
     "prefix": "omnios_platform?",
     "body": "omnios_platform?",
     "description": "Determine if the current node is omnios",
-    "scope": "source.chef.recipe"
+    "scope": "source.ruby.chef"
   },
   "openindiana?": {
     "prefix": "openindiana?",
     "body": "openindiana?",
     "description": "Determine if the current node is openindiana",
-    "scope": "source.chef.recipe"
+    "scope": "source.ruby.chef"
   },
   "openindiana_platform?": {
     "prefix": "openindiana_platform?",
     "body": "openindiana_platform?",
     "description": "Determine if the current node is openindiana",
-    "scope": "source.chef.recipe"
+    "scope": "source.ruby.chef"
   },
   "nexentacore?": {
     "prefix": "nexentacore?",
     "body": "nexentacore?",
     "description": "Determine if the current node is nexentacore",
-    "scope": "source.chef.recipe"
+    "scope": "source.ruby.chef"
   },
   "nexentacore_platform?": {
     "prefix": "nexentacore_platform?",
     "body": "nexentacore_platform?",
     "description": "Determine if the current node is nexentacore",
-    "scope": "source.chef.recipe"
+    "scope": "source.ruby.chef"
   },
   "aix_platform?": {
     "prefix": "aix_platform?",
     "body": "aix_platform?",
     "description": "Determine if the current node is aix",
-    "scope": "source.chef.recipe"
+    "scope": "source.ruby.chef"
   },
   "freebsd_platform?": {
     "prefix": "freebsd_platform?",
     "body": "freebsd_platform?",
     "description": "Determine if the current node is freebsd",
-    "scope": "source.chef.recipe"
+    "scope": "source.ruby.chef"
   },
   "openbsd_platform?": {
     "prefix": "openbsd_platform?",
     "body": "openbsd_platform?",
     "description": "Determine if the current node is openbsd",
-    "scope": "source.chef.recipe"
+    "scope": "source.ruby.chef"
   },
   "netbsd_platform?": {
     "prefix": "netbsd_platform?",
     "body": "netbsd_platform?",
     "description": "Determine if the current node is netbsd",
-    "scope": "source.chef.recipe"
+    "scope": "source.ruby.chef"
   },
   "dragonfly_platform?": {
     "prefix": "dragonfly_platform?",
     "body": "dragonfly_platform?",
     "description": "Determine if the current node is dragonflybsd",
-    "scope": "source.chef.recipe"
+    "scope": "source.ruby.chef"
   },
   "macos_platform?": {
     "prefix": "macos_platform?",
     "body": "macos_platform?",
     "description": "Determine if the current node is MacOS.",
-    "scope": "source.chef.recipe"
+    "scope": "source.ruby.chef"
   },
   "mac_os_x_platform?": {
     "prefix": "mac_os_x_platform?",
     "body": "mac_os_x_platform?",
     "description": "Determine if the current node is MacOS.",
-    "scope": "source.chef.recipe"
+    "scope": "source.ruby.chef"
   },
   "gentoo_platform?": {
     "prefix": "gentoo_platform?",
     "body": "gentoo_platform?",
     "description": "Determine if the current node is gentoo",
-    "scope": "source.chef.recipe"
+    "scope": "source.ruby.chef"
   },
   "slackware_platform?": {
     "prefix": "slackware_platform?",
     "body": "slackware_platform?",
     "description": "Determine if the current node is slackware.",
-    "scope": "source.chef.recipe"
+    "scope": "source.ruby.chef"
   },
   "suse_platform?": {
     "prefix": "suse_platform?",
     "body": "suse_platform?",
     "description": "Determine if the current node is SuSE.",
-    "scope": "source.chef.recipe"
+    "scope": "source.ruby.chef"
   },
   "opensuse?": {
     "prefix": "opensuse?",
     "body": "opensuse?",
     "description": "Determine if the current node is OpenSuSE.",
-    "scope": "source.chef.recipe"
+    "scope": "source.ruby.chef"
   },
   "opensuse_platform?": {
     "prefix": "opensuse_platform?",
     "body": "opensuse_platform?",
     "description": "Determine if the current node is OpenSuSE.",
-    "scope": "source.chef.recipe"
+    "scope": "source.ruby.chef"
   },
   "opensuseleap_platform?": {
     "prefix": "opensuseleap_platform?",
     "body": "opensuseleap_platform?",
     "description": "Determine if the current node is OpenSuSE.",
-    "scope": "source.chef.recipe"
+    "scope": "source.ruby.chef"
   },
   "leap_platform?": {
     "prefix": "leap_platform?",
     "body": "leap_platform?",
     "description": "Determine if the current node is OpenSuSE.",
-    "scope": "source.chef.recipe"
+    "scope": "source.ruby.chef"
   },
   "windows_platform?": {
     "prefix": "windows_platform?",
     "body": "windows_platform?",
     "description": "Determine if the current node is Windows.",
-    "scope": "source.chef.recipe"
+    "scope": "source.ruby.chef"
   },
   "_64_bit?": {
     "prefix": "_64_bit?",
     "body": "_64_bit?",
     "description": "Determine if the current architecture is 64-bit",
-    "scope": "source.chef.recipe"
+    "scope": "source.ruby.chef"
   },
   "_32_bit?": {
     "prefix": "_32_bit?",
     "body": "_32_bit?",
     "description": "Determine if the current architecture is 32-bit",
-    "scope": "source.chef.recipe"
+    "scope": "source.ruby.chef"
   },
   "i386?": {
     "prefix": "i386?",
     "body": "i386?",
     "description": "Determine if the current architecture is i386",
-    "scope": "source.chef.recipe"
+    "scope": "source.ruby.chef"
   },
   "intel?": {
     "prefix": "intel?",
     "body": "intel?",
     "description": "Determine if the current architecture is Intel.",
-    "scope": "source.chef.recipe"
+    "scope": "source.ruby.chef"
   },
   "sparc?": {
     "prefix": "sparc?",
     "body": "sparc?",
     "description": "Determine if the current architecture is SPARC.",
-    "scope": "source.chef.recipe"
+    "scope": "source.ruby.chef"
   },
   "ppc64?": {
     "prefix": "ppc64?",
     "body": "ppc64?",
     "description": "Determine if the current architecture is Powerpc64 Big Endian",
-    "scope": "source.chef.recipe"
+    "scope": "source.ruby.chef"
   },
   "ppc64le?": {
     "prefix": "ppc64le?",
     "body": "ppc64le?",
     "description": "Determine if the current architecture is Powerpc64 Little Endian",
-    "scope": "source.chef.recipe"
+    "scope": "source.ruby.chef"
   },
   "powerpc?": {
     "prefix": "powerpc?",
     "body": "powerpc?",
     "description": "Determine if the current architecture is PowerPC.",
-    "scope": "source.chef.recipe"
+    "scope": "source.ruby.chef"
   },
   "armhf?": {
     "prefix": "armhf?",
     "body": "armhf?",
     "description": "Determine if the current architecture is 32-bit ARM",
-    "scope": "source.chef.recipe"
+    "scope": "source.ruby.chef"
   },
   "s390x?": {
     "prefix": "s390x?",
     "body": "s390x?",
     "description": "Determine if the current architecture is s390x",
-    "scope": "source.chef.recipe"
+    "scope": "source.ruby.chef"
   },
   "s390?": {
     "prefix": "s390?",
     "body": "s390?",
     "description": "Determine if the current architecture is s390",
-    "scope": "source.chef.recipe"
+    "scope": "source.ruby.chef"
   },
   "arch?": {
     "prefix": "arch?",
     "body": "arch?",
     "description": "Determine if the current node is arch linux.",
-    "scope": "source.chef.recipe"
+    "scope": "source.ruby.chef"
   },
   "arch_linux?": {
     "prefix": "arch_linux?",
     "body": "arch_linux?",
     "description": "Determine if the current node is arch linux.\nchef-sugar backcompat methods",
-    "scope": "source.chef.recipe"
+    "scope": "source.ruby.chef"
   },
   "aix?": {
     "prefix": "aix?",
     "body": "aix?",
     "description": "Determine if the current node is aix",
-    "scope": "source.chef.recipe"
+    "scope": "source.ruby.chef"
   },
   "debian?": {
     "prefix": "debian?",
     "body": "debian?",
     "description": "Determine if the current node is a member of the debian family.",
-    "scope": "source.chef.recipe"
+    "scope": "source.ruby.chef"
   },
   "fedora?": {
     "prefix": "fedora?",
     "body": "fedora?",
     "description": "Determine if the current node is a member of the fedora family.",
-    "scope": "source.chef.recipe"
+    "scope": "source.ruby.chef"
   },
   "macos?": {
     "prefix": "macos?",
     "body": "macos?",
     "description": "Determine if the current node is a member of the mac_os_x (macOS) family.",
-    "scope": "source.chef.recipe"
+    "scope": "source.ruby.chef"
   },
   "osx?": {
     "prefix": "osx?",
     "body": "osx?",
     "description": "Determine if the current node is a member of the mac_os_x (macOS) family.",
-    "scope": "source.chef.recipe"
+    "scope": "source.ruby.chef"
   },
   "mac?": {
     "prefix": "mac?",
     "body": "mac?",
     "description": "Determine if the current node is a member of the mac_os_x (macOS) family.",
-    "scope": "source.chef.recipe"
+    "scope": "source.ruby.chef"
   },
   "mac_os_x?": {
     "prefix": "mac_os_x?",
     "body": "mac_os_x?",
     "description": "Determine if the current node is a member of the mac_os_x (macOS) family.",
-    "scope": "source.chef.recipe"
+    "scope": "source.ruby.chef"
   },
   "rhel?": {
     "prefix": "rhel?",
     "body": "rhel?",
     "description": "Determine if the current node is a member of the rhel family (RHEL, CentOS, Oracle or Scientific Linux, no Amazon or Fedora).\n\nThe platform_versions for these operating systems must match (rhel7 == centos7 == oracle7 == scientfic7), modulo additional packages",
-    "scope": "source.chef.recipe"
+    "scope": "source.ruby.chef"
   },
   "el?": {
     "prefix": "el?",
     "body": "el?",
     "description": "Determine if the current node is a member of the rhel family (RHEL, CentOS, Oracle or Scientific Linux, no Amazon or Fedora).\n\nThe platform_versions for these operating systems must match (rhel7 == centos7 == oracle7 == scientfic7), modulo additional packages",
-    "scope": "source.chef.recipe"
+    "scope": "source.ruby.chef"
   },
   "rhel6?": {
     "prefix": "rhel6?",
     "body": "rhel6?",
     "description": "Determine if the current node is a rhel6 compatible build (RHEL, CentOS, Oracle or Scientific Linux)",
-    "scope": "source.chef.recipe"
+    "scope": "source.ruby.chef"
   },
   "rhel7?": {
     "prefix": "rhel7?",
     "body": "rhel7?",
     "description": "Determine if the current node is a rhel7 compatible build (RHEL, CentOS, Oracle or Scientific Linux)",
-    "scope": "source.chef.recipe"
+    "scope": "source.ruby.chef"
   },
   "rhel8?": {
     "prefix": "rhel8?",
     "body": "rhel8?",
     "description": "Determine if the current node is a rhel8 compatible build (RHEL, CentOS, Oracle or Scientific Linux)",
-    "scope": "source.chef.recipe"
+    "scope": "source.ruby.chef"
   },
   "amazon?": {
     "prefix": "amazon?",
     "body": "amazon?",
     "description": "Determine if the current node is a member of the amazon family.",
-    "scope": "source.chef.recipe"
+    "scope": "source.ruby.chef"
   },
   "amazon_linux?": {
     "prefix": "amazon_linux?",
     "body": "amazon_linux?",
     "description": "Determine if the current node is a member of the amazon family.",
-    "scope": "source.chef.recipe"
+    "scope": "source.ruby.chef"
   },
   "solaris2?": {
     "prefix": "solaris2?",
     "body": "solaris2?",
     "description": "Determine if the current node is solaris2",
-    "scope": "source.chef.recipe"
+    "scope": "source.ruby.chef"
   },
   "solaris?": {
     "prefix": "solaris?",
     "body": "solaris?",
     "description": "Determine if the current node is solaris2\nchef-sugar backcompat methods",
-    "scope": "source.chef.recipe"
+    "scope": "source.ruby.chef"
   },
   "smartos?": {
     "prefix": "smartos?",
     "body": "smartos?",
     "description": "Determine if the current node is smartos",
-    "scope": "source.chef.recipe"
+    "scope": "source.ruby.chef"
   },
   "suse?": {
     "prefix": "suse?",
     "body": "suse?",
     "description": "Determine if the current node is a member of the suse family.",
-    "scope": "source.chef.recipe"
+    "scope": "source.ruby.chef"
   },
   "gentoo?": {
     "prefix": "gentoo?",
     "body": "gentoo?",
     "description": "Determine if the current node is a member of the gentoo family.",
-    "scope": "source.chef.recipe"
+    "scope": "source.ruby.chef"
   },
   "freebsd?": {
     "prefix": "freebsd?",
     "body": "freebsd?",
     "description": "Determine if the current node is freebsd",
-    "scope": "source.chef.recipe"
+    "scope": "source.ruby.chef"
   },
   "openbsd?": {
     "prefix": "openbsd?",
     "body": "openbsd?",
     "description": "Determine if the current node is openbsd",
-    "scope": "source.chef.recipe"
+    "scope": "source.ruby.chef"
   },
   "netbsd?": {
     "prefix": "netbsd?",
     "body": "netbsd?",
     "description": "Determine if the current node is netbsd",
-    "scope": "source.chef.recipe"
+    "scope": "source.ruby.chef"
   },
   "dragonflybsd?": {
     "prefix": "dragonflybsd?",
     "body": "dragonflybsd?",
     "description": "Determine if the current node is dragonflybsd",
-    "scope": "source.chef.recipe"
+    "scope": "source.ruby.chef"
   },
   "windows?": {
     "prefix": "windows?",
     "body": "windows?",
     "description": "Determine if the current node is a member of the windows family.",
-    "scope": "source.chef.recipe"
+    "scope": "source.ruby.chef"
   },
   "windows_ruby?": {
     "prefix": "windows_ruby?",
     "body": "windows_ruby?",
     "description": "Determine if the ruby VM is currently running on a windows node (chefspec can never stub\nthis behavior, so this is useful for code which can never be parsed on a non-windows box).",
-    "scope": "source.chef.recipe"
+    "scope": "source.ruby.chef"
   },
   "rpm_based?": {
     "prefix": "rpm_based?",
     "body": "rpm_based?",
     "description": "If it uses RPM, it goes in here (rhel, fedora, amazon, suse platform_families).  Deliberately does not\ninclude AIX because bff is AIX's primary package manager and adding it here would make this substantially\nless useful since in no way can AIX trace its lineage back to old redhat distros.  This is most useful for\n\"smells like redhat, including SuSE\".",
-    "scope": "source.chef.recipe"
+    "scope": "source.ruby.chef"
   },
   "fedora_derived?": {
     "prefix": "fedora_derived?",
     "body": "fedora_derived?",
     "description": "RPM-based distros which are not SuSE and are very loosely similar to fedora, using yum or dnf.  The historical\nlineage of the distro should have forked off from old redhat fedora distros at some point.  Currently rhel,\nfedora and amazon.  This is most useful for \"smells like redhat, but isn't SuSE\".",
-    "scope": "source.chef.recipe"
+    "scope": "source.ruby.chef"
   },
   "redhat_based?": {
     "prefix": "redhat_based?",
     "body": "redhat_based?",
     "description": "RedHat distros -- fedora and rhel platform_families, nothing else.  This is most likely not as useful as the\n\"fedora_dervied?\" helper.",
-    "scope": "source.chef.recipe"
+    "scope": "source.ruby.chef"
   },
   "solaris_based?": {
     "prefix": "solaris_based?",
     "body": "solaris_based?",
     "description": "All of the Solaris-lineage.",
-    "scope": "source.chef.recipe"
+    "scope": "source.ruby.chef"
   },
   "bsd_based?": {
     "prefix": "bsd_based?",
     "body": "bsd_based?",
     "description": "All of the BSD-lineage.\n\nNote that macOS is not included as it deviates significantly from BSD and including it would not be useful.",
-    "scope": "source.chef.recipe"
+    "scope": "source.ruby.chef"
   }
 }

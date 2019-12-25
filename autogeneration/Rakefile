@@ -36,7 +36,7 @@ task architecture: :yard_for_generate_documentation do
     doc_data[obj.name.to_s]["prefix"] = obj.name.to_s
     doc_data[obj.name.to_s]["body"] = obj.name.to_s
     doc_data[obj.name.to_s]["description"] = obj.docstring
-    doc_data[obj.name.to_s]["scope"] = "source.chef.recipe"
+    doc_data[obj.name.to_s]["scope"] = "source.ruby.chef"
   end
 
   File.open("../snippets/chef-utils.json", "w") do |f|
