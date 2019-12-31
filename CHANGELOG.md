@@ -1,3 +1,8 @@
+## 1.1.0 (2019-12-30)
+
+- Added `recipe_name` and `cookbook_name` helpers
+- Added more of the helpers from the chef-utils gem
+
 ## 1.0.1 (2019-12-24)
 
 - Don't ship the 3.5 meg autogeneration folder
