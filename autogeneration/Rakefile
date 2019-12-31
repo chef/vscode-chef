@@ -3,11 +3,11 @@ require "yard"
 desc "noop task that is used by other tasks"
 
 YARD::Rake::YardocTask.new(:yard_for_generate_documentation) do |task|
-  task.files = ["vendor/bundle/ruby/**/gems/chef-utils*/lib/chef-utils/dsl/{architecture,platform,platform_family}.rb"]
+  task.files = ["vendor/bundle/ruby/**/gems/chef-utils*/lib/chef-utils/dsl/{architecture,platform,platform_family,introspection,service,os}.rb"]
   task.options = ["--no-output"]
 end
 
-desc "Generate helper documentation for chef-utils architecture helpers"
+desc "Generate vscode snippets for chef-utils helpers"
 
 def install_gem_utils
   require "bundler"
@@ -17,7 +17,7 @@ def install_gem_utils
   end
 end
 
-task architecture: :yard_for_generate_documentation do
+task generate_snippets: :yard_for_generate_documentation do
   Encoding.default_external = Encoding::UTF_8
 
   require "chef-utils"
@@ -39,7 +39,9 @@ task architecture: :yard_for_generate_documentation do
     doc_data[obj.name.to_s]["scope"] = "source.ruby.chef"
   end
 
-  File.open("../snippets/chef-utils.json", "w") do |f|
+  File.open("../snippets/chef_utils.json", "w") do |f|
     f.write(JSON.pretty_generate(doc_data))
   end
 end
+
+task default: :generate_snippets
