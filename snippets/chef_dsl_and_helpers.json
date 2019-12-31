@@ -22,5 +22,17 @@
 		"body": "reboot_pending?",
 		"description": "Check if there is a pending reboot",
 		"scope": "source.ruby.chef"
+	},
+	"cookbook_name": {
+		"prefix": "cookbook_name",
+		"body": "cookbook_name",
+		"description": "Use the cookbook_name method to return the name of the current cookbook.",
+		"scope": "source.ruby.chef"
+	},
+	"recipe_name": {
+		"prefix": "recipe_name",
+		"body": "recipe_name",
+		"description": "Use the recipe_name method to return the name of the current recipe.",
+		"scope": "source.ruby.chef"
 	}
 }
