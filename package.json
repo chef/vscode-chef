@@ -22,7 +22,7 @@
   "main": "./out/extension",
   "dependencies": {},
   "devDependencies": {
-    "@types/node": "^7.0.28",
+    "@types/node": "^13.1.7",
     "fs": "0.0.1-security",
     "path": "0.12.7",
     "tslint": "5.20.1",
