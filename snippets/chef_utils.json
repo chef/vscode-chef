@@ -47,6 +47,24 @@
     "description": "",
     "scope": "source.ruby.chef"
   },
+  "windows_server_core?": {
+    "prefix": "windows_server_core?",
+    "body": "windows_server_core?",
+    "description": "Determine if the current node is Windows Server Core.",
+    "scope": "source.ruby.chef"
+  },
+  "windows_workstation?": {
+    "prefix": "windows_workstation?",
+    "body": "windows_workstation?",
+    "description": "Determine if the current node is Windows Workstation",
+    "scope": "source.ruby.chef"
+  },
+  "windows_server?": {
+    "prefix": "windows_server?",
+    "body": "windows_server?",
+    "description": "Determine if the current node is Windows Server",
+    "scope": "source.ruby.chef"
+  },
   "linuxmint?": {
     "prefix": "linuxmint?",
     "body": "linuxmint?",
@@ -374,13 +392,13 @@
   "ppc64?": {
     "prefix": "ppc64?",
     "body": "ppc64?",
-    "description": "Determine if the current architecture is Powerpc64 Big Endian",
+    "description": "Determine if the current architecture is PowerPC 64bit Big Endian",
     "scope": "source.ruby.chef"
   },
   "ppc64le?": {
     "prefix": "ppc64le?",
     "body": "ppc64le?",
-    "description": "Determine if the current architecture is Powerpc64 Little Endian",
+    "description": "Determine if the current architecture is PowerPC 64bit Little Endian",
     "scope": "source.ruby.chef"
   },
   "powerpc?": {
@@ -410,193 +428,193 @@
   "docker?": {
     "prefix": "docker?",
     "body": "docker?",
-    "description": "Returns whether the node is a docker container.",
+    "description": "Determine if the node is a docker container.",
     "scope": "source.ruby.chef"
   },
   "systemd?": {
     "prefix": "systemd?",
     "body": "systemd?",
-    "description": "",
+    "description": "Determine if the node uses the systemd init system.",
     "scope": "source.ruby.chef"
   },
   "kitchen?": {
     "prefix": "kitchen?",
     "body": "kitchen?",
-    "description": "",
+    "description": "Determine if the node is running in Test Kitchen.",
     "scope": "source.ruby.chef"
   },
   "ci?": {
     "prefix": "ci?",
     "body": "ci?",
-    "description": "",
+    "description": "Determine if the node is running in a CI system that sets the CI env var.",
     "scope": "source.ruby.chef"
   },
   "has_systemd_service_unit?": {
     "prefix": "has_systemd_service_unit?",
     "body": "has_systemd_service_unit?",
-    "description": "",
+    "description": "Determine if the a systemd service unit is present on the system.",
     "scope": "source.ruby.chef"
   },
   "has_systemd_unit?": {
     "prefix": "has_systemd_unit?",
     "body": "has_systemd_unit?",
-    "description": "",
+    "description": "Determine if the a systemd unit of any type is present on the system.",
     "scope": "source.ruby.chef"
   },
   "arch?": {
     "prefix": "arch?",
     "body": "arch?",
-    "description": "Determine if the current node is arch linux.",
+    "description": "Determine if the current node is a member of the 'arch' family.",
     "scope": "source.ruby.chef"
   },
   "arch_linux?": {
     "prefix": "arch_linux?",
     "body": "arch_linux?",
-    "description": "Determine if the current node is arch linux.\nchef-sugar backcompat methods",
+    "description": "Determine if the current node is a member of the 'arch' family.\nchef-sugar backcompat methods",
     "scope": "source.ruby.chef"
   },
   "aix?": {
     "prefix": "aix?",
     "body": "aix?",
-    "description": "Determine if the current node is aix",
+    "description": "Determine if the current node is a member of the 'aix' platform family.",
     "scope": "source.ruby.chef"
   },
   "debian?": {
     "prefix": "debian?",
     "body": "debian?",
-    "description": "Determine if the current node is a member of the debian family.",
+    "description": "Determine if the current node is a member of the 'debian' platform family (Debian, Ubuntu and derivatives).",
     "scope": "source.ruby.chef"
   },
   "fedora?": {
     "prefix": "fedora?",
     "body": "fedora?",
-    "description": "Determine if the current node is a member of the fedora family.",
+    "description": "Determine if the current node is a member of the 'fedora' platform family (Fedora and Arista).",
     "scope": "source.ruby.chef"
   },
   "macos?": {
     "prefix": "macos?",
     "body": "macos?",
-    "description": "Determine if the current node is a member of the mac_os_x (macOS) family.",
+    "description": "Determine if the current node is a member of the 'mac_os_x' platform family.",
     "scope": "source.ruby.chef"
   },
   "osx?": {
     "prefix": "osx?",
     "body": "osx?",
-    "description": "Determine if the current node is a member of the mac_os_x (macOS) family.",
+    "description": "Determine if the current node is a member of the 'mac_os_x' platform family.",
     "scope": "source.ruby.chef"
   },
   "mac?": {
     "prefix": "mac?",
     "body": "mac?",
-    "description": "Determine if the current node is a member of the mac_os_x (macOS) family.",
+    "description": "Determine if the current node is a member of the 'mac_os_x' platform family.",
     "scope": "source.ruby.chef"
   },
   "mac_os_x?": {
     "prefix": "mac_os_x?",
     "body": "mac_os_x?",
-    "description": "Determine if the current node is a member of the mac_os_x (macOS) family.",
+    "description": "Determine if the current node is a member of the 'mac_os_x' platform family.",
     "scope": "source.ruby.chef"
   },
   "rhel?": {
     "prefix": "rhel?",
     "body": "rhel?",
-    "description": "Determine if the current node is a member of the rhel family (RHEL, CentOS, Oracle or Scientific Linux, no Amazon or Fedora).\n\nThe platform_versions for these operating systems must match (rhel7 == centos7 == oracle7 == scientfic7), modulo additional packages",
+    "description": "Determine if the current node is a member of the 'rhel' platform family (Red Hat, CentOS, Oracle or Scientific Linux, but NOT Amazon Linux or Fedora).",
     "scope": "source.ruby.chef"
   },
   "el?": {
     "prefix": "el?",
     "body": "el?",
-    "description": "Determine if the current node is a member of the rhel family (RHEL, CentOS, Oracle or Scientific Linux, no Amazon or Fedora).\n\nThe platform_versions for these operating systems must match (rhel7 == centos7 == oracle7 == scientfic7), modulo additional packages",
+    "description": "Determine if the current node is a member of the 'rhel' platform family (Red Hat, CentOS, Oracle or Scientific Linux, but NOT Amazon Linux or Fedora).",
     "scope": "source.ruby.chef"
   },
   "rhel6?": {
     "prefix": "rhel6?",
     "body": "rhel6?",
-    "description": "Determine if the current node is a rhel6 compatible build (RHEL, CentOS, Oracle or Scientific Linux)",
+    "description": "Determine if the current node is a rhel6 compatible build (Red Hat, CentOS, Oracle or Scientific Linux)",
     "scope": "source.ruby.chef"
   },
   "rhel7?": {
     "prefix": "rhel7?",
     "body": "rhel7?",
-    "description": "Determine if the current node is a rhel7 compatible build (RHEL, CentOS, Oracle or Scientific Linux)",
+    "description": "Determine if the current node is a rhel7 compatible build (Red Hat, CentOS, Oracle or Scientific Linux)",
     "scope": "source.ruby.chef"
   },
   "rhel8?": {
     "prefix": "rhel8?",
     "body": "rhel8?",
-    "description": "Determine if the current node is a rhel8 compatible build (RHEL, CentOS, Oracle or Scientific Linux)",
+    "description": "Determine if the current node is a rhel8 compatible build (Red Hat, CentOS, Oracle or Scientific Linux)",
     "scope": "source.ruby.chef"
   },
   "amazon?": {
     "prefix": "amazon?",
     "body": "amazon?",
-    "description": "Determine if the current node is a member of the amazon family.",
+    "description": "Determine if the current node is a member of the 'amazon' platform family.",
     "scope": "source.ruby.chef"
   },
   "amazon_linux?": {
     "prefix": "amazon_linux?",
     "body": "amazon_linux?",
-    "description": "Determine if the current node is a member of the amazon family.",
+    "description": "Determine if the current node is a member of the 'amazon' platform family.",
     "scope": "source.ruby.chef"
   },
   "solaris2?": {
     "prefix": "solaris2?",
     "body": "solaris2?",
-    "description": "Determine if the current node is solaris2",
+    "description": "Determine if the current node is a member of the 'solaris2' platform family.",
     "scope": "source.ruby.chef"
   },
   "solaris?": {
     "prefix": "solaris?",
     "body": "solaris?",
-    "description": "Determine if the current node is solaris2\nchef-sugar backcompat methods",
+    "description": "Determine if the current node is a member of the 'solaris2' platform family.\nchef-sugar backcompat methods",
     "scope": "source.ruby.chef"
   },
   "smartos?": {
     "prefix": "smartos?",
     "body": "smartos?",
-    "description": "Determine if the current node is smartos",
+    "description": "Determine if the current node is a member of the 'smartos' platform family.",
     "scope": "source.ruby.chef"
   },
   "suse?": {
     "prefix": "suse?",
     "body": "suse?",
-    "description": "Determine if the current node is a member of the suse family.",
+    "description": "Determine if the current node is a member of the 'suse' platform family  (openSUSE, SLES, and SLED).",
     "scope": "source.ruby.chef"
   },
   "gentoo?": {
     "prefix": "gentoo?",
     "body": "gentoo?",
-    "description": "Determine if the current node is a member of the gentoo family.",
+    "description": "Determine if the current node is a member of the 'gentoo' platform family.",
     "scope": "source.ruby.chef"
   },
   "freebsd?": {
     "prefix": "freebsd?",
     "body": "freebsd?",
-    "description": "Determine if the current node is freebsd",
+    "description": "Determine if the current node is a member of the 'freebsd' platform family.",
     "scope": "source.ruby.chef"
   },
   "openbsd?": {
     "prefix": "openbsd?",
     "body": "openbsd?",
-    "description": "Determine if the current node is openbsd",
+    "description": "Determine if the current node is a member of the 'openbsd' platform family.",
     "scope": "source.ruby.chef"
   },
   "netbsd?": {
     "prefix": "netbsd?",
     "body": "netbsd?",
-    "description": "Determine if the current node is netbsd",
+    "description": "Determine if the current node is a member of the 'netbsd' platform family.",
     "scope": "source.ruby.chef"
   },
   "dragonflybsd?": {
     "prefix": "dragonflybsd?",
     "body": "dragonflybsd?",
-    "description": "Determine if the current node is dragonflybsd",
+    "description": "Determine if the current node is a member of the 'dragonflybsd' platform family.",
     "scope": "source.ruby.chef"
   },
   "windows?": {
     "prefix": "windows?",
     "body": "windows?",
-    "description": "Determine if the current node is a member of the windows family.",
+    "description": "Determine if the current node is a member of the 'windows' platform family.",
     "scope": "source.ruby.chef"
   },
   "windows_ruby?": {
@@ -632,7 +650,7 @@
   "bsd_based?": {
     "prefix": "bsd_based?",
     "body": "bsd_based?",
-    "description": "All of the BSD-lineage.\n\nNote that macOS is not included as it deviates significantly from BSD and including it would not be useful.",
+    "description": "All of the BSD-lineage.\n\nNote that MacOSX is not included since Mac deviates so significantly from BSD that including it would not be useful.",
     "scope": "source.ruby.chef"
   }
 }
