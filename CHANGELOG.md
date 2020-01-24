@@ -1,3 +1,8 @@
+## 1.2.0 (2020-01-23)
+
+- Updated many helper descriptions to be more friendly for new users
+- Added the `windows_workstation?`, `windows_server?`, and `windows_server_core?` helpers from Chef Infra Client 15.7.30
+
 ## 1.1.0 (2019-12-30)
 
 - Added `recipe_name` and `cookbook_name` helpers
