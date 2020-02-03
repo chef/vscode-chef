@@ -3,7 +3,7 @@ require "yard"
 desc "noop task that is used by other tasks"
 
 YARD::Rake::YardocTask.new(:yard_for_generate_documentation) do |task|
-  task.files = ["vendor/bundle/ruby/**/gems/chef-utils*/lib/chef-utils/dsl/{architecture,platform,platform_family,introspection,service,os,windows}.rb"]
+  task.files = ["vendor/bundle/ruby/**/bundler/gems/chef*/chef-utils/lib/chef-utils/dsl/{architecture,platform,platform_family,introspection,service,os,windows}.rb"]
   task.options = ["--no-output"]
 end
 
@@ -13,6 +13,8 @@ def install_gem_utils
   require "bundler"
 
   Bundler.with_clean_env do
+    sh "bundle install --no-deployment"
+    sh "bundle update"
     sh "bundle install --deployment"
   end
 end
@@ -20,12 +22,11 @@ end
 task generate_snippets: :yard_for_generate_documentation do
   Encoding.default_external = Encoding::UTF_8
 
-  require "chef-utils"
-  require "fileutils"
-  require "json"
-
   # make sure we have chef-utils files locally for yard inspection
   install_gem_utils
+
+  require "fileutils"
+  require "json"
 
   doc_data = {}
 
@@ -37,6 +38,10 @@ task generate_snippets: :yard_for_generate_documentation do
     doc_data[obj.name.to_s]["body"] = obj.name.to_s
     doc_data[obj.name.to_s]["description"] = obj.docstring
     doc_data[obj.name.to_s]["scope"] = "source.ruby.chef"
+
+    if obj.has_tag?('since')
+      doc_data[obj.name.to_s]["description"] << " Since Chef Infra Client #{obj.tag('since').text}."
+    end
   end
 
   File.open("../snippets/chef_utils.json", "w") do |f|
