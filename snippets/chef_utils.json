@@ -463,7 +463,7 @@
     {
       "prefix": "opensuse_platform?",
       "body": "opensuse_platform?",
-      "description": "Determine if the current node is OpenSuSE. Since Chef Infra Client 15.5.",
+      "description": "Determine if the current node is OpenSUSE. Since Chef Infra Client 15.5.",
       "scope": "source.ruby.chef"
     }
   ],
