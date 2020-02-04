@@ -35,8 +35,9 @@ task :generate_snippets do
   YARD::Registry.load!
 
   YARD::Registry.all(:method).to_a.each do |obj|
-    # skip the chef-sugar backwards compat methods
-    next if obj.docstring.match?(/chef-sugar backcompat methods/)
+    # we don't want to document all the chef-sugar backwards compat aliases
+    # We can't use .is_alias? here since it fired on the original methods as well
+    next if obj.docstring.match?(/chef-sugar backcompat method/)
 
     doc_data[obj.name.to_s] = {}
     doc_data[obj.name.to_s]["prefix"] = obj.name.to_s
@@ -50,7 +51,7 @@ task :generate_snippets do
   end
 
   File.open("../snippets/chef_utils.json", "w") do |f|
-    f.write(JSON.pretty_generate(doc_data))
+    f.write(JSON.pretty_generate(doc_data.sort))
   end
 end
 
