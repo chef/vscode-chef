@@ -1,6 +1,6 @@
 source "https://rubygems.org"
 
-gem 'chef-utils', git: 'https://github.com/chef/chef', glob: 'chef-utils/*.gemspec', branch: 'master'
+gem 'chef-utils', git: 'https://github.com/chef/chef', glob: 'chef-utils/*.gemspec', branch: 'chef_utils_yard'
 gem "rake"
 gem "yard"
 gem "pry"
