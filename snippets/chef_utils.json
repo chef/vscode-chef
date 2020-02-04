@@ -45,15 +45,6 @@
     }
   ],
   [
-    "amazon_linux?",
-    {
-      "prefix": "amazon_linux?",
-      "body": "amazon_linux?",
-      "description": "Determine if the current node is a member of the 'amazon' platform family. Since Chef Infra Client 15.5.",
-      "scope": "source.ruby.chef"
-    }
-  ],
-  [
     "amazon_platform?",
     {
       "prefix": "amazon_platform?",
@@ -189,15 +180,6 @@
     }
   ],
   [
-    "el?",
-    {
-      "prefix": "el?",
-      "body": "el?",
-      "description": "Determine if the current node is a member of the 'rhel' platform family (Red Hat, CentOS, Oracle or Scientific Linux, but NOT Amazon Linux or Fedora). Since Chef Infra Client 15.5.",
-      "scope": "source.ruby.chef"
-    }
-  ],
-  [
     "fedora?",
     {
       "prefix": "fedora?",
@@ -288,15 +270,6 @@
     }
   ],
   [
-    "include_recipe?",
-    {
-      "prefix": "include_recipe?",
-      "body": "include_recipe?",
-      "description": "Determine if the current node includes the given recipe name. Since Chef Infra Client 15.8.",
-      "scope": "source.ruby.chef"
-    }
-  ],
-  [
     "includes_recipe?",
     {
       "prefix": "includes_recipe?",
@@ -356,24 +329,6 @@
       "prefix": "linuxmint_platform?",
       "body": "linuxmint_platform?",
       "description": "Determine if the current node is linux mint. Since Chef Infra Client 15.5.",
-      "scope": "source.ruby.chef"
-    }
-  ],
-  [
-    "mac?",
-    {
-      "prefix": "mac?",
-      "body": "mac?",
-      "description": "Determine if the current node is a member of the 'mac_os_x' platform family. Since Chef Infra Client 15.5.",
-      "scope": "source.ruby.chef"
-    }
-  ],
-  [
-    "mac_os_x?",
-    {
-      "prefix": "mac_os_x?",
-      "body": "mac_os_x?",
-      "description": "Determine if the current node is a member of the 'mac_os_x' platform family. Since Chef Infra Client 15.5.",
       "scope": "source.ruby.chef"
     }
   ],
@@ -473,15 +428,6 @@
       "prefix": "oracle_platform?",
       "body": "oracle_platform?",
       "description": "Determine if the current node is Oracle Linux. Since Chef Infra Client 15.5.",
-      "scope": "source.ruby.chef"
-    }
-  ],
-  [
-    "osx?",
-    {
-      "prefix": "osx?",
-      "body": "osx?",
-      "description": "Determine if the current node is a member of the 'mac_os_x' platform family. Since Chef Infra Client 15.5.",
       "scope": "source.ruby.chef"
     }
   ],
