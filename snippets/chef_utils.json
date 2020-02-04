@@ -71,12 +71,6 @@
     "description": "Determine if the current node is linux mint. Since Chef Infra Client 15.5.",
     "scope": "source.ruby.chef"
   },
-  "mint?": {
-    "prefix": "mint?",
-    "body": "mint?",
-    "description": "Determine if the current node is linux mint.\nchef-sugar backcompat methods. Since Chef Infra Client 15.5.",
-    "scope": "source.ruby.chef"
-  },
   "linux_mint?": {
     "prefix": "linux_mint?",
     "body": "linux_mint?",
@@ -131,12 +125,6 @@
     "description": "Determine if the current node is redhat enterprise. Since Chef Infra Client 15.5.",
     "scope": "source.ruby.chef"
   },
-  "redhat_enterprise?": {
-    "prefix": "redhat_enterprise?",
-    "body": "redhat_enterprise?",
-    "description": "Determine if the current node is redhat enterprise.\nchef-sugar backcompat methods. Since Chef Infra Client 15.5.",
-    "scope": "source.ruby.chef"
-  },
   "redhat_enterprise_linux?": {
     "prefix": "redhat_enterprise_linux?",
     "body": "redhat_enterprise_linux?",
@@ -167,12 +155,6 @@
     "description": "Determine if the current node is oracle linux. Since Chef Infra Client 15.5.",
     "scope": "source.ruby.chef"
   },
-  "oracle_linux?": {
-    "prefix": "oracle_linux?",
-    "body": "oracle_linux?",
-    "description": "Determine if the current node is oracle linux.\nchef-sugar backcompat methods Since Chef Infra Client 15.5.",
-    "scope": "source.ruby.chef"
-  },
   "oracle_platform?": {
     "prefix": "oracle_platform?",
     "body": "oracle_platform?",
@@ -183,12 +165,6 @@
     "prefix": "scientific?",
     "body": "scientific?",
     "description": "Determine if the current node is scientific linux. Since Chef Infra Client 15.5.",
-    "scope": "source.ruby.chef"
-  },
-  "scientific_linux?": {
-    "prefix": "scientific_linux?",
-    "body": "scientific_linux?",
-    "description": "Determine if the current node is scientific linux.\nchef-sugar backcompat methods Since Chef Infra Client 15.5.",
     "scope": "source.ruby.chef"
   },
   "scientific_platform?": {
@@ -467,12 +443,6 @@
     "description": "Determine if the current node is a member of the 'arch' family. Since Chef Infra Client 15.5.",
     "scope": "source.ruby.chef"
   },
-  "arch_linux?": {
-    "prefix": "arch_linux?",
-    "body": "arch_linux?",
-    "description": "Determine if the current node is a member of the 'arch' family.\nchef-sugar backcompat methods. Since Chef Infra Client 15.5.",
-    "scope": "source.ruby.chef"
-  },
   "aix?": {
     "prefix": "aix?",
     "body": "aix?",
@@ -561,12 +531,6 @@
     "prefix": "solaris2?",
     "body": "solaris2?",
     "description": "Determine if the current node is a member of the 'solaris2' platform family. Since Chef Infra Client 15.5.",
-    "scope": "source.ruby.chef"
-  },
-  "solaris?": {
-    "prefix": "solaris?",
-    "body": "solaris?",
-    "description": "Determine if the current node is a member of the 'solaris2' platform family.\nchef-sugar backcompat methods Since Chef Infra Client 15.5.",
     "scope": "source.ruby.chef"
   },
   "smartos?": {

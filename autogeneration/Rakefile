@@ -35,6 +35,9 @@ task :generate_snippets do
   YARD::Registry.load!
 
   YARD::Registry.all(:method).to_a.each do |obj|
+    # skip the chef-sugar backwards compat methods
+    next if obj.docstring.match?(/chef-sugar backcompat methods/)
+
     doc_data[obj.name.to_s] = {}
     doc_data[obj.name.to_s]["prefix"] = obj.name.to_s
     doc_data[obj.name.to_s]["body"] = obj.name.to_s
