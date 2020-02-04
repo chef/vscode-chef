@@ -46,12 +46,12 @@ task :generate_snippets do
     doc_data[obj.name.to_s]["scope"] = "source.ruby.chef"
 
     if obj.has_tag?('since')
-      doc_data[obj.name.to_s]["description"] << " Since Chef Infra Client #{obj.tag('since').text}."
+      doc_data[obj.name.to_s]["description"] << " Introduced in Chef Infra Client #{obj.tag('since').text}."
     end
   end
 
   File.open("../snippets/chef_utils.json", "w") do |f|
-    f.write(JSON.pretty_generate(doc_data.sort))
+    f.write(JSON.pretty_generate(doc_data.sort.to_h))
   end
 end
 
