@@ -51,7 +51,7 @@ task :generate_snippets do
   end
 
   File.open("../snippets/chef_utils.json", "w") do |f|
-    f.write(JSON.pretty_generate(doc_data))
+    f.write(JSON.pretty_generate(doc_data.sort))
   end
 end
 
