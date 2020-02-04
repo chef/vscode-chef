@@ -3,7 +3,7 @@ require "yard"
 desc "noop task that is used by other tasks"
 
 YARD::Rake::YardocTask.new(:yard_for_generate_documentation) do |task|
-  task.files = ["vendor/bundle/ruby/**/bundler/gems/chef*/chef-utils/lib/chef-utils/dsl/{architecture,platform,platform_family,introspection,service,os,windows}.rb"]
+  task.files = ["vendor/bundle/ruby/**/bundler/gems/chef*/chef-utils/lib/chef-utils/dsl/{architecture,platform,platform_family,introspection,service,os,windows,cloud,virtualization}.rb"]
   task.options = ["--no-output"]
 end
 
@@ -44,6 +44,10 @@ task :generate_snippets do
     doc_data[obj.name.to_s]["body"] = obj.name.to_s
     doc_data[obj.name.to_s]["description"] = obj.docstring
     doc_data[obj.name.to_s]["scope"] = "source.ruby.chef"
+
+    unless doc_data[obj.name.to_s]["description"].end_with?('.')
+      doc_data[obj.name.to_s]["description"] << '.'
+    end
 
     if obj.has_tag?('since')
       doc_data[obj.name.to_s]["description"] << " Introduced in Chef Infra Client #{obj.tag('since').text}."
