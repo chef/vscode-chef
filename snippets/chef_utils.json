@@ -342,38 +342,11 @@
     }
   ],
   [
-    "leap_platform?",
-    {
-      "prefix": "leap_platform?",
-      "body": "leap_platform?",
-      "description": "Determine if the current node is OpenSuSE.\nchef-sugar backcompat method Since Chef Infra Client 15.5.",
-      "scope": "source.ruby.chef"
-    }
-  ],
-  [
     "linux?",
     {
       "prefix": "linux?",
       "body": "linux?",
       "description": "Determine if the current node is Linux. Since Chef Infra Client 15.5.",
-      "scope": "source.ruby.chef"
-    }
-  ],
-  [
-    "linux_mint?",
-    {
-      "prefix": "linux_mint?",
-      "body": "linux_mint?",
-      "description": "Determine if the current node is linux mint.\nchef-sugar backcompat method Since Chef Infra Client 15.5.",
-      "scope": "source.ruby.chef"
-    }
-  ],
-  [
-    "linuxmint?",
-    {
-      "prefix": "linuxmint?",
-      "body": "linuxmint?",
-      "description": "Determine if the current node is linux mint.\nchef-sugar backcompat method Since Chef Infra Client 15.5.",
       "scope": "source.ruby.chef"
     }
   ],
@@ -405,15 +378,6 @@
     }
   ],
   [
-    "mac_os_x_platform?",
-    {
-      "prefix": "mac_os_x_platform?",
-      "body": "mac_os_x_platform?",
-      "description": "Determine if the current node is MacOS.\nchef-sugar backcompat method Since Chef Infra Client 15.5.",
-      "scope": "source.ruby.chef"
-    }
-  ],
-  [
     "macos?",
     {
       "prefix": "macos?",
@@ -432,15 +396,6 @@
     }
   ],
   [
-    "mint?",
-    {
-      "prefix": "mint?",
-      "body": "mint?",
-      "description": "Determine if the current node is linux mint.\nchef-sugar backcompat method Since Chef Infra Client 15.5.",
-      "scope": "source.ruby.chef"
-    }
-  ],
-  [
     "netbsd?",
     {
       "prefix": "netbsd?",
@@ -455,15 +410,6 @@
       "prefix": "netbsd_platform?",
       "body": "netbsd_platform?",
       "description": "Determine if the current node is NetBSD. Since Chef Infra Client 15.5.",
-      "scope": "source.ruby.chef"
-    }
-  ],
-  [
-    "nexentacore?",
-    {
-      "prefix": "nexentacore?",
-      "body": "nexentacore?",
-      "description": "Determine if the current node is Nexenta Core Platform aka Nexenta OS.\nchef-sugar backcompat method Since Chef Infra Client 15.5.",
       "scope": "source.ruby.chef"
     }
   ],
@@ -504,15 +450,6 @@
     }
   ],
   [
-    "openindiana?",
-    {
-      "prefix": "openindiana?",
-      "body": "openindiana?",
-      "description": "Determine if the current node is OpenIndiana.\nchef-sugar backcompat method Since Chef Infra Client 15.5.",
-      "scope": "source.ruby.chef"
-    }
-  ],
-  [
     "openindiana_platform?",
     {
       "prefix": "openindiana_platform?",
@@ -522,47 +459,11 @@
     }
   ],
   [
-    "opensuse?",
-    {
-      "prefix": "opensuse?",
-      "body": "opensuse?",
-      "description": "Determine if the current node is OpenSuSE.\nchef-sugar backcompat method Since Chef Infra Client 15.5.",
-      "scope": "source.ruby.chef"
-    }
-  ],
-  [
     "opensuse_platform?",
     {
       "prefix": "opensuse_platform?",
       "body": "opensuse_platform?",
       "description": "Determine if the current node is OpenSuSE. Since Chef Infra Client 15.5.",
-      "scope": "source.ruby.chef"
-    }
-  ],
-  [
-    "opensuseleap_platform?",
-    {
-      "prefix": "opensuseleap_platform?",
-      "body": "opensuseleap_platform?",
-      "description": "Determine if the current node is OpenSuSE.\nchef-sugar backcompat method Since Chef Infra Client 15.5.",
-      "scope": "source.ruby.chef"
-    }
-  ],
-  [
-    "oracle?",
-    {
-      "prefix": "oracle?",
-      "body": "oracle?",
-      "description": "Determine if the current node is Oracle Linux.\nchef-sugar backcompat method Since Chef Infra Client 15.5.",
-      "scope": "source.ruby.chef"
-    }
-  ],
-  [
-    "oracle_linux?",
-    {
-      "prefix": "oracle_linux?",
-      "body": "oracle_linux?",
-      "description": "Determine if the current node is Oracle Linux.\nchef-sugar backcompat method Since Chef Infra Client 15.5.",
       "scope": "source.ruby.chef"
     }
   ],
@@ -630,38 +531,11 @@
     }
   ],
   [
-    "redhat?",
-    {
-      "prefix": "redhat?",
-      "body": "redhat?",
-      "description": "Determine if the current node is Red Hat Enterprise Linux.\nchef-sugar backcompat method Since Chef Infra Client 15.5.",
-      "scope": "source.ruby.chef"
-    }
-  ],
-  [
     "redhat_based?",
     {
       "prefix": "redhat_based?",
       "body": "redhat_based?",
       "description": "RedHat distros -- fedora and rhel platform_families, nothing else. This is most likely not as useful as the\n\"fedora_dervied?\" helper. Since Chef Infra Client 15.5.",
-      "scope": "source.ruby.chef"
-    }
-  ],
-  [
-    "redhat_enterprise?",
-    {
-      "prefix": "redhat_enterprise?",
-      "body": "redhat_enterprise?",
-      "description": "Determine if the current node is Red Hat Enterprise Linux.\nchef-sugar backcompat method Since Chef Infra Client 15.5.",
-      "scope": "source.ruby.chef"
-    }
-  ],
-  [
-    "redhat_enterprise_linux?",
-    {
-      "prefix": "redhat_enterprise_linux?",
-      "body": "redhat_enterprise_linux?",
-      "description": "Determine if the current node is Red Hat Enterprise Linux.\nchef-sugar backcompat method Since Chef Infra Client 15.5.",
       "scope": "source.ruby.chef"
     }
   ],
@@ -743,24 +617,6 @@
       "prefix": "s390x?",
       "body": "s390x?",
       "description": "Determine if the current architecture is s390x. Since Chef Infra Client 15.5.",
-      "scope": "source.ruby.chef"
-    }
-  ],
-  [
-    "scientific?",
-    {
-      "prefix": "scientific?",
-      "body": "scientific?",
-      "description": "Determine if the current node is Scientific Linux.\nchef-sugar backcompat method Since Chef Infra Client 15.5.",
-      "scope": "source.ruby.chef"
-    }
-  ],
-  [
-    "scientific_linux?",
-    {
-      "prefix": "scientific_linux?",
-      "body": "scientific_linux?",
-      "description": "Determine if the current node is Scientific Linux.\nchef-sugar backcompat method Since Chef Infra Client 15.5.",
       "scope": "source.ruby.chef"
     }
   ],
