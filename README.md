@@ -22,7 +22,15 @@ The Chef Infra Extension for Visual Studio Code offers rich language support for
 
 #### Snippet support (with tabbing) for all Chef Infra built-in Resources:
 
- * Please review the [snippets](snippets/chef.json) for a complete list.
+ * Please review the [Resource snippets](snippets/chef_resources.json) for a complete list.
+
+#### Snippet support (with tabbing) for all Chef Infra Metadata fields:
+
+ * Please review the [Metadata snippets](snippets/chef_metadata.json) for a complete list.
+
+#### Snippet support (with tabbing) for all Chef Infra DSL methods included in chef-utils:
+
+ * Please review the [DSL snippets](snippets/chef_utils.json) for a complete list.
 
 ## Installation
 
