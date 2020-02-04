@@ -194,7 +194,7 @@
   "gentoo_platform?": {
     "prefix": "gentoo_platform?",
     "body": "gentoo_platform?",
-    "description": "Determine if the current node is gentoo. Introduced in Chef Infra Client 15.5.",
+    "description": "Determine if the current node is Gentoo. Introduced in Chef Infra Client 15.5.",
     "scope": "source.ruby.chef"
   },
   "guest?": {
@@ -308,7 +308,7 @@
   "macos_platform?": {
     "prefix": "macos_platform?",
     "body": "macos_platform?",
-    "description": "Determine if the current node is MacOS. Introduced in Chef Infra Client 15.5.",
+    "description": "Determine if the current node is macOS. Introduced in Chef Infra Client 15.5.",
     "scope": "source.ruby.chef"
   },
   "netbsd?": {
@@ -398,7 +398,7 @@
   "physical?": {
     "prefix": "physical?",
     "body": "physical?",
-    "description": "Determine if the current node is NOT running under any virtualization environment (plain metal or hypervisor on metal). Introduced in Chef Infra Client 15.8.",
+    "description": "Determine if the current node is NOT running under any virtualization environment (bare-metal or hypervisor on metal). Introduced in Chef Infra Client 15.8.",
     "scope": "source.ruby.chef"
   },
   "powerpc?": {
@@ -506,13 +506,13 @@
   "service_script_exist?": {
     "prefix": "service_script_exist?",
     "body": "service_script_exist?",
-    "description": "Returns if a particular service exists for a particular service init system. Init systems may be :initd, :upstart, :etc_rcd, :xinetd, and :systemd. Example: service_script_exist?(:systemd, 'ntpd').",
+    "description": "Returns if a particular service exists for a particular service init system. Init systems may be :initd, :upstart, :etc_rcd, :xinetd, and :systemd. Example: service_script_exist?(:systemd, 'ntpd'). Introduced in Chef Infra Client 15.5.",
     "scope": "source.ruby.chef"
   },
   "slackware_platform?": {
     "prefix": "slackware_platform?",
     "body": "slackware_platform?",
-    "description": "Determine if the current node is slackware. Introduced in Chef Infra Client 15.5.",
+    "description": "Determine if the current node is Slackware. Introduced in Chef Infra Client 15.5.",
     "scope": "source.ruby.chef"
   },
   "smartos?": {
