@@ -19,7 +19,7 @@ def install_gem_utils
   end
 end
 
-task generate_snippets: :yard_for_generate_documentation do
+task :generate_snippets do
   Encoding.default_external = Encoding::UTF_8
 
   # make sure we have chef-utils files locally for yard inspection
@@ -27,6 +27,8 @@ task generate_snippets: :yard_for_generate_documentation do
 
   require "fileutils"
   require "json"
+
+  Rake::Task[:yard_for_generate_documentation].execute
 
   doc_data = {}
 
