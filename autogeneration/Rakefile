@@ -3,7 +3,7 @@ require "yard"
 desc "noop task that is used by other tasks"
 
 YARD::Rake::YardocTask.new(:yard_for_generate_documentation) do |task|
-  task.files = ["vendor/bundle/ruby/**/bundler/gems/chef*/chef-utils/lib/chef-utils/dsl/{architecture,platform,platform_family,introspection,service,os,windows,cloud,virtualization}.rb"]
+  task.files = ["vendor/bundle/ruby/**/bundler/gems/chef*/chef-utils/lib/chef-utils/dsl/{platform_version,architecture,platform,platform_family,introspection,service,os,windows,cloud,virtualization}.rb"]
   task.options = ["--no-output"]
 end
 
