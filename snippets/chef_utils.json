@@ -401,6 +401,12 @@
     "description": "Determine if the current node is NOT running under any virtualization environment (bare-metal or hypervisor on metal). Introduced in Chef Infra Client 15.8.",
     "scope": "source.ruby.chef"
   },
+  "platform_version": {
+    "prefix": "platform_version",
+    "body": "platform_version",
+    "description": "Return the platform_version for the node. Acts like a String\nbut also provides a mechanism for checking version constraints. Introduced in Chef Infra Client 15.8.",
+    "scope": "source.ruby.chef"
+  },
   "powerpc?": {
     "prefix": "powerpc?",
     "body": "powerpc?",
