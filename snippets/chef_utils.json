@@ -122,7 +122,7 @@
   "docker?": {
     "prefix": "docker?",
     "body": "docker?",
-    "description": "Determine if the node is a docker container. Introduced in Chef Infra Client 15.5.",
+    "description": "Determine if the node is a docker container. Introduced in Chef Infra Client 12.11.",
     "scope": "source.ruby.chef"
   },
   "dragonfly_platform?": {
