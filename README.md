@@ -57,33 +57,35 @@ npm install -g vsce
 
 To produce a local .vsix for testing:
 ```
-C:\projects\chef\vscode-chef> vsce package                                                                              Executing prepublish script 'npm run vscode:prepublish'...
+vsce package
 
-> chef@0.8.0 vscode:prepublish C:\projects\chef\vscode-chef
+Executing prepublish script 'npm run vscode:prepublish'...
+
+> chef@1.4.0 vscode:prepublish /Users/tsmith/dev/work/vscode-chef
 > tsc -p ./
 
- DONE  Packaged: C:\projects\chef\vscode-chef\chef-0.8.0.vsix (12 files, 33.51KB)
+ DONE  Packaged: /Users/tsmith/dev/work/vscode-chef/chef-1.4.0.vsix (15 files, 39.32KB)
 ```
 
 To test the extension locally.
 
 ```
-C:\projects\chef\vscode-chef> code --install-extension C:\projects\chef\vscode-chef\chef-0.8.0.vsix
+code --install-extension C:\projects\chef\vscode-chef\chef-1.4.0.vsix
 ```
 
 To release requires a PAT token for the relevant publisher on the Visual Studio Marketplace.
 
 ```
-C:\projects\chef\vscode-chef> vsce publish                                                                              Executing prepublish script 'npm run vscode:prepublish'...
+vsce publish
 
-> chef@0.8.0 vscode:prepublish C:\projects\chef\vscode-chef
+Executing prepublish script 'npm run vscode:prepublish'...
+
+> chef@1.4.0 vscode:prepublish /Users/tsmith/dev/work/vscode-chef
 > tsc -p ./
 
-Personal Access Token for publisher 'chef-software': ****************************************************
-
-Publishing chef-software.chef@0.8.0...
- DONE  Published chef-software.chef@0.8.0
-Your extension will live at https://marketplace.visualstudio.com/items?itemName=chef-software.chef (might take a few seconds for it to show up).
+Publishing chef-software.chef@1.4.0...
+ DONE  Published chef-software.chef@1.4.0
+Your extension will live at https://marketplace.visualstudio.com/items?itemName=chef-software.chef (might take a few minutes for it to show up).
 ```
 
 ## Author
