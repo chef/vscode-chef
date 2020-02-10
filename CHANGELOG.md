@@ -1,3 +1,8 @@
+## 1.4.0 (2020-02-10)
+
+- Added additional Chef Infra Client 15.8 helpers
+- Futher improve snippet descriptions
+
 ## 1.3.0 (2020-02-03)
 
 - Add many of the new helpers introduced in the upcoming Chef Infra Client 15.8 release.
