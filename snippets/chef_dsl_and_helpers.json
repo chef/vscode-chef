@@ -1,0 +1,38 @@
+{
+	"include_recipe": {
+		"prefix": "include_recipe",
+		"body": "include_recipe '${1:cookbook::recipe}'",
+		"description": "Include a recipe to be run",
+		"scope": "source.ruby.chef"
+	},
+	"platform?": {
+		"prefix": "platform?",
+		"body": "platform?('${1:platform_name}')",
+		"description": "Check for one of more platforms",
+		"scope": "source.ruby.chef"
+	},
+	"platform_family?": {
+		"prefix": "platform_family?",
+		"body": "platform_family?('${1:platform_family_name}')",
+		"description": "Check for one of more platform families",
+		"scope": "source.ruby.chef"
+	},
+	"reboot_pending?": {
+		"prefix": "reboot_pending?",
+		"body": "reboot_pending?",
+		"description": "Check if there is a pending reboot",
+		"scope": "source.ruby.chef"
+	},
+	"cookbook_name": {
+		"prefix": "cookbook_name",
+		"body": "cookbook_name",
+		"description": "Use the cookbook_name method to return the name of the current cookbook.",
+		"scope": "source.ruby.chef"
+	},
+	"recipe_name": {
+		"prefix": "recipe_name",
+		"body": "recipe_name",
+		"description": "Use the recipe_name method to return the name of the current recipe.",
+		"scope": "source.ruby.chef"
+	}
+}

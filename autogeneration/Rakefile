@@ -1,0 +1,62 @@
+require "yard"
+
+desc "noop task that is used by other tasks"
+
+YARD::Rake::YardocTask.new(:yard_for_generate_documentation) do |task|
+  task.files = ["vendor/bundle/ruby/**/bundler/gems/chef*/chef-utils/lib/chef-utils/dsl/{platform_version,architecture,platform,platform_family,introspection,service,os,windows,cloud,virtualization}.rb"]
+  task.options = ["--no-output"]
+end
+
+desc "Generate vscode snippets for chef-utils helpers"
+
+def install_gem_utils
+  require "bundler"
+
+  Bundler.with_clean_env do
+    sh "bundle install --no-deployment"
+    sh "bundle update"
+    sh "bundle install --deployment"
+  end
+end
+
+task :generate_snippets do
+  Encoding.default_external = Encoding::UTF_8
+
+  # make sure we have chef-utils files locally for yard inspection
+  install_gem_utils
+
+  require "fileutils"
+  require "json"
+
+  Rake::Task[:yard_for_generate_documentation].execute
+
+  doc_data = {}
+
+  YARD::Registry.load!
+
+  YARD::Registry.all(:method).to_a.each do |obj|
+    # we don't want to document all the chef-sugar backwards compat aliases
+    # We can't use .is_alias? here since it fired on the original methods as well
+    next if obj.docstring.match?(/chef-sugar backcompat method/)
+
+    doc_data[obj.name.to_s] = {}
+    doc_data[obj.name.to_s]["prefix"] = obj.name.to_s
+    doc_data[obj.name.to_s]["body"] = obj.name.to_s
+    doc_data[obj.name.to_s]["description"] = obj.docstring
+    doc_data[obj.name.to_s]["scope"] = "source.ruby.chef"
+
+    unless doc_data[obj.name.to_s]["description"].end_with?('.')
+      doc_data[obj.name.to_s]["description"] << '.'
+    end
+
+    if obj.has_tag?('since')
+      doc_data[obj.name.to_s]["description"] << " Introduced in Chef Infra Client #{obj.tag('since').text}."
+    end
+  end
+
+  File.open("../snippets/chef_utils.json", "w") do |f|
+    f.write(JSON.pretty_generate(doc_data.sort.to_h))
+  end
+end
+
+task default: :generate_snippets
