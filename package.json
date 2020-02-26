@@ -1,7 +1,11 @@
 {
   "name": "chef",
   "description": "Chef Infra language support and snippets for Visual Studio Code",
-  "version": "0.8.3",
+<<<<<<< HEAD
+  "version": "1.1.1",
+=======
+  "version": "1.4.0",
+>>>>>>> master
   "publisher": "chef-software",
   "icon": "images/chef-logo.png",
   "displayName": "Chef Infra Extension for Visual Studio Code",
@@ -22,10 +26,14 @@
   "main": "./out/extension",
   "dependencies": {},
   "devDependencies": {
-    "@types/node": "^7.0.28",
+    "@types/node": "^13.7.0",
     "fs": "0.0.1-security",
     "path": "0.12.7",
-    "tslint": "5.4.3",
+<<<<<<< HEAD
+    "tslint": "5.20.1",
+=======
+    "tslint": "6.0.0",
+>>>>>>> master
     "typescript": "2.3.4",
     "vscode": "^1.1.14"
   },
@@ -42,7 +50,6 @@
       {
         "id": "ruby",
         "aliases": [
-          "Ruby",
           "Ruby"
         ],
         "extensions": [
@@ -77,7 +84,19 @@
     "snippets": [
       {
         "language": "ruby",
-        "path": "./snippets/chef.json"
+        "path": "./snippets/chef_resources.json"
+      },
+      {
+        "language": "ruby",
+        "path": "./snippets/chef_dsl_and_helpers.json"
+      },
+      {
+        "language": "ruby",
+        "path": "./snippets/chefspec.json"
+      },
+      {
+        "language": "ruby",
+        "path": "./snippets/chef_utils.json"
       },
       {
         "language": "chef_metadata",

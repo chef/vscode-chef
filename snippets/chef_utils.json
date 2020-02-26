@@ -1,0 +1,686 @@
+{
+  "_32_bit?": {
+    "prefix": "_32_bit?",
+    "body": "_32_bit?",
+    "description": "Determine if the current architecture is 32-bit. Introduced in Chef Infra Client 15.5.",
+    "scope": "source.ruby.chef"
+  },
+  "_64_bit?": {
+    "prefix": "_64_bit?",
+    "body": "_64_bit?",
+    "description": "Determine if the current architecture is 64-bit. Introduced in Chef Infra Client 15.5.",
+    "scope": "source.ruby.chef"
+  },
+  "aix?": {
+    "prefix": "aix?",
+    "body": "aix?",
+    "description": "Determine if the current node is a member of the 'aix' platform family. Introduced in Chef Infra Client 15.5.",
+    "scope": "source.ruby.chef"
+  },
+  "aix_platform?": {
+    "prefix": "aix_platform?",
+    "body": "aix_platform?",
+    "description": "Determine if the current node is AIX. Introduced in Chef Infra Client 15.5.",
+    "scope": "source.ruby.chef"
+  },
+  "amazon?": {
+    "prefix": "amazon?",
+    "body": "amazon?",
+    "description": "Determine if the current node is a member of the 'amazon' platform family. Introduced in Chef Infra Client 15.5.",
+    "scope": "source.ruby.chef"
+  },
+  "amazon_platform?": {
+    "prefix": "amazon_platform?",
+    "body": "amazon_platform?",
+    "description": "Determine if the current node is Amazon Linux. Introduced in Chef Infra Client 15.5.",
+    "scope": "source.ruby.chef"
+  },
+  "arch?": {
+    "prefix": "arch?",
+    "body": "arch?",
+    "description": "Determine if the current node is a member of the 'arch' family. Introduced in Chef Infra Client 15.5.",
+    "scope": "source.ruby.chef"
+  },
+  "arch_platform?": {
+    "prefix": "arch_platform?",
+    "body": "arch_platform?",
+    "description": "Determine if the current node is Arch Linux. Introduced in Chef Infra Client 15.5.",
+    "scope": "source.ruby.chef"
+  },
+  "armhf?": {
+    "prefix": "armhf?",
+    "body": "armhf?",
+    "description": "Determine if the current architecture is 32-bit ARM. Introduced in Chef Infra Client 15.5.",
+    "scope": "source.ruby.chef"
+  },
+  "azure?": {
+    "prefix": "azure?",
+    "body": "azure?",
+    "description": "Return true if the current current node is in Azure. Introduced in Chef Infra Client 15.8.",
+    "scope": "source.ruby.chef"
+  },
+  "bsd_based?": {
+    "prefix": "bsd_based?",
+    "body": "bsd_based?",
+    "description": "All of the BSD-lineage.\n\nNote that macOS is not included since macOS deviates so significantly from BSD that including it would not be useful. Introduced in Chef Infra Client 15.5.",
+    "scope": "source.ruby.chef"
+  },
+  "centos_platform?": {
+    "prefix": "centos_platform?",
+    "body": "centos_platform?",
+    "description": "Determine if the current node is CentOS. Introduced in Chef Infra Client 15.5.",
+    "scope": "source.ruby.chef"
+  },
+  "ci?": {
+    "prefix": "ci?",
+    "body": "ci?",
+    "description": "Determine if the node is running in a CI system that sets the CI env var. Introduced in Chef Infra Client 15.5.",
+    "scope": "source.ruby.chef"
+  },
+  "clearos_platform?": {
+    "prefix": "clearos_platform?",
+    "body": "clearos_platform?",
+    "description": "Determine if the current node is ClearOS. Introduced in Chef Infra Client 15.5.",
+    "scope": "source.ruby.chef"
+  },
+  "cloud?": {
+    "prefix": "cloud?",
+    "body": "cloud?",
+    "description": "Determine if the current node is \"in the cloud\". Introduced in Chef Infra Client 15.8.",
+    "scope": "source.ruby.chef"
+  },
+  "darwin?": {
+    "prefix": "darwin?",
+    "body": "darwin?",
+    "description": "Determine if the current node is Darwin. Introduced in Chef Infra Client 15.5.",
+    "scope": "source.ruby.chef"
+  },
+  "debian?": {
+    "prefix": "debian?",
+    "body": "debian?",
+    "description": "Determine if the current node is a member of the 'debian' platform family (Debian, Ubuntu and derivatives). Introduced in Chef Infra Client 15.5.",
+    "scope": "source.ruby.chef"
+  },
+  "debian_platform?": {
+    "prefix": "debian_platform?",
+    "body": "debian_platform?",
+    "description": "Determine if the current node is Debian. Introduced in Chef Infra Client 15.5.",
+    "scope": "source.ruby.chef"
+  },
+  "debianrcd?": {
+    "prefix": "debianrcd?",
+    "body": "debianrcd?",
+    "description": "Returns if debian's old rc.d manager is installed (not necessarily the primary init system). Introduced in Chef Infra Client 15.5.",
+    "scope": "source.ruby.chef"
+  },
+  "digital_ocean?": {
+    "prefix": "digital_ocean?",
+    "body": "digital_ocean?",
+    "description": "Return true if the current current node is in DigitalOcean. Introduced in Chef Infra Client 15.8.",
+    "scope": "source.ruby.chef"
+  },
+  "docker?": {
+    "prefix": "docker?",
+    "body": "docker?",
+    "description": "Determine if the node is a docker container. Introduced in Chef Infra Client 12.11.",
+    "scope": "source.ruby.chef"
+  },
+  "dragonfly_platform?": {
+    "prefix": "dragonfly_platform?",
+    "body": "dragonfly_platform?",
+    "description": "Determine if the current node is DragonFly BSD. Introduced in Chef Infra Client 15.5.",
+    "scope": "source.ruby.chef"
+  },
+  "dragonflybsd?": {
+    "prefix": "dragonflybsd?",
+    "body": "dragonflybsd?",
+    "description": "Determine if the current node is a member of the 'dragonflybsd' platform family. Introduced in Chef Infra Client 15.5.",
+    "scope": "source.ruby.chef"
+  },
+  "ec2?": {
+    "prefix": "ec2?",
+    "body": "ec2?",
+    "description": "Return true if the current current node is in EC2. Introduced in Chef Infra Client 15.8.",
+    "scope": "source.ruby.chef"
+  },
+  "eucalyptus?": {
+    "prefix": "eucalyptus?",
+    "body": "eucalyptus?",
+    "description": "Return true if the current current node is in Eucalyptus. Introduced in Chef Infra Client 15.8.",
+    "scope": "source.ruby.chef"
+  },
+  "fedora?": {
+    "prefix": "fedora?",
+    "body": "fedora?",
+    "description": "Determine if the current node is a member of the 'fedora' platform family (Fedora and Arista). Introduced in Chef Infra Client 15.5.",
+    "scope": "source.ruby.chef"
+  },
+  "fedora_derived?": {
+    "prefix": "fedora_derived?",
+    "body": "fedora_derived?",
+    "description": "RPM-based distros which are not SuSE and are very loosely similar to fedora, using yum or dnf. The historical\nlineage of the distro should have forked off from old redhat fedora distros at some point. Currently rhel,\nfedora and amazon. This is most useful for \"smells like redhat, but isn't SuSE\". Introduced in Chef Infra Client 15.5.",
+    "scope": "source.ruby.chef"
+  },
+  "fedora_platform?": {
+    "prefix": "fedora_platform?",
+    "body": "fedora_platform?",
+    "description": "Determine if the current node is Fedora. Introduced in Chef Infra Client 15.5.",
+    "scope": "source.ruby.chef"
+  },
+  "freebsd?": {
+    "prefix": "freebsd?",
+    "body": "freebsd?",
+    "description": "Determine if the current node is a member of the 'freebsd' platform family. Introduced in Chef Infra Client 15.5.",
+    "scope": "source.ruby.chef"
+  },
+  "freebsd_platform?": {
+    "prefix": "freebsd_platform?",
+    "body": "freebsd_platform?",
+    "description": "Determine if the current node is FreeBSD. Introduced in Chef Infra Client 15.5.",
+    "scope": "source.ruby.chef"
+  },
+  "gce?": {
+    "prefix": "gce?",
+    "body": "gce?",
+    "description": "Return true if the current current node is in GCE. Introduced in Chef Infra Client 15.8.",
+    "scope": "source.ruby.chef"
+  },
+  "gentoo?": {
+    "prefix": "gentoo?",
+    "body": "gentoo?",
+    "description": "Determine if the current node is a member of the 'gentoo' platform family. Introduced in Chef Infra Client 15.5.",
+    "scope": "source.ruby.chef"
+  },
+  "gentoo_platform?": {
+    "prefix": "gentoo_platform?",
+    "body": "gentoo_platform?",
+    "description": "Determine if the current node is Gentoo. Introduced in Chef Infra Client 15.5.",
+    "scope": "source.ruby.chef"
+  },
+  "guest?": {
+    "prefix": "guest?",
+    "body": "guest?",
+    "description": "Determine if the current node is running under any virutalization environment. Introduced in Chef Infra Client 15.8.",
+    "scope": "source.ruby.chef"
+  },
+  "has_systemd_service_unit?": {
+    "prefix": "has_systemd_service_unit?",
+    "body": "has_systemd_service_unit?",
+    "description": "Determine if the a systemd service unit is present on the system. Introduced in Chef Infra Client 15.5.",
+    "scope": "source.ruby.chef"
+  },
+  "has_systemd_unit?": {
+    "prefix": "has_systemd_unit?",
+    "body": "has_systemd_unit?",
+    "description": "Determine if the a systemd unit of any type is present on the system. Introduced in Chef Infra Client 15.5.",
+    "scope": "source.ruby.chef"
+  },
+  "hypervisor?": {
+    "prefix": "hypervisor?",
+    "body": "hypervisor?",
+    "description": "Determine if the current node supports running guests under any virtualization environment. Introduced in Chef Infra Client 15.8.",
+    "scope": "source.ruby.chef"
+  },
+  "i386?": {
+    "prefix": "i386?",
+    "body": "i386?",
+    "description": "Determine if the current architecture is i386. Introduced in Chef Infra Client 15.5.",
+    "scope": "source.ruby.chef"
+  },
+  "includes_recipe?": {
+    "prefix": "includes_recipe?",
+    "body": "includes_recipe?",
+    "description": "Determine if the current node includes the given recipe name. Introduced in Chef Infra Client 15.8.",
+    "scope": "source.ruby.chef"
+  },
+  "insserv?": {
+    "prefix": "insserv?",
+    "body": "insserv?",
+    "description": "Returns if insserv is installed (not necessarily the primary init system). Introduced in Chef Infra Client 15.5.",
+    "scope": "source.ruby.chef"
+  },
+  "intel?": {
+    "prefix": "intel?",
+    "body": "intel?",
+    "description": "Determine if the current architecture is Intel. Introduced in Chef Infra Client 15.5.",
+    "scope": "source.ruby.chef"
+  },
+  "invokercd?": {
+    "prefix": "invokercd?",
+    "body": "invokercd?",
+    "description": "Returns if debian's old invoke rc.d manager is installed (not necessarily the primary init system). Introduced in Chef Infra Client 15.5.",
+    "scope": "source.ruby.chef"
+  },
+  "kitchen?": {
+    "prefix": "kitchen?",
+    "body": "kitchen?",
+    "description": "Determine if the node is running in Test Kitchen. Introduced in Chef Infra Client 15.5.",
+    "scope": "source.ruby.chef"
+  },
+  "kvm?": {
+    "prefix": "kvm?",
+    "body": "kvm?",
+    "description": "Determine if the current node is a KVM guest. Introduced in Chef Infra Client 15.8.",
+    "scope": "source.ruby.chef"
+  },
+  "kvm_host?": {
+    "prefix": "kvm_host?",
+    "body": "kvm_host?",
+    "description": "Determine if the current node is a KVM host. Introduced in Chef Infra Client 15.8.",
+    "scope": "source.ruby.chef"
+  },
+  "linode?": {
+    "prefix": "linode?",
+    "body": "linode?",
+    "description": "Return true if the current current node is in Linode. Introduced in Chef Infra Client 15.8.",
+    "scope": "source.ruby.chef"
+  },
+  "linux?": {
+    "prefix": "linux?",
+    "body": "linux?",
+    "description": "Determine if the current node is Linux. Introduced in Chef Infra Client 15.5.",
+    "scope": "source.ruby.chef"
+  },
+  "linuxmint_platform?": {
+    "prefix": "linuxmint_platform?",
+    "body": "linuxmint_platform?",
+    "description": "Determine if the current node is linux mint. Introduced in Chef Infra Client 15.5.",
+    "scope": "source.ruby.chef"
+  },
+  "lxc?": {
+    "prefix": "lxc?",
+    "body": "lxc?",
+    "description": "Determine if the current node is running in a linux container. Introduced in Chef Infra Client 15.8.",
+    "scope": "source.ruby.chef"
+  },
+  "lxc_host?": {
+    "prefix": "lxc_host?",
+    "body": "lxc_host?",
+    "description": "Determine if the current node is a linux container host. Introduced in Chef Infra Client 15.8.",
+    "scope": "source.ruby.chef"
+  },
+  "macos?": {
+    "prefix": "macos?",
+    "body": "macos?",
+    "description": "Determine if the current node is a member of the 'mac_os_x' platform family. Introduced in Chef Infra Client 15.5.",
+    "scope": "source.ruby.chef"
+  },
+  "macos_platform?": {
+    "prefix": "macos_platform?",
+    "body": "macos_platform?",
+    "description": "Determine if the current node is macOS. Introduced in Chef Infra Client 15.5.",
+    "scope": "source.ruby.chef"
+  },
+  "netbsd?": {
+    "prefix": "netbsd?",
+    "body": "netbsd?",
+    "description": "Determine if the current node is a member of the 'netbsd' platform family. Introduced in Chef Infra Client 15.5.",
+    "scope": "source.ruby.chef"
+  },
+  "netbsd_platform?": {
+    "prefix": "netbsd_platform?",
+    "body": "netbsd_platform?",
+    "description": "Determine if the current node is NetBSD. Introduced in Chef Infra Client 15.5.",
+    "scope": "source.ruby.chef"
+  },
+  "nexentacore_platform?": {
+    "prefix": "nexentacore_platform?",
+    "body": "nexentacore_platform?",
+    "description": "Determine if the current node is Nexenta Core Platform aka Nexenta OS. Introduced in Chef Infra Client 15.5.",
+    "scope": "source.ruby.chef"
+  },
+  "omnios_platform?": {
+    "prefix": "omnios_platform?",
+    "body": "omnios_platform?",
+    "description": "Determine if the current node is OmniOS. Introduced in Chef Infra Client 15.5.",
+    "scope": "source.ruby.chef"
+  },
+  "openbsd?": {
+    "prefix": "openbsd?",
+    "body": "openbsd?",
+    "description": "Determine if the current node is a member of the 'openbsd' platform family. Introduced in Chef Infra Client 15.5.",
+    "scope": "source.ruby.chef"
+  },
+  "openbsd_platform?": {
+    "prefix": "openbsd_platform?",
+    "body": "openbsd_platform?",
+    "description": "Determine if the current node is OpenBSD. Introduced in Chef Infra Client 15.5.",
+    "scope": "source.ruby.chef"
+  },
+  "openindiana_platform?": {
+    "prefix": "openindiana_platform?",
+    "body": "openindiana_platform?",
+    "description": "Determine if the current node is OpenIndiana. Introduced in Chef Infra Client 15.5.",
+    "scope": "source.ruby.chef"
+  },
+  "openstack?": {
+    "prefix": "openstack?",
+    "body": "openstack?",
+    "description": "Return true if the current current node is in OpenStack. Introduced in Chef Infra Client 15.8.",
+    "scope": "source.ruby.chef"
+  },
+  "opensuse_platform?": {
+    "prefix": "opensuse_platform?",
+    "body": "opensuse_platform?",
+    "description": "Determine if the current node is OpenSUSE. Introduced in Chef Infra Client 15.5.",
+    "scope": "source.ruby.chef"
+  },
+  "openvz?": {
+    "prefix": "openvz?",
+    "body": "openvz?",
+    "description": "Determine if the current node is an openvz guest. Introduced in Chef Infra Client 15.8.",
+    "scope": "source.ruby.chef"
+  },
+  "openvz_host?": {
+    "prefix": "openvz_host?",
+    "body": "openvz_host?",
+    "description": "Determine if the current node is an openvz host. Introduced in Chef Infra Client 15.8.",
+    "scope": "source.ruby.chef"
+  },
+  "oracle_platform?": {
+    "prefix": "oracle_platform?",
+    "body": "oracle_platform?",
+    "description": "Determine if the current node is Oracle Linux. Introduced in Chef Infra Client 15.5.",
+    "scope": "source.ruby.chef"
+  },
+  "parallels?": {
+    "prefix": "parallels?",
+    "body": "parallels?",
+    "description": "Determine if the current node is running under Parallels Desktop. Introduced in Chef Infra Client 15.8.",
+    "scope": "source.ruby.chef"
+  },
+  "parallels_host?": {
+    "prefix": "parallels_host?",
+    "body": "parallels_host?",
+    "description": "Determine if the current node is a Parallels Desktop host. Introduced in Chef Infra Client 15.8.",
+    "scope": "source.ruby.chef"
+  },
+  "physical?": {
+    "prefix": "physical?",
+    "body": "physical?",
+    "description": "Determine if the current node is NOT running under any virtualization environment (bare-metal or hypervisor on metal). Introduced in Chef Infra Client 15.8.",
+    "scope": "source.ruby.chef"
+  },
+  "platform_version": {
+    "prefix": "platform_version",
+    "body": "platform_version",
+    "description": "Return the platform_version for the node. Acts like a String\nbut also provides a mechanism for checking version constraints. Introduced in Chef Infra Client 15.8.",
+    "scope": "source.ruby.chef"
+  },
+  "powerpc?": {
+    "prefix": "powerpc?",
+    "body": "powerpc?",
+    "description": "Determine if the current architecture is PowerPC. Introduced in Chef Infra Client 15.5.",
+    "scope": "source.ruby.chef"
+  },
+  "powershell_version": {
+    "prefix": "powershell_version",
+    "body": "powershell_version",
+    "description": "Determine the installed version of PowerShell. Introduced in Chef Infra Client 15.8.",
+    "scope": "source.ruby.chef"
+  },
+  "ppc64?": {
+    "prefix": "ppc64?",
+    "body": "ppc64?",
+    "description": "Determine if the current architecture is PowerPC 64bit Big Endian. Introduced in Chef Infra Client 15.5.",
+    "scope": "source.ruby.chef"
+  },
+  "ppc64le?": {
+    "prefix": "ppc64le?",
+    "body": "ppc64le?",
+    "description": "Determine if the current architecture is PowerPC 64bit Little Endian. Introduced in Chef Infra Client 15.5.",
+    "scope": "source.ruby.chef"
+  },
+  "rackspace?": {
+    "prefix": "rackspace?",
+    "body": "rackspace?",
+    "description": "Return true if the current current node is in Rackspace. Introduced in Chef Infra Client 15.8.",
+    "scope": "source.ruby.chef"
+  },
+  "raspbian_platform?": {
+    "prefix": "raspbian_platform?",
+    "body": "raspbian_platform?",
+    "description": "Determine if the current node is Raspbian. Introduced in Chef Infra Client 15.5.",
+    "scope": "source.ruby.chef"
+  },
+  "redhat_based?": {
+    "prefix": "redhat_based?",
+    "body": "redhat_based?",
+    "description": "RedHat distros -- fedora and rhel platform_families, nothing else. This is most likely not as useful as the\n\"fedora_dervied?\" helper. Introduced in Chef Infra Client 15.5.",
+    "scope": "source.ruby.chef"
+  },
+  "redhat_platform?": {
+    "prefix": "redhat_platform?",
+    "body": "redhat_platform?",
+    "description": "Determine if the current node is Red Hat Enterprise Linux. Introduced in Chef Infra Client 15.5.",
+    "scope": "source.ruby.chef"
+  },
+  "redhatrcd?": {
+    "prefix": "redhatrcd?",
+    "body": "redhatrcd?",
+    "description": "Returns if redhat's init system is installed (not necessarily the primary init system). Introduced in Chef Infra Client 15.5.",
+    "scope": "source.ruby.chef"
+  },
+  "rhel6?": {
+    "prefix": "rhel6?",
+    "body": "rhel6?",
+    "description": "Determine if the current node is a rhel6 compatible build (Red Hat, CentOS, Oracle or Scientific Linux). Introduced in Chef Infra Client 15.5.",
+    "scope": "source.ruby.chef"
+  },
+  "rhel7?": {
+    "prefix": "rhel7?",
+    "body": "rhel7?",
+    "description": "Determine if the current node is a rhel7 compatible build (Red Hat, CentOS, Oracle or Scientific Linux). Introduced in Chef Infra Client 15.5.",
+    "scope": "source.ruby.chef"
+  },
+  "rhel8?": {
+    "prefix": "rhel8?",
+    "body": "rhel8?",
+    "description": "Determine if the current node is a rhel8 compatible build (Red Hat, CentOS, Oracle or Scientific Linux). Introduced in Chef Infra Client 15.5.",
+    "scope": "source.ruby.chef"
+  },
+  "rhel?": {
+    "prefix": "rhel?",
+    "body": "rhel?",
+    "description": "Determine if the current node is a member of the 'rhel' platform family (Red Hat, CentOS, Oracle or Scientific Linux, but NOT Amazon Linux or Fedora). Introduced in Chef Infra Client 15.5.",
+    "scope": "source.ruby.chef"
+  },
+  "rpm_based?": {
+    "prefix": "rpm_based?",
+    "body": "rpm_based?",
+    "description": "If it uses RPM, it goes in here (rhel, fedora, amazon, suse platform_families).  Deliberately does not\ninclude AIX because bff is AIX's primary package manager and adding it here would make this substantially\nless useful since in no way can AIX trace its lineage back to old redhat distros.  This is most useful for\n\"smells like redhat, including SuSE\". Introduced in Chef Infra Client 15.5.",
+    "scope": "source.ruby.chef"
+  },
+  "s390?": {
+    "prefix": "s390?",
+    "body": "s390?",
+    "description": "Determine if the current architecture is s390. Introduced in Chef Infra Client 15.5.",
+    "scope": "source.ruby.chef"
+  },
+  "s390x?": {
+    "prefix": "s390x?",
+    "body": "s390x?",
+    "description": "Determine if the current architecture is s390x. Introduced in Chef Infra Client 15.5.",
+    "scope": "source.ruby.chef"
+  },
+  "scientific_platform?": {
+    "prefix": "scientific_platform?",
+    "body": "scientific_platform?",
+    "description": "Determine if the current node is Scientific Linux. Introduced in Chef Infra Client 15.5.",
+    "scope": "source.ruby.chef"
+  },
+  "service_script_exist?": {
+    "prefix": "service_script_exist?",
+    "body": "service_script_exist?",
+    "description": "Returns if a particular service exists for a particular service init system. Init systems may be :initd, :upstart, :etc_rcd, :xinetd, and :systemd. Example: service_script_exist?(:systemd, 'ntpd'). Introduced in Chef Infra Client 15.5.",
+    "scope": "source.ruby.chef"
+  },
+  "slackware_platform?": {
+    "prefix": "slackware_platform?",
+    "body": "slackware_platform?",
+    "description": "Determine if the current node is Slackware. Introduced in Chef Infra Client 15.5.",
+    "scope": "source.ruby.chef"
+  },
+  "smartos?": {
+    "prefix": "smartos?",
+    "body": "smartos?",
+    "description": "Determine if the current node is a member of the 'smartos' platform family. Introduced in Chef Infra Client 15.5.",
+    "scope": "source.ruby.chef"
+  },
+  "smartos_platform?": {
+    "prefix": "smartos_platform?",
+    "body": "smartos_platform?",
+    "description": "Determine if the current node is SmartOS. Introduced in Chef Infra Client 15.5.",
+    "scope": "source.ruby.chef"
+  },
+  "softlayer?": {
+    "prefix": "softlayer?",
+    "body": "softlayer?",
+    "description": "Return true if the current current node is in SoftLayer. Introduced in Chef Infra Client 15.8.",
+    "scope": "source.ruby.chef"
+  },
+  "solaris2?": {
+    "prefix": "solaris2?",
+    "body": "solaris2?",
+    "description": "Determine if the current node is a member of the 'solaris2' platform family. Introduced in Chef Infra Client 15.5.",
+    "scope": "source.ruby.chef"
+  },
+  "solaris2_platform?": {
+    "prefix": "solaris2_platform?",
+    "body": "solaris2_platform?",
+    "description": "Determine if the current node is Solaris2. Introduced in Chef Infra Client 15.5.",
+    "scope": "source.ruby.chef"
+  },
+  "solaris_based?": {
+    "prefix": "solaris_based?",
+    "body": "solaris_based?",
+    "description": "All of the Solaris-lineage. Introduced in Chef Infra Client 15.5.",
+    "scope": "source.ruby.chef"
+  },
+  "sparc?": {
+    "prefix": "sparc?",
+    "body": "sparc?",
+    "description": "Determine if the current architecture is SPARC. Introduced in Chef Infra Client 15.5.",
+    "scope": "source.ruby.chef"
+  },
+  "suse?": {
+    "prefix": "suse?",
+    "body": "suse?",
+    "description": "Determine if the current node is a member of the 'suse' platform family (openSUSE, SLES, and SLED). Introduced in Chef Infra Client 15.5.",
+    "scope": "source.ruby.chef"
+  },
+  "suse_platform?": {
+    "prefix": "suse_platform?",
+    "body": "suse_platform?",
+    "description": "Determine if the current node is SuSE. Introduced in Chef Infra Client 15.5.",
+    "scope": "source.ruby.chef"
+  },
+  "systemd?": {
+    "prefix": "systemd?",
+    "body": "systemd?",
+    "description": "Determine if the node uses the systemd init system. Introduced in Chef Infra Client 15.5.",
+    "scope": "source.ruby.chef"
+  },
+  "ubuntu_platform?": {
+    "prefix": "ubuntu_platform?",
+    "body": "ubuntu_platform?",
+    "description": "Determine if the current node is Ubuntu. Introduced in Chef Infra Client 15.5.",
+    "scope": "source.ruby.chef"
+  },
+  "upstart?": {
+    "prefix": "upstart?",
+    "body": "upstart?",
+    "description": "Returns if upstart is installed (not necessarily the primary init system). Introduced in Chef Infra Client 15.5.",
+    "scope": "source.ruby.chef"
+  },
+  "vagrant?": {
+    "prefix": "vagrant?",
+    "body": "vagrant?",
+    "description": "Determine if the current node is running as a vagrant guest.\n\nNote that this API is equivalent to just looking for the vagrant user or the\nvagrantup.com domain in the hostname, which is the best API we have. Introduced in Chef Infra Client 15.8.",
+    "scope": "source.ruby.chef"
+  },
+  "vagrant_domain?": {
+    "prefix": "vagrant_domain?",
+    "body": "vagrant_domain?",
+    "description": "Check if \"vagrantup.com\" is included in the node's domain.",
+    "scope": "source.ruby.chef"
+  },
+  "vagrant_key?": {
+    "prefix": "vagrant_key?",
+    "body": "vagrant_key?",
+    "description": "Check if the +vagrant+ key exists on the +node+ object. This key is no\nlonger populated by vagrant, but it is kept around for legacy purposes.",
+    "scope": "source.ruby.chef"
+  },
+  "vagrant_user?": {
+    "prefix": "vagrant_user?",
+    "body": "vagrant_user?",
+    "description": "Check if the system contains a +vagrant+ user.",
+    "scope": "source.ruby.chef"
+  },
+  "vbox?": {
+    "prefix": "vbox?",
+    "body": "vbox?",
+    "description": "Determine if the current node is a VirtualBox guest. Introduced in Chef Infra Client 15.8.",
+    "scope": "source.ruby.chef"
+  },
+  "vbox_host?": {
+    "prefix": "vbox_host?",
+    "body": "vbox_host?",
+    "description": "Determine if the current node is a VirtualBox host. Introduced in Chef Infra Client 15.8.",
+    "scope": "source.ruby.chef"
+  },
+  "vmware?": {
+    "prefix": "vmware?",
+    "body": "vmware?",
+    "description": "Determine if the current node is a VMWare guest. Introduced in Chef Infra Client 15.8.",
+    "scope": "source.ruby.chef"
+  },
+  "vmware_host?": {
+    "prefix": "vmware_host?",
+    "body": "vmware_host?",
+    "description": "Determine if the current node is VMware host. Introduced in Chef Infra Client 15.8.",
+    "scope": "source.ruby.chef"
+  },
+  "windows?": {
+    "prefix": "windows?",
+    "body": "windows?",
+    "description": "Determine if the current node is a member of the 'windows' platform family. Introduced in Chef Infra Client 15.5.",
+    "scope": "source.ruby.chef"
+  },
+  "windows_nt_version": {
+    "prefix": "windows_nt_version",
+    "body": "windows_nt_version",
+    "description": "Determine the current Windows NT version. The NT version often differs from the marketing version, but offers a good way to find desktop and server releases that are based on the same codebase. IE: NT 6.3 is Windows 8.1 and Windows 2012 R2. Introduced in Chef Infra Client 15.8.",
+    "scope": "source.ruby.chef"
+  },
+  "windows_platform?": {
+    "prefix": "windows_platform?",
+    "body": "windows_platform?",
+    "description": "Determine if the current node is Windows. Introduced in Chef Infra Client 15.5.",
+    "scope": "source.ruby.chef"
+  },
+  "windows_ruby?": {
+    "prefix": "windows_ruby?",
+    "body": "windows_ruby?",
+    "description": "Determine if the Ruby VM is currently running on a Windows node (ChefSpec can never stub\nthis behavior, so this is useful for code which can never be parsed on a non-Windows box). Introduced in Chef Infra Client 15.5.",
+    "scope": "source.ruby.chef"
+  },
+  "windows_server?": {
+    "prefix": "windows_server?",
+    "body": "windows_server?",
+    "description": "Determine if the current node is Windows Server. Introduced in Chef Infra Client 15.7.",
+    "scope": "source.ruby.chef"
+  },
+  "windows_server_core?": {
+    "prefix": "windows_server_core?",
+    "body": "windows_server_core?",
+    "description": "Determine if the current node is Windows Server Core. Introduced in Chef Infra Client 15.7.",
+    "scope": "source.ruby.chef"
+  },
+  "windows_workstation?": {
+    "prefix": "windows_workstation?",
+    "body": "windows_workstation?",
+    "description": "Determine if the current node is Windows Workstation. Introduced in Chef Infra Client 15.7.",
+    "scope": "source.ruby.chef"
+  }
+}

@@ -16,13 +16,21 @@ The Chef Infra Extension for Visual Studio Code offers rich language support for
 
  * Enabled by default (disable by adding ```{ "rubocop.enable": false }``` in user/workspace settings) and activated when the first Ruby file is loaded.
  * The entire repo will be linted when files are saved.
- * If you have [Chef Workstation](https://downloads.chef.io/chef-workstation) installed, linting should "just work" on Windows, Mac OS X and Linux. [Cookstyle](https://github.com/chef/cookstyle) will be used by default.
+ * If you have [Chef Workstation](https://downloads.chef.io/chef-workstation) installed, linting should "just work" on Windows, macOS and Linux. [Cookstyle](https://github.com/chef/cookstyle) will be used by default.
  * If you do not have Chef Workstation but do have Rubocop installed, you can set the executable path by setting ```{ "rubocop.path": "c:\\path\\to\\rubocop.bat"}``` in user/workspace settings).
  * To override the config file used by Rubocop/Cookstyle, use the ```{ "rubocop.configFile": "path/to/config.yml" }``` in user/workspace settings.
 
 #### Snippet support (with tabbing) for all Chef Infra built-in Resources:
 
- * Please review the [snippets](snippets/chef.json) for a complete list.
+ * Please review the [Resource snippets](snippets/chef_resources.json) for a complete list.
+
+#### Snippet support (with tabbing) for all Chef Infra Metadata fields:
+
+ * Please review the [Metadata snippets](snippets/chef_metadata.json) for a complete list.
+
+#### Snippet support (with tabbing) for all Chef Infra DSL methods included in chef-utils:
+
+ * Please review the [DSL snippets](snippets/chef_utils.json) for a complete list.
 
 ## Installation
 
@@ -40,6 +48,7 @@ This project contains development launch settings. A recent Node.js LTS build is
 ### Install dependencies
 
 ```
+npm install
 npm install -g typescript
 npm install -g vsce
 ```
@@ -48,27 +57,35 @@ npm install -g vsce
 
 To produce a local .vsix for testing:
 ```
-C:\projects\chef\vscode-chef> vsce package                                                                              Executing prepublish script 'npm run vscode:prepublish'...
+vsce package
 
-> chef@0.8.0 vscode:prepublish C:\projects\chef\vscode-chef
+Executing prepublish script 'npm run vscode:prepublish'...
+
+> chef@1.4.0 vscode:prepublish /Users/tsmith/dev/work/vscode-chef
 > tsc -p ./
 
- DONE  Packaged: C:\projects\chef\vscode-chef\chef-0.8.0.vsix (12 files, 33.51KB)
+ DONE  Packaged: /Users/tsmith/dev/work/vscode-chef/chef-1.4.0.vsix (15 files, 39.32KB)
+```
+
+To test the extension locally.
+
+```
+code --install-extension C:\projects\chef\vscode-chef\chef-1.4.0.vsix
 ```
 
 To release requires a PAT token for the relevant publisher on the Visual Studio Marketplace.
 
 ```
-C:\projects\chef\vscode-chef> vsce publish                                                                              Executing prepublish script 'npm run vscode:prepublish'...
+vsce publish
 
-> chef@0.8.0 vscode:prepublish C:\projects\chef\vscode-chef
+Executing prepublish script 'npm run vscode:prepublish'...
+
+> chef@1.4.0 vscode:prepublish /Users/tsmith/dev/work/vscode-chef
 > tsc -p ./
 
-Personal Access Token for publisher 'chef-software': ****************************************************
-
-Publishing chef-software.chef@0.8.0...
- DONE  Published chef-software.chef@0.8.0
-Your extension will live at https://marketplace.visualstudio.com/items?itemName=chef-software.chef (might take a few seconds for it to show up).
+Publishing chef-software.chef@1.4.0...
+ DONE  Published chef-software.chef@1.4.0
+Your extension will live at https://marketplace.visualstudio.com/items?itemName=chef-software.chef (might take a few minutes for it to show up).
 ```
 
 ## Author
