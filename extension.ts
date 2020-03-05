@@ -112,9 +112,9 @@ function validatePaths(paths: Array<string>): void {
 		let spawn = require("child_process").spawnSync;
 		let rubocop: any;
 		if (rubocopConfigFile) {
-			rubocop = spawn(rubocopPath, ["--config", rubocopConfigFile, "-f", "j"].concat(paths), { cwd: vscode.workspace.rootPath });
+			rubocop = spawn(rubocopPath, ["--parallel", "--config", rubocopConfigFile, "-f", "j"].concat(paths), { cwd: vscode.workspace.rootPath });
 		} else {
-			rubocop = spawn(rubocopPath, ["-f", "j"].concat(paths), { cwd: vscode.workspace.rootPath });
+			rubocop = spawn(rubocopPath, ["--parallel", "-f", "j"].concat(paths), { cwd: vscode.workspace.rootPath });
 		}
 		let rubocopOutput = JSON.parse(rubocop.stdout);
 		if (rubocop.status < 2) {
