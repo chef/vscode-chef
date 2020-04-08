@@ -553,7 +553,7 @@
 	},
 	"systemd_unit": {
 		"prefix": "systemd_unit",
-		"body": "systemd_unit '${1:unit}' do\r\n\tcontent <<-EOU.gsub(/^\\s+/, '')\r\n\t[Unit]\r\n\tDescription=Run system activity accounting tool every 10 minutes\r\n\t\r\n\t[Timer]\r\n\tOnCalendar=*:00/10\r\n\t\r\n\t[Install]\r\n\tWantedBy=sysstat.service\r\n\tEOU\r\naction :${2:create}\r\nend\r\n",
+		"body": "systemd_unit '${1:unit}' do\r\n\tcontent <<~EOU\r\n\t[Unit]\r\n\tDescription=Run system activity accounting tool every 10 minutes\r\n\t\r\n\t[Timer]\r\n\tOnCalendar=*:00/10\r\n\t\r\n\t[Install]\r\n\tWantedBy=sysstat.service\r\n\tEOU\r\naction :${2:create}\r\nend\r\n",
 		"description": "Use the systemd_unit resource to create, manage, and run systemd units.",
 		"scope": "source.ruby.chef"
 	},
