@@ -47,6 +47,12 @@
     "description": "Determine if the current node is Arch Linux. Introduced in Chef Infra Client 15.5.",
     "scope": "source.ruby.chef"
   },
+  "arm?": {
+    "prefix": "arm?",
+    "body": "arm?",
+    "description": "Determine if the current architecture is arm. Introduced in Chef Infra Client 15.10.",
+    "scope": "source.ruby.chef"
+  },
   "armhf?": {
     "prefix": "armhf?",
     "body": "armhf?",
