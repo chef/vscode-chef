@@ -1,7 +1,13 @@
+## 1.5.0 (2020-05-17)
+
+- Added the arm? helper
+- Fixed typos in descriptions
+- Simplified the systemd_unit snippet with Ruby 2.3+ logic
+
 ## 1.4.0 (2020-02-10)
 
 - Added additional Chef Infra Client 15.8 helpers
-- Futher improve snippet descriptions
+- Further improve snippet descriptions
 
 ## 1.3.0 (2020-02-03)
 
@@ -120,7 +126,7 @@ Bugfixes:
 
 Bugfixes:
 
-- fix indentation of template resource. (@chris-rock)
+- Fix indentation of template resource. (@chris-rock)
 - Various snippet bugfixes for Rubocop compliance. (@stuartpreston)
 
 ## 0.4.2 (2015-11-18)
