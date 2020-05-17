@@ -206,7 +206,7 @@
   "guest?": {
     "prefix": "guest?",
     "body": "guest?",
-    "description": "Determine if the current node is running under any virutalization environment. Introduced in Chef Infra Client 15.8.",
+    "description": "Determine if the current node is running under any virtualization environment. Introduced in Chef Infra Client 15.8.",
     "scope": "source.ruby.chef"
   },
   "has_systemd_service_unit?": {
@@ -368,7 +368,7 @@
   "opensuse_platform?": {
     "prefix": "opensuse_platform?",
     "body": "opensuse_platform?",
-    "description": "Determine if the current node is OpenSUSE. Introduced in Chef Infra Client 15.5.",
+    "description": "Determine if the current node is openSUSE. Introduced in Chef Infra Client 15.5.",
     "scope": "source.ruby.chef"
   },
   "openvz?": {
