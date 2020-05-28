@@ -56,7 +56,7 @@
   "armhf?": {
     "prefix": "armhf?",
     "body": "armhf?",
-    "description": "Determine if the current architecture is 32-bit ARM. Introduced in Chef Infra Client 15.5.",
+    "description": "Determine if the current architecture is 32-bit ARM hard float. Introduced in Chef Infra Client 15.5.",
     "scope": "source.ruby.chef"
   },
   "azure?": {
@@ -452,7 +452,7 @@
   "redhat_based?": {
     "prefix": "redhat_based?",
     "body": "redhat_based?",
-    "description": "RedHat distros -- fedora and rhel platform_families, nothing else. This is most likely not as useful as the\n\"fedora_dervied?\" helper. Introduced in Chef Infra Client 15.5.",
+    "description": "RedHat distros -- fedora and rhel platform_families, nothing else. This is most likely not as useful as the\n\"fedora_derived?\" helper. Introduced in Chef Infra Client 15.5.",
     "scope": "source.ruby.chef"
   },
   "redhat_platform?": {
