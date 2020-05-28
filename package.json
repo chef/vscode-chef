@@ -30,7 +30,9 @@
     "vscode": "^1.1.14"
   },
   "extensionDependencies": [
-    "vscode.ruby"
+    "ebornix.ruby",
+    "wingrunr21.vscode-ruby",
+    "redhat.vscode-yaml"
   ],
   "categories": [
     "Programming Languages",
@@ -107,7 +109,7 @@
         "rubocop.path": {
           "type": "string",
           "default": "",
-          "description": "Full path to Rubocop, only change this if you have the Chef Workstation or ChefDK installed in a non-standard location."
+          "description": "Full path to Rubocop, only change this if you have the Chef Workstation installed in a non-standard location."
         },
         "rubocop.configFile": {
           "type": "string",
