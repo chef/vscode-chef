@@ -1,3 +1,13 @@
+## 1.6.1 (2020-05-28)
+
+- Fix the description
+
+## 1.6.0 (2020-05-28)
+
+- Update dependencies to rely on "ebornix.ruby", "wingrunr21.vscode-ruby", and "redhat.vscode-yaml" extensions
+- Minor description updates to some of the snippets
+- Update the logo
+
 ## 1.5.0 (2020-05-17)
 
 - Added the arm? helper
