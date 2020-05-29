@@ -1,3 +1,7 @@
+## 1.6.2 (2020-05-29)
+
+- Fix incorrect package dependency
+
 ## 1.6.1 (2020-05-28)
 
 - Fix the description
