@@ -13,9 +13,9 @@ def install_gem_utils
   require "bundler"
 
   Bundler.with_clean_env do
-    sh "bundle install --no-deployment"
+    sh "bundle config set path 'vendor'"
+    sh "bundle install"
     sh "bundle update"
-    sh "bundle install --deployment"
   end
 end
 
