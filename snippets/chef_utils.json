@@ -605,24 +605,6 @@
     "description": "Determine if the current node is running as a vagrant guest.\n\nNote that this API is equivalent to just looking for the vagrant user or the\nvagrantup.com domain in the hostname, which is the best API we have. Introduced in Chef Infra Client 15.8.",
     "scope": "source.ruby.chef"
   },
-  "vagrant_domain?": {
-    "prefix": "vagrant_domain?",
-    "body": "vagrant_domain?",
-    "description": "Check if \"vagrantup.com\" is included in the node's domain.",
-    "scope": "source.ruby.chef"
-  },
-  "vagrant_key?": {
-    "prefix": "vagrant_key?",
-    "body": "vagrant_key?",
-    "description": "Check if the +vagrant+ key exists on the +node+ object. This key is no\nlonger populated by vagrant, but it is kept around for legacy purposes.",
-    "scope": "source.ruby.chef"
-  },
-  "vagrant_user?": {
-    "prefix": "vagrant_user?",
-    "body": "vagrant_user?",
-    "description": "Check if the system contains a +vagrant+ user.",
-    "scope": "source.ruby.chef"
-  },
   "vbox?": {
     "prefix": "vbox?",
     "body": "vbox?",

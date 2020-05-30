@@ -39,6 +39,9 @@ task :generate_snippets do
     # We can't use .is_alias? here since it fired on the original methods as well
     next if obj.docstring.match?(/chef-sugar backcompat method/)
 
+    # we don't want private API methods
+    next unless obj.visibility == :public
+
     doc_data[obj.name.to_s] = {}
     doc_data[obj.name.to_s]["prefix"] = obj.name.to_s
     doc_data[obj.name.to_s]["body"] = obj.name.to_s
