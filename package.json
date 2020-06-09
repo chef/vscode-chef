@@ -126,7 +126,13 @@
           "description": "Path to a Rubocop config file (e.g. .rubocop_shared.yml) - relative paths resolve inside the workspace."
         }
       }
-    }
+    },
+    "commands": [
+      {
+        "command": "chef.validateEntireWorkspace",
+        "title": "Chef: Validate Workspace"
+      }
+    ]
   },
   "scripts": {
     "vscode:prepublish": "tsc -p ./",

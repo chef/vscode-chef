@@ -33,10 +33,18 @@ export function activate(context: vscode.ExtensionContext): void {
 	}
 
 	if (vscode.workspace.getConfiguration("rubocop").enable) {
-		validateWorkspace();
+		validateEntireWorkspace();
 		context.subscriptions.push(startLintingOnSaveWatcher());
 		context.subscriptions.push(startLintingOnConfigurationChangeWatcher());
 	}
+
+	// Even if disabled, allow the user to manually validate the entire workspace.
+	const command = "chef.validateEntireWorkspace";
+	const commandHandler = () => {
+		console.log("Called chef.validateEntireWorkspace command handler");
+		validateEntireWorkspace();
+  };
+  context.subscriptions.push(vscode.commands.registerCommand(command, commandHandler));
 }
 
 function convertSeverity(severity: string): vscode.DiagnosticSeverity {
@@ -54,14 +62,18 @@ function convertSeverity(severity: string): vscode.DiagnosticSeverity {
 	}
 }
 
-function validateWorkspace(): void {
+function validateEntireWorkspace(): void {
+	validatePaths([vscode.workspace.rootPath])
+}
+
+function validatePaths(paths: Array<string>): void {
 	try {
 		let spawn = require("child_process").spawnSync;
 		let rubocop: any;
 		if (rubocopConfigFile) {
-			rubocop = spawn(rubocopPath, ["--config", rubocopConfigFile, "-f", "j", vscode.workspace.rootPath], { cwd: vscode.workspace.rootPath });
+			rubocop = spawn(rubocopPath, ["--config", rubocopConfigFile, "-f", "j"].concat(paths), { cwd: vscode.workspace.rootPath });
 		} else {
-			rubocop = spawn(rubocopPath, ["-f", "j", vscode.workspace.rootPath], { cwd: vscode.workspace.rootPath });
+			rubocop = spawn(rubocopPath, ["-f", "j"].concat(paths), { cwd: vscode.workspace.rootPath });
 		}
 		let rubocopOutput = JSON.parse(rubocop.stdout);
 		if (rubocop.status < 2) {
@@ -100,13 +112,13 @@ function startLintingOnSaveWatcher():any {
 		if (document.languageId !== "ruby") {
 			return;
 		}
-		validateWorkspace();
+		validateEntireWorkspace();
 	});
 }
 
 function startLintingOnConfigurationChangeWatcher():any {
 	return vscode.workspace.onDidChangeConfiguration(params => {
 		console.log("Workspace configuration changed, validating workspace.");
-		validateWorkspace();
+		validateEntireWorkspace();
 	});
 }
