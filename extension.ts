@@ -9,6 +9,7 @@ let config: vscode.WorkspaceConfiguration;
 let rubocopPath: string;
 let rubocopConfigFile: string;
 let cookbookPaths: Array<string> = [];
+let fileCount: number;
 
 export function activate(context: vscode.ExtensionContext): void {
 	diagnosticCollectionRubocop = vscode.languages.createDiagnosticCollection("rubocop");
@@ -33,7 +34,7 @@ export function activate(context: vscode.ExtensionContext): void {
 	}
 
 	if (vscode.workspace.getConfiguration("rubocop").enable) {
-		validateEntireWorkspace();
+		updateRubyFileCountAndValidate(true);
 		context.subscriptions.push(startLintingOnSaveWatcher());
 		context.subscriptions.push(startLintingOnConfigurationChangeWatcher());
 	}
@@ -60,6 +61,46 @@ function convertSeverity(severity: string): vscode.DiagnosticSeverity {
 		default:
 			return vscode.DiagnosticSeverity.Warning;
 	}
+}
+
+function updateRubyFileCountAndValidate(warn: boolean = false): void {
+	// OK for this to be approximate
+	let stopAt = vscode.workspace.getConfiguration("rubocop").fileCountThreshold + 1
+	fileCount = 0
+	let uriCounter = (u:vscode.Uri) => {
+		fileCount++;
+	}
+	let countAndValidate = (uri_array:Array<vscode.Uri>) => {
+		uri_array.forEach(uriCounter)
+		validate(warn);
+	}
+	vscode.workspace.findFiles("**/*.rb", null, stopAt, null)
+	                .then(countAndValidate)
+}
+
+function validate(warn:boolean = false): void {
+	console.log("Saw at least " + fileCount + " Ruby files in Workspace");
+	if (fileCount < vscode.workspace.getConfiguration("rubocop").fileCountThreshold) {
+		validateEntireWorkspace();
+	} else {
+		if (warn) {
+			let msg: string = "There are a large number of Ruby files in your workspace. " +
+												"The Chef Infra Extension will only lint open files rather than " +
+												"the entire workspace to avoid becoming unresponsive."
+			vscode.window.showWarningMessage(msg,"Ok");
+		}
+		validateOpenFiles();
+	}
+}
+
+function validateOpenFiles(): void {
+	let relPaths: Array<string> = [];
+	vscode.window.visibleTextEditors.forEach((text_editor: vscode.TextEditor) => {
+		if (text_editor.document.languageId == "ruby" && text_editor.document.fileName) {
+			relPaths.unshift(text_editor.document.fileName);
+		}
+	})
+	validatePaths(relPaths);
 }
 
 function validateEntireWorkspace(): void {
@@ -112,13 +153,13 @@ function startLintingOnSaveWatcher():any {
 		if (document.languageId !== "ruby") {
 			return;
 		}
-		validateEntireWorkspace();
+		validate();
 	});
 }
 
 function startLintingOnConfigurationChangeWatcher():any {
 	return vscode.workspace.onDidChangeConfiguration(params => {
 		console.log("Workspace configuration changed, validating workspace.");
-		validateEntireWorkspace();
+		validate();
 	});
 }

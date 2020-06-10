@@ -124,6 +124,11 @@
           "type": "string",
           "default": "",
           "description": "Path to a Rubocop config file (e.g. .rubocop_shared.yml) - relative paths resolve inside the workspace."
+        },
+        "rubocop.fileCountThreshold": {
+          "type": "number",
+          "default": 400,
+          "description": "If there are are fewer than this many Ruby files, the extension will validate all files in the workspace. If greater, it will only validate the open files to keep the extension responsive."
         }
       }
     },
