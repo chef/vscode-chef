@@ -85,8 +85,8 @@ function validate(warn:boolean = false): void {
 	} else {
 		if (warn) {
 			let msg: string = "There are a large number of Ruby files in your workspace. " +
-												"The Chef Infra Extension will only lint open files rather than " +
-												"the entire workspace to avoid becoming unresponsive."
+				"The Chef Infra Extension will only lint open files rather than " +
+				"the entire workspace to avoid becoming unresponsive."
 			vscode.window.showWarningMessage(msg,"Ok");
 		}
 		validateOpenFiles();
