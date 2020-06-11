@@ -35,7 +35,7 @@
     "fs": "0.0.1-security",
     "path": "0.12.7",
     "tslint": "6.1.2",
-    "typescript": "2.3.4",
+    "typescript": "3.9.5",
     "vscode": "^1.1.14"
   },
   "extensionDependencies": [
@@ -124,9 +124,20 @@
           "type": "string",
           "default": "",
           "description": "Path to a Rubocop config file (e.g. .rubocop_shared.yml) - relative paths resolve inside the workspace."
+        },
+        "rubocop.fileCountThreshold": {
+          "type": "number",
+          "default": 400,
+          "description": "If there are are fewer than this many Ruby files, the extension will validate all files in the workspace. If greater, it will only validate the open files to keep the extension responsive."
         }
       }
-    }
+    },
+    "commands": [
+      {
+        "command": "chef.validateEntireWorkspace",
+        "title": "Chef: Validate Workspace"
+      }
+    ]
   },
   "scripts": {
     "vscode:prepublish": "tsc -p ./",
