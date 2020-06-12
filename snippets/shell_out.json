@@ -1,0 +1,38 @@
+{
+  "powershell_exec": {
+    "prefix": "powershell_exec",
+    "body": "powershell_exec",
+    "description": "Run a command under PowerShell directly via .NET and return the stdout parsed to JSON for easier parsing.",
+    "scope": "source.ruby.chef"
+  },
+  "powershell_exec!": {
+    "prefix": "powershell_exec!",
+    "body": "powershell_exec!",
+    "description": "The same as the #powershell_exec method except this will raise Chef::PowerShell::CommandFailed if the command fails.",
+    "scope": "source.ruby.chef"
+  },
+  "powershell_out": {
+    "prefix": "powershell_out",
+    "body": "powershell_out",
+    "description": "Run a command under powershell with the same API as shell_out. Theoptions hash is extended to take an \"architecture\" flag which\ncan be set to :i386 or :x86_64 to force the windows architecture.",
+    "scope": "source.ruby.chef"
+  },
+  "powershell_out!": {
+    "prefix": "powershell_out!",
+    "body": "powershell_out!",
+    "description": "Run a command under powershell with the same API as shell_out! except this will raise Chef::PowerShell::CommandFailed if the command fails.",
+    "scope": "source.ruby.chef"
+  },
+  "shell_out": {
+    "prefix": "shell_out",
+    "body": "shell_out",
+    "description": "Run a command on Linux / Unix / macOS systems and return the stdout/stderr.",
+    "scope": "source.ruby.chef"
+  },
+  "shell_out!": {
+    "prefix": "shell_out!",
+    "body": "shell_out!",
+    "description": "The same as the #shell_out method except this will raise Chef::PowerShell::CommandFailed if the command fails.",
+    "scope": "source.ruby.chef"
+  }
+}

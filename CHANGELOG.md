@@ -1,3 +1,9 @@
+## 1.7.0 (2020-06-12)
+
+- Cookstyle is now run using the `--parallel` flag to utilize multiple cores to scan files
+- Cookstyle will now selectively lint large workspaces. If there are over 400 files we will no longer scan the entire workspace and instead will only scan open files and files on save. This prevents Cookstyle from being killed by vscode itself and avoids high CPU load. This threshold can be tuned up or down with the new `rubocop.fileCountThreshold` config available in the extension settings UI.
+- Snippets for shell_out, shell_out!, powershell_exec, powershell_exec!, powershell_out, and powershell_out! are now included.
+
 ## 1.6.2 (2020-05-29)
 
 - Fix incorrect package dependency
