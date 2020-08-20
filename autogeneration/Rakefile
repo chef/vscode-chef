@@ -38,8 +38,8 @@ task :generate_snippets do
   # make sure we have chef-utils files locally for yard inspection
   install_gem_utils
 
-  require "fileutils"
-  require "json"
+  require "fileutils" unless defined?(FileUtils)
+  require "json" unless defined?(JSON)
 
   Rake::Task[:yard_for_generate_documentation].execute
 
