@@ -1,4 +1,4 @@
-require "yard"
+require "yard" unless defined?(YARD)
 
 desc "noop task that is used by other tasks"
 
