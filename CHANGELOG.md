@@ -1,3 +1,7 @@
+## 1.8.0 (2020-10-01)
+
+- Add snippets for attribute?, tagged?, tag, and untag.
+
 ## 1.7.0 (2020-06-12)
 
 - Cookstyle is now run using the `--parallel` flag to utilize multiple cores to scan files
