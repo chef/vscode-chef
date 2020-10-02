@@ -34,5 +34,23 @@
 		"body": "recipe_name",
 		"description": "Use the recipe_name method to return the name of the current recipe.",
 		"scope": "source.ruby.chef"
+	},
+	"tag": {
+		"prefix": "tag",
+		"body": "tag('${1:tag_value}')",
+		"description": "Add a tag to a node.",
+		"scope": "source.ruby.chef"
+	},
+	"untag": {
+		"prefix": "untag",
+		"body": "untag('${1:tag_value}')",
+		"description": "Remove a tag from a node.",
+		"scope": "source.ruby.chef"
+	},
+	"tagged?": {
+		"prefix": "tagged?",
+		"body": "tagged?('${1:tag_value}')",
+		"description": "Check to see if a tag is set and return true or false.",
+		"scope": "source.ruby.chef"
 	}
 }
