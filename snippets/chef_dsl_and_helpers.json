@@ -52,5 +52,11 @@
 		"body": "tagged?('${1:tag_value}')",
 		"description": "Check to see if a tag is set and return true or false.",
 		"scope": "source.ruby.chef"
+	},
+	"attribute?": {
+		"prefix": "attribute?",
+		"body": "attribute?('${1:attribute}')",
+		"description": "Check to see if an attribute is set and return true or false.",
+		"scope": "source.ruby.chef"
 	}
 }
