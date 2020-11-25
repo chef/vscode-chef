@@ -71,6 +71,12 @@
     "description": "All of the BSD-lineage.\n\nNote that macOS is not included since macOS deviates so significantly from BSD that including it would not be useful. Introduced in Chef Infra Client 15.5.",
     "scope": "source.ruby.chef"
   },
+  "build_resource": {
+    "prefix": "build_resource",
+    "body": "build_resource",
+    "description": "Instantiate a resource of the given +type+ with the given +name+ and\nattributes as given in the +resource_attrs_block+.\n\nThe resource is NOT added to the resource collection.",
+    "scope": "source.ruby.chef"
+  },
   "centos_platform?": {
     "prefix": "centos_platform?",
     "body": "centos_platform?",
@@ -137,6 +143,24 @@
     "description": "Returns if debian's old rc.d manager is installed (not necessarily the primary init system). Introduced in Chef Infra Client 15.5.",
     "scope": "source.ruby.chef"
   },
+  "declare_resource": {
+    "prefix": "declare_resource",
+    "body": "declare_resource",
+    "description": "Instantiates a resource (via #build_resource), then adds it to the\nresource collection. Note that resource classes are looked up directly,\nso this will create the resource you intended even if the method name\ncorresponding to that resource has been overridden.",
+    "scope": "source.ruby.chef"
+  },
+  "delete_resource": {
+    "prefix": "delete_resource",
+    "body": "delete_resource",
+    "description": "Lookup a resource in the resource collection by name and delete it.  Returns\nnil if the resource is not found and should not fail.",
+    "scope": "source.ruby.chef"
+  },
+  "delete_resource!": {
+    "prefix": "delete_resource!",
+    "body": "delete_resource!",
+    "description": "Lookup a resource in the resource collection by name and delete it.  This\nwill raise Chef::Exceptions::ResourceNotFound if the resource is not found.",
+    "scope": "source.ruby.chef"
+  },
   "digital_ocean?": {
     "prefix": "digital_ocean?",
     "body": "digital_ocean?",
@@ -167,6 +191,18 @@
     "description": "Return true if the current current node is in EC2. Introduced in Chef Infra Client 15.8.",
     "scope": "source.ruby.chef"
   },
+  "edit_resource": {
+    "prefix": "edit_resource",
+    "body": "edit_resource",
+    "description": "Lookup a resource in the resource collection by name.  If it exists,\nreturn it.  If it does not exist, create it.  This is a useful function\nfor accumulator patterns.  In CRUD terminology this is an \"upsert\" operation and is\nused to assert that the resource must exist with the specified properties.",
+    "scope": "source.ruby.chef"
+  },
+  "edit_resource!": {
+    "prefix": "edit_resource!",
+    "body": "edit_resource!",
+    "description": "Lookup a resource in the resource collection by name and edit the resource.  If the resource is not\nfound this will raise Chef::Exceptions::ResourceNotFound.  This is the correct API to use for\n\"chef_rewind\" functionality.",
+    "scope": "source.ruby.chef"
+  },
   "eucalyptus?": {
     "prefix": "eucalyptus?",
     "body": "eucalyptus?",
@@ -189,6 +225,18 @@
     "prefix": "fedora_platform?",
     "body": "fedora_platform?",
     "description": "Determine if the current node is Fedora. Introduced in Chef Infra Client 15.5.",
+    "scope": "source.ruby.chef"
+  },
+  "find_resource": {
+    "prefix": "find_resource",
+    "body": "find_resource",
+    "description": "Lookup a resource in the resource collection by name.  If the resource is not found\nthe will be no exception raised and the call will return nil.  If a block is given and\nno resource is found it will create the resource using the block, if the resource is\nfound then the block will not be applied.  The block version is similar to create_if_missing.",
+    "scope": "source.ruby.chef"
+  },
+  "find_resource!": {
+    "prefix": "find_resource!",
+    "body": "find_resource!",
+    "description": "Lookup a resource in the resource collection by name.  If the resource is not\nfound this will raise Chef::Exceptions::ResourceNotFound.  This API is identical to the\nresources() call and while it is a synonym it is not intended to deprecate that call.",
     "scope": "source.ruby.chef"
   },
   "freebsd?": {
@@ -479,6 +527,12 @@
     "description": "Returns if redhat's init system is installed (not necessarily the primary init system). Introduced in Chef Infra Client 15.5.",
     "scope": "source.ruby.chef"
   },
+  "resources": {
+    "prefix": "resources",
+    "body": "resources",
+    "description": "Find existing resources by searching the list of existing resources.  Possible\nforms are:\n\n  find(:file => \"foobar\")\n  find(:file => [ \"foobar\", \"baz\" ])\n  find(\"file[foobar]\", \"file[baz]\")\n  find(\"file[foobar,baz]\")\n\nCalls `run_context.resource_collection.find(*args)`\n\nThe is backcompat API, the use of find_resource, below, is encouraged.",
+    "scope": "source.ruby.chef"
+  },
   "rhel6?": {
     "prefix": "rhel6?",
     "body": "rhel6?",
@@ -693,6 +747,12 @@
     "prefix": "windows_workstation?",
     "body": "windows_workstation?",
     "description": "Determine if the current node is Windows Workstation. Introduced in Chef Infra Client 15.7.",
+    "scope": "source.ruby.chef"
+  },
+  "with_run_context": {
+    "prefix": "with_run_context",
+    "body": "with_run_context",
+    "description": "Helper for switching run_contexts.  Allows for using :parent or :root in place of\npassing the run_context.  Executes the block in the run_context.  Returns the return\nvalue of the passed block.",
     "scope": "source.ruby.chef"
   }
 }

@@ -21,6 +21,7 @@ YARD::Rake::YardocTask.new(:yard_for_generate_documentation) do |task|
 
   dsl_files = %w{
     chef_vault
+    declare_resource
   }
 
   task.files.concat(["vendor/ruby/**/bundler/gems/chef*/lib/chef/dsl/{#{dsl_files.join(',')}}.rb"])
