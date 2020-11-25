@@ -329,12 +329,6 @@
     "description": "Determine if the current node is NetBSD. Introduced in Chef Infra Client 15.5.",
     "scope": "source.ruby.chef"
   },
-  "nexentacore_platform?": {
-    "prefix": "nexentacore_platform?",
-    "body": "nexentacore_platform?",
-    "description": "Determine if the current node is Nexenta Core Platform aka Nexenta OS. Introduced in Chef Infra Client 15.5.",
-    "scope": "source.ruby.chef"
-  },
   "omnios_platform?": {
     "prefix": "omnios_platform?",
     "body": "omnios_platform?",
