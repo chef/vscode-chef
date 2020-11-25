@@ -77,6 +77,24 @@
     "description": "Determine if the current node is CentOS. Introduced in Chef Infra Client 15.5.",
     "scope": "source.ruby.chef"
   },
+  "chef_vault": {
+    "prefix": "chef_vault",
+    "body": "chef_vault",
+    "description": "Helper method that allows for listing the ids of a vault in a recipe.\nThis method is needed because data_bag() returns the keys along with\nthe items, so this method strips out the keys for users so that they\ndon't have to do it in their recipes.\nids = chef_vault('secrets')\nlog 'Yeah buddy!' if ids[0] == 'bacon'.",
+    "scope": "source.ruby.chef"
+  },
+  "chef_vault_item": {
+    "prefix": "chef_vault_item",
+    "body": "chef_vault_item",
+    "description": "Helper method which provides a Recipe/Resource DSL for wrapping\ncreation of {ChefVault::Item}.\nFalls back to normal data bag item loading if the item is not\nactually a Chef Vault item. This is controlled via\n+node['chef-vault']['databag_fallback']+.\nitem = chef_vault_item('secrets', 'bacon')\nlog 'Yeah buddy!' if item['_default']['type'].",
+    "scope": "source.ruby.chef"
+  },
+  "chef_vault_item_for_environment": {
+    "prefix": "chef_vault_item_for_environment",
+    "body": "chef_vault_item_for_environment",
+    "description": "Helper method which provides an environment wrapper for a data bag.\nThis allows for easy access to current environment secrets inside\nof an item.\nitem = chef_vault_item_for_environment('secrets', 'bacon')\nlog 'Yeah buddy!' if item['type'] == 'applewood_smoked'.",
+    "scope": "source.ruby.chef"
+  },
   "ci?": {
     "prefix": "ci?",
     "body": "ci?",
