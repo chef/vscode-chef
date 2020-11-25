@@ -580,7 +580,13 @@
 		"body": "windows_ad_join '${1:domain_name}' do\r\n\tdomain_user '${2:domain_user}'\r\n\tdomain_password '${3:domain_password}'\r\n\taction :${4:join}\r\nend\r\n",
 		"description": "Use the windows_ad_join resource to join a Windows Active Directory domain.",
 		"scope": "source.ruby.chef"
-	},
+  },
+  "windows_audit_policy":{
+    "prefix": "windows_audit_policy",
+    "body": "windows_audit_policy '${1:Update advanced audit policy}' do\r\n\tsubcategory '${2:Credential Validation}'\r\n\tsuccess ${3:true}\r\n\tfailure ${4:false}\r\n\taction :set\r\nend\r\n",
+    "description": "Use the windows_audit_policy resource to configure system level and per-user Windows advanced audit policy settings.",
+    "scope": "source.ruby.chef"
+  },
 	"windows_auto_run": {
 		"prefix": "windows_auto_run",
 		"body": "windows_auto_run '${1:program_name}' do\r\n\tpath '${2:path}'\r\n\taction :${3:create}\r\nend\r\n",
@@ -611,12 +617,18 @@
 		"description": "Use the windows_feature_powershell resource to add, remove or entirely delete Windows features and roles via PowerShell. This resource offers significant speed benefits over the windows_feature_dism resource, but requires installation of the Remote Server Administration Tools on non-server releases of Windows.",
 		"scope": "source.ruby.chef"
 	},
+  "windows_firewall_profile": {
+    "prefix": "windows_firewall_profile",
+    "body": "windows_firewall_profile '${1:profile_name}' do\r\n\tdefault_inbound_action '${2:Block}'\r\n\tdefault_outbound_action '${3:Allow}'\r\n\tallow_inbound_rules ${4:true}\r\n\tdisplay_notification ${5:false}\r\n\taction :${6:enable}\r\nend\r\n",
+    "description": "Use the windows_firewall_profile resource to enable, disable, and configure the Windows firewall profiles ",
+    "scope": "source.ruby.chef"
+  },
 	"windows_firewall_rule": {
 		"prefix": "windows_firewall_rule",
 		"body": "windows_firewall_rule '${1:App}' do\r\n\tlocal_port '${2:80}'\r\n\tprotocol '${3:TCP}'\r\n\tfirewall_action :${4:allow}\r\n\taction :${5:create}\r\nend\r\n",
 		"description": "Use the windows_firewall_rule resource to create, change or remove windows firewall rules.",
 		"scope": "source.ruby.chef"
-	},
+  },
 	"windows_font": {
 		"prefix": "windows_font",
 		"body": "windows_font '${1:font_name}' do\r\n\tsource '${2:source}\r\n\taction :${3:install}\r\nend\r\n",
