@@ -6,7 +6,7 @@
 
 set -evx
 
-sed -i -r "s/\"version\".*/\"version\" : \"$(cat VERSION)\",/"  package.json
+sed -i -r "s/\"version\".*/\"version\": \"$(cat VERSION)\",/"  package.json
 
 # Once Expeditor finshes executing this script, it will commit the changes and push
 # the commit as a new tag corresponding to the value in the VERSION file.
