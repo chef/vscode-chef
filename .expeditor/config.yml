@@ -22,7 +22,7 @@ github:
     - "Expeditor: Bump Version Major"
 
 changelog:
-  rollup_header: Changes not yet released to rubygems.org
+  rollup_header: Changes not yet released
 
 # These actions are taken, in order they are specified, anytime a Pull Request is merged.
 merge_actions:
