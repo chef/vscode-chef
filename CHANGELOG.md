@@ -1,9 +1,17 @@
 # vscode-chef Change Log
 
-<!-- latest_release -->
+<!-- latest_release 1.9.1 -->
+## [v1.9.1](https://github.com/chef/vscode-chef/tree/v1.9.1) (2021-01-13)
+
+#### Merged Pull Requests
+- Updates to the Expeditor config [#110](https://github.com/chef/vscode-chef/pull/110) ([tas50](https://github.com/tas50))
 <!-- latest_release -->
 
 <!-- release_rollup -->
+### Changes not yet released
+
+#### Merged Pull Requests
+- Updates to the Expeditor config [#110](https://github.com/chef/vscode-chef/pull/110) ([tas50](https://github.com/tas50)) <!-- 1.9.1 -->
 <!-- release_rollup -->
 
 <!-- latest_stable_release -->
