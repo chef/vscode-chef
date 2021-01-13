@@ -1,9 +1,19 @@
+# vscode-chef Change Log
+
+<!-- latest_release -->
+<!-- latest_release -->
+
+<!-- release_rollup -->
+<!-- release_rollup -->
+
+<!-- latest_stable_release -->
 ## 1.9.0 (2020-11-25)
 
 - Add snippets for the windows_audit_policy and windows_firewall_profile resources
 - Remove the deprecated nexentacore_platform? helper
 - Add snippets for chef-vault helpers chef_vault, chef_vault_item, and chef_vault_item_for_environment
 - Add snippets for resource declaration helpers build_resource, declare_resource, delete_resource, delete_resource!, edit_resource, edit_resource!, find_resource, find_resource!, resources, and with_run_context
+<!-- latest_stable_release -->
 
 ## 1.8.0 (2020-10-01)
 
