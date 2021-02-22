@@ -23,6 +23,12 @@
     "description": "Determine if the current node is AIX. Introduced in Chef Infra Client 15.5.",
     "scope": "source.ruby.chef"
   },
+  "alibaba?": {
+    "prefix": "alibaba?",
+    "body": "alibaba?",
+    "description": "Determine if the current node is running in Alibaba Cloud. Introduced in Chef Infra Client 17.0.",
+    "scope": "source.ruby.chef"
+  },
   "amazon?": {
     "prefix": "amazon?",
     "body": "amazon?",
@@ -62,7 +68,7 @@
   "azure?": {
     "prefix": "azure?",
     "body": "azure?",
-    "description": "Return true if the current current node is in Azure. Introduced in Chef Infra Client 15.8.",
+    "description": "Determine if the current node is running in Microsoft Azure. Introduced in Chef Infra Client 15.8.",
     "scope": "source.ruby.chef"
   },
   "bsd_based?": {
@@ -86,19 +92,19 @@
   "chef_vault": {
     "prefix": "chef_vault",
     "body": "chef_vault",
-    "description": "Helper method that allows for listing the ids of a vault in a recipe.\nThis method is needed because data_bag() returns the keys along with\nthe items, so this method strips out the keys for users so that they\ndon't have to do it in their recipes.\nids = chef_vault('secrets')\nlog 'Yeah buddy!' if ids[0] == 'bacon'.",
+    "description": "Helper method that allows for listing the ids of a vault in a recipe.\nThis method is needed because data_bag() returns the keys along with\nthe items, so this method strips out the keys for users so that they\ndon't have to do it in their recipes.",
     "scope": "source.ruby.chef"
   },
   "chef_vault_item": {
     "prefix": "chef_vault_item",
     "body": "chef_vault_item",
-    "description": "Helper method which provides a Recipe/Resource DSL for wrapping\ncreation of {ChefVault::Item}.\nFalls back to normal data bag item loading if the item is not\nactually a Chef Vault item. This is controlled via\n+node['chef-vault']['databag_fallback']+.\nitem = chef_vault_item('secrets', 'bacon')\nlog 'Yeah buddy!' if item['_default']['type'].",
+    "description": "Helper method which provides a Recipe/Resource DSL for wrapping\ncreation of {ChefVault::Item}.\nFalls back to normal data bag item loading if the item is not\nactually a Chef Vault item. This is controlled via\n+node['chef-vault']['databag_fallback']+.",
     "scope": "source.ruby.chef"
   },
   "chef_vault_item_for_environment": {
     "prefix": "chef_vault_item_for_environment",
     "body": "chef_vault_item_for_environment",
-    "description": "Helper method which provides an environment wrapper for a data bag.\nThis allows for easy access to current environment secrets inside\nof an item.\nitem = chef_vault_item_for_environment('secrets', 'bacon')\nlog 'Yeah buddy!' if item['type'] == 'applewood_smoked'.",
+    "description": "Helper method which provides an environment wrapper for a data bag.\nThis allows for easy access to current environment secrets inside\nof an item.",
     "scope": "source.ruby.chef"
   },
   "ci?": {
@@ -116,7 +122,7 @@
   "cloud?": {
     "prefix": "cloud?",
     "body": "cloud?",
-    "description": "Determine if the current node is \"in the cloud\". Introduced in Chef Infra Client 15.8.",
+    "description": "Determine if the current node is running in a known cloud. Introduced in Chef Infra Client 15.8.",
     "scope": "source.ruby.chef"
   },
   "darwin?": {
@@ -164,7 +170,7 @@
   "digital_ocean?": {
     "prefix": "digital_ocean?",
     "body": "digital_ocean?",
-    "description": "Return true if the current current node is in DigitalOcean. Introduced in Chef Infra Client 15.8.",
+    "description": "Determine if the current node is running in DigitalOcean. Introduced in Chef Infra Client 15.8.",
     "scope": "source.ruby.chef"
   },
   "docker?": {
@@ -188,7 +194,7 @@
   "ec2?": {
     "prefix": "ec2?",
     "body": "ec2?",
-    "description": "Return true if the current current node is in EC2. Introduced in Chef Infra Client 15.8.",
+    "description": "Determine if the current node is running in AWS EC2. Introduced in Chef Infra Client 15.8.",
     "scope": "source.ruby.chef"
   },
   "edit_resource": {
@@ -206,7 +212,7 @@
   "eucalyptus?": {
     "prefix": "eucalyptus?",
     "body": "eucalyptus?",
-    "description": "Return true if the current current node is in Eucalyptus. Introduced in Chef Infra Client 15.8.",
+    "description": "Determine if the current node is running in Eucalyptus. Introduced in Chef Infra Client 15.8.",
     "scope": "source.ruby.chef"
   },
   "fedora?": {
@@ -254,7 +260,7 @@
   "gce?": {
     "prefix": "gce?",
     "body": "gce?",
-    "description": "Return true if the current current node is in GCE. Introduced in Chef Infra Client 15.8.",
+    "description": "Determine if the current node running in Google Compute Engine (GCE). Introduced in Chef Infra Client 15.8.",
     "scope": "source.ruby.chef"
   },
   "gentoo?": {
@@ -344,7 +350,7 @@
   "linode?": {
     "prefix": "linode?",
     "body": "linode?",
-    "description": "Return true if the current current node is in Linode. Introduced in Chef Infra Client 15.8.",
+    "description": "Determine if the current node is running in Linode. Introduced in Chef Infra Client 15.8.",
     "scope": "source.ruby.chef"
   },
   "linux?": {
@@ -422,7 +428,7 @@
   "openstack?": {
     "prefix": "openstack?",
     "body": "openstack?",
-    "description": "Return true if the current current node is in OpenStack. Introduced in Chef Infra Client 15.8.",
+    "description": "Determine if the current node is running in OpenStack. Introduced in Chef Infra Client 15.8.",
     "scope": "source.ruby.chef"
   },
   "opensuse_platform?": {
@@ -500,7 +506,7 @@
   "rackspace?": {
     "prefix": "rackspace?",
     "body": "rackspace?",
-    "description": "Return true if the current current node is in Rackspace. Introduced in Chef Infra Client 15.8.",
+    "description": "Determine if the current node is running in Rackspace. Introduced in Chef Infra Client 15.8.",
     "scope": "source.ruby.chef"
   },
   "raspbian_platform?": {
@@ -608,7 +614,7 @@
   "softlayer?": {
     "prefix": "softlayer?",
     "body": "softlayer?",
-    "description": "Return true if the current current node is in SoftLayer. Introduced in Chef Infra Client 15.8.",
+    "description": "Determine if the current node is running in SoftLayer (IBM Cloud). Introduced in Chef Infra Client 15.8.",
     "scope": "source.ruby.chef"
   },
   "solaris2?": {
@@ -716,7 +722,7 @@
   "windows_nt_version": {
     "prefix": "windows_nt_version",
     "body": "windows_nt_version",
-    "description": "Determine the current Windows NT version. The NT version often differs from the marketing version, but offers a good way to find desktop and server releases that are based on the same codebase. IE: NT 6.3 is Windows 8.1 and Windows 2012 R2. Introduced in Chef Infra Client 15.8.",
+    "description": "Determine the current Windows NT version. The NT version often differs from the marketing version, but offers a good way to find desktop and server releases that are based on the same codebase. For example NT 6.3 corresponds to Windows 8.1 and Windows 2012 R2. Introduced in Chef Infra Client 15.8.",
     "scope": "source.ruby.chef"
   },
   "windows_platform?": {

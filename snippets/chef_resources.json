@@ -683,6 +683,12 @@
 		"description": "Use the windows_package resource to manage packages for the Windows platform.",
 		"scope": "source.ruby.chef"
 	},
+  "windows_pagefile": {
+		"prefix": "windows_pagefile",
+		"body": "windows_pagefile '${1:path}' do\r\n\tautomatic_managed ${2:false}\r\n\tinitial_size ${3:0}\r\n\tmaximum_size ${4:0}\r\n\taction :${5:set}\r\nend\r\n",
+		"description": "Use the windows_pagefile resource to configure pagefile settings on Windows.",
+		"scope": "source.ruby.chef"
+	},
 	"windows_path": {
 		"prefix": "windows_path",
 		"body": "windows_path '${1:path}' do\r\n\taction :${2:add}\r\nend\r\n",
@@ -701,6 +707,12 @@
 		"description": "",
 		"scope": "source.ruby.chef"
 	},
+  "windows_security_policy": {
+    "prefix": "windows_security_policy",
+    "body": "windows_security_policy '${1:secoption}' do\r\n\tsecvalue '${2:value}'\r\n\taction :${3:set}\r\nend\r\n",
+    "description": "Use the windows_security_policy resource to set a security policy on the Microsoft Windows platform.",
+    "scope": "source.ruby.chef"
+  },
 	"windows_service": {
 		"prefix": "windows_service",
 		"body": "windows_service '${1:service_name}' do\r\n\taction :${2:start}\r\n\tstartup_type :${2:manual}\r\nend\r\n",
@@ -719,6 +731,18 @@
 		"description": "",
 		"scope": "source.ruby.chef"
 	},
+  "windows_uac": {
+    "prefix": "windows_uac",
+    "body": "windows_uac '${1:name}' do\r\n\tenable_uac '${2:true}'\r\n\taction :${3:configure}\r\nend\r\n",
+    "description": "The windows_uac resource configures UAC on Windows hosts by setting registry keys at HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Policies\\System",
+    "scope": "source.ruby.chef"
+  },
+  "windows_user_privilege": {
+    "prefix": "windows_user_privilege",
+    "body": "windows_user_privilege '${1:principal}' do\r\n\tprivilege '${2:value}'\r\n\taction :${3:add}\r\nend\r\n",
+    "description": "The windows_user_privilege resource allows to add and set principal (User/Group) to the specified privilege. Ref: https://docs.microsoft.com/en-us/windows/security/threat-protection/security-policy-settings/user-rights-assignment",
+    "scope": "source.ruby.chef"
+  },
 	"yum_package": {
 		"prefix": "yum_package",
 		"body": "yum_package '${1:package_name}' do\r\n\taction :${2:install}\r\nend\r\n",
