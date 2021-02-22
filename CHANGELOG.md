@@ -1,16 +1,17 @@
 # vscode-chef Change Log
 
-<!-- latest_release 1.10.1 -->
-## [v1.10.1](https://github.com/chef/vscode-chef/tree/v1.10.1) (2021-02-14)
+<!-- latest_release 1.10.2 -->
+## [v1.10.2](https://github.com/chef/vscode-chef/tree/v1.10.2) (2021-02-22)
 
 #### Merged Pull Requests
-- Bump typescript from 4.1.3 to 4.1.5 [#113](https://github.com/chef/vscode-chef/pull/113) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- updates snippets and adds windows resources [#114](https://github.com/chef/vscode-chef/pull/114) ([collinmcneese](https://github.com/collinmcneese))
 <!-- latest_release -->
 
 <!-- release_rollup -->
 ### Changes not yet released
 
 #### Merged Pull Requests
+- updates snippets and adds windows resources [#114](https://github.com/chef/vscode-chef/pull/114) ([collinmcneese](https://github.com/collinmcneese)) <!-- 1.10.2 -->
 - Bump typescript from 4.1.3 to 4.1.5 [#113](https://github.com/chef/vscode-chef/pull/113) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot])) <!-- 1.10.1 -->
 <!-- release_rollup -->
 
