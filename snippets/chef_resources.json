@@ -85,31 +85,31 @@
 	},
 	"chef_client_cron": {
 		"prefix": "chef_client_cron",
-		"body": "chef_client_cron '${1:Run Chef Infra Client as a cron job}' do\r\n\tminute '${2:0,30}'\r\n\thour '${3:*}'\r\n\taction :${4:create}\r\nend\r\n",
+		"body": "chef_client_cron '${1:Run Chef Infra Client as a cron job}' do\r\n\tminute '${2:0,30}'\r\n\thour '${3:*}'\r\n\taction :${4:add}\r\nend\r\n",
 		"description": "Use the chef_client_cron resource to setup the Chef Infra Client to run as a cron job. This resource will also create the specified log directory if it doesn’t already exist.",
 		"scope": "source.ruby.chef"
 	},
 	"chef_client_launchd": {
 		"prefix": "chef_client_launchd",
-		"body": "chef_client_launchd '${1:Run Chef Infra Client as a launchd daemon}' do\r\n\tinterval ${2:30}\r\n\taction :${3:create}\r\nend\r\n",
+		"body": "chef_client_launchd '${1:Run Chef Infra Client as a launchd daemon}' do\r\n\tinterval ${2:30}\r\n\taction :${3:enable}\r\nend\r\n",
 		"description": "Use the chef_client_launchd resource to configure the Chef Infra Client to run on a schedule on macOS nodes.",
 		"scope": "source.ruby.chef"
 	},
 	"chef_client_scheduled_task": {
 		"prefix": "chef_client_scheduled_task",
-		"body": "chef_client_scheduled_task '${1:Run Chef Infra Client as a scheduled task}' do\r\n\tfrequency '${2:minute}'\r\n\tfrequency_modifier ${3:30}\r\n\taction :${4:create}\r\nend\r\n",
+		"body": "chef_client_scheduled_task '${1:Run Chef Infra Client as a scheduled task}' do\r\n\tfrequency '${2:minute}'\r\n\tfrequency_modifier ${3:30}\r\n\taction :${4:add}\r\nend\r\n",
 		"description": "Use the chef_client_scheduled_task resource to setup the Chef Infra Client to run as a Windows scheduled task. This resource will also create the specified log directory if it doesn’t already exist.",
 		"scope": "source.ruby.chef"
 	},
 	"chef_client_systemd_timer": {
 		"prefix": "chef_client_systemd_timer",
-		"body": "chef_client_systemd_timer '${1:Run Chef Infra Client as a systemd timer}' do\r\n\tinterval '${2:30min}'\r\n\tdelay_after_boot '${3:5min}'\r\n\tsplay '${4:5min}'\r\n\taction :${5:create}\r\nend\r\n",
+		"body": "chef_client_systemd_timer '${1:Run Chef Infra Client as a systemd timer}' do\r\n\tinterval '${2:30min}'\r\n\tdelay_after_boot '${3:5min}'\r\n\tsplay '${4:5min}'\r\n\taction :${5:add}\r\nend\r\n",
 		"description": "Use the chef_client_systemd_timer resource to setup the Chef Infra Client to run as a systemd timer.",
 		"scope": "source.ruby.chef"
 	},
 	"chef_client_trusted_certificate": {
 		"prefix": "chef_client_trusted_certificate",
-		"body": "chef_client_trusted_certificate '${1:chef.example.com}' do\r\n\tcertificate <<~CERT\r\n\t${2:CERT_CONTENT_HERE}\r\n\tCERT\r\n\taction :${3:create}\r\nend\r\n",
+		"body": "chef_client_trusted_certificate '${1:chef.example.com}' do\r\n\tcertificate <<~CERT\r\n\t${2:CERT_CONTENT_HERE}\r\n\tCERT\r\n\taction :${3:add}\r\nend\r\n",
 		"description": "Use the chef_client_trusted_certificate resource to add certificates to Chef Infra Client’s trusted certificate directory. This allows the Chef Infra Client to communicate with internal encrypted resources without errors.",
 		"scope": "source.ruby.chef"
 	},
