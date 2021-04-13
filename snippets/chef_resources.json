@@ -91,7 +91,7 @@
 	},
 	"chef_client_launchd": {
 		"prefix": "chef_client_launchd",
-		"body": "chef_client_launchd '${1:Run Chef Infra Client as a launchd daemon}' do\r\n\tinterval ${2:30}\r\n\taction :${3:create}\r\nend\r\n",
+		"body": "chef_client_launchd '${1:Run Chef Infra Client as a launchd daemon}' do\r\n\tinterval ${2:30}\r\n\taction :${3:enable}\r\nend\r\n",
 		"description": "Use the chef_client_launchd resource to configure the Chef Infra Client to run on a schedule on macOS nodes.",
 		"scope": "source.ruby.chef"
 	},
