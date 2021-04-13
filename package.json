@@ -1,7 +1,7 @@
 {
   "name": "chef",
   "description": "Official Chef Infra extension for VSCode with code linting support and snippets.",
-  "version": "1.10.3",
+  "version": "1.10.4",
   "publisher": "chef-software",
   "icon": "images/chef-logo.png",
   "displayName": "Chef Infra Extension for Visual Studio Code",
