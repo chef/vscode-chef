@@ -97,7 +97,7 @@
 	},
 	"chef_client_scheduled_task": {
 		"prefix": "chef_client_scheduled_task",
-		"body": "chef_client_scheduled_task '${1:Run Chef Infra Client as a scheduled task}' do\r\n\tfrequency '${2:minute}'\r\n\tfrequency_modifier ${3:30}\r\n\taction :${4:create}\r\nend\r\n",
+		"body": "chef_client_scheduled_task '${1:Run Chef Infra Client as a scheduled task}' do\r\n\tfrequency '${2:minute}'\r\n\tfrequency_modifier ${3:30}\r\n\taction :${4:add}\r\nend\r\n",
 		"description": "Use the chef_client_scheduled_task resource to setup the Chef Infra Client to run as a Windows scheduled task. This resource will also create the specified log directory if it doesn’t already exist.",
 		"scope": "source.ruby.chef"
 	},
