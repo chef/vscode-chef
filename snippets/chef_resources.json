@@ -85,7 +85,7 @@
 	},
 	"chef_client_cron": {
 		"prefix": "chef_client_cron",
-		"body": "chef_client_cron '${1:Run Chef Infra Client as a cron job}' do\r\n\tminute '${2:0,30}'\r\n\thour '${3:*}'\r\n\taction :${4:create}\r\nend\r\n",
+		"body": "chef_client_cron '${1:Run Chef Infra Client as a cron job}' do\r\n\tminute '${2:0,30}'\r\n\thour '${3:*}'\r\n\taction :${4:add}\r\nend\r\n",
 		"description": "Use the chef_client_cron resource to setup the Chef Infra Client to run as a cron job. This resource will also create the specified log directory if it doesn’t already exist.",
 		"scope": "source.ruby.chef"
 	},
