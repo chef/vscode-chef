@@ -109,7 +109,7 @@
 	},
 	"chef_client_trusted_certificate": {
 		"prefix": "chef_client_trusted_certificate",
-		"body": "chef_client_trusted_certificate '${1:chef.example.com}' do\r\n\tcertificate <<~CERT\r\n\t${2:CERT_CONTENT_HERE}\r\n\tCERT\r\n\taction :${3:create}\r\nend\r\n",
+		"body": "chef_client_trusted_certificate '${1:chef.example.com}' do\r\n\tcertificate <<~CERT\r\n\t${2:CERT_CONTENT_HERE}\r\n\tCERT\r\n\taction :${3:add}\r\nend\r\n",
 		"description": "Use the chef_client_trusted_certificate resource to add certificates to Chef Infra Client’s trusted certificate directory. This allows the Chef Infra Client to communicate with internal encrypted resources without errors.",
 		"scope": "source.ruby.chef"
 	},
