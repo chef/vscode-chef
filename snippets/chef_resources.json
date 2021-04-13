@@ -103,7 +103,7 @@
 	},
 	"chef_client_systemd_timer": {
 		"prefix": "chef_client_systemd_timer",
-		"body": "chef_client_systemd_timer '${1:Run Chef Infra Client as a systemd timer}' do\r\n\tinterval '${2:30min}'\r\n\tdelay_after_boot '${3:5min}'\r\n\tsplay '${4:5min}'\r\n\taction :${5:create}\r\nend\r\n",
+		"body": "chef_client_systemd_timer '${1:Run Chef Infra Client as a systemd timer}' do\r\n\tinterval '${2:30min}'\r\n\tdelay_after_boot '${3:5min}'\r\n\tsplay '${4:5min}'\r\n\taction :${5:add}\r\nend\r\n",
 		"description": "Use the chef_client_systemd_timer resource to setup the Chef Infra Client to run as a systemd timer.",
 		"scope": "source.ruby.chef"
 	},
