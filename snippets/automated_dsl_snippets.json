@@ -89,6 +89,12 @@
     "description": "Determine if the current node is CentOS. Introduced in Chef Infra Client 15.5.",
     "scope": "source.ruby.chef"
   },
+  "centos_stream_platform?": {
+    "prefix": "centos_stream_platform?",
+    "body": "centos_stream_platform?",
+    "description": "Determine if the current node is CentOS Stream. Introduced in Chef Infra Client 17.0.",
+    "scope": "source.ruby.chef"
+  },
   "chef_vault": {
     "prefix": "chef_vault",
     "body": "chef_vault",
@@ -207,6 +213,12 @@
     "prefix": "edit_resource!",
     "body": "edit_resource!",
     "description": "Lookup a resource in the resource collection by name and edit the resource.  If the resource is not\nfound this will raise Chef::Exceptions::ResourceNotFound.  This is the correct API to use for\n\"chef_rewind\" functionality.",
+    "scope": "source.ruby.chef"
+  },
+  "effortless?": {
+    "prefix": "effortless?",
+    "body": "effortless?",
+    "description": "Determine if the node is using the Chef Effortless pattern in which the Chef Infra Client is packaged using Chef Habitat. Introduced in Chef Infra Client 17.0.",
     "scope": "source.ruby.chef"
   },
   "eucalyptus?": {
