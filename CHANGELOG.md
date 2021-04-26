@@ -1,16 +1,17 @@
 # vscode-chef Change Log
 
-<!-- latest_release 1.10.5 -->
-## [v1.10.5](https://github.com/chef/vscode-chef/tree/v1.10.5) (2021-04-13)
+<!-- latest_release 1.11.0 -->
+## [v1.11.0](https://github.com/chef/vscode-chef/tree/v1.11.0) (2021-04-26)
 
 #### Merged Pull Requests
-- Bump typescript from 4.2.3 to 4.2.4 [#117](https://github.com/chef/vscode-chef/pull/117) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- Adds Chef Recipe YAML support with language and snippets [#120](https://github.com/chef/vscode-chef/pull/120) ([collinmcneese](https://github.com/collinmcneese))
 <!-- latest_release -->
 
 <!-- release_rollup -->
 ### Changes not yet released
 
 #### Merged Pull Requests
+- Adds Chef Recipe YAML support with language and snippets [#120](https://github.com/chef/vscode-chef/pull/120) ([collinmcneese](https://github.com/collinmcneese)) <!-- 1.11.0 -->
 - Bump typescript from 4.2.3 to 4.2.4 [#117](https://github.com/chef/vscode-chef/pull/117) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot])) <!-- 1.10.5 -->
 - Cmcneese/bugfixes [#118](https://github.com/chef/vscode-chef/pull/118) ([collinmcneese](https://github.com/collinmcneese)) <!-- 1.10.4 -->
 - Bump typescript from 4.1.5 to 4.2.3 [#116](https://github.com/chef/vscode-chef/pull/116) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot])) <!-- 1.10.3 -->
