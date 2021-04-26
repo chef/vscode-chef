@@ -8,8 +8,7 @@ The Chef Infra Extension for Visual Studio Code offers rich language support for
 
 #### Syntax/keyword highlighting:
 
- * Chef Infra Recipe DSL (Ruby and YAML)
- * Chef Infra built-in Resources
+ * Chef Infra Language (traditional and YAML-based) including built-in resources
  * Chef Infra Custom Resources
 
 #### Cookstyle linting and source analysis:
