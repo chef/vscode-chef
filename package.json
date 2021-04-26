@@ -71,6 +71,17 @@
         "extensions": [
           "metadata.rb"
         ]
+      },
+      {
+        "id": "chef_recipe_yaml",
+        "aliases": [
+          "Chef Recipe YAML",
+          "chef recipe yaml"
+        ],
+        "filenamePatterns": [
+          "**/recipes/*.yml",
+          "**/recipes/*.yaml"
+        ]
       }
     ],
     "grammars": [
@@ -83,12 +94,21 @@
         "language": "chef_metadata",
         "scopeName": "source.chef.metadata",
         "path": "./syntaxes/chef_metadata.cson.json"
+      },
+      {
+        "language": "chef_recipe_yaml",
+        "scopeName": "source.yaml.chef_recipe_yaml",
+        "path": "./syntaxes/chef_recipe_yaml.cson.json"
       }
     ],
     "snippets": [
       {
         "language": "ruby",
         "path": "./snippets/chef_resources.json"
+      },
+      {
+        "language": "chef_recipe_yaml",
+        "path": "./snippets/chef_yaml_resources.json"
       },
       {
         "language": "ruby",
@@ -142,7 +162,16 @@
         "command": "chef.validateEntireWorkspace",
         "title": "Chef: Validate Workspace"
       }
-    ]
+    ],
+    "configurationDefaults": {
+      "[chef_recipe_yaml]": {
+        "editor.quickSuggestions": {
+          "other": true,
+          "comments": false,
+          "strings": true
+        }
+      }
+    }
   },
   "scripts": {
     "vscode:prepublish": "tsc -p ./",

@@ -1,0 +1,13 @@
+{
+  "fileTypes": [
+    "**/recipes/*.yml",
+    "**/recipes/*.yaml"
+  ],
+  "name": "Chef Recipe YAML",
+  "patterns": [
+    {
+      "include": "source.yaml"
+    }
+  ],
+  "scopeName": "source.yaml.chef_recipe_yaml"
+}
