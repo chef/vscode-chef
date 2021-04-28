@@ -31,7 +31,7 @@
   "main": "./out/extension",
   "dependencies": {},
   "devDependencies": {
-    "@types/node": "^14.0.13",
+    "@types/node": "^15.0.0",
     "fs": "0.0.1-security",
     "path": "0.12.7",
     "tslint": "6.1.3",
