@@ -13,19 +13,19 @@
 	},
 	"apt_preference": {
 		"prefix": "apt_preference",
-		"body": "- type: apt_preference\r\n\tname: '${1:name}'\r\n\tpin: '${2:version 1.2.3}'\r\n\tpin_priority ${3:700}'\r\n\taction:\r\n\t\t- ${4:add}\r\n",
+		"body": "- type: apt_preference\r\n\tname: '${1:name}'\r\n\tpin: '${2:version 1.2.3}'\r\n\tpin_priority: ${3:700}\r\n\taction:\r\n\t\t- ${4:add}\r\n",
 		"description": "Use the apt_preference resource to manage APT preference files for the Debian and Ubuntu platforms.",
 		"scope": "source.yaml.chef"
 	},
 	"apt_repository": {
 		"prefix": "apt_repository",
-		"body": "- type: apt_repository\r\n\tname: '${1:name}'\r\n\turi: '${2:https://example.com/deb}'\r\n\tcomponents ${3:['main']}'\r\n\taction:\r\n\t\t- ${4:add}\r\n",
+		"body": "- type: apt_repository\r\n\tname: '${1:name}'\r\n\turi: '${2:https://example.com/deb}'\r\n\tcomponents:\r\n\t\t- ${3:'main'}\r\n\taction:\r\n\t\t- ${4:add}\r\n",
 		"description": "Use the apt_repository resource to manage APT repositories for the Debian and Ubuntu platforms.",
 		"scope": "source.yaml.chef"
 	},
 	"apt_update": {
 		"prefix": "apt_update",
-		"body": "- type: apt_update\r\n\tname: '${1:name}'\r\n\tignore_failure ${2:true}'\r\n\taction:\r\n\t\t- ${3:update}\r\n",
+		"body": "- type: apt_update\r\n\tname: '${1:name}'\r\n\tignore_failure: ${2:true}\r\n\taction:\r\n\t\t- ${3:update}\r\n",
 		"description": "Use the apt_update resource to manage APT cache for the Debian and Ubuntu platforms.",
 		"scope": "source.yaml.chef"
 	},
@@ -61,7 +61,7 @@
 	},
 	"build_essential": {
 		"prefix": "build_essential",
-		"body": "- type: build_essential\r\n\tname: '${1:name}'\r\n\tcompile_time ${2:true}'\r\n\taction:\r\n\t\t- ${3:install}\r\n",
+		"body": "- type: build_essential\r\n\tname: '${1:name}'\r\n\tcompile_time: ${2:true}\r\n\taction:\r\n\t\t- ${3:install}\r\n",
 		"description": "Use the build_essential resource to install the packages required for compiling C software from source.",
 		"scope": "source.yaml.chef"
 	},
@@ -91,13 +91,13 @@
 	},
 	"chef_client_launchd": {
 		"prefix": "chef_client_launchd",
-		"body": "- type: chef_client_launchd\r\n\tname: '${1:Run Chef Infra Client as a launchd daemon}'\r\n\tinterval ${2:30}'\r\n\taction:\r\n\t\t- ${3:enable}\r\n",
+		"body": "- type: chef_client_launchd\r\n\tname: '${1:Run Chef Infra Client as a launchd daemon}'\r\n\tinterval: ${2:30}\r\n\taction:\r\n\t\t- ${3:enable}\r\n",
 		"description": "Use the chef_client_launchd resource to configure the Chef Infra Client to run on a schedule on macOS nodes.",
 		"scope": "source.yaml.chef"
 	},
 	"chef_client_scheduled_task": {
 		"prefix": "chef_client_scheduled_task",
-		"body": "- type: chef_client_scheduled_task\r\n\tname: '${1:Run Chef Infra Client as a scheduled task}'\r\n\tfrequency: '${2:minute}'\r\n\tfrequency_modifier ${3:30}'\r\n\taction:\r\n\t\t- ${4:add}\r\n",
+		"body": "- type: chef_client_scheduled_task\r\n\tname: '${1:Run Chef Infra Client as a scheduled task}'\r\n\tfrequency: '${2:minute}'\r\n\tfrequency_modifier: ${3:30}\r\n\taction:\r\n\t\t- ${4:add}\r\n",
 		"description": "Use the chef_client_scheduled_task resource to setup the Chef Infra Client to run as a Windows scheduled task. This resource will also create the specified log directory if it doesn’t already exist.",
 		"scope": "source.yaml.chef"
 	},
@@ -139,7 +139,7 @@
 	},
 	"chocolatey_source": {
 		"prefix": "chocolatey_source",
-		"body": "- type: chocolatey_source\r\n\tname: '${1:name}'\r\n\tbypass_proxy ${2:true}'\r\n\tsource: '${3:http://example.com/something}'\r\n\taction:\r\n\t\t- ${4:add}\r\n",
+		"body": "- type: chocolatey_source\r\n\tname: '${1:name}'\r\n\tbypass_proxy: ${2:true}\r\n\tsource: '${3:http://example.com/something}'\r\n\taction:\r\n\t\t- ${4:add}\r\n",
 		"description": "Use the chocolatey_source resource to add, remove, enable, or disable Chocolatey sources.",
 		"scope": "source.yaml.chef"
 	},
@@ -181,7 +181,7 @@
 	},
 	"dmg_package": {
 		"prefix": "dmg_package",
-		"body": "- type: dmg_package\r\n\tname: '${1:app}'\r\n\tsource: '${2:https://example.com/app.dmg}'\r\n\tchecksum: '${3:9435f79d5b52d0febeddfad392adf82db9df159196f496c1ab139a6957242ce9}'\r\n\taccept_eula ${4:true}'\r\n\taction:\r\n\t\t- ${5:install}\r\n",
+		"body": "- type: dmg_package\r\n\tname: '${1:app}'\r\n\tsource: '${2:https://example.com/app.dmg}'\r\n\tchecksum: '${3:9435f79d5b52d0febeddfad392adf82db9df159196f496c1ab139a6957242ce9}'\r\n\taccept_eula: ${4:true}\r\n\taction:\r\n\t\t- ${5:install}\r\n",
 		"description": "Use the dmg_package resource to install a package from a .dmg file. The resource will retrieve the file from a remote URL, mount it using OS X’s hdidutil, copy the application to the specified destination (/Applications), and detach the image using hdiutil. The .dmg file will be stored in the Chef::Config[:file_cache_path].",
 		"scope": "source.yaml.chef"
 	},
@@ -319,7 +319,7 @@
 	},
 	"macos_userdefaults": {
 		"prefix": "macos_userdefaults",
-		"body": "- type: macos_userdefaults\r\n\tname: '${1:description}'\r\n\tdomain: '${2:domain}'\r\n\tglobal ${3:false}'\r\n\tvalue: '${4:value}'\r\n\ttype: '${5:type}'\r\n\taction:\r\n\t\t- ${6:write}\r\n",
+		"body": "- type: macos_userdefaults\r\n\tname: '${1:description}'\r\n\tdomain: '${2:domain}'\r\n\tglobal: ${3:false}\r\n\tvalue: '${4:value}'\r\n\ttype: '${5:type}'\r\n\taction:\r\n\t\t- ${6:write}\r\n",
 		"description": "Use the macos_userdefaults resource to manage the macOS user defaults system. The properties of the resource are passed to the defaults command, and the parameters follow the conventions of that command. See the defaults man page for additional information.",
 		"scope": "source.yaml.chef"
 	},
@@ -331,13 +331,13 @@
 	},
 	"mdadm": {
 		"prefix": "mdadm",
-		"body": "- type: mdadm\r\n\tname: '${1:/dev/md0}'\r\n\tdevices ['${2:/dev/sda}']\r\n\taction:\r\n\t\t- ${3:create}\r\n",
+		"body": "- type: mdadm\r\n\tname: '${1:/dev/md0}'\r\n\tdevices:\r\n\t\t- '${2:/dev/sda}'\r\n\taction:\r\n\t\t- ${3:create}\r\n",
 		"description": "Use the mdadm resource to manage RAID devices in a Linux environment.",
 		"scope": "source.yaml.chef"
 	},
 	"mount": {
 		"prefix": "mount",
-		"body": "- type: mount\r\n\tname: '${1:path}'\r\n\tdevice ['${2:device}']\r\n\tfstype: '${2:fs_type}'\r\n\taction:\r\n\t\t- ${4:mount}\r\n",
+		"body": "- type: mount\r\n\tname: '${1:path}'\r\n\tdevice:\r\n\t\t- '${2:device}'\r\n\tfstype: '${2:fs_type}'\r\n\taction:\r\n\t\t- ${4:mount}\r\n",
 		"description": "Use the mount resource to manage a mounted file system.",
 		"scope": "source.yaml.chef"
 	},
@@ -349,7 +349,7 @@
 	},
 	"ohai_hint": {
 		"prefix": "ohai_hint",
-		"body": "- type: ohai_hint\r\n\tname: '${1:hint_name}'\r\n\tcontent Hash[:${2:key},: '${3:value}']\r\n\taction:\r\n\t\t- ${4:create}\r\n",
+		"body": "- type: ohai_hint\r\n\tname: '${1:hint_name}'\r\n\tcontent:\r\n\t\t- Hash[:${2:key},: '${3:value}']\r\n\taction:\r\n\t\t- ${4:create}\r\n",
 		"description": "Use the ohai_hint resource to aid in configuration detection by passing hint data to Ohai.",
 		"scope": "source.yaml.chef"
 	},
@@ -457,13 +457,13 @@
 	},
 	"reboot": {
 		"prefix": "reboot",
-		"body": "- type: reboot\r\n\tname: '${1:name}'\r\n\taction:\r\n\t\t- ${2:request_reboot}'\r\n\treason: '${3:reason}'\r\n\tdelay_mins ${4:minutes}\r\n",
+		"body": "- type: reboot\r\n\tname: '${1:name}'\r\n\treason: '${3:reason}'\r\n\tdelay_mins: ${4:minutes}\r\n\taction:\r\n\t\t- ${2:request_reboot}\r\n",
 		"description": "A reboot resource block reboots a node.",
 		"scope": "source.yaml.chef"
 	},
 	"registry_key": {
 		"prefix": "registry_key",
-		"body": "- type: registry_key\r\n\tname: '${1:key_name}'\r\n\tvalues [{\r\n\t\tname:: '${2:name}',\r\n\t\ttype:: '${3:type}',\r\n\t\tdata:: '${4:data}'\r\n\t}]\r\n\taction:\r\n\t\t- ${5:create}\r\n",
+		"body": "- type: registry_key\r\n\tname: '${1:key_name}'\r\n\tvalues:\r\n\t\t-name: '${2:name}',\r\n\t\t-type: '${3:type}',\r\n\t\t-data: '${4:data}'\r\n\taction:\r\n\t\t- ${5:create}\r\n",
 		"description": "Use the registry_key resource to create and delete registry keys in Microsoft Windows.",
 		"scope": "source.yaml.chef"
 	},
@@ -625,7 +625,7 @@
   },
   "windows_audit_policy":{
     "prefix": "windows_audit_policy",
-    "body": "- type: windows_audit_policy\r\n\tname: '${1:Update advanced audit policy}'\r\n\tsubcategory: '${2:Credential Validation}'\r\n\tsuccess ${3:true}'\r\n\tfailure ${4:false}'\r\n\taction:\r\n\t\t- set\r\n",
+    "body": "- type: windows_audit_policy\r\n\tname: '${1:Update advanced audit policy}'\r\n\tsubcategory: '${2:Credential Validation}'\r\n\tsuccess: ${3:true}\r\n\tfailure: ${4:false}\r\n\taction:\r\n\t\t- set\r\n",
     "description": "Use the windows_audit_policy resource to configure system level and per-user Windows advanced audit policy settings.",
     "scope": "source.yaml.chef"
   },
@@ -661,13 +661,13 @@
 	},
   "windows_firewall_profile": {
     "prefix": "windows_firewall_profile",
-    "body": "- type: windows_firewall_profile\r\n\tname: '${1:profile_name}'\r\n\tdefault_inbound_action: '${2:Block}'\r\n\tdefault_outbound_action: '${3:Allow}'\r\n\tallow_inbound_rules ${4:true}'\r\n\tdisplay_notification ${5:false}'\r\n\taction:\r\n\t\t- ${6:enable}\r\n",
+    "body": "- type: windows_firewall_profile\r\n\tname: '${1:profile_name}'\r\n\tdefault_inbound_action: '${2:Block}'\r\n\tdefault_outbound_action: '${3:Allow}'\r\n\tallow_inbound_rules: ${4:true}\r\n\tdisplay_notification: ${5:false}\r\n\taction:\r\n\t\t- ${6:enable}\r\n",
     "description": "Use the windows_firewall_profile resource to enable, disable, and configure the Windows firewall profiles ",
     "scope": "source.yaml.chef"
   },
 	"windows_firewall_rule": {
 		"prefix": "windows_firewall_rule",
-		"body": "- type: windows_firewall_rule\r\n\tname: '${1:App}'\r\n\tlocal_port: '${2:80}'\r\n\tprotocol: '${3:TCP}'\r\n\tfirewall_action:\r\n\t\t- ${4:allow}'\r\n\taction:\r\n\t\t- ${5:create}\r\n",
+		"body": "- type: windows_firewall_rule\r\n\tname: '${1:App}'\r\n\tlocal_port: '${2:80}'\r\n\tprotocol: '${3:TCP}'\r\n\tfirewall_action:\r\n\t\t- ${4:allow}\r\n\taction:\r\n\t\t- ${5:create}\r\n",
 		"description": "Use the windows_firewall_rule resource to create, change or remove windows firewall rules.",
 		"scope": "source.yaml.chef"
   },
@@ -685,7 +685,7 @@
 	},
   "windows_pagefile": {
 		"prefix": "windows_pagefile",
-		"body": "- type: windows_pagefile\r\n\tname: '${1:path}'\r\n\tautomatic_managed ${2:false}'\r\n\tinitial_size ${3:0}'\r\n\tmaximum_size ${4:0}'\r\n\taction:\r\n\t\t- ${5:set}\r\n",
+		"body": "- type: windows_pagefile\r\n\tname: '${1:path}'\r\n\tautomatic_managed: ${2:false}\r\n\tinitial_size: ${3:0}\r\n\tmaximum_size: ${4:0}\r\n\taction:\r\n\t\t- ${5:set}\r\n",
 		"description": "Use the windows_pagefile resource to configure pagefile settings on Windows.",
 		"scope": "source.yaml.chef"
 	},
@@ -715,19 +715,19 @@
   },
 	"windows_service": {
 		"prefix": "windows_service",
-		"body": "- type: windows_service\r\n\tname: '${1:service_name}'\r\n\taction:\r\n\t\t- ${2:start}'\r\n\tstartup_type :${2:manual}\r\n",
+		"body": "- type: windows_service\r\n\tname: '${1:service_name}'\r\n\taction:\r\n\t\t- ${2:start}\r\n\tstartup_type :${2:manual}\r\n",
 		"description": "Use the windows_service resource to manage a Windows service.",
 		"scope": "source.yaml.chef"
 	},
 	"windows_shortcut": {
 		"prefix": "windows_shortcut",
-		"body": "- type: windows_shortcut\r\n\tname: '${1:service_name}'\r\n\taction:\r\n\t\t- ${2:start}'\r\n\tstartup_type :${2:manual}\r\n",
+		"body": "- type: windows_shortcut\r\n\tname: '${1:service_name}'\r\n\taction:\r\n\t\t- ${2:start}\r\n\tstartup_type :${2:manual}\r\n",
 		"description": "",
 		"scope": "source.yaml.chef"
 	},
 	"windows_task": {
 		"prefix": "windows_task",
-		"body": "- type: windows_task\r\n\tname: '${1:service_name}'\r\n\taction:\r\n\t\t- ${2:start}'\r\n\tstartup_type :${2:manual}\r\n",
+		"body": "- type: windows_task\r\n\tname: '${1:service_name}'\r\n\taction:\r\n\t\t- ${2:start}\r\n\tstartup_type :${2:manual}\r\n",
 		"description": "",
 		"scope": "source.yaml.chef"
 	},
