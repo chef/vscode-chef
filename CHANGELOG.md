@@ -1,16 +1,17 @@
 # vscode-chef Change Log
 
-<!-- latest_release 1.11.2 -->
-## [v1.11.2](https://github.com/chef/vscode-chef/tree/v1.11.2) (2021-04-29)
+<!-- latest_release 1.11.3 -->
+## [v1.11.3](https://github.com/chef/vscode-chef/tree/v1.11.3) (2021-05-03)
 
 #### Merged Pull Requests
-- Upgrade to GitHub-native Dependabot [#123](https://github.com/chef/vscode-chef/pull/123) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- syntax fixes for yml resource snippets [#124](https://github.com/chef/vscode-chef/pull/124) ([collinmcneese](https://github.com/collinmcneese))
 <!-- latest_release -->
 
 <!-- release_rollup -->
 ### Changes not yet released
 
 #### Merged Pull Requests
+- syntax fixes for yml resource snippets [#124](https://github.com/chef/vscode-chef/pull/124) ([collinmcneese](https://github.com/collinmcneese)) <!-- 1.11.3 -->
 - Upgrade to GitHub-native Dependabot [#123](https://github.com/chef/vscode-chef/pull/123) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot])) <!-- 1.11.2 -->
 - Bump @types/node from 14.14.43 to 15.0.1 [#122](https://github.com/chef/vscode-chef/pull/122) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot])) <!-- 1.11.1 -->
 - Adds Chef Recipe YAML support with language and snippets [#120](https://github.com/chef/vscode-chef/pull/120) ([collinmcneese](https://github.com/collinmcneese)) <!-- 1.11.0 -->
