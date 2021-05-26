@@ -32,10 +32,7 @@ merge_actions:
       ignore_labels:
         - "Expeditor: Skip Changelog"
         - "Expeditor: Skip All"
-  - built_in:build_gem:
-      only_if: built_in:bump_version
 
 promote:
   actions:
     - built_in:rollover_changelog
-    
