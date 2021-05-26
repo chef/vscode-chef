@@ -281,6 +281,12 @@
 		"description": "Use the ifconfig resource to manage interfaces.",
 		"scope": "source.ruby.chef"
 	},
+  "inspec_waiver_file_entry": {
+		"prefix": "inspec_waiver_file_entry",
+		"body": "inspec_waiver_file_entry '${1:name}' do\r\n\tbackup ${2:false}\r\n\texpiration '${3:YYYY-MM-DD}'\r\n\tfile_path '${4:/etc/chef/inspec_waivers.yml}'\r\n\tjustification '${5:reason for waiver}'\r\n\trun_test ${6:false}\r\n\taction :${7:add}\r\nend\r\n",
+		"description": "Use the inspec_waiver_file_entry resource to add or remove entries from an InSpec waiver file. This can be used in conjunction with the Compliance Phase.",
+		"scope": "source.ruby.chef"
+	},
 	"ips_package": {
 		"prefix": "ips_package",
 		"body": "ips_package '${1:package_name}' do\r\n\taction :${2:install}\r\nend\r\n",
