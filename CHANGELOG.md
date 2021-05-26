@@ -1,24 +1,22 @@
 # vscode-chef Change Log
 
-<!-- latest_release 1.12.0 -->
-## [v1.12.0](https://github.com/chef/vscode-chef/tree/v1.12.0) (2021-05-26)
-
-#### Merged Pull Requests
-- Remove the build gem expeditor config [#128](https://github.com/chef/vscode-chef/pull/128) ([tas50](https://github.com/tas50))
+<!-- latest_release -->
 <!-- latest_release -->
 
 <!-- release_rollup -->
-### Changes not yet released
-
-#### Merged Pull Requests
-- Remove the build gem expeditor config [#128](https://github.com/chef/vscode-chef/pull/128) ([tas50](https://github.com/tas50)) <!-- 1.12.0 -->
-- adds resource snippets for inspec_waiver_file_entry [#127](https://github.com/chef/vscode-chef/pull/127) ([collinmcneese](https://github.com/collinmcneese)) <!-- 1.11.4 -->
-- syntax fixes for yml resource snippets [#124](https://github.com/chef/vscode-chef/pull/124) ([collinmcneese](https://github.com/collinmcneese)) <!-- 1.11.3 -->
-- Upgrade to GitHub-native Dependabot [#123](https://github.com/chef/vscode-chef/pull/123) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot])) <!-- 1.11.2 -->
-- Bump @types/node from 14.14.43 to 15.0.1 [#122](https://github.com/chef/vscode-chef/pull/122) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot])) <!-- 1.11.1 -->
 <!-- release_rollup -->
 
 <!-- latest_stable_release -->
+## [v1.12.0](https://github.com/chef/vscode-chef/tree/v1.12.0) (2021-05-26)
+
+#### Merged Pull Requests
+- Bump @types/node from 14.14.43 to 15.0.1 [#122](https://github.com/chef/vscode-chef/pull/122) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- Upgrade to GitHub-native Dependabot [#123](https://github.com/chef/vscode-chef/pull/123) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- syntax fixes for yml resource snippets [#124](https://github.com/chef/vscode-chef/pull/124) ([collinmcneese](https://github.com/collinmcneese))
+- adds resource snippets for inspec_waiver_file_entry [#127](https://github.com/chef/vscode-chef/pull/127) ([collinmcneese](https://github.com/collinmcneese))
+- Remove the build gem expeditor config [#128](https://github.com/chef/vscode-chef/pull/128) ([tas50](https://github.com/tas50))
+<!-- latest_stable_release -->
+
 ## [v1.11.0](https://github.com/chef/vscode-chef/tree/v1.11.0) (2021-04-26)
 
 - Adds Chef Recipe YAML support with language and snippets [#120](https://github.com/chef/vscode-chef/pull/120) ([collinmcneese](https://github.com/collinmcneese)) <!-- 1.11.0 -->
@@ -27,7 +25,6 @@
 - Bump typescript from 4.1.5 to 4.2.3 [#116](https://github.com/chef/vscode-chef/pull/116) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot])) <!-- 1.10.3 -->
 - updates snippets and adds windows resources [#114](https://github.com/chef/vscode-chef/pull/114) ([collinmcneese](https://github.com/collinmcneese)) <!-- 1.10.2 -->
 - Bump typescript from 4.1.3 to 4.1.5 [#113](https://github.com/chef/vscode-chef/pull/113) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot])) <!-- 1.10.1 -->
-<!-- latest_stable_release -->
 
 ## [v1.10.0](https://github.com/chef/vscode-chef/tree/v1.10.0) (2021-01-13)
 
