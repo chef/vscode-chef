@@ -1,16 +1,17 @@
 # vscode-chef Change Log
 
-<!-- latest_release 1.11.4 -->
-## [v1.11.4](https://github.com/chef/vscode-chef/tree/v1.11.4) (2021-05-26)
+<!-- latest_release 1.12.0 -->
+## [v1.12.0](https://github.com/chef/vscode-chef/tree/v1.12.0) (2021-05-26)
 
 #### Merged Pull Requests
-- adds resource snippets for inspec_waiver_file_entry [#127](https://github.com/chef/vscode-chef/pull/127) ([collinmcneese](https://github.com/collinmcneese))
+- Remove the build gem expeditor config [#128](https://github.com/chef/vscode-chef/pull/128) ([tas50](https://github.com/tas50))
 <!-- latest_release -->
 
 <!-- release_rollup -->
 ### Changes not yet released
 
 #### Merged Pull Requests
+- Remove the build gem expeditor config [#128](https://github.com/chef/vscode-chef/pull/128) ([tas50](https://github.com/tas50)) <!-- 1.12.0 -->
 - adds resource snippets for inspec_waiver_file_entry [#127](https://github.com/chef/vscode-chef/pull/127) ([collinmcneese](https://github.com/collinmcneese)) <!-- 1.11.4 -->
 - syntax fixes for yml resource snippets [#124](https://github.com/chef/vscode-chef/pull/124) ([collinmcneese](https://github.com/collinmcneese)) <!-- 1.11.3 -->
 - Upgrade to GitHub-native Dependabot [#123](https://github.com/chef/vscode-chef/pull/123) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot])) <!-- 1.11.2 -->
