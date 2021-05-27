@@ -1,9 +1,17 @@
 # vscode-chef Change Log
 
-<!-- latest_release -->
+<!-- latest_release 1.12.1 -->
+## [v1.12.1](https://github.com/chef/vscode-chef/tree/v1.12.1) (2021-05-27)
+
+#### Merged Pull Requests
+- Bump typescript from 4.2.4 to 4.3.2 [#129](https://github.com/chef/vscode-chef/pull/129) ([dependabot[bot]](https://github.com/dependabot[bot]))
 <!-- latest_release -->
 
 <!-- release_rollup -->
+### Changes not yet released
+
+#### Merged Pull Requests
+- Bump typescript from 4.2.4 to 4.3.2 [#129](https://github.com/chef/vscode-chef/pull/129) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 1.12.1 -->
 <!-- release_rollup -->
 
 <!-- latest_stable_release -->
