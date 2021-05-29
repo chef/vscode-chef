@@ -73,6 +73,17 @@
         ]
       },
       {
+        "id": "chef_inspec",
+        "aliases": [
+          "Chef Inspec",
+          "chef inspec"
+        ],
+        "filenamePatterns": [
+          "**/test/integration/**/*.rb",
+          "**/controls/*.rb"
+        ]
+      },
+      {
         "id": "chef_recipe_yaml",
         "aliases": [
           "Chef Recipe YAML",
@@ -91,6 +102,11 @@
         "path": "./syntaxes/chef.plist"
       },
       {
+        "language": "chef_inspec",
+        "scopeName": "source.ruby.chef_inspec",
+        "path": "./syntaxes/chef_inspec.cson.json"
+      },
+      {
         "language": "chef_metadata",
         "scopeName": "source.chef.metadata",
         "path": "./syntaxes/chef_metadata.cson.json"
@@ -105,6 +121,14 @@
       {
         "language": "ruby",
         "path": "./snippets/chef_resources.json"
+      },
+      {
+        "language": "chef_inspec",
+        "path": "./snippets/chef_inspec_resources.json"
+      },
+      {
+        "language": "chef_inspec",
+        "path": "./snippets/chef_inspec_common.json"
       },
       {
         "language": "chef_recipe_yaml",

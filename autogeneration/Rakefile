@@ -84,3 +84,47 @@ task :generate_snippets do
 end
 
 task default: :generate_snippets
+
+desc 'Generate Inspec snippets from published resource documentation'
+task :generate_inspec_snippets do
+  require 'json'
+
+  # The Inspec/Inspec repository is used to generate snippets from docs
+  if Dir.exist?('../inspec')
+    # If the inspec directory exists, cd to it and pull to make sure it is up to date
+    system('cd ../inspec ; git pull')
+  else
+    system('cd .. ; git clone https://github.com/inspec/inspec')
+  end
+
+  resources_content = {}
+
+  Dir.glob('../inspec/docs-chef-io/content/inspec/resources/*.md').sort.each do |doc_file|
+    doc_file_content = File.read(doc_file)
+
+    doc_file_name = doc_file.split('/').last.split('.').first
+
+    # Skip any docs that start with "_" (such as _index)
+    next if doc_file_name =~ /^\_.*/
+
+    resource_description = doc_file_content.match(/Use the.*/)
+
+    # Grab the first syntax example from the Markdown file
+    resource_example = doc_file_content.match(/(describe.*[\s\S]*?end)$/)[0].gsub("\n      ", "\n\t").gsub("\n    end", "\nend")
+
+    # Build the snippet for this resource
+    resource_output_content = {
+      'prefix' => doc_file_name,
+      'body' => resource_example,
+      'description' => resource_description,
+      'scope' => 'source.ruby.chef_inspec',
+    }
+
+    # Save the parsed resource to the resources_content hash to be written later
+    resources_content[doc_file_name] = resource_output_content
+  end
+
+  file_content = JSON.pretty_generate(resources_content)
+
+  File.write('../snippets/chef_inspec_resources.json', file_content)
+end

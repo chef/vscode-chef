@@ -1,0 +1,2936 @@
+{
+  "aide_conf": {
+    "prefix": "aide_conf",
+    "body": "describe aide_conf('path') do\n\tits('selection_lines') { should include '/sbin' }\nend",
+    "description": "Use the `aide_conf` Chef InSpec audit resource to test the rules established for the file integrity tool AIDE. Controlled by the aide.conf file typically at /etc/aide.conf.",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "apache": {
+    "prefix": "apache",
+    "body": "describe apache do\n\tits('setting_name') { should cmp 'value' }\nend",
+    "description": "Use the `apache` Chef InSpec audit resource to test the state of the Apache server on Linux/Unix systems.",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "apache_conf": {
+    "prefix": "apache_conf",
+    "body": "describe apache_conf('path') do\n\tits('setting_name') { should eq 'value' }\nend",
+    "description": "Use the `apache_conf` Chef InSpec audit resource to test the configuration settings for Apache. This file is typically located under `/etc/apache2` on the Debian and Ubuntu platforms and under `/etc/httpd` on the Fedora, CentOS, RedHat Enterprise Linux, and ArchLinux platforms. The configuration settings may vary significantly from platform to platform.",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "apt": {
+    "prefix": "apt",
+    "body": "describe apt('path') do\n\tit { should exist }\n\tit { should be_enabled }\nend",
+    "description": "Use the `apt` Chef InSpec audit resource to verify Apt repositories on the Debian and Ubuntu platforms, and also PPA repositories on the Ubuntu platform.",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "audit_policy": {
+    "prefix": "audit_policy",
+    "body": "describe audit_policy do\n\tits('parameter') { should eq 'value' }\nend",
+    "description": "Use the `audit_policy` Chef InSpec audit resource to test auditing policies on the Windows platform. An auditing policy is a category of security-related events to be audited. Auditing is disabled by default and may be enabled for categories like account management, logon events, policy changes, process tracking, privilege use, system events, or object access. For each enabled auditing category property, the auditing level may be set to `No Auditing`, `Not Specified`, `Success`, `Success and Failure`, or `Failure`.",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "auditd": {
+    "prefix": "auditd",
+    "body": "describe auditd do\n\tits('lines') { should include %r(-w /etc/ssh/sshd_config) }\nend",
+    "description": "Use the `auditd` Chef InSpec audit resource to test the rules for logging that exist on the system. The audit.rules file is typically located under /etc/audit/ and contains the list of rules that define what is captured in log files. These rules are output using the auditctl -l command. This resource supports versions of `audit` >= 2.3.",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "auditd_conf": {
+    "prefix": "auditd_conf",
+    "body": "describe auditd_conf('path') do\n\tits('keyword') { should cmp 'value' }\nend",
+    "description": "Use the `auditd_conf` Chef InSpec audit resource to test the configuration settings for the audit daemon. This file is typically located under `/etc/audit/auditd.conf'` on Unix and Linux platforms.",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "aws_alb": {
+    "prefix": "aws_alb",
+    "body": "describe aws_alb('arn:aws:elasticloadbalancing') do\n\tit { should exist }\nend",
+    "description": "Use the `aws_alb` InSpec audit resource to test properties of a single AWS Application Load Balancer (ALB).",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "aws_albs": {
+    "prefix": "aws_albs",
+    "body": "describe aws_albs do\n\tits('load_balancer_arns') { should include 'arn:aws:elasticloadbalancing' }\nend",
+    "description": "Use the `aws_albs` InSpec audit resource to test the configuration of a collection of Application Load Balancers.",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "aws_auto_scaling_group": {
+    "prefix": "aws_auto_scaling_group",
+    "body": "describe aws_auto_scaling_group('MyAutoScalingGroup') do\n\tit              { should exist }\n\tits('min_size') { should be 1}\n\tits('max_size') { should be 4}\nend",
+    "description": "Use the `aws_auto_scaling_group` InSpec audit resource to test properties of a single AWS Auto Scaling group.",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "aws_auto_scaling_groups": {
+    "prefix": "aws_auto_scaling_groups",
+    "body": "describe aws_auto_scaling_groups do\n\tits('names') { should include 'group-name' }\nend",
+    "description": "Use the `aws_auto_scaling_groups` InSpec audit resource to test the properties of a collection of AWS Auto Scaling Groups.",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "aws_cloudformation_stack": {
+    "prefix": "aws_cloudformation_stack",
+    "body": "describe aws_cloudformation_stack('stack-name') do\n\tit { should exist }\nend",
+    "description": "Use the `aws_cloudformation_stack` InSpec audit resource to test properties of a single AWS Cloud Formation Stack.",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "aws_cloudtrail_trail": {
+    "prefix": "aws_cloudtrail_trail",
+    "body": "describe aws_cloudtrail_trail('trail-name') do\n\tit { should exist }\nend",
+    "description": "Use the `aws_cloudtrail_trail` InSpec audit resource to test properties of a single AWS CloudTrail.",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "aws_cloudtrail_trails": {
+    "prefix": "aws_cloudtrail_trails",
+    "body": "describe aws_cloudtrail_trails do\n\tit { should exist }\nend",
+    "description": "Use the `aws_cloudtrail_trails` InSpec audit resource to test properties of a collection of AWS CloudTrail Trails.",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "aws_cloudwatch_alarm": {
+    "prefix": "aws_cloudwatch_alarm",
+    "body": "describe aws_cloudwatch_alarm(metric_name: 'my-metric-name', metric_namespace: 'my-metric-namespace') do\n\tits('alarm_actions') { should_not be_empty }\nend",
+    "description": "Use the `aws_cloudwatch_alarm` InSpec audit resource to test properties of a single CloudWatch Alarm.",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "aws_cloudwatch_log_group": {
+    "prefix": "aws_cloudwatch_log_group",
+    "body": "describe aws_cloudwatch_log_group('my_log_group') do\n\tit { should exist }\nend",
+    "description": "Use the `aws_cloudwatch_log_group` InSpec audit resource to test properties of a single AWS CloudWatch Log Group.",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "aws_cloudwatch_log_metric_filter": {
+    "prefix": "aws_cloudwatch_log_metric_filter",
+    "body": "describe aws_cloudwatch_log_metric_filter(filter_name: 'my-filter', log_group_name: 'my-log-group') do\n\tit { should exist }\nend",
+    "description": "Use the `aws_cloudwatch_log_metric_filter` InSpec audit resource to search for and test properties of individual AWS Cloudwatch Log Metric Filters.",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "aws_config_delivery_channel": {
+    "prefix": "aws_config_delivery_channel",
+    "body": "describe aws_config_delivery_channel('my_channel') do\n\tit { should exist }\nend",
+    "description": "Use the `aws_config_delivery_channel` InSpec audit resource to examine how the AWS Config service delivers those change notifications.",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "aws_config_recorder": {
+    "prefix": "aws_config_recorder",
+    "body": "describe aws_config_recorder('my-recorder') do\n\tit { should exist }\nend",
+    "description": "Use the `aws_config_recorder` InSpec audit resource to test properties of your AWS Config Service.",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "aws_db_subnet_group": {
+    "prefix": "aws_db_subnet_group",
+    "body": "describe aws_db_subnet_group(db_subnet_group_name: 'subnet-group-name-12345') do\n\tit { should exist }\nend",
+    "description": "Use the `aws_db_subnet_group` InSpec audit resource to test properties of a db subnet group.",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "aws_db_subnet_groups": {
+    "prefix": "aws_db_subnet_groups",
+    "body": "describe aws_db_subnet_groups do\n\tits('db_subnet_group_names.count') { should cmp 3 }\nend",
+    "description": "Use the `aws_db_subnet_groups` InSpec audit resource to test properties of a collection of AWS RDS subnet groups.",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "aws_dhcp_options": {
+    "prefix": "aws_dhcp_options",
+    "body": "describe aws_dhcp_options('dopt-0123456789abcdefg') do\n\tit { should exist }\nend",
+    "description": "Use the `aws_dhcp_options` InSpec audit resource to test properties of a single AWS DHCP Options.",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "aws_dynamodb_table": {
+    "prefix": "aws_dynamodb_table",
+    "body": "describe aws_dynamodb_table(table_name: 'table-name') do\n\tit { should exist }\nend",
+    "description": "Use the `aws_dynamodb_table` InSpec audit resource to test properties of a single DynamoDb Table.",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "aws_ebs_volume": {
+    "prefix": "aws_ebs_volume",
+    "body": "describe aws_ebs_volume('vol-01a2349e94458a507') do\n\tit { should exist }\nend",
+    "description": "Use the `aws_ebs_volume` InSpec audit resource to test properties of a single AWS EBS volume.",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "aws_ebs_volumes": {
+    "prefix": "aws_ebs_volumes",
+    "body": "describe aws_ebs_volumes do\n\tits('volume_ids.count') { should cmp 3 }\nend",
+    "description": "Use the `aws_ebs_volumes` InSpec audit resource to test properties of a collection of AWS EBS volumes.",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "aws_ec2_instance": {
+    "prefix": "aws_ec2_instance",
+    "body": "describe aws_ec2_instance('i-01a2349e94458a507') do\n\tit { should exist }\nend",
+    "description": "Use the `aws_ec2_instance` InSpec audit resource to test properties of a single AWS EC2 instance.",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "aws_ec2_instances": {
+    "prefix": "aws_ec2_instances",
+    "body": "describe aws_ec2_instances\n\tit { should exist }\nend",
+    "description": "Use the `aws_ec2_instances` InSpec audit resource to test properties of some or all AWS EC2 instances. To audit a single EC2 instance, use `aws_ec2_instance` (singular).",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "aws_ecr": {
+    "prefix": "aws_ecr",
+    "body": "describe aws_ecr(repository_name: aws_ecr_name) do\n\t  it                       { should exist }\n\t  its ('repository_name')  { should eq aws_ecr_name }\n\tend",
+    "description": "Use the `aws_ecr` InSpec audit resource to test properties of a single AWS Elastic Container Registry.",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "aws_ecr_image": {
+    "prefix": "aws_ecr_image",
+    "body": "describe aws_ecr_image(repository_name: 'my-repo', image_tag: 'latest') do\n\tit { should exist }\nend",
+    "description": "Use the `aws_ecr_image` InSpec audit resource to test the properties of a single image in an AWS Elastic Container Registry (ECR) repository.",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "aws_ecr_images": {
+    "prefix": "aws_ecr_images",
+    "body": "describe aws_ecr_images(repository_name: 'my-repo') do\n\tit { should exist }\nend",
+    "description": "Use the `aws_ecr_images` InSpec audit resource to test the properties of all images in an AWS Elastic Container Registry (ECR) repository.",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "aws_ecr_repositories": {
+    "prefix": "aws_ecr_repositories",
+    "body": "describe aws_ecr_repositories do\n\tit { should exist }\nend",
+    "description": "Use the `aws_ecr_repositories` InSpec audit resource to test the properties of all repositories in an AWS Elastic Container Registry (ECR).",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "aws_ecr_repository": {
+    "prefix": "aws_ecr_repository",
+    "body": "describe aws_ecr_repository(repository_name: 'my-repo') do\n\tit { should exist }\nend",
+    "description": "Use the `aws_ecr_repository` InSpec audit resource to test the properties of a single AWS Elastic Container Registry (ECR) repository.",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "aws_ecs_cluster": {
+    "prefix": "aws_ecs_cluster",
+    "body": "describe aws_ecs_cluser(cluster_name: 'cluster-8') do\n\tit             { should exist }\nend",
+    "description": "Use the `aws_ecs_cluster` InSpec audit resource to test properties of a single AWS ECS Cluster.",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "aws_ecs_clusters": {
+    "prefix": "aws_ecs_clusters",
+    "body": "describe aws_ecs_clusters do\n\tits('cluster_names') { should include 'cluster-root' }\nend",
+    "description": "Use the `aws_ecs_clusters` InSpec audit resource to test properties of some or all AWS ECS Clusters.",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "aws_efs_file_system": {
+    "prefix": "aws_efs_file_system",
+    "body": "describe aws_efs_file_system(file_system_id: 'fs-12345678') do\n\tit                         { should be_encrypted }\n\tits('size_in_bytes.value') { should cmp 6144 }\nend",
+    "description": "Use the `aws_efs_file_system` InSpec audit resource to test the properties of a single AWS EFS file system.",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "aws_efs_file_systems": {
+    "prefix": "aws_efs_file_systems",
+    "body": "describe aws_efs_file_systems\n\tit { should exist }\nend",
+    "description": "Use the `aws_efs_file_systems` InSpec audit resource to test the properties of",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "aws_eks_cluster": {
+    "prefix": "aws_eks_cluster",
+    "body": "describe aws_eks_cluster('my-eks') do\n\tit { should exist }\nend",
+    "description": "Use the `aws_eks_cluster` InSpec audit resource to test properties of a single AWS Elastic Container Service for Kubernetes.",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "aws_eks_clusters": {
+    "prefix": "aws_eks_clusters",
+    "body": "describe aws_eks_clusters do\n\tits('names.count') { should cmp 10 }\nend",
+    "description": "Use the `aws_eks_clusters` resource to test the configuration of a collection of AWS Elastic Container Service for Kubernetes.",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "aws_elasticache_cluster": {
+    "prefix": "aws_elasticache_cluster",
+    "body": "describe aws_elasticache_cluster(cache_cluster_id: 'my-cluster-123') do\n\tit { should exist }\nend",
+    "description": "Use the `aws_elasticache_cluster` InSpec audit resource to test the properties of a single AWS ElastiCache cluster.",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "aws_elasticache_cluster_node": {
+    "prefix": "aws_elasticache_cluster_node",
+    "body": "describe aws_elasticache_cluster_node(cache_cluster_id: 'my-cluster-123', node_id: '0001') do\n\tit { should exist }\nend",
+    "description": "Use the `aws_elasticache_cluster_node` InSpec audit resource to test the properties of a single AWS ElastiCache cluster node.",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "aws_elasticache_clusters": {
+    "prefix": "aws_elasticache_clusters",
+    "body": "describe aws_elasticache_clusters\n\tit { should exist }\nend",
+    "description": "Use the `aws_elasticache_clusters` InSpec audit resource to test the properties",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "aws_elb": {
+    "prefix": "aws_elb",
+    "body": "describe aws_elb('my-elb') do\n\tit { should exist }\nend",
+    "description": "Use the `aws_elb` InSpec audit resource to test properties of a single AWS Elastic Load Balancer (ELB).",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "aws_elbs": {
+    "prefix": "aws_elbs",
+    "body": "describe aws_elbs do\n\tits('load_balancer_names') { should include 'elb-name' }\nend",
+    "description": "Use the `aws_elbs` InSpec audit resource to test the configuration of a collection",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "aws_flow_log": {
+    "prefix": "aws_flow_log",
+    "body": "describe aws_flow_log(flow_log_id: 'fl-9c718cf5') do\n\tit { should exist }\nend",
+    "description": "Use the `aws_flow_log` InSpec audit resource to test properties of a single Flow Log.",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "aws_hosted_zone": {
+    "prefix": "aws_hosted_zone",
+    "body": "describe aws_hosted_zone('zone-name') do\n  it { should exist }\n  its ('name_servers.count') { should eq 4 }\n  its ('private_zone') { should be false }\n  its ('record_names') { should include 'sid-james.carry-on.films.com' }\nend",
+    "description": "Use the `aws_hosted_zone` resource to test a specific hosted zone configuration.",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "aws_hosted_zones": {
+    "prefix": "aws_hosted_zones",
+    "body": "describe aws_hosted_zones do\n  its('names') { should include (\"carry-on.films.com\") }\nend",
+    "description": "Use the `aws_hosted_zones` resource to test the hosted zones configuration.",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "aws_iam_access_key": {
+    "prefix": "aws_iam_access_key",
+    "body": "describe aws_iam_access_key(access_key_id: 'AKIA1111111111111111') do\n\tit { should exist }\nend",
+    "description": "Use the `aws_iam_access_key` InSpec audit resource to test properties of a single AWS IAM Access Key.",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "aws_iam_access_keys": {
+    "prefix": "aws_iam_access_keys",
+    "body": "describe aws_iam_access_keys do\n\t  it                    { should exist }\n\t  its('access_key_ids') { should include 'AKIA1111111111111111' }\n\tend",
+    "description": "Use the `aws_iam_access_keys` InSpec audit resource to test properties of some or all AWS IAM Access Keys.",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "aws_iam_account_alias": {
+    "prefix": "aws_iam_account_alias",
+    "body": "describe aws_iam_account_alias do\n\tit { should exist }\nend",
+    "description": "Use the `aws_iam_account_alias` InSpec audit resource to test properties of the AWS IAM account alias.",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "aws_iam_group": {
+    "prefix": "aws_iam_group",
+    "body": "describe aws_iam_group('mygroup') do\n\tit { should exist }\nend",
+    "description": "Use the `aws_iam_group` InSpec audit resource to test properties of a single IAM group.",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "aws_iam_groups": {
+    "prefix": "aws_iam_groups",
+    "body": "describe aws_iam_groups('mygroup') do\n\tit { should exist }\nend",
+    "description": "Use the `aws_iam_groups` InSpec audit resource to test properties of a collection of IAM groups.",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "aws_iam_inline_policy": {
+    "prefix": "aws_iam_inline_policy",
+    "body": "describe aws_iam_inline_policy(role_name: 'role-x', policy_name: 'policy-1') do\n\tit { should exist }\nend",
+    "description": "Use the `aws_iam_inline_policy` InSpec audit resource to test properties of a single inline AWS IAM Policy embedded with IAM User, IAM Group or IAM Role. For managed policies, use the `aws_iam_policy` resource.",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "aws_iam_password_policy": {
+    "prefix": "aws_iam_password_policy",
+    "body": "describe aws_iam_password_policy do\n\tit { should exist }\nend",
+    "description": "Use the `aws_iam_password_policy` InSpec audit resource to test properties of an AWS IAM Password Policy.",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "aws_iam_policies": {
+    "prefix": "aws_iam_policies",
+    "body": "describe aws_iam_policies do\n\tits('policy_names') { should include('test-policy-1') }\nend",
+    "description": "Use the `aws_iam_policies` InSpec audit resource to test properties of a collection of AWS IAM Policies.",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "aws_iam_policy": {
+    "prefix": "aws_iam_policy",
+    "body": "describe aws_iam_policy('AWSSupportAccess') do\n\tit { should exist }\nend",
+    "description": "Use the `aws_iam_policy` InSpec audit resource to test properties of a single managed AWS IAM Policy.",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "aws_iam_role": {
+    "prefix": "aws_iam_role",
+    "body": "describe aws_iam_role(role_name: 'my-role') do\n\t  it { should exist }\nend",
+    "description": "Use the `aws_iam_role` InSpec audit resource to test properties of an AWS IAM Role.",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "aws_iam_roles": {
+    "prefix": "aws_iam_roles",
+    "body": "describe aws_iam_roles do\n\tit { should exist }\nend",
+    "description": "Use the `aws_iam_roles` InSpec audit resource to test properties of a collection of AWS IAM Roles.",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "aws_iam_root_user": {
+    "prefix": "aws_iam_root_user",
+    "body": "describe aws_iam_root_user do\n\t  it { should exist }\nend",
+    "description": "Use the `aws_iam_root_user` InSpec audit resource to test properties of an AWS IAM Root User.",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "aws_iam_saml_provider": {
+    "prefix": "aws_iam_saml_provider",
+    "body": "describe aws_iam_saml_provider('arn:aws:iam::123456789012:saml-provider/FANCY') do\n\t  it { should exist }\nend",
+    "description": "Use the `aws_iam_saml_provider` InSpec audit resource to test properties of an AWS IAM SAML Provider.",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "aws_iam_saml_providers": {
+    "prefix": "aws_iam_saml_providers",
+    "body": "describe aws_iam_saml_providers do\n\tit { should exist }\nend",
+    "description": "Use the `aws_iam_saml_providers` InSpec audit resource to test properties of some or all AWS IAM SAML Providers.",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "aws_iam_user": {
+    "prefix": "aws_iam_user",
+    "body": "describe aws_iam_user(user_name: 'psmith') do\n\tit { should exist }\nend",
+    "description": "Use the `aws_iam_user` InSpec audit resource to test properties of a single AWS IAM User.",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "aws_iam_users": {
+    "prefix": "aws_iam_users",
+    "body": "describe aws_iam_users do\n\tits('usernames') { should include 'payroll-admin' }\nend",
+    "description": "Use the `aws_iam_users` InSpec audit resource to test properties of some or all AWS IAM Users.",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "aws_internet_gateway": {
+    "prefix": "aws_internet_gateway",
+    "body": "describe aws_internet_gateway(id: 'igw-abc0123456789deff') do\n\tit { should exist }\nend",
+    "description": "Use the `aws_internet_gateway` InSpec audit resource to test the properties of a single AWS internet gateway.",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "aws_internet_gateways": {
+    "prefix": "aws_internet_gateways",
+    "body": "describe aws_internet_gateways do\n\tit { should exist }\nend",
+    "description": "Use the `aws_internet_gateways` InSpec audit resource to test the properties of all AWS internet gateways owned by the AWS account.",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "aws_kms_key": {
+    "prefix": "aws_kms_key",
+    "body": "describe aws_kms_key('arn:aws:kms:us-east-1::key/4321dcba-21io-23de-85he-ab0987654321') do\n\tit { should exist }\nend",
+    "description": "Use the `aws_kms_key` InSpec audit resource to test properties of a single AWS KMS Key.",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "aws_kms_keys": {
+    "prefix": "aws_kms_keys",
+    "body": "describe aws_kms_keys do\n\tits('entries.count') { should cmp 10 }\nend",
+    "description": "Use the `aws_kms_keys` InSpec audit resource to test properties of some or all AWS KMS Keys.",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "aws_lambda": {
+    "prefix": "aws_lambda",
+    "body": "describe aws_lambda do\n  it { should exist}\n  its ('handler') { should eq 'main.on_event'}\n  its ('version') { should eq '$LATEST' }\n  its ('runtime') { should eq 'python3.7' }\nend",
+    "description": "Use the `aws_lambda` resource to test a specific lambda.",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "aws_lambdas": {
+    "prefix": "aws_lambdas",
+    "body": "describe aws_lambdas do\n  its('count') { should eq 20 }\nend",
+    "description": "Use the `aws_lambdas` resource to test the collection of lambdas deployed into an account.",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "aws_launch_configuration": {
+    "prefix": "aws_launch_configuration",
+    "body": "describe aws_launch_configuration('my-config') do\n\tit              { should exist }\n\tits('key_name') { should be 'my-key-name' }\nend",
+    "description": "Use the `aws_launch_configuration` InSpec audit resource to test properties of a",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "aws_nat_gateway": {
+    "prefix": "aws_nat_gateway",
+    "body": "describe aws_nat_gateway(id: 'nat-abc0123456789deff') do\n\tit { should exist }\nend",
+    "description": "Use the `aws_nat_gateway` InSpec audit resource to test the properties of a single AWS NAT gateway.",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "aws_nat_gateways": {
+    "prefix": "aws_nat_gateways",
+    "body": "describe aws_nat_gateways do\n\tit { should exist }\nend",
+    "description": "Use the `aws_nat_gateways` InSpec audit resource to test the properties of all",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "aws_organizations_member": {
+    "prefix": "aws_organizations_member",
+    "body": "describe aws_organizations_member do\n\t  it { should exist }\nend",
+    "description": "Use the `aws_organizations_member` InSpec audit resource to test the current AWS Account being used within an organization.",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "aws_rds_cluster": {
+    "prefix": "aws_rds_cluster",
+    "body": "describe aws_rds_cluster('test-cluster-id') do\n\tit { should exist }\nend",
+    "description": "Use the `aws_rds_cluster` InSpec audit resource to test detailed properties of an individual RDS cluster.",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "aws_rds_clusters": {
+    "prefix": "aws_rds_clusters",
+    "body": "describe aws_rds_clusters do\n\tits('db_cluster_identifiers.count') { should cmp 3 }\nend",
+    "description": "Use the `aws_rds_clusters` InSpec audit resource to test properties of a collection of AWS RDS clusters.",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "aws_rds_instance": {
+    "prefix": "aws_rds_instance",
+    "body": "describe aws_rds_instance('test-instance-id') do\n\tit { should exist }\nend",
+    "description": "Use the `aws_rds_instance` InSpec audit resource to test detailed properties of an individual RDS instance.",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "aws_rds_instances": {
+    "prefix": "aws_rds_instances",
+    "body": "describe aws_rds_instances do\n\tits('db_instance_identifiers.count') { should cmp 3 }\nend",
+    "description": "Use the `aws_rds_instances` InSpec audit resource to test properties of a collection of AWS RDS instances.",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "aws_region": {
+    "prefix": "aws_region",
+    "body": "describe aws_region('eu-west-2') do\n\tit { should exist }\nend",
+    "description": "Use the `aws_region` InSpec audit resource to test properties of a single AWS region.",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "aws_regions": {
+    "prefix": "aws_regions",
+    "body": "describe aws_regions.where { region_name: 'us-not-there-1' } do\n\tit { should_not exist }\nend",
+    "description": "Use the `aws_regions` InSpec audit resource to test properties of some or all AWS regions in bulk.",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "aws_route_table": {
+    "prefix": "aws_route_table",
+    "body": "describe aws_route_table('rtb-123abcde') do\n\tit { should exist }\nend",
+    "description": "Use the `aws_route_table` InSpec audit resource to test properties of a single Route Table. A route table contains a set of rules, called routes, that are used to determine where network traffic is directed.",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "aws_route_tables": {
+    "prefix": "aws_route_tables",
+    "body": "describe aws_route_tables do\n\tit { should exist }\nend",
+    "description": "Use the `aws_route_tables` InSpec audit resource to test properties of all or a group of Route Tables. A Route Table contains a set of rules, called routes, that are used to determine where network traffic is directed.",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "aws_s3_bucket": {
+    "prefix": "aws_s3_bucket",
+    "body": "describe aws_s3_bucket(bucket_name: 'test_bucket') do\n\tit { should exist }\n\tit { should_not be_public }\nend",
+    "description": "Use the `aws_s3_bucket` InSpec audit resource to test properties of a single AWS bucket.",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "aws_s3_bucket_object": {
+    "prefix": "aws_s3_bucket_object",
+    "body": "describe aws_s3_bucket_object(bucket_name: 'test_bucket', key: 'test_object_key') do\n\tit { should exist }\n\tit { should_not be_public }\nend",
+    "description": "Use the `aws_s3_bucket_object` InSpec audit resource to test properties of a single AWS bucket object.",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "aws_s3_buckets": {
+    "prefix": "aws_s3_buckets",
+    "body": "describe aws_s3_buckets do\n\tit { should exist }\nend",
+    "description": "Use the `aws_s3_buckets` InSpec audit resource to list all buckets in a single account.",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "aws_security_group": {
+    "prefix": "aws_security_group",
+    "body": "describe aws_security_group('sg-12345678') do\n\tit { should exist }\nend",
+    "description": "Use the `aws_security_group` InSpec audit resource to test detailed properties of an individual Security Group (SG).",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "aws_security_groups": {
+    "prefix": "aws_security_groups",
+    "body": "describe aws_security_groups do\n\tits('entries.count') { should be > 1 }\nend",
+    "description": "Use the `aws_security_groups` InSpec audit resource to test properties of some or all security groups.",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "aws_sns_subscription": {
+    "prefix": "aws_sns_subscription",
+    "body": "describe aws_sns_subscription('arn:aws:sns:us-east-1::test-topic-01:b214aff5-a2c7-438f-a753-8494493f2ff6') do\n\tit { should exist }\nend",
+    "description": "Use the `aws_sns_subscription` InSpec audit resource to test detailed properties of a AWS SNS Subscription.",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "aws_sns_topic": {
+    "prefix": "aws_sns_topic",
+    "body": "describe aws_sns_topic('arn:aws:sns:*::my-topic-name') do\n\tit { should exist }\nend",
+    "description": "Use the `aws_sns_topic` InSpec audit resource to test properties of a single AWS Simple Notification Service Topic. SNS topics are channels for related events. AWS resources place events in the SNS topic, while other AWS resources subscribe to receive notifications when new events occur.",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "aws_sns_topics": {
+    "prefix": "aws_sns_topics",
+    "body": "describe aws_sns_topics do\n\tits('topic_arns') { should include 'arn:aws:sns:us-east-1:333344445555:MyTopic' }\nend",
+    "description": "Use the `aws_sns_topics` InSpec audit resource to test all or a group of the SNS Topic ARNs in an account.",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "aws_sqs_queue": {
+    "prefix": "aws_sqs_queue",
+    "body": "describe aws_sqs_queue(queue_url: 'https://sqs.ap-southeast-2.amazonaws.com/1212121/MyQueue') do\n\tit { should exist }\nend",
+    "description": "Use the `aws_sqs_queue` InSpec audit resource to test properties of a single AWS Simple Queue Service queue.",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "aws_sqs_queues": {
+    "prefix": "aws_sqs_queues",
+    "body": "describe aws_sqs_queues() do\n\tit { should exist }\nend",
+    "description": "Use the `aws_sqs_queues` InSpec audit resource to test properties of some or all AWS Simple Queue Service queues.",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "aws_ssm_parameter": {
+    "prefix": "aws_ssm_parameter",
+    "body": "describe aws_ssm_parameter(name: 'ssm-parameter-name-1234') do\n\tit { should exist }\nend",
+    "description": "Use the `aws_ssm_parameter` InSpec audit resource to test properties of a ssm parameter.",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "aws_ssm_parameters": {
+    "prefix": "aws_ssm_parameters",
+    "body": "describe aws_ssm_parameters do\n\tits('names.count') { should cmp 3 }\nend",
+    "description": "Use the `aws_ssm_parameters` InSpec audit resource to test properties of a collection of AWS SSM parameters.",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "aws_sts_caller_identity": {
+    "prefix": "aws_sts_caller_identity",
+    "body": "describe aws_sts_caller_identity do\n\tit { should exist }\nend",
+    "description": "Use the `aws_sts_caller_identity` InSpec audit resource to test properties of AWS IAM identity whose credentials are used in the current InSpec scan.",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "aws_subnet": {
+    "prefix": "aws_subnet",
+    "body": "describe aws_subnet(subnet_id: 'subnet-1234567') do\n\tit { should exist }\nend",
+    "description": "Use the `aws_subnet` InSpec audit resource to test properties of a vpc subnet.",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "aws_subnets": {
+    "prefix": "aws_subnets",
+    "body": "describe aws_subnets.where(vpc_id: 'vpc-12345678') do\n\tits('subnet_ids') { should include 'subnet-12345678' }\n\tits('subnet_ids') { should include 'subnet-98765432' }\nend",
+    "description": "Use the `aws_subnets` InSpec audit resource to test properties of some or all subnets.",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "aws_transit_gateway": {
+    "prefix": "aws_transit_gateway",
+    "body": "describe aws_transit_gateway(transit_gateway_id: 'tgw-1234567') do\n\tit { should exist }\nend",
+    "description": "Use the `aws_transit_gateway` InSpec audit resource to test properties of a transit gateway.",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "aws_vpc": {
+    "prefix": "aws_vpc",
+    "body": "describe aws_vpc do\n\tit { should exist }\nend",
+    "description": "Use the `aws_vpc` InSpec audit resource to test properties of a single AWS Virtual Private Cloud (VPC).",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "aws_vpcs": {
+    "prefix": "aws_vpcs",
+    "body": "describe aws_vpcs do\n\tit { should exist }\nend",
+    "description": "Use the `aws_vpcs` InSpec audit resource to test properties of some or all AWS Virtual Private Clouds (VPCs).",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "azure_generic_resource": {
+    "prefix": "azure_generic_resource",
+    "body": "describe azure_generic_resource(group_name: 'MyResourceGroup', name: 'MyResource') do\n\tits('property') { should eq 'value' }\nend",
+    "description": "Use the `azure_generic_resource` Chef InSpec audit resource to test any valid Azure Resource. This is very useful if you need to test something that we do not yet have a specific Chef InSpec resource for.",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "azure_resource_group": {
+    "prefix": "azure_resource_group",
+    "body": "describe azure_resource_group(name: 'MyResourceGroup') do\n\tits('property') { should eq 'value' }\nend",
+    "description": "Use the `azure_resource_group_resource_count` Chef InSpec audit resource to check the number of Azure resources in a resource group.",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "azure_virtual_machine": {
+    "prefix": "azure_virtual_machine",
+    "body": "describe azure_virtual_machine(group_name: 'MyResourceGroup', name: 'MyVM') do\n\tits('property') { should eq 'value' }\nend",
+    "description": "Use the `azure_virtual_machine` Chef InSpec audit resource to ensure that a Virtual Machine has been provisioned correctly.",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "azure_virtual_machine_data_disk": {
+    "prefix": "azure_virtual_machine_data_disk",
+    "body": "describe azure_virtual_machine_data_disk(group_name: 'InSpec-Azure', name: 'MyVM') do\n\tits('property') { should eq 'value' }\nend",
+    "description": null,
+    "scope": "source.ruby.chef_inspec"
+  },
+  "azurerm_ad_user": {
+    "prefix": "azurerm_ad_user",
+    "body": "describe azurerm_ad_user(user_id: 'someUserId') do\n\tit { should exist }\nend",
+    "description": "Use the `azurerm_ad_user` InSpec audit resource to test properties of",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "azurerm_ad_users": {
+    "prefix": "azurerm_ad_users",
+    "body": "describe azurerm_ad_users do\n\t...\nend",
+    "description": "Use the `azurerm_ad_users` InSpec audit resource to test properties of",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "azurerm_aks_cluster": {
+    "prefix": "azurerm_aks_cluster",
+    "body": "describe azurerm_aks_cluster(resource_group: 'example', name: 'ClusterName') do\n\t...\nend",
+    "description": "Use the `azurerm_aks_cluster` InSpec audit resource to test properties of an Azure AKS Cluster.",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "azurerm_aks_clusters": {
+    "prefix": "azurerm_aks_clusters",
+    "body": "describe azurerm_aks_clusters(resource_group: 'ExampleGroup') do\n\t...\nend",
+    "description": "Use the `azurerm_aks_clusters` InSpec audit resource to enumerate AKS Clusters.",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "azurerm_cosmosdb_database_account": {
+    "prefix": "azurerm_cosmosdb_database_account",
+    "body": "describe azurerm_cosmosdb_database_account(resource_group: 'my-rg', cosmosdb_database_account 'my-cosmos-db') do\n\tit { should exist }\nend",
+    "description": "Use the `azurerm_cosmosdb_database_account` InSpec audit resource to test properties and configuration of",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "azurerm_event_hub_authorization_rule": {
+    "prefix": "azurerm_event_hub_authorization_rule",
+    "body": "describe azurerm_event_hub_authorization_rule(resource_group: 'my-rg', namespace_name 'my-event-hub-ns', event_hub_name: 'myeventhub', authorization_rule_name: 'my-auth-rule') do\n\tit { should exist }\nend",
+    "description": "Use the `azurerm_event_hub_authorization_rule` InSpec audit resource to test properties and configuration of",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "azurerm_event_hub_event_hub": {
+    "prefix": "azurerm_event_hub_event_hub",
+    "body": "describe azurerm_event_hub_event_hub(resource_group: 'my-rg', namespace_name 'my-event-hub-ns', event_hub_name 'myeventhub') do\n\tit { should exist }\nend",
+    "description": "Use the `azurerm_event_hub_event_hub` InSpec audit resource to test properties and configuration of",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "azurerm_event_hub_namespace": {
+    "prefix": "azurerm_event_hub_namespace",
+    "body": "describe azurerm_event_hub_namespace(resource_group: 'my-rg', namespace_name 'my-event-hub-ns') do\n\tit { should exist }\nend",
+    "description": "Use the `azurerm_event_hub_namespace` InSpec audit resource to test properties and configuration of",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "azurerm_iothub": {
+    "prefix": "azurerm_iothub",
+    "body": "describe azurerm_iothub(resource_group: 'my-rg', resource_name 'my-iot-hub') do\n\tit { should exist }\nend",
+    "description": "Use the `azurerm_iothub` InSpec audit resource to test properties and configuration of",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "azurerm_iothub_event_hub_consumer_group": {
+    "prefix": "azurerm_iothub_event_hub_consumer_group",
+    "body": "describe azurerm_iothub_event_hub_consumer_group(resource_group: 'my-rg', resource_name 'my-iot-hub', event_hub_endpoint: 'myeventhub', consumer_group: 'my-consumer-group') do\n\tit { should exist }\nend",
+    "description": "Use the `azurerm_iothub_event_hub_consumer_group` InSpec audit resource to test",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "azurerm_iothub_event_hub_consumer_groups": {
+    "prefix": "azurerm_iothub_event_hub_consumer_groups",
+    "body": "describe azurerm_iothub_event_hub_consumer_groups(resource_group: 'my-rg', resource_name 'my-iot-hub', event_hub_endpoint: 'myeventhub') do\n\tits('names') { should include \"my-consumer-group\"}\n\tits('types') { should include 'Microsoft.Devices/IotHubs/EventHubEndpoints/ConsumerGroups' }\nend",
+    "description": "Use the `azurerm_iothub_event_hub_consumer_groups` InSpec audit resource to test properties and configuration of",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "azurerm_key_vault": {
+    "prefix": "azurerm_key_vault",
+    "body": "describe azurerm_key_vault(resource_group: 'inspec-resource-group', vault_name: 'vault-101') do\n\tit            { should exist }\n\tits('name')   { should eq('vault-101') }\nend",
+    "description": "Use the `azurerm_key_vault` InSpec audit resource to test properties and configuration of",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "azurerm_key_vault_key": {
+    "prefix": "azurerm_key_vault_key",
+    "body": "describe azurerm_key_vault_key('vault-101', 'secret-key') do\n\tits('key.kid')            { should_not be_nil }\n\tits('attributes.enabled') { should eq true }\nend",
+    "description": "Use the `azurerm_key_vault_key` InSpec audit resource to test properties and configuration of",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "azurerm_key_vault_keys": {
+    "prefix": "azurerm_key_vault_keys",
+    "body": "describe azurerm_key_vault_keys('my-vault') do\n\t...\nend",
+    "description": "Use the `azurerm_key_vault_keys` InSpec audit resource to test properties and",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "azurerm_key_vault_secret": {
+    "prefix": "azurerm_key_vault_secret",
+    "body": "describe azurerm_key_vault_secret('vault-101', 'secret-101') do\n\t  it           { should exist }\n\t  its('value') { should_not be_nil }\nend",
+    "description": "Use the `azurerm_key_vault_secret` InSpec audit resource to test properties and configuration of",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "azurerm_key_vault_secrets": {
+    "prefix": "azurerm_key_vault_secrets",
+    "body": "describe azurerm_key_vault_secrets('my-vault') do\n\t...\nend",
+    "description": "Use the `azurerm_key_vault_secrets` InSpec audit resource to test properties and configuration of Azure Secrets within Vaults.",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "azurerm_key_vaults": {
+    "prefix": "azurerm_key_vaults",
+    "body": "describe azurerm_key_vaults(resource_group: 'my-rg') do\n\t...\nend",
+    "description": "Use the `azurerm_key_vaults` InSpec audit resource to test properties and configuration of Azure Key Vaults.",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "azurerm_load_balancer": {
+    "prefix": "azurerm_load_balancer",
+    "body": "describe azurerm_load_balancer(resource_group: 'inspec-resource-group-9', loadbalancer_name: 'example_lb') do\n\tit { should exist }\nend",
+    "description": "Use the `azurerm_load_balancer` InSpec audit resource to test properties and configuration of",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "azurerm_load_balancers": {
+    "prefix": "azurerm_load_balancers",
+    "body": "describe azurerm_load_balancer do\n\t...\nend",
+    "description": "Use the `azurerm_load_balancers` InSpec audit resource to test properties and configuration of Azure Load Balancers.",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "azurerm_locks": {
+    "prefix": "azurerm_locks",
+    "body": "describe azurerm_locks(resource_group: 'rg', resource_name: 'my-vm', resource_type: 'Microsoft.Compute/virtualMachines') do\n\t...\nend",
+    "description": "Use the `azurerm_locks` InSpec audit resource to test properties of",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "azurerm_management_group": {
+    "prefix": "azurerm_management_group",
+    "body": "describe azurerm_management_group(group_id: 'MyGroupId') do\n\t...\nend",
+    "description": "Use the `azurerm_management_group` InSpec audit resource to test properties related to a",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "azurerm_management_groups": {
+    "prefix": "azurerm_management_groups",
+    "body": "describe azurerm_management_groups do\n\t...\nend",
+    "description": "Use the `azurerm_management_groups` InSpec audit resource to test properties related to",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "azurerm_monitor_activity_log_alert": {
+    "prefix": "azurerm_monitor_activity_log_alert",
+    "body": "describe azurerm_monitor_activity_log_alert(resource_group: 'example', name: 'AlertName') do\n\t...\nend",
+    "description": "Use the `azurerm_monitor_activity_log_alert` InSpec audit resource to test properties",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "azurerm_monitor_activity_log_alerts": {
+    "prefix": "azurerm_monitor_activity_log_alerts",
+    "body": "describe azurerm_monitor_activity_log_alerts do\n\t...\nend",
+    "description": "Use the `azurerm_monitor_activity_log_alerts` InSpec audit resource to verify that an",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "azurerm_monitor_log_profile": {
+    "prefix": "azurerm_monitor_log_profile",
+    "body": "describe azurerm_monitor_log_profile(name: 'default') do\n\t...\nend",
+    "description": "Use the `azurerm_monitor_log_profile` InSpec audit resource to test properties",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "azurerm_monitor_log_profiles": {
+    "prefix": "azurerm_monitor_log_profiles",
+    "body": "describe azurerm_monitor_log_profiles do\n\t...\nend",
+    "description": "Use the `azurerm_monitor_log_profiles` InSpec audit resource to verify that a Log Profile",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "azurerm_mysql_database": {
+    "prefix": "azurerm_mysql_database",
+    "body": "describe azurerm_mysql_database(resource_group: 'inspec-rg', server_name: 'customer_server', database_name: 'order-db') do\n\tit { should exist }\nend",
+    "description": "Use the `azurerm_mysql_database` InSpec audit resource to test properties and configuration of",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "azurerm_mysql_databases": {
+    "prefix": "azurerm_mysql_databases",
+    "body": "describe azurerm_mysql_databases(resource_group: ..., server_name: ...) do\n\t...\nend",
+    "description": "Use the `azurerm_mysql_databases` InSpec audit resource to test properties and configuration of Azure MySQL Databases.",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "azurerm_mysql_server": {
+    "prefix": "azurerm_mysql_server",
+    "body": "describe azurerm_mysql_server(resource_group: 'inspec-resource-group-9', server_name: 'example_server') do\n\tit { should exist }\nend",
+    "description": "Use the `azurerm_mysql_server` InSpec audit resource to test properties and configuration of",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "azurerm_mysql_servers": {
+    "prefix": "azurerm_mysql_servers",
+    "body": "describe azurerm_mysql_servers do\n\t...\nend",
+    "description": "Use the `azurerm_mysql_servers` InSpec audit resource to test properties and configuration of multiple Azure MySQL Servers.",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "azurerm_network_interface": {
+    "prefix": "azurerm_network_interface",
+    "body": "describe azurerm_network_interface(resource_group: 'inspec-resource-group-9',name: 'example-nic-name') do\n\tit { should exist }\nend",
+    "description": "Use the `azurerm_network_interface` InSpec audit resource to test properties and configuration of Azure Network Interface.",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "azurerm_network_interfaces": {
+    "prefix": "azurerm_network_interfaces",
+    "body": "describe azurerm_network_interfaces do\n\t...\nend",
+    "description": "Use the `azurerm_network_interfaces` InSpec audit resource to test properties and configuration of Azure Network interfaces.",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "azurerm_network_security_group": {
+    "prefix": "azurerm_network_security_group",
+    "body": "describe azurerm_network_security_group(resource_group: 'example', name: 'GroupName') do\n\t...\nend",
+    "description": "Use the `azurerm_network_security_group` InSpec audit resource to test properties of an",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "azurerm_network_security_groups": {
+    "prefix": "azurerm_network_security_groups",
+    "body": "describe azurerm_network_security_groups(resource_group: 'ExampleGroup') do\n\t...\nend",
+    "description": "Use the `azurerm_network_security_groups` InSpec audit resource to enumerate Network",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "azurerm_network_watcher": {
+    "prefix": "azurerm_network_watcher",
+    "body": "describe azurerm_network_watcher(resource_group: 'example', name: 'WatcherName') do\n\t...\nend",
+    "description": "Use the `azurerm_network_watcher` InSpec audit resource to test properties of an Azure",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "azurerm_network_watchers": {
+    "prefix": "azurerm_network_watchers",
+    "body": "describe azurerm_network_watchers(resource_group: 'example_group') do\n\t...\nend",
+    "description": "Use the `azurerm_network_watchers` InSpec audit resource to verify that a Network Watcher",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "azurerm_postgresql_database": {
+    "prefix": "azurerm_postgresql_database",
+    "body": "describe azurerm_postgresql_database(resource_group: 'inspec-rg', server_name: 'customer_server', database_name: 'order-db') do\n\tit { should exist }\nend",
+    "description": "Use the `azurerm_postgresql_database` InSpec audit resource to test properties and configuration of",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "azurerm_postgresql_databases": {
+    "prefix": "azurerm_postgresql_databases",
+    "body": "describe azurerm_postgresql_databases(resource_group: ..., server_name: ...) do\n\t...\nend",
+    "description": "Use the `azurerm_postgresql_databases` InSpec audit resource to test properties and configuration of Azure PostgreSQL Databases.",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "azurerm_postgresql_server": {
+    "prefix": "azurerm_postgresql_server",
+    "body": "describe azurerm_postgresql_server(resource_group: 'inspec-resource-group-9', server_name: 'example_server') do\n\tit { should exist }\nend",
+    "description": "Use the `azurerm_postgresql_server` InSpec audit resource to test properties and configuration of",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "azurerm_postgresql_servers": {
+    "prefix": "azurerm_postgresql_servers",
+    "body": "describe azurerm_postgresql_servers do\n\t...\nend",
+    "description": "Use the `azurerm_postgresql_servers` InSpec audit resource to test properties and configuration of multiple Azure PostgreSQL Servers.",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "azurerm_resource_groups": {
+    "prefix": "azurerm_resource_groups",
+    "body": "describe azurerm_resource_groups do\n\t...\nend",
+    "description": "Use the `azurerm_resource_groups` InSpec audit resource to test properties of",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "azurerm_role_definition": {
+    "prefix": "azurerm_role_definition",
+    "body": "describe azurerm_role_definition(name: 'some-custom-role-name') do\n\t...\nend",
+    "description": "Use the `azurerm_role_definition` InSpec audit resource to test properties of",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "azurerm_role_definitions": {
+    "prefix": "azurerm_role_definitions",
+    "body": "describe azurerm_role_definitions do\n\t...\nend",
+    "description": "Use the `azurerm_role_definitions` InSpec audit resource to test properties of",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "azurerm_security_center_policies": {
+    "prefix": "azurerm_security_center_policies",
+    "body": "describe azurerm_security_center_policies do\n\t...\nend",
+    "description": "Use the `azurerm_security_center_policies` InSpec audit resource to test",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "azurerm_security_center_policy": {
+    "prefix": "azurerm_security_center_policy",
+    "body": "describe azurerm_security_center_policy(name: 'default') do\n\t...\nend",
+    "description": "Use the `azurerm_security_center_policy` InSpec audit resource to test properties",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "azurerm_sql_database": {
+    "prefix": "azurerm_sql_database",
+    "body": "describe azurerm_sql_database(resource_group: 'inspec-rg', server_name: 'customer_server', database_name: 'order-db') do\n\tit { should exist }\nend",
+    "description": "Use the `azurerm_sql_database` InSpec audit resource to test properties and configuration of",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "azurerm_sql_databases": {
+    "prefix": "azurerm_sql_databases",
+    "body": "describe azurerm_sql_databases(resource_group: ..., server_name: ...) do\n\t...\nend",
+    "description": "Use the `azurerm_sql_databases` InSpec audit resource to test properties and configuration of Azure SQL Databases.",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "azurerm_sql_server": {
+    "prefix": "azurerm_sql_server",
+    "body": "describe azurerm_sql_server(resource_group: 'inspec-resource-group-9', server_name: 'example_server') do\n\tit { should exist }\nend",
+    "description": "Use the `azurerm_sql_server` InSpec audit resource to test properties and configuration of",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "azurerm_sql_servers": {
+    "prefix": "azurerm_sql_servers",
+    "body": "describe azurerm_sql_servers do\n\t...\nend",
+    "description": "Use the `azurerm_sql_servers` InSpec audit resource to test properties and configuration of Azure SQL Servers.",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "azurerm_storage_account_blob_container": {
+    "prefix": "azurerm_storage_account_blob_container",
+    "body": "describe azurerm_storage_account_blob_container(resource_group: 'rg', storage_account_name: 'production',\n\t                                              blob_container_name: 'logs') do\n\t  ...\n\t  ...\nend",
+    "description": "Use the `azurerm_storage_account_blob_container` InSpec audit resource to test properties related to a",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "azurerm_storage_account_blob_containers": {
+    "prefix": "azurerm_storage_account_blob_containers",
+    "body": "describe azurerm_storage_account_blob_containers(resource_group: 'rg', storage_account_name: 'production') do\n\t  ...\nend",
+    "description": "Use the `azurerm_storage_account_blob_containers` InSpec audit resource to test properties and configuration of Blob Containers within an Azure Storage Account.",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "azurerm_subnet": {
+    "prefix": "azurerm_subnet",
+    "body": "describe azurerm_subnet(resource_group: 'MyResourceGroup', vnet: 'MyVnetName', name: 'MySubnetName') do\n\t...\nend",
+    "description": "Use the `azurerm_subnet` InSpec audit resource to test properties related to a",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "azurerm_subnets": {
+    "prefix": "azurerm_subnets",
+    "body": "describe azurerm_subnets(resource_group: 'MyResourceGroup', vnet: 'MyVnetName') do\n\t...\nend",
+    "description": "Use the `azurerm\\_subnets` InSpec audit resource to test properties related to",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "azurerm_subscription": {
+    "prefix": "azurerm_subscription",
+    "body": "describe azurerm_subscription do\n\t...\nend",
+    "description": "Use the `azurerm_subscription` InSpec audit resource to test properties related to the current subscription",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "azurerm_virtual_machine": {
+    "prefix": "azurerm_virtual_machine",
+    "body": "describe azurerm_virtual_machine(resource_group: 'MyResourceGroup', name: 'MyVmName') do\n\t...\nend",
+    "description": "Use the `azurerm_virtual_machine` InSpec audit resource to test properties related to a",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "azurerm_virtual_machine_disk": {
+    "prefix": "azurerm_virtual_machine_disk",
+    "body": "describe azurerm_virtual_machine_disk(resource_group: 'MyResourceGroup', name: 'MyDiskName') do\n\t...\nend",
+    "description": "Use the `azurerm_virtual_machine_disk` InSpec audit resource to test properties related to",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "azurerm_virtual_machine_disks": {
+    "prefix": "azurerm_virtual_machine_disks",
+    "body": "describe azurerm_virtual_machine_disks do\n\t...\nend",
+    "description": "Use the `azurerm_virtual_machine_disks` InSpec audit resource to test properties of",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "azurerm_virtual_machines": {
+    "prefix": "azurerm_virtual_machines",
+    "body": "describe azurerm_virtual_machines(resource_group: 'MyResourceGroup') do\n\t...\nend",
+    "description": "Use the `azurerm_virtual_machines` InSpec audit resource to test properties related to",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "azurerm_virtual_network": {
+    "prefix": "azurerm_virtual_network",
+    "body": "describe azurerm_virtual_network(resource_group: 'MyResourceGroup', name: 'MyVnetName') do\n\t...\nend",
+    "description": "Use the `azurerm_virtual_network` InSpec audit resource to test properties related to a",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "azurerm_virtual_networks": {
+    "prefix": "azurerm_virtual_networks",
+    "body": "describe azurerm_virtual_networks(resource_group: 'MyResourceGroup') do\n\t...\nend",
+    "description": "Use the `azurerm_virtual_networks` InSpec audit resource to test properties related to",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "azurerm_webapp": {
+    "prefix": "azurerm_webapp",
+    "body": "describe azurerm_appservice_webapp(resource_group: 'example', name: 'webapp name') do\n\t...\nend",
+    "description": "Use the `azurerm_webapp` InSpec audit resource to test properties of an Azure Webapp.",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "azurerm_webapps": {
+    "prefix": "azurerm_webapps",
+    "body": "describe azurerm_webapps(resource_group: 'ExampleGroup') do\n\t...\nend",
+    "description": "Use the `azurerm_webapps` InSpec audit resource to enumerate Webapps.",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "bash": {
+    "prefix": "bash",
+    "body": "describe bash('command') do\n\tit { should exist }\n\tits('property') { should eq 'expected value' }\nend",
+    "description": "Use the `bash` Chef InSpec audit resource to test an arbitrary command that is run on the system using a Bash script.",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "bond": {
+    "prefix": "bond",
+    "body": "describe bond('name') do\n\tit { should exist }\nend",
+    "description": "Use the `bond` Chef InSpec audit resource to test a logical, bonded network interface (i.e. \"two or more network interfaces aggregated into a single, logical network interface\"). On Linux platforms, any value in the `/proc/net/bonding` directory may be tested.",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "bridge": {
+    "prefix": "bridge",
+    "body": "describe bridge('br0') do\n\tit { should exist }\n\tit { should have_interface 'eth0' }\nend",
+    "description": "Use the `bridge` Chef InSpec audit resource to test basic network bridge properties, such as name, if an interface is defined, and the associations for any defined interface.",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "bsd_service": {
+    "prefix": "bsd_service",
+    "body": "describe bsd_service('service_name') do\n\tit { should be_installed }\n\tit { should be_enabled }\n\tit { should be_running }\nend",
+    "description": "Use the `bsd_service` Chef InSpec audit resource to test a service using a Berkeley OS-style `init` on the FreeBSD platform.",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "chocolatey_package": {
+    "prefix": "chocolatey_package",
+    "body": "describe chocolatey_package('name') do\n\tit { should be_installed }\nend",
+    "description": "Use the `chocolatey_package` Chef InSpec audit resource to test if the named [Chocolatey](https://chocolatey.org/) package and/or package version is installed on the system.",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "command": {
+    "prefix": "command",
+    "body": "describe command('command') do\n\tit { should exist }\n\tits('property') { should eq 'value' }\nend",
+    "description": "Use the `command` Chef InSpec audit resource to test an arbitrary command that is run on the system.",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "cpan": {
+    "prefix": "cpan",
+    "body": "describe cpan('package_name') do\n\tit { should be_installed }\nend",
+    "description": "Use the `cpan` Chef InSpec audit resource to test Perl modules that are installed by system packages or the CPAN installer.",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "cran": {
+    "prefix": "cran",
+    "body": "describe cran('package_name') do\n\tit { should be_installed }\nend",
+    "description": "Use the `cran` Chef InSpec audit resource to test R modules that are installed from CRAN package repository.",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "crontab": {
+    "prefix": "crontab",
+    "body": "describe crontab do\n\tits('commands') { should include '/some/scheduled/task.sh' }\nend",
+    "description": "Use the `crontab` Chef InSpec audit resource to test the crontab entries for a particular user on the system. It recognizes special time strings (@yearly, @weekly, etc).",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "csv": {
+    "prefix": "csv",
+    "body": "describe csv('file') do\n\tits('name') { should cmp 'foo' }\nend",
+    "description": "Use the `csv` Chef InSpec audit resource to test configuration data in a CSV file.",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "dh_params": {
+    "prefix": "dh_params",
+    "body": "describe dh_params('/path/to/file.dh_pem') do\n\tit { should be_dh_params }\n\tit { should be_valid }\n\tits('generator') { should eq 2 }\n\tits('modulus') { should eq '00:91:a0:15:89:e5:bc:38:93:12:02:fc:...' }\n\tits('prime_length') { should eq 2048 }\n\tits('pem') { should eq '-----BEGIN DH PARAMETERS...' }\n\tits('text') { should eq 'PKCS#3 DH Parameters: (2048 bit)...' }\nend",
+    "description": "Use the `dh_params` Chef InSpec audit resource to test Diffie-Hellman (DH) parameters.",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "directory": {
+    "prefix": "directory",
+    "body": "describe directory('path') do\n\tits('property') { should cmp 'value' }\nend",
+    "description": "Use the `directory` Chef InSpec audit resource to test if the file type is a directory. This is equivalent to using the [`file` resource](/inspec/resources/file/) and the `be_directory` matcher, but provides a simpler and more direct way to test directories.",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "docker": {
+    "prefix": "docker",
+    "body": "describe docker.containers do\n\tits('images') { should_not include 'u12:latest' }\nend",
+    "description": "Use the `docker` Chef InSpec audit resource to test configuration data for the Docker daemon. It is a very comprehensive resource. See also: [docker_container](/inspec/resources/docker_container/) and [docker_image](/inspec/resources/docker_image/), too.",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "docker_container": {
+    "prefix": "docker_container",
+    "body": "describe docker_container('container') do\n\tit { should exist }\n\tit { should be_running }\n\tits('id') { should_not eq '' }\n\tits('image') { should eq 'busybox:latest' }\n\tits('repo') { should eq 'busybox' }\n\tits('tag') { should eq 'latest' }\n\tits('ports') { should eq [] }\n\tits('command') { should eq 'nc -ll -p 1234 -e /bin/cat' }\nend",
+    "description": "Use the `docker_container` Chef InSpec audit resource to test a Docker container.",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "docker_image": {
+    "prefix": "docker_image",
+    "body": "describe docker_image('alpine:latest') do\n\tit { should exist }\n\tits('id') { should eq 'sha256:4a415e...a526' }\n\tits('repo') { should eq 'alpine' }\n\tits('tag') { should eq 'latest' }\nend",
+    "description": "Use the `docker_image` Chef InSpec audit resource to verify a Docker image.",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "docker_plugin": {
+    "prefix": "docker_plugin",
+    "body": "describe docker_plugin('rexray/ebs') do\n\tit { should exist }\n\tits('id') { should_not eq '0ac30b93ad40' }\n\tits('version') { should eq '0.11.1' }\n\tit { should be_enabled }\nend",
+    "description": "Use the `docker_plugin` Chef InSpec audit resource to verify a Docker plugin.",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "docker_service": {
+    "prefix": "docker_service",
+    "body": "describe docker_service('foo') do\n\tit { should exist }\n\tits('id') { should eq '2ghswegspre1' }\n\tits('repo') { should eq 'alpine' }\n\tits('tag') { should eq 'latest' }\nend",
+    "description": "Use the `docker_service` Chef InSpec audit resource to verify a docker swarm service.",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "elasticsearch": {
+    "prefix": "elasticsearch",
+    "body": "describe elasticsearch do\n\tits('property') { should cmp 'value' }\nend",
+    "description": "Use the `elasticsearch` resource to test the status of a node against a running",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "etc_fstab": {
+    "prefix": "etc_fstab",
+    "body": "describe etc_fstab.where { device_name == 'value' } do\n\tits('mount_point') { should cmp 'hostname' }\n\tits('file_system_type') { should cmp 'list' }\n\tits('mount_options') { should cmp 'list' }\n\tits('dump_options') { should cmp 'list' }\n\tits('file_system_options') { should cmp 'list' }\nend",
+    "description": "Use the `etc_fstab` Chef InSpec audit resource to test information about all partitions and storage devices on a Linux system.",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "etc_group": {
+    "prefix": "etc_group",
+    "body": "describe etc_group('path') do\n\tits('property') { should eq 'some_value' }\nend",
+    "description": "Use the `etc_group` Chef InSpec audit resource to test groups that are defined on Linux and Unix platforms. The `/etc/group` file stores details about each group: group name, password, group identifier, along with a comma-separate list of users that belong to the group.",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "etc_hosts": {
+    "prefix": "etc_hosts",
+    "body": "describe etc_hosts.where { ip_address == 'value' } do\n\tits('primary_name') { should cmp 'hostname' }\n\tits('all_host_names') { should cmp 'list' }\nend",
+    "description": "Use the `etc_hosts` Chef InSpec audit resource to test rules set to match IP addresses with hostnames.",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "etc_hosts_allow": {
+    "prefix": "etc_hosts_allow",
+    "body": "describe etc_hosts_allow.where { daemon == 'value' } do\n\tits ('client_list') { should include ['values'] }\n\tits ('options') { should include ['values'] }\nend",
+    "description": "Use the `etc_hosts_allow` Chef InSpec audit resource to test rules defined for accepting daemon and client traffic in the `'/etc/hosts.allow'` file.",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "etc_hosts_deny": {
+    "prefix": "etc_hosts_deny",
+    "body": "describe etc_hosts_deny.where { daemon == 'value' } do\n\tits ('client_list') { should include ['values'] }\n\tits ('options') { should include ['values'] }\nend",
+    "description": "Use the `etc_hosts_deny` Chef InSpec audit resource to test rules for rejecting daemon and client traffic defined in /etc/hosts.deny.",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "file": {
+    "prefix": "file",
+    "body": "describe file('path') do\n\tit { should PROPERTY 'value' }\nend",
+    "description": "Use the `file` Chef InSpec audit resource to test all system file types, including files, directories, symbolic links, named pipes, sockets, character devices, block devices, and doors.",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "filesystem": {
+    "prefix": "filesystem",
+    "body": "describe filesystem('/') do\n\tits('size_kb') { should be >= 32 * 1024 * 1024}\n\tits('free_kb') { should be >= 50 * 1024 }\n\tits('percent_free') { should be >= 20 }\n\tits('type') { should cmp 'ext4' }\nend",
+    "description": "Use the `filesystem` Chef InSpec resource to audit filesystem disk space usage.",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "firewalld": {
+    "prefix": "firewalld",
+    "body": "describe firewalld do\n\tit { should be_running }\n\tits('default_zone') { should eq 'public' }\n\tit { should have_service_enabled_in_zone('ssh', 'public') }\n\tit { should have_rule_enabled('family=ipv4 source address=192.168.0.14 accept', 'public') }\nend",
+    "description": "Use the `firewalld` Chef InSpec audit resource to test that firewalld is configured to allow and deny access to specific hosts, services and ports on a system.",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "gem": {
+    "prefix": "gem",
+    "body": "describe gem('gem_package_name', 'gem_binary') do\n\tit { should be_installed }\nend",
+    "description": "Use the `gem` Chef InSpec audit resource to test if a global Gem package is installed.",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "google_access_context_manager_access_policies": {
+    "prefix": "google_access_context_manager_access_policies",
+    "body": "describe google_access_context_manager_access_policies(org_id: '190694428152') do\n  its('count') { should be >= 1 }\n  its('titles') { should include 'policytitle' }\nend",
+    "description": null,
+    "scope": "source.ruby.chef_inspec"
+  },
+  "google_access_context_manager_access_policy": {
+    "prefix": "google_access_context_manager_access_policy",
+    "body": "describe.one do\n  google_access_context_manager_access_policies(org_id: '190694428152').names.each do |policy_name|\n    describe google_access_context_manager_access_policy(name: policy_name) do\n\tit { should exist }\n\tits('title') { should cmp 'policytitle' }\n\tits('parent') { should match '190694428152' }\nend",
+    "description": null,
+    "scope": "source.ruby.chef_inspec"
+  },
+  "google_access_context_manager_service_perimeter": {
+    "prefix": "google_access_context_manager_service_perimeter",
+    "body": "describe.one do\n  google_access_context_manager_access_policies(org_id: '190694428152').names.each do |policy_name|\n    describe google_access_context_manager_service_perimeter(policy_name: policy_name, name: 'restrict_all') do\n\tit { should exist }\n\tits('title') { should cmp 'restrict_all' }\n\tits('status.restricted_services') { should include 'storage.googleapis.com' }\nend",
+    "description": null,
+    "scope": "source.ruby.chef_inspec"
+  },
+  "google_access_context_manager_service_perimeters": {
+    "prefix": "google_access_context_manager_service_perimeters",
+    "body": "describe.one do\n  google_access_context_manager_access_policies(org_id: '190694428152').names.each do |policy_name|\n    describe google_access_context_manager_service_perimeters(policy_name: policy_name) do\n\tits('names') { should include 'restrict_all' }\n\tits('titles') { should include 'restrict_all' }\nend",
+    "description": null,
+    "scope": "source.ruby.chef_inspec"
+  },
+  "google_appengine_standard_app_version": {
+    "prefix": "google_appengine_standard_app_version",
+    "body": "describe google_appengine_standard_app_version(project: 'chef-gcp-inspec', location: 'europe-west2', version_id: 'v2', service: 'default') do\n  it { should exist }\n  its('version_id') { should eq 'v2' }\n  its('runtime') { should eq 'nodejs10' }\nend",
+    "description": null,
+    "scope": "source.ruby.chef_inspec"
+  },
+  "google_appengine_standard_app_versions": {
+    "prefix": "google_appengine_standard_app_versions",
+    "body": "describe google_appengine_standard_app_versions(project: 'chef-gcp-inspec', location: 'europe-west2',service: 'default') do\n  its('runtimes') { should include 'nodejs10' }\nend",
+    "description": null,
+    "scope": "source.ruby.chef_inspec"
+  },
+  "google_bigquery_dataset": {
+    "prefix": "google_bigquery_dataset",
+    "body": "describe google_bigquery_dataset(project: 'chef-gcp-inspec', name: 'inspec_gcp_dataset') do\n  it { should exist }\n\n  its('friendly_name') { should eq 'A BigQuery dataset test' }\n  its('location') { should eq 'EU' }\n  its('description') { should eq 'Test BigQuery dataset description' }\n  its('name') { should eq 'inspec_gcp_dataset' }\n  its('default_table_expiration_ms') { should cmp '3600000' }\nend",
+    "description": null,
+    "scope": "source.ruby.chef_inspec"
+  },
+  "google_bigquery_datasets": {
+    "prefix": "google_bigquery_datasets",
+    "body": "describe google_bigquery_datasets(project: 'chef-gcp-inspec') do\n  its('count') { should be >= 1 }\n  its('friendly_names') { should include 'A BigQuery dataset test' }\n  its('locations') { should include 'EU' }\nend",
+    "description": null,
+    "scope": "source.ruby.chef_inspec"
+  },
+  "google_bigquery_table": {
+    "prefix": "google_bigquery_table",
+    "body": "describe google_bigquery_table(project: 'chef-gcp-inspec', dataset: 'inspec_gcp_dataset', name: 'inspec_gcp_bigquery_table') do\n  it { should exist }\n\n  its('expiration_time') { should cmp '1738882264000' }\n  its('time_partitioning.type') { should eq 'DAY' }\n  its('description') { should eq 'A BigQuery table' }\nend",
+    "description": null,
+    "scope": "source.ruby.chef_inspec"
+  },
+  "google_bigquery_tables": {
+    "prefix": "google_bigquery_tables",
+    "body": "describe.one do\n  google_bigquery_tables(project: 'chef-gcp-inspec', dataset: 'inspec_gcp_dataset').table_references.each do |table_reference|\n    describe google_bigquery_table(project: 'chef-gcp-inspec', dataset: 'inspec_gcp_dataset', name: table_reference.table_id) do\n\tits('expiration_time') { should cmp '1738882264000' }\n\tits('description') { should eq 'A BigQuery table' }\nend",
+    "description": null,
+    "scope": "source.ruby.chef_inspec"
+  },
+  "google_billing_project_billing_info": {
+    "prefix": "google_billing_project_billing_info",
+    "body": "describe google_billing_project_billing_info(project_id: 'chef-gcp-inspec') do\n  it { should exist }\n\n  its('billing_account_name') { should eq 'billingAccounts/012345-567890-ABCDEF' }\n  its('billing_enabled') { should eq true }\nend",
+    "description": null,
+    "scope": "source.ruby.chef_inspec"
+  },
+  "google_cloud_scheduler_job": {
+    "prefix": "google_cloud_scheduler_job",
+    "body": "describe google_cloud_scheduler_job(project: 'chef-gcp-inspec', region: us-central1, name: 'job-name') do\n  it { should exist }\n\n  its('description') { should cmp 'A description' }\n  its('schedule') { should cmp '*/8 * * * *' }\n  its('time_zone') { should cmp 'America/New_York' }\n  its('http_target.http_method') { should cmp 'POST' }\n  its('http_target.uri') { should cmp 'https://example.com/ping' }\nend",
+    "description": null,
+    "scope": "source.ruby.chef_inspec"
+  },
+  "google_cloud_scheduler_jobs": {
+    "prefix": "google_cloud_scheduler_jobs",
+    "body": "describe google_cloud_scheduler_job(project: 'chef-gcp-inspec', region: us-central1, name: name) do\n    it { should exist }\n\n    its('description') { should cmp 'A description' }\n    its('schedule') { should cmp '*/8 * * * *' }\n    its('time_zone') { should cmp 'America/New_York' }\n    its('http_target.http_method') { should cmp 'POST' }\n    its('http_target.uri') { should cmp 'https://example.com/ping' }\n  end",
+    "description": null,
+    "scope": "source.ruby.chef_inspec"
+  },
+  "google_cloudbuild_trigger": {
+    "prefix": "google_cloudbuild_trigger",
+    "body": "describe google_cloudbuild_triggers(project: 'chef-gcp-inspec') do\n  its('count') { should eq 1 }\nend",
+    "description": null,
+    "scope": "source.ruby.chef_inspec"
+  },
+  "google_cloudbuild_triggers": {
+    "prefix": "google_cloudbuild_triggers",
+    "body": "describe google_cloudbuild_triggers(project: 'chef-gcp-inspec') do\n  its('count') { should eq 1 }\nend",
+    "description": null,
+    "scope": "source.ruby.chef_inspec"
+  },
+  "google_cloudfunctions_cloud_function": {
+    "prefix": "google_cloudfunctions_cloud_function",
+    "body": "describe google_cloudfunctions_cloud_function(project: 'chef-gcp-inspec', location: 'europe-west1', name: 'inspec-gcp-function') do\n  it { should exist }\n  its('description') { should eq 'A description of the function' }\n  its('available_memory_mb') { should eq '128' }\n  its('https_trigger.url') { should match /\\/inspec-gcp-function$/ }\n  its('entry_point') { should eq 'hello' }\n  its('environment_variables') { should include('MY_ENV_VAR' => 'val1') }\nend",
+    "description": null,
+    "scope": "source.ruby.chef_inspec"
+  },
+  "google_cloudfunctions_cloud_functions": {
+    "prefix": "google_cloudfunctions_cloud_functions",
+    "body": "describe google_cloudfunctions_cloud_functions(project: 'chef-gcp-inspec', location: 'europe-west1') do\n  its('descriptions') { should include 'A description of the function' }\n  its('entry_points') { should include 'hello' }\nend",
+    "description": null,
+    "scope": "source.ruby.chef_inspec"
+  },
+  "google_compute_address": {
+    "prefix": "google_compute_address",
+    "body": "describe google_compute_address(project: 'chef-gcp-inspec', location: 'europe-west2', name: 'inspec-gcp-global-address') do\n  it { should exist }\n  its('address') { should eq '10.2.0.3' }\n  its('address_type') { should eq 'INTERNAL' }\n  its('user_count') { should eq 0 }\nend",
+    "description": null,
+    "scope": "source.ruby.chef_inspec"
+  },
+  "google_compute_addresses": {
+    "prefix": "google_compute_addresses",
+    "body": "describe google_compute_addresses(project: 'chef-gcp-inspec', location: 'europe-west2') do\n  its('addresses') { should include '10.2.0.3' }\n  its('names') { should include 'inspec-gcp-global-address' }\nend",
+    "description": null,
+    "scope": "source.ruby.chef_inspec"
+  },
+  "google_compute_autoscaler": {
+    "prefix": "google_compute_autoscaler",
+    "body": "describe google_compute_autoscaler(project: 'chef-gcp-inspec', zone: 'zone', name: 'inspec-gcp-autoscaler') do\n  it { should exist }\n\n  its('target') { should match /\\/inspec-gcp-igm$/ }\n  its('autoscaling_policy.max_num_replicas') { should eq '5' }\n  its('autoscaling_policy.min_num_replicas') { should eq '1' }\n  its('autoscaling_policy.cool_down_period_sec') { should eq '60' }\n  its('autoscaling_policy.cpu_utilization.utilization_target') { should eq '0.5' }\nend",
+    "description": null,
+    "scope": "source.ruby.chef_inspec"
+  },
+  "google_compute_autoscalers": {
+    "prefix": "google_compute_autoscalers",
+    "body": "describe.one do\n  autoscalers.autoscaling_policies.each do |autoscaling_policy|\n    describe autoscaling_policy do\n\t  its('max_num_replicas') { should eq '5' }\n\t  its('min_num_replicas') { should eq '1' }\n\t  its('cool_down_period_sec') { should eq '60' }\n\t  its('cpu_utilization.utilization_target') { should eq '0.5' }\nend",
+    "description": null,
+    "scope": "source.ruby.chef_inspec"
+  },
+  "google_compute_backend_bucket": {
+    "prefix": "google_compute_backend_bucket",
+    "body": "describe google_compute_backend_bucket(project: 'chef-gcp-inspec', name: 'inspec-gcp-backend-bucket') do\n  it { should exist }\n  its('description') { should eq 'Backend bucket example' }\n  its('enable_cdn') { should be 'true' }\n  its('bucket_name') { should eq 'gcp-inspec-storage-bucket' }\nend",
+    "description": null,
+    "scope": "source.ruby.chef_inspec"
+  },
+  "google_compute_backend_buckets": {
+    "prefix": "google_compute_backend_buckets",
+    "body": "describe google_compute_backend_buckets(project: 'chef-gcp-inspec', name: 'inspec-gcp-backend-bucket') do\n  its('descriptions') { should include 'Backend bucket example' }\n  its('bucket_names') { should include 'gcp-inspec-storage-bucket' }\nend",
+    "description": null,
+    "scope": "source.ruby.chef_inspec"
+  },
+  "google_compute_backend_service": {
+    "prefix": "google_compute_backend_service",
+    "body": "describe google_compute_backend_service(project: 'chef-gcp-inspec', name: 'inspec-gcp-backend-service') do\n  it { should exist }\n  its('description') { should eq 'A description' }\n  its('port_name') { should eq 'http' }\n  its('protocol') { should eq 'HTTP' }\n  its('timeout_sec') { should eq '10' }\n  its('enable_cdn') { should eq 'true' }\nend",
+    "description": null,
+    "scope": "source.ruby.chef_inspec"
+  },
+  "google_compute_backend_services": {
+    "prefix": "google_compute_backend_services",
+    "body": "describe google_compute_backend_services(project: 'chef-gcp-inspec') do\n  its('count') { should be >= 1 }\n  its('names') { should include 'inspec-gcp-backend-service' }\n  its('port_names') { should include 'http' }\n  its('protocols') { should include 'HTTP' }\n  its('timeout_secs') { should include '10' }\nend",
+    "description": null,
+    "scope": "source.ruby.chef_inspec"
+  },
+  "google_compute_disk": {
+    "prefix": "google_compute_disk",
+    "body": "describe google_compute_disk(project: 'chef-gcp-inspec', name: 'inspec-snapshot-disk', zone: 'zone') do\n  it { should exist }\n  # Test that the image is the most recent image for the family\n  its('source_image') { should match most_recent_image.self_link }\n  its('type') { should match 'pd-standard' }\nend",
+    "description": null,
+    "scope": "source.ruby.chef_inspec"
+  },
+  "google_compute_disks": {
+    "prefix": "google_compute_disks",
+    "body": "describe google_compute_disks(project: 'chef-gcp-inspec', zone: 'zone') do\n  it { should exist }\n  its('names') { should include 'inspec-snapshot-disk' }\n  its('source_images') { should include most_recent_image.self_link }\nend",
+    "description": null,
+    "scope": "source.ruby.chef_inspec"
+  },
+  "google_compute_firewall": {
+    "prefix": "google_compute_firewall",
+    "body": "describe google_compute_firewall(project: 'chef-gcp-inspec', name: 'inspec-gcp-firewall') do\n  its('direction') { should cmp 'INGRESS' }\n  its('log_config_enabled?') { should be true }\n  its('source_tags') { should include 'some-tag' }\nend",
+    "description": null,
+    "scope": "source.ruby.chef_inspec"
+  },
+  "google_compute_firewalls": {
+    "prefix": "google_compute_firewalls",
+    "body": "describe google_compute_firewalls(project: 'chef-gcp-inspec') do\n  its('count') { should be >= 1 }\n  its('firewall_names') { should include 'inspec-gcp-firewall' }\n  its('firewall_directions') { should include 'INGRESS' }\nend",
+    "description": null,
+    "scope": "source.ruby.chef_inspec"
+  },
+  "google_compute_forwarding_rule": {
+    "prefix": "google_compute_forwarding_rule",
+    "body": "describe google_compute_forwarding_rule(project: 'chef-gcp-inspec', region: 'europe-west2', name: 'udp-forwarding-rule') do\n  it { should exist }\n  its('region') { should match 'europe-west2' }\n  its('creation_timestamp') { should be > Time.now - 365*60*60*24*10 }\n  its('load_balancing_scheme') { should match 'EXTERNAL' }\n  its('port_range') { should match \"500-500\" }\n  its('ip_protocol') { should match \"UDP\" }\nend",
+    "description": null,
+    "scope": "source.ruby.chef_inspec"
+  },
+  "google_compute_forwarding_rules": {
+    "prefix": "google_compute_forwarding_rules",
+    "body": "describe google_compute_forwarding_rules(project: 'chef-gcp-inspec', region: 'europe-west2') do\n  its('forwarding_rule_names') { should include 'udp-forwarding-rule' }\nend",
+    "description": null,
+    "scope": "source.ruby.chef_inspec"
+  },
+  "google_compute_global_address": {
+    "prefix": "google_compute_global_address",
+    "body": "describe google_compute_global_address(project: 'chef-gcp-inspec', name: 'inspec-gcp-global-address') do\n  it { should exist }\n  its('ip_version') { should eq 'IPV6' }\nend",
+    "description": null,
+    "scope": "source.ruby.chef_inspec"
+  },
+  "google_compute_global_addresses": {
+    "prefix": "google_compute_global_addresses",
+    "body": "describe google_compute_global_addresses(project: 'chef-gcp-inspec', name: 'inspec-gcp-global-address') do\n  its('count') { should be >= 1 }\n  its('names') { should include 'inspec-gcp-global-address' }\n  its('ip_versions') { should include 'IPV6' }\nend",
+    "description": null,
+    "scope": "source.ruby.chef_inspec"
+  },
+  "google_compute_global_forwarding_rule": {
+    "prefix": "google_compute_global_forwarding_rule",
+    "body": "describe google_compute_global_forwarding_rule(project: 'chef-gcp-inspec', name: 'inspec-gcp-global-forwarding-rule') do\n  it { should exist }\n  its('port_range') { should eq '80-80' }\n  its('target') { should  match /\\/inspec-gcp-http-proxy$/ }\nend",
+    "description": null,
+    "scope": "source.ruby.chef_inspec"
+  },
+  "google_compute_global_forwarding_rules": {
+    "prefix": "google_compute_global_forwarding_rules",
+    "body": "describe google_compute_global_forwarding_rules(project: 'chef-gcp-inspec') do\n  its('count') { should be >= 1 }\n  its('port_ranges') { should include '80-80' }\nend",
+    "description": null,
+    "scope": "source.ruby.chef_inspec"
+  },
+  "google_compute_health_check": {
+    "prefix": "google_compute_health_check",
+    "body": "describe google_compute_health_check(project: 'chef-gcp-inspec', name: 'inspec-gcp-health-check') do\n  it { should exist }\n  its('timeout_sec') { should eq '10' }\n  its('tcp_health_check.port') { should eq '80' }\nend",
+    "description": null,
+    "scope": "source.ruby.chef_inspec"
+  },
+  "google_compute_health_checks": {
+    "prefix": "google_compute_health_checks",
+    "body": "describe google_compute_health_checks(project: 'chef-gcp-inspec') do\n  its('names') { should include 'inspec-gcp-health-check' }\n  its('timeout_secs') { should include '10' }\nend",
+    "description": null,
+    "scope": "source.ruby.chef_inspec"
+  },
+  "google_compute_http_health_check": {
+    "prefix": "google_compute_http_health_check",
+    "body": "describe google_compute_http_health_check(project: 'chef-gcp-inspec', name: 'inspec-gcp-http-health-check') do\n  it { should exist }\n  its('timeout_sec') { should eq '20' }\n  its('request_path') { should eq '/health_check' }\n  its('check_interval_sec') { should eq '20' }\nend",
+    "description": null,
+    "scope": "source.ruby.chef_inspec"
+  },
+  "google_compute_http_health_checks": {
+    "prefix": "google_compute_http_health_checks",
+    "body": "describe google_compute_http_health_checks(project: 'chef-gcp-inspec') do\n  its('names') { should include 'inspec-gcp-http-health-check' }\n  its('timeout_secs') { should include '20' }\n  its('check_interval_secs') { should include '20' }\nend",
+    "description": null,
+    "scope": "source.ruby.chef_inspec"
+  },
+  "google_compute_https_health_check": {
+    "prefix": "google_compute_https_health_check",
+    "body": "describe google_compute_https_health_check(project: 'chef-gcp-inspec', name: 'inspec-gcp-https-health-check') do\n  it { should exist }\n  its('timeout_sec') { should eq '15' }\n  its('request_path') { should eq '/https_health_check' }\n  its('check_interval_sec') { should eq '15' }\n  its('unhealthy_threshold') { should eq '3' }\nend",
+    "description": null,
+    "scope": "source.ruby.chef_inspec"
+  },
+  "google_compute_https_health_checks": {
+    "prefix": "google_compute_https_health_checks",
+    "body": "describe google_compute_https_health_checks(project: 'chef-gcp-inspec') do\n  its('names') { should include 'inspec-gcp-https-health-check' }\n  its('timeout_secs') { should include '15' }\n  its('check_interval_secs') { should include '15' }\nend",
+    "description": null,
+    "scope": "source.ruby.chef_inspec"
+  },
+  "google_compute_image": {
+    "prefix": "google_compute_image",
+    "body": "describe google_compute_image(project: 'chef-gcp-inspec', name: 'inspec-image') do\n  it { should exist }\n  its('disk_size_gb') { should cmp 3 }\nend",
+    "description": null,
+    "scope": "source.ruby.chef_inspec"
+  },
+  "google_compute_instance": {
+    "prefix": "google_compute_instance",
+    "body": "describe google_compute_instance(project: 'chef-gcp-inspec', zone: 'zone', name: 'inspec-instance') do\n  it { should exist }\n  its('machine_type') { should match 'n1-standard-1' }\n  its('tags.items') { should include 'foo' }\n  its('tags.items') { should include 'bar' }\n  its('tag_count') { should cmp 2 }\n  its('service_account_scopes') { should include 'https://www.googleapis.com/auth/compute.readonly' }\n  its('metadata_keys') { should include '123' }\n  its('metadata_values') { should include 'asdf' }\nend",
+    "description": null,
+    "scope": "source.ruby.chef_inspec"
+  },
+  "google_compute_instance_group": {
+    "prefix": "google_compute_instance_group",
+    "body": "describe google_compute_instance_group(project: 'chef-gcp-inspec', zone: 'zone', name: 'inspec-instance-group') do\n  it { should exist }\n  its('description') { should cmp 'My instance group for testing' }\n  its('named_ports.count') { should cmp 1 }\n  its('named_ports.first.name') { should cmp 'https' }\n  its('named_ports.first.port') { should cmp '8080' }\nend",
+    "description": null,
+    "scope": "source.ruby.chef_inspec"
+  },
+  "google_compute_instance_group_manager": {
+    "prefix": "google_compute_instance_group_manager",
+    "body": "describe google_compute_instance_group_manager(project: 'chef-gcp-inspec', zone: 'zone', name: 'inspec-gcp-igm') do\n  it { should exist }\n\n  its('base_instance_name') { should eq 'igm' }\n  its('named_ports.count') { should cmp 1 }\n  its('named_ports.first.name') { should eq 'port' }\n  its('named_ports.first.port') { should eq '80' }\nend",
+    "description": null,
+    "scope": "source.ruby.chef_inspec"
+  },
+  "google_compute_instance_group_managers": {
+    "prefix": "google_compute_instance_group_managers",
+    "body": "describe google_compute_instance_group_managers(project: 'chef-gcp-inspec', zone: 'zone') do\n  its('base_instance_names') { should include 'igm' }\nend",
+    "description": null,
+    "scope": "source.ruby.chef_inspec"
+  },
+  "google_compute_instance_groups": {
+    "prefix": "google_compute_instance_groups",
+    "body": "describe google_compute_instance_groups(project: 'chef-gcp-inspec', zone: 'zone') do\n  its('instance_group_names') { should include 'inspec-instance-group' }\nend",
+    "description": null,
+    "scope": "source.ruby.chef_inspec"
+  },
+  "google_compute_instance_template": {
+    "prefix": "google_compute_instance_template",
+    "body": "describe google_compute_instance_template(project: 'chef-gcp-inspec', name: 'inspec-gcp-instance-template') do\n  it { should exist }\n  its('description') { should eq 'A description of the instance template' }\n  its('properties.description') { should eq 'A description of the instance itself' }\n  its('properties.machine_type') { should eq 'f1-micro' }\n  its('properties.tags.items') { should include 'foo' }\n  its('properties.disks.count') { should eq 1 }\n  its('properties.disks.first.auto_delete') { should eq 'true' }\n  its('properties.disks.first.boot') { should eq 'true' }\n  its('properties.network_interfaces.count') { should eq 1 }\n  its('properties.service_accounts.count') { should eq 1 }\nend",
+    "description": null,
+    "scope": "source.ruby.chef_inspec"
+  },
+  "google_compute_instance_templates": {
+    "prefix": "google_compute_instance_templates",
+    "body": "describe google_compute_instance_templates(project: 'chef-gcp-inspec') do\n  its('names') { should include 'inspec-gcp-instance-template' }\nend",
+    "description": null,
+    "scope": "source.ruby.chef_inspec"
+  },
+  "google_compute_instances": {
+    "prefix": "google_compute_instances",
+    "body": "describe google_compute_instances(project: 'chef-gcp-inspec', zone: 'zone') do\n  its('instance_names') { should include 'inspec-instance' }\nend",
+    "description": null,
+    "scope": "source.ruby.chef_inspec"
+  },
+  "google_compute_network": {
+    "prefix": "google_compute_network",
+    "body": "describe google_compute_network(project: 'chef-gcp-inspec', name: 'inspec-network') do\n  it { should exist }\n  its('routing_config.routing_mode') { should cmp 'REGIONAL' }\nend",
+    "description": null,
+    "scope": "source.ruby.chef_inspec"
+  },
+  "google_compute_network_endpoint_group": {
+    "prefix": "google_compute_network_endpoint_group",
+    "body": "describe google_compute_network_endpoint_group(project: 'chef-gcp-inspec', zone: 'zone', name: 'inspec-gcp-endpoint-group') do\n  it { should exist }\n  its('default_port') { should cmp '90' }\nend",
+    "description": null,
+    "scope": "source.ruby.chef_inspec"
+  },
+  "google_compute_network_endpoint_groups": {
+    "prefix": "google_compute_network_endpoint_groups",
+    "body": "describe google_compute_network_endpoint_groups(project: 'chef-gcp-inspec', zone: 'zone') do\n  its('default_ports') { should include '90' }\n  its('names') { should include 'inspec-gcp-endpoint-group' }\nend",
+    "description": null,
+    "scope": "source.ruby.chef_inspec"
+  },
+  "google_compute_networks": {
+    "prefix": "google_compute_networks",
+    "body": "describe google_compute_networks(project: 'chef-gcp-inspec') do\n\tits('network_names') { should include 'inspec-network' }\nend",
+    "description": null,
+    "scope": "source.ruby.chef_inspec"
+  },
+  "google_compute_node_group": {
+    "prefix": "google_compute_node_group",
+    "body": "describe google_compute_node_group(project: 'chef-gcp-inspec', zone: 'zone', name: 'inspec-node-group') do\n  it { should exist }\n  its('description') { should cmp 'A description of the node group' }\n  its('size') { should cmp '0' }\nend",
+    "description": null,
+    "scope": "source.ruby.chef_inspec"
+  },
+  "google_compute_node_groups": {
+    "prefix": "google_compute_node_groups",
+    "body": "describe google_compute_node_groups(project: 'chef-gcp-inspec', zone: 'zone') do\n  it { should exist }\n  its('descriptions') { should include 'A description of the node group' }\n  its('sizes') { should include '0' }\n  its('names') { should include 'inspec-node-group' }\nend",
+    "description": null,
+    "scope": "source.ruby.chef_inspec"
+  },
+  "google_compute_node_template": {
+    "prefix": "google_compute_node_template",
+    "body": "describe google_compute_node_template(project: 'chef-gcp-inspec', region: 'europe-west2', name: 'inspec-node-template') do\n  it { should exist }\n  its('node_affinity_labels') { should include('key' => 'value') }\nend",
+    "description": null,
+    "scope": "source.ruby.chef_inspec"
+  },
+  "google_compute_node_templates": {
+    "prefix": "google_compute_node_templates",
+    "body": "describe google_compute_node_templates(project: 'chef-gcp-inspec', region: 'europe-west2') do\n  its('names') { should include 'inspec-node-template' }\nend",
+    "description": null,
+    "scope": "source.ruby.chef_inspec"
+  },
+  "google_compute_project_info": {
+    "prefix": "google_compute_project_info",
+    "body": "describe google_compute_project_info(project: 'chef-gcp-inspec') do\n  it { should exist }\n  its('default_service_account') { should match \"developer.gserviceaccount.com\" }\nend",
+    "description": null,
+    "scope": "source.ruby.chef_inspec"
+  },
+  "google_compute_region": {
+    "prefix": "google_compute_region",
+    "body": "describe google_compute_region(project: 'chef-gcp-inspec', name: 'europe-west2') do\n  it { should exist }\n  it { should be_up }\n  its('zone_names') { should include \"#{gcp_location}-a\" }\nend",
+    "description": null,
+    "scope": "source.ruby.chef_inspec"
+  },
+  "google_compute_region_backend_service": {
+    "prefix": "google_compute_region_backend_service",
+    "body": "describe google_compute_region_backend_service(project: 'chef-gcp-inspec', region: 'europe-west2', name: 'inspec-gcp-region-backend-service') do\n  it { should exist }\n  its('description') { should eq 'A regional description' }\n  its('protocol') { should eq 'TCP' }\n  its('timeout_sec') { should eq '15' }\nend",
+    "description": null,
+    "scope": "source.ruby.chef_inspec"
+  },
+  "google_compute_region_backend_services": {
+    "prefix": "google_compute_region_backend_services",
+    "body": "describe google_compute_region_backend_services(project: 'chef-gcp-inspec', region: 'europe-west2') do\n  its('count') { should be >= 1 }\n  its('names') { should include 'inspec-gcp-region-backend-service' }\n  its('protocols') { should include 'TCP' }\n  its('timeout_secs') { should include '15' }\nend",
+    "description": null,
+    "scope": "source.ruby.chef_inspec"
+  },
+  "google_compute_region_instance_group_manager": {
+    "prefix": "google_compute_region_instance_group_manager",
+    "body": "describe google_compute_region_instance_group_manager(project: 'chef-gcp-inspec', region: 'europe-west2', name: 'inspec-rigm') do\n  it { should exist }\n  its('base_instance_name') { should eq 'rigm1' }\n  its('target_size') { should eq '1' }\n  its('named_ports.first.name') { should eq 'https' }\n  its('named_ports.first.port') { should eq '8888' }\n  its('auto_healing_policies.first.initial_delay_sec') { should eq '300' }\nend",
+    "description": null,
+    "scope": "source.ruby.chef_inspec"
+  },
+  "google_compute_region_instance_group_managers": {
+    "prefix": "google_compute_region_instance_group_managers",
+    "body": "describe google_compute_region_instance_group_managers(project: 'chef-gcp-inspec', region: 'europe-west2') do\n\tits('instance_group_manager_names') { should include 'inspec-rigm' }\n  its('base_instance_names') { should include 'rigm1' }\nend",
+    "description": null,
+    "scope": "source.ruby.chef_inspec"
+  },
+  "google_compute_regional_disk": {
+    "prefix": "google_compute_regional_disk",
+    "body": "describe google_compute_regional_disk(project: 'chef-gcp-inspec', name: 'my_disk', region: 'region') do\n  it { should exist }\n  its('type') { should match 'pd-standard' }\nend",
+    "description": null,
+    "scope": "source.ruby.chef_inspec"
+  },
+  "google_compute_regions": {
+    "prefix": "google_compute_regions",
+    "body": "describe google_compute_regions(project: 'chef-gcp-inspec') do\n  its('count') { should be >= 1 }\n  its('region_names') { should include \"#{gcp_location}\" }\n  its('region_statuses') { should_not include \"DOWN\" }\n  its('region_ids') { should include \"1290\" }\nend",
+    "description": null,
+    "scope": "source.ruby.chef_inspec"
+  },
+  "google_compute_route": {
+    "prefix": "google_compute_route",
+    "body": "describe google_compute_route(project: 'chef-gcp-inspec', name: 'inspec-gcp-route') do\n  it { should exist }\n  its('dest_range') { should eq '15.0.0.0/24' }\n  its('network') { should match /\\/gcp-inspec-network$/ }\n  its('next_hop_ip') { should eq '10.2.0.1' }\n  its('priority') { should eq '100' }\nend",
+    "description": null,
+    "scope": "source.ruby.chef_inspec"
+  },
+  "google_compute_router": {
+    "prefix": "google_compute_router",
+    "body": "describe google_compute_router(project: 'chef-gcp-inspec', region: 'europe-west2', name: 'inspec-gcp-router') do\n  it { should exist }\n  its('bgp.asn') { should eq '64514' }\n  its('bgp.advertise_mode') { should eq 'CUSTOM' }\n  its('bgp.advertised_groups') { should include 'ALL_SUBNETS' }\n  its('bgp.advertised_ip_ranges.count') { should eq 2 }\n  its('bgp.advertised_ip_ranges.first.range') { should eq '1.2.3.4' }\n  its('bgp.advertised_ip_ranges.last.range') { should eq '1.2.3.4' }\n    its('network') { should match /\\/gcp-inspec-network$/ }\n  end",
+    "description": null,
+    "scope": "source.ruby.chef_inspec"
+  },
+  "google_compute_router_nat": {
+    "prefix": "google_compute_router_nat",
+    "body": "describe google_compute_router_nat(project: 'chef-gcp-inspec', region: 'europe-west2', router: 'inspec-gcp-router', name: 'inspec-router-nat') do\n  it { should exist }\n  its('nat_ip_allocate_option') { should cmp 'AUTO_ONLY' }\n  its('source_subnetwork_ip_ranges_to_nat') { should cmp 'ALL_SUBNETWORKS_ALL_IP_RANGES' }\n  its('min_ports_per_vm') { should cmp '2' }\n  its('log_config.enable') { should cmp 'true' }\n  its('log_config.filter') { should cmp 'ERRORS_ONLY' }\nend",
+    "description": null,
+    "scope": "source.ruby.chef_inspec"
+  },
+  "google_compute_router_nats": {
+    "prefix": "google_compute_router_nats",
+    "body": "describe google_compute_router_nats(project: 'chef-gcp-inspec', region: 'europe-west2', router: 'inspec-gcp-router') do\n  its('names') { should include 'inspec-router-nat' }\nend",
+    "description": null,
+    "scope": "source.ruby.chef_inspec"
+  },
+  "google_compute_routers": {
+    "prefix": "google_compute_routers",
+    "body": "describe google_compute_routers(project: 'chef-gcp-inspec', region: 'europe-west2') do\n  its('names') { should include 'inspec-gcp-router' }\nend",
+    "description": null,
+    "scope": "source.ruby.chef_inspec"
+  },
+  "google_compute_routes": {
+    "prefix": "google_compute_routes",
+    "body": "describe google_compute_routes(project: 'chef-gcp-inspec') do\n  its('count') { should be >= 1 }\n  its('dest_ranges') { should include '15.0.0.0/24' }\n  its('next_hop_ips') { should include '10.2.0.1' }\n  its('priorities') { should include '100' }\nend",
+    "description": null,
+    "scope": "source.ruby.chef_inspec"
+  },
+  "google_compute_security_policies": {
+    "prefix": "google_compute_security_policies",
+    "body": "describe google_compute_security_policies(project: 'chef-gcp-inspec') do\n  its('count') { should be >= 1 }\n  its('names') { should include 'sec-policy' }\nend",
+    "description": null,
+    "scope": "source.ruby.chef_inspec"
+  },
+  "google_compute_security_policy": {
+    "prefix": "google_compute_security_policy",
+    "body": "describe google_compute_security_policy(project: 'chef-gcp-inspec', name: 'sec-policy') do\n  it { should exist }\n  its('rules.size') { should cmp 2 }\n  its('rules.first.priority') { should cmp '1000' }\n  its('rules.first.match.config.src_ip_ranges.first') { should cmp '9.9.9.0/24' }\nend",
+    "description": null,
+    "scope": "source.ruby.chef_inspec"
+  },
+  "google_compute_snapshot": {
+    "prefix": "google_compute_snapshot",
+    "body": "describe google_compute_snapshot(project: 'chef-gcp-inspec', name: 'inspec-gcp-disk-snapshot') do\n  it { should exist }\n  its('source_disk') { should match 'inspec-snapshot-disk' }\nend",
+    "description": null,
+    "scope": "source.ruby.chef_inspec"
+  },
+  "google_compute_snapshots": {
+    "prefix": "google_compute_snapshots",
+    "body": "describe google_compute_snapshots(project: 'chef-gcp-inspec') do\n  its('count') { should be >= 1 }\nend",
+    "description": null,
+    "scope": "source.ruby.chef_inspec"
+  },
+  "google_compute_ssl_certificate": {
+    "prefix": "google_compute_ssl_certificate",
+    "body": "describe google_compute_ssl_certificate(project: 'chef-gcp-inspec', name: 'inspec-gcp-ssl-certificate') do\n  it { should exist }\n  its('description') { should eq 'A fake ssl certificate (DO NOT USE)' }\n  its('certificate') { should eq '-----BEGIN CERTIFICATE-----\nMIICqjCCAk+gAwIBAgIJAIuJ+0352Kq4MAoGCCqGSM49BAMCMIGwMQswCQYDVQQG\nEwJVUzETMBEGA1UECAwKV2FzaGluZ3RvbjERMA8GA1UEBwwIS2lya2xhbmQxFTAT\nBgNVBAoMDEdvb2dsZSwgSW5jLjEeMBwGA1UECwwVR29vZ2xlIENsb3VkIFBsYXRm\nb3JtMR8wHQYDVQQDDBZ3d3cubXktc2VjdXJlLXNpdGUuY29tMSEwHwYJKoZIhvcN\nAQkBFhJuZWxzb25hQGdvb2dsZS5jb20wHhcNMTcwNjI4MDQ1NjI2WhcNMjcwNjI2\nMDQ1NjI2WjCBsDELMAkGA1UEBhMCVVMxEzARBgNVBAgMCldhc2hpbmd0b24xETAP\nBgNVBAcMCEtpcmtsYW5kMRUwEwYDVQQKDAxHb29nbGUsIEluYy4xHjAcBgNVBAsM\nFUdvb2dsZSBDbG91ZCBQbGF0Zm9ybTEfMB0GA1UEAwwWd3d3Lm15LXNlY3VyZS1z\naXRlLmNvbTEhMB8GCSqGSIb3DQEJARYSbmVsc29uYUBnb29nbGUuY29tMFkwEwYH\nKoZIzj0CAQYIKoZIzj0DAQcDQgAEHGzpcRJ4XzfBJCCPMQeXQpTXwlblimODQCuQ\n4mzkzTv0dXyB750fOGN02HtkpBOZzzvUARTR10JQoSe2/5PIwaNQME4wHQYDVR0O\nBBYEFKIQC3A2SDpxcdfn0YLKineDNq/BMB8GA1UdIwQYMBaAFKIQC3A2SDpxcdfn\n0YLKineDNq/BMAwGA1UdEwQFMAMBAf8wCgYIKoZIzj0EAwIDSQAwRgIhALs4vy+O\nM3jcqgA4fSW/oKw6UJxp+M6a+nGMX+UJR3YgAiEAvvl39QRVAiv84hdoCuyON0lJ\nzqGNhIPGq2ULqXKK8BY=\n-----END CERTIFICATE-----\n' }\nend",
+    "description": null,
+    "scope": "source.ruby.chef_inspec"
+  },
+  "google_compute_ssl_certificates": {
+    "prefix": "google_compute_ssl_certificates",
+    "body": "describe google_compute_ssl_certificates(project: 'chef-gcp-inspec') do\n\n  its('names') { should include 'inspec-gcp-ssl-certificate' }\n  its('descriptions') { should include 'A fake ssl certificate (DO NOT USE)' }\n  its('certificates') { should include '-----BEGIN CERTIFICATE-----\nMIICqjCCAk+gAwIBAgIJAIuJ+0352Kq4MAoGCCqGSM49BAMCMIGwMQswCQYDVQQG\nEwJVUzETMBEGA1UECAwKV2FzaGluZ3RvbjERMA8GA1UEBwwIS2lya2xhbmQxFTAT\nBgNVBAoMDEdvb2dsZSwgSW5jLjEeMBwGA1UECwwVR29vZ2xlIENsb3VkIFBsYXRm\nb3JtMR8wHQYDVQQDDBZ3d3cubXktc2VjdXJlLXNpdGUuY29tMSEwHwYJKoZIhvcN\nAQkBFhJuZWxzb25hQGdvb2dsZS5jb20wHhcNMTcwNjI4MDQ1NjI2WhcNMjcwNjI2\nMDQ1NjI2WjCBsDELMAkGA1UEBhMCVVMxEzARBgNVBAgMCldhc2hpbmd0b24xETAP\nBgNVBAcMCEtpcmtsYW5kMRUwEwYDVQQKDAxHb29nbGUsIEluYy4xHjAcBgNVBAsM\nFUdvb2dsZSBDbG91ZCBQbGF0Zm9ybTEfMB0GA1UEAwwWd3d3Lm15LXNlY3VyZS1z\naXRlLmNvbTEhMB8GCSqGSIb3DQEJARYSbmVsc29uYUBnb29nbGUuY29tMFkwEwYH\nKoZIzj0CAQYIKoZIzj0DAQcDQgAEHGzpcRJ4XzfBJCCPMQeXQpTXwlblimODQCuQ\n4mzkzTv0dXyB750fOGN02HtkpBOZzzvUARTR10JQoSe2/5PIwaNQME4wHQYDVR0O\nBBYEFKIQC3A2SDpxcdfn0YLKineDNq/BMB8GA1UdIwQYMBaAFKIQC3A2SDpxcdfn\n0YLKineDNq/BMAwGA1UdEwQFMAMBAf8wCgYIKoZIzj0EAwIDSQAwRgIhALs4vy+O\nM3jcqgA4fSW/oKw6UJxp+M6a+nGMX+UJR3YgAiEAvvl39QRVAiv84hdoCuyON0lJ\nzqGNhIPGq2ULqXKK8BY=\n-----END CERTIFICATE-----\n' }\nend",
+    "description": null,
+    "scope": "source.ruby.chef_inspec"
+  },
+  "google_compute_ssl_policies": {
+    "prefix": "google_compute_ssl_policies",
+    "body": "describe google_compute_ssl_policies(project: 'chef-gcp-inspec') do\n  it { should exist }\n  its('names') { should include 'inspec-gcp-ssl-policy' }\n  its('profiles') { should include 'CUSTOM' }\n  its('count') { should eq 1 }\nend",
+    "description": null,
+    "scope": "source.ruby.chef_inspec"
+  },
+  "google_compute_ssl_policy": {
+    "prefix": "google_compute_ssl_policy",
+    "body": "describe google_compute_ssl_policy(project: 'chef-gcp-inspec', name: 'inspec-gcp-ssl-policy') do\n  it { should exist }\n  its('min_tls_version') { should eq 'TLS_1_2' }\n  its('profile') { should eq 'CUSTOM' }\n  its('custom_features') { should include 'TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384' }\n  its('custom_features') { should include 'TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384' }\nend",
+    "description": null,
+    "scope": "source.ruby.chef_inspec"
+  },
+  "google_compute_subnetwork": {
+    "prefix": "google_compute_subnetwork",
+    "body": "describe google_compute_subnetwork(project: 'chef-gcp-inspec', region: 'europe-west2', name: 'inspec-subnet') do\n  it { should exist }\n  its('ip_cidr_range') { should eq '10.2.0.0/16' }\n  its('log_config.enable') { should be true }\n  its('log_config.flow_sampling') { should cmp '0.5' }\n  its('log_config.aggregation_interval') { should cmp 'INTERVAL_10_MIN' }\n  its('log_config.metadata') { should include 'INCLUDE_ALL_METADATA' }\nend",
+    "description": null,
+    "scope": "source.ruby.chef_inspec"
+  },
+  "google_compute_subnetwork_iam_binding": {
+    "prefix": "google_compute_subnetwork_iam_binding",
+    "body": "describe google_compute_subnetwork_iam_binding(project: \"project\", region: \"region\", name: \"name\", role: \"roles/editor\") do\n  it { should exist }\n  its('members') { should include 'user:testuser@example.com' }\nend",
+    "description": null,
+    "scope": "source.ruby.chef_inspec"
+  },
+  "google_compute_subnetwork_iam_policy": {
+    "prefix": "google_compute_subnetwork_iam_policy",
+    "body": "describe google_compute_subnetwork_iam_policy(project: \"project\", region: \"region\", name: \"name\") do\n  it { should exist }\nend",
+    "description": null,
+    "scope": "source.ruby.chef_inspec"
+  },
+  "google_compute_subnetworks": {
+    "prefix": "google_compute_subnetworks",
+    "body": "describe google_compute_subnetworks(project: 'chef-gcp-inspec', region: 'europe-west2') do\n  its('ip_cidr_ranges') { should include '10.2.0.0/16' }\n  its('subnetwork_names') { should include 'inspec-subnet' }\nend",
+    "description": null,
+    "scope": "source.ruby.chef_inspec"
+  },
+  "google_compute_target_http_proxies": {
+    "prefix": "google_compute_target_http_proxies",
+    "body": "describe google_compute_target_http_proxies(project: 'chef-gcp-inspec') do\n  its('names') { should include 'inspec-gcp-http-proxy' }\n  its('descriptions') { should include 'A HTTP proxy' }\nend",
+    "description": null,
+    "scope": "source.ruby.chef_inspec"
+  },
+  "google_compute_target_http_proxy": {
+    "prefix": "google_compute_target_http_proxy",
+    "body": "describe google_compute_target_http_proxy(project: 'chef-gcp-inspec', name: 'inspec-gcp-http-proxy') do\n  it { should exist }\n  its('description') { should eq 'A HTTP proxy' }\n  its('url_map') { should  match /\\/inspec-gcp-url-map$/ }\nend",
+    "description": null,
+    "scope": "source.ruby.chef_inspec"
+  },
+  "google_compute_target_https_proxies": {
+    "prefix": "google_compute_target_https_proxies",
+    "body": "describe google_compute_target_https_proxies(project: 'chef-gcp-inspec') do\n  its('names') { should include 'inspec-gcp-https-proxy' }\n  its('descriptions') { should include 'A HTTPS target proxy' }\nend",
+    "description": null,
+    "scope": "source.ruby.chef_inspec"
+  },
+  "google_compute_target_https_proxy": {
+    "prefix": "google_compute_target_https_proxy",
+    "body": "describe google_compute_target_https_proxy(project: 'chef-gcp-inspec', name: 'inspec-gcp-https-proxy') do\n  it { should exist }\n  its('url_map') { should match /\\/inspec-gcp-url-map$/ }\n  its('description') { should eq 'A HTTPS target proxy' }\nend",
+    "description": null,
+    "scope": "source.ruby.chef_inspec"
+  },
+  "google_compute_target_pool": {
+    "prefix": "google_compute_target_pool",
+    "body": "describe google_compute_target_pool(project: 'chef-gcp-inspec', region: 'europe-west2', name: 'inspec-gcp-target-pool') do\n  it { should exist }\n  its('session_affinity') { should eq 'CLIENT_IP' }\n  it { should has_target_instance('gcp_ext_vm_name', 'zone') }\nend",
+    "description": null,
+    "scope": "source.ruby.chef_inspec"
+  },
+  "google_compute_target_pools": {
+    "prefix": "google_compute_target_pools",
+    "body": "describe google_compute_target_pools(project: 'chef-gcp-inspec', region: 'europe-west2') do\n  its('names') { should include 'inspec-gcp-target-pool' }\n  its('session_affinities') { should include 'CLIENT_IP' }\nend",
+    "description": null,
+    "scope": "source.ruby.chef_inspec"
+  },
+  "google_compute_target_tcp_proxies": {
+    "prefix": "google_compute_target_tcp_proxies",
+    "body": "describe google_compute_target_tcp_proxies(project: 'chef-gcp-inspec') do\n  its('names') { should include 'inspec-gcp-target-tcp-proxy' }\n  its('proxy_headers') { should include 'NONE' }\nend",
+    "description": null,
+    "scope": "source.ruby.chef_inspec"
+  },
+  "google_compute_target_tcp_proxy": {
+    "prefix": "google_compute_target_tcp_proxy",
+    "body": "describe google_compute_target_tcp_proxy(project: 'chef-gcp-inspec', name: 'inspec-gcp-target-tcp-proxy') do\n  it { should exist }\n  its('proxy_header') { should eq 'NONE' }\n  its('service') { should  match /\\/gcp-inspec-tcp-backend-service$/ }\nend",
+    "description": null,
+    "scope": "source.ruby.chef_inspec"
+  },
+  "google_compute_url_map": {
+    "prefix": "google_compute_url_map",
+    "body": "describe google_compute_url_map(project: 'chef-gcp-inspec', name: 'inspec-gcp-url-map') do\n  it { should exist }\n  its('description') { should eq 'URL map description' }\n  its('default_service') { should match /\\/inspec-gcp-backend-service$/ }\n  its('host_rules.count') { should eq 1 }\n  its('host_rules.first.hosts') { should include 'site.com' }\n  its('path_matchers.count') { should eq 1 }\n  its('path_matchers.first.default_service') { should match /\\/inspec-gcp-backend-service$/ }\n  its('tests.count') { should eq 1 }\n  its('tests.first.host') { should eq 'test.com' }\n  its('tests.first.path') { should eq '/home' }\nend",
+    "description": null,
+    "scope": "source.ruby.chef_inspec"
+  },
+  "google_compute_url_maps": {
+    "prefix": "google_compute_url_maps",
+    "body": "describe google_compute_url_maps(project: 'chef-gcp-inspec') do\n  its('names') { should include 'inspec-gcp-url-map' }\nend",
+    "description": null,
+    "scope": "source.ruby.chef_inspec"
+  },
+  "google_compute_vpn_tunnel": {
+    "prefix": "google_compute_vpn_tunnel",
+    "body": "describe google_compute_vpn_tunnel(project: 'chef-gcp-inspec', region: 'europe-west2', name: 'inspec-vpn-tunnel') do\n  it { should exist }\n  its('peer_ip') { should eq '15.0.0.120' }\nend",
+    "description": null,
+    "scope": "source.ruby.chef_inspec"
+  },
+  "google_compute_vpn_tunnels": {
+    "prefix": "google_compute_vpn_tunnels",
+    "body": "describe google_compute_vpn_tunnels(project: 'chef-gcp-inspec', region: 'europe-west2') do\n\tits('vpn_tunnel_names') { should include 'inspec-vpn-tunnel' }\n  its('peer_ips') { should include '15.0.0.120' }\nend",
+    "description": null,
+    "scope": "source.ruby.chef_inspec"
+  },
+  "google_compute_zone": {
+    "prefix": "google_compute_zone",
+    "body": "describe google_compute_zone(project: 'chef-gcp-inspec', name: \"us-central1-a\") do\n  it { should exist }\n  it { should be_up }\nend",
+    "description": null,
+    "scope": "source.ruby.chef_inspec"
+  },
+  "google_compute_zones": {
+    "prefix": "google_compute_zones",
+    "body": "describe google_compute_zone(project: 'chef-gcp-inspec', name: zone_name) do\n    it { should exist }\n    it { should be_up }\n  end",
+    "description": null,
+    "scope": "source.ruby.chef_inspec"
+  },
+  "google_container_cluster": {
+    "prefix": "google_container_cluster",
+    "body": "describe google_container_cluster(project: 'chef-gcp-inspec', location: 'europe-west2-a', name: 'gcp-inspec-kube-cluster') do\n  it { should exist }\n  its('locations.sort'){ should cmp [ 'europe-west2-a', 'europe-west2-b', 'europe-west2-c' ].sort }\n\n  its('master_auth.username') { should eq 'gcp-inspec-kube-admin' }\nend",
+    "description": null,
+    "scope": "source.ruby.chef_inspec"
+  },
+  "google_container_clusters": {
+    "prefix": "google_container_clusters",
+    "body": "describe google_container_clusters(project: 'chef-gcp-inspec', location: 'europe-west2-a') do\n  its('cluster_names') { should include 'gcp-inspec-kube-cluster' }\nend",
+    "description": null,
+    "scope": "source.ruby.chef_inspec"
+  },
+  "google_container_node_pool": {
+    "prefix": "google_container_node_pool",
+    "body": "describe google_container_node_pool(project: 'chef-gcp-inspec', location: 'europe-west2-a', cluster_name: 'gcp-inspec-kube-cluster', nodepool_name: 'inspec-gcp-regional-node-pool') do\n  it { should exist }\n  its('initial_node_count') { should eq '1'}\nend",
+    "description": null,
+    "scope": "source.ruby.chef_inspec"
+  },
+  "google_container_node_pools": {
+    "prefix": "google_container_node_pools",
+    "body": "describe google_container_node_pools(project: 'chef-gcp-inspec', location: 'europe-west2-a', cluster_name: 'gcp-inspec-kube-cluster') do\n  its('initial_node_counts') { should include '1'}\nend",
+    "description": null,
+    "scope": "source.ruby.chef_inspec"
+  },
+  "google_container_regional_cluster": {
+    "prefix": "google_container_regional_cluster",
+    "body": "describe google_container_regional_cluster(project: 'chef-gcp-inspec', location: 'europe-west2', name: 'inspec-gcp-regional-cluster') do\n  it { should exist }\n  its('initial_node_count') { should eq '1'}\n  its('location') { should eq 'europe-west2'}\nend",
+    "description": null,
+    "scope": "source.ruby.chef_inspec"
+  },
+  "google_container_regional_clusters": {
+    "prefix": "google_container_regional_clusters",
+    "body": "describe google_container_regional_clusters(project: 'chef-gcp-inspec', location: 'europe-west2') do\n  its('count') { should be >= 1 }\n  its('names') { should include 'inspec-gcp-regional-cluster' }\n  its('initial_node_counts') { should include '1'}\nend",
+    "description": null,
+    "scope": "source.ruby.chef_inspec"
+  },
+  "google_container_regional_node_pool": {
+    "prefix": "google_container_regional_node_pool",
+    "body": "describe google_container_regional_node_pool(project: 'chef-gcp-inspec', location: 'europe-west2', cluster: 'inspec-gcp-regional-cluster', name: 'inspec-gcp-regional-node-pool') do\n  it { should exist }\n  its('initial_node_count') { should eq '1'}\nend",
+    "description": null,
+    "scope": "source.ruby.chef_inspec"
+  },
+  "google_container_regional_node_pools": {
+    "prefix": "google_container_regional_node_pools",
+    "body": "describe google_container_regional_node_pools(project: 'chef-gcp-inspec', location: 'europe-west2', cluster: 'inspec-gcp-regional-cluster') do\n  its('initial_node_counts') { should include '1'}\nend",
+    "description": null,
+    "scope": "source.ruby.chef_inspec"
+  },
+  "google_dataproc_cluster": {
+    "prefix": "google_dataproc_cluster",
+    "body": "describe google_dataproc_cluster(project: 'chef-gcp-inspec', region: 'europe-west2', cluster_name: 'inspec-dataproc-cluster') do\n  it { should exist }\n  its('labels') { should include('label' => 'value') }\n  its('config.master_config.num_instances') { should cmp '1' }\n  its('config.worker_config.num_instances') { should cmp '2' }\n  its('config.master_config.machine_type_uri') { should match 'n1-standard-1' }\n  its('config.worker_config.machine_type_uri') { should match 'n1-standard-1' }\n  its('config.software_config.properties') { should include('dataproc:dataproc.allow.zero.workers' => 'true') }\nend",
+    "description": null,
+    "scope": "source.ruby.chef_inspec"
+  },
+  "google_dataproc_clusters": {
+    "prefix": "google_dataproc_clusters",
+    "body": "describe google_dataproc_clusters(project: 'chef-gcp-inspec', region: 'europe-west2') do\n  its('count') { should be >= 1 }\n  its('cluster_names') { should include 'inspec-dataproc-cluster' }\nend",
+    "description": null,
+    "scope": "source.ruby.chef_inspec"
+  },
+  "google_dns_managed_zone": {
+    "prefix": "google_dns_managed_zone",
+    "body": "describe google_dns_managed_zone(project: 'chef-gcp-inspec', zone: 'example-zone') do\n  it { should exist }\n  its('dns_name') { should cmp 'dns-zone-name.com.' }\n\n  its('description') { should cmp 'example description' }\n  its('zone_signing_key_algorithm') { should cmp 'rsasha256' }\n  its('key_signing_key_algorithm') { should cmp 'rsasha512' }\nend",
+    "description": null,
+    "scope": "source.ruby.chef_inspec"
+  },
+  "google_dns_managed_zones": {
+    "prefix": "google_dns_managed_zones",
+    "body": "describe google_dns_managed_zones(project: 'chef-gcp-inspec') do\n  it { should exist }\n  its('zone_names') { should include 'example-zone' }\n  its('zone_dns_names') { should include 'dns-zone-name.com.' }\nend",
+    "description": null,
+    "scope": "source.ruby.chef_inspec"
+  },
+  "google_dns_resource_record_set": {
+    "prefix": "google_dns_resource_record_set",
+    "body": "describe google_dns_resource_record_set(project: 'chef-gcp-inspec', name: 'backend.my.domain.com.', type: 'A', managed_zone: 'inspec-gcp-managed-zone') do\n  it { should exist }\n  its('type') { should eq 'A' }\n  its('ttl') { should eq '300' }\n  its('target') { should include '8.8.8.8' }\n  its('target') { should include '8.8.4.4' }\nend",
+    "description": null,
+    "scope": "source.ruby.chef_inspec"
+  },
+  "google_dns_resource_record_sets": {
+    "prefix": "google_dns_resource_record_sets",
+    "body": "describe google_dns_resource_record_sets(project: 'chef-gcp-inspec', name: 'backend.my.domain.com.', managed_zone: 'inspec-gcp-managed-zone') do\n  its('count') { should eq 3 }\n  its('types') { should include 'A' }\n  its('ttls') { should include '300' }\n  its('targets.flatten') { should include '8.8.8.8' }\n  its('targets.flatten') { should include '8.8.4.4' }\nend",
+    "description": null,
+    "scope": "source.ruby.chef_inspec"
+  },
+  "google_filestore_instance": {
+    "prefix": "google_filestore_instance",
+    "body": "describe google_filestore_instance(project: 'chef-gcp-inspec', zone: 'us-central1-b', name: 'inspecgcp') do\n  it { should exist }\n  its('tier') { should cmp 'PREMIUM' }\n  its('file_shares.count') { should cmp 1 }\n  its('file_shares.first.capacity_gb') { should cmp '2660' }\n  its('file_shares.first.name') { should cmp 'inspecgcp' }\n  its('networks.count') { should cmp 1 }\n  its('networks.first.network') { should cmp 'default' }\n  its('networks.first.modes') { should include 'MODE_IPV4' }\nend",
+    "description": null,
+    "scope": "source.ruby.chef_inspec"
+  },
+  "google_filestore_instances": {
+    "prefix": "google_filestore_instances",
+    "body": "describe google_filestore_instances(project: 'chef-gcp-inspec', zone: 'us-central1-b') do\n  its('tiers') { should include 'PREMIUM' }\nend",
+    "description": null,
+    "scope": "source.ruby.chef_inspec"
+  },
+  "google_iam_custom_role": {
+    "prefix": "google_iam_custom_role",
+    "body": "describe google_iam_custom_role(project: 'chef-gcp-inspec', name: 'admin-role') do\n  it { should exist }\n  its('stage') { should eq 'GA' }\n  its('included_permissions') { should eq [\"iam.roles.list\"] }\nend",
+    "description": null,
+    "scope": "source.ruby.chef_inspec"
+  },
+  "google_iam_custom_roles": {
+    "prefix": "google_iam_custom_roles",
+    "body": "describe google_iam_custom_roles(project: 'chef-gcp-inspec') do\n  its('names') { should include \"projects/project-id/roles/role-id\" }\nend",
+    "description": null,
+    "scope": "source.ruby.chef_inspec"
+  },
+  "google_iam_organization_custom_role": {
+    "prefix": "google_iam_organization_custom_role",
+    "body": "describe google_iam_organization_custom_role(org_id: '12345', name: 'org-role') do\n  it { should exist }\n  its('stage') { should eq 'GA' }\n  its('included_permissions') { should eq [\"iam.roles.list\"] }\nend",
+    "description": null,
+    "scope": "source.ruby.chef_inspec"
+  },
+  "google_iam_organization_custom_roles": {
+    "prefix": "google_iam_organization_custom_roles",
+    "body": "describe google_iam_organization_custom_roles(org_id: '190694428152') do\n  its('names') { should include \"organizations/123456/roles/role-id\" }\nend",
+    "description": null,
+    "scope": "source.ruby.chef_inspec"
+  },
+  "google_iam_service_account": {
+    "prefix": "google_iam_service_account",
+    "body": "describe google_iam_service_account(project: 'chef-gcp-inspec', name: \"display-name@project-id.iam.gserviceaccount.com\") do\n  it { should exist }\n  its('display_name') { should cmp '' }\nend",
+    "description": null,
+    "scope": "source.ruby.chef_inspec"
+  },
+  "google_iam_service_account_key": {
+    "prefix": "google_iam_service_account_key",
+    "body": "describe\nend",
+    "description": null,
+    "scope": "source.ruby.chef_inspec"
+  },
+  "google_iam_service_account_keys": {
+    "prefix": "google_iam_service_account_keys",
+    "body": "describe google_iam_service_account_keys(project: 'chef-gcp-inspec', service_account: \"display-name@project-id.iam.gserviceaccount.com\") do\n  its('count') { should be <= 1000 }\nend",
+    "description": null,
+    "scope": "source.ruby.chef_inspec"
+  },
+  "google_iam_service_accounts": {
+    "prefix": "google_iam_service_accounts",
+    "body": "describe google_iam_service_accounts(project: 'chef-gcp-inspec', name: \"display-name@project-id.iam.gserviceaccount.com\") do\n  its('service_account_emails') { should include \"display-name@project-id.iam.gserviceaccount.com\" }\n  its('count') { should be <= 1000 }\nend",
+    "description": null,
+    "scope": "source.ruby.chef_inspec"
+  },
+  "google_kms_crypto_key": {
+    "prefix": "google_kms_crypto_key",
+    "body": "describe google_kms_crypto_key(project: 'chef-gcp-inspec', location: 'europe-west2', key_ring_name: 'kms-key-ring', name: 'kms-key') do\n  it { should exist }\n  its('crypto_key_name') { should cmp 'kms-key' }\n  its('primary_state') { should eq \"ENABLED\" }\n  its('purpose') { should eq \"ENCRYPT_DECRYPT\" }\n  its('next_rotation_time') { should be > Time.now - 100000 }\n  its('create_time') { should be > Time.now - 365*60*60*24*10 }\nend",
+    "description": null,
+    "scope": "source.ruby.chef_inspec"
+  },
+  "google_kms_crypto_key_iam_binding": {
+    "prefix": "google_kms_crypto_key_iam_binding",
+    "body": "describe google_kms_crypto_key_iam_binding(project: \"project\", location: \"location\", key_ring_name: \"key_ring_name\", crypto_key_name: \"crypto_key_name\", role: \"roles/editor\") do\n  it { should exist }\n  its('members') { should include 'user:testuser@example.com' }\nend",
+    "description": null,
+    "scope": "source.ruby.chef_inspec"
+  },
+  "google_kms_crypto_key_iam_bindings": {
+    "prefix": "google_kms_crypto_key_iam_bindings",
+    "body": "describe google_kms_crypto_key_iam_bindings(crypto_key_url: 'projects/project/locations/europe-west2/keyRings/key-ring/cryptoKeys/key-name') do\n\tit { should exist }\nend",
+    "description": "Use the `google_kms_crypto_key_iam_bindings` InSpec audit resource to test properties of all, or a filtered group of, GCP KMS Crypto Key IAM Bindings.",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "google_kms_crypto_key_iam_policy": {
+    "prefix": "google_kms_crypto_key_iam_policy",
+    "body": "describe google_kms_crypto_key_iam_policy(project: \"project\", location: \"location\", key_ring_name: \"key_ring_name\", crypto_key_name: \"crypto_key_name\") do\n  it { should exist }\nend",
+    "description": null,
+    "scope": "source.ruby.chef_inspec"
+  },
+  "google_kms_crypto_keys": {
+    "prefix": "google_kms_crypto_keys",
+    "body": "describe google_kms_crypto_keys(project: 'chef-gcp-inspec', location: 'europe-west2', key_ring_name: 'kms-key-ring') do\n  its('count') { should be >= 1 }\n  its('crypto_key_names') { should include 'kms-key' }\nend",
+    "description": null,
+    "scope": "source.ruby.chef_inspec"
+  },
+  "google_kms_key_ring": {
+    "prefix": "google_kms_key_ring",
+    "body": "describe google_kms_key_ring(project: 'chef-gcp-inspec', location: 'europe-west2', name: 'kms-key-ring') do\n  it { should exist }\n  its('create_time') { should be > Time.now - 365*60*60*24*10 }\n  its('key_ring_name'){ should eq 'kms-key-ring' }\n  its('key_ring_url'){ should match 'kms-key-ring' }\nend",
+    "description": null,
+    "scope": "source.ruby.chef_inspec"
+  },
+  "google_kms_key_ring_iam_binding": {
+    "prefix": "google_kms_key_ring_iam_binding",
+    "body": "describe google_kms_key_ring_iam_binding(project: \"project\", location: \"location\", key_ring_name: \"key_ring_name\", role: \"roles/editor\") do\n  it { should exist }\n  its('members') { should include 'user:testuser@example.com' }\nend",
+    "description": null,
+    "scope": "source.ruby.chef_inspec"
+  },
+  "google_kms_key_ring_iam_bindings": {
+    "prefix": "google_kms_key_ring_iam_bindings",
+    "body": "describe google_kms_key_ring_iam_bindings(key_ring_url: 'projects/project/locations/europe-west2/keyRings/key-ring') do\n\tit { should exist }\nend",
+    "description": "Use the `google_kms_key_ring_iam_bindings` InSpec audit resource to test properties of all, or a filtered group of, GCP KMS key ring IAM bindings.",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "google_kms_key_ring_iam_policy": {
+    "prefix": "google_kms_key_ring_iam_policy",
+    "body": "describe google_kms_key_ring_iam_policy(project: \"project\", location: \"location\", key_ring_name: \"key_ring_name\") do\n  it { should exist }\nend",
+    "description": null,
+    "scope": "source.ruby.chef_inspec"
+  },
+  "google_kms_key_rings": {
+    "prefix": "google_kms_key_rings",
+    "body": "describe google_kms_key_rings(project: 'chef-gcp-inspec', location: 'europe-west2') do\n  its('key_ring_names'){ should include 'kms-key-ring' }\nend",
+    "description": null,
+    "scope": "source.ruby.chef_inspec"
+  },
+  "google_logging_folder_exclusion": {
+    "prefix": "google_logging_folder_exclusion",
+    "body": "describe.one do\n  google_resourcemanager_folders(parent: 'organizations/12345').names.each do |folder_name|\n    # name on a folder is in the form `folders/12345`\n    google_logging_folder_exclusions(folder: folder_name.split('/')[1]).names.each do |exclusion_name|\n\tdescribe google_logging_folder_exclusion(folder: folder_name.split('/')[1], name: exclusion_name) do\n\t  its('name'){ should cmp 'inspec-folder-exclusion' }\n\t  its('description'){ should cmp 'My folder exclusion description' }\n\t  its('filter'){ should cmp 'resource.type = gce_instance AND severity <= DEBUG' }\n\tend",
+    "description": null,
+    "scope": "source.ruby.chef_inspec"
+  },
+  "google_logging_folder_exclusions": {
+    "prefix": "google_logging_folder_exclusions",
+    "body": "describe.one do\n  google_resourcemanager_folders(parent: 'organizations/12345').names.each do |name|\n    # name on a folder is in the form `folders/12345`\n    describe google_logging_folder_exclusions(folder: name.split('/')[1]) do\n\tits('names'){ should include 'inspec-folder-exclusion' }\n\tits('descriptions'){ should include 'My folder exclusion description' }\n\tits('filters'){ should include 'resource.type = gce_instance AND severity <= DEBUG' }\nend",
+    "description": null,
+    "scope": "source.ruby.chef_inspec"
+  },
+  "google_logging_folder_log_sink": {
+    "prefix": "google_logging_folder_log_sink",
+    "body": "describe.one do\n  google_resourcemanager_folders(parent: 'organizations/12345').names.each do |folder_name|\n    # name on a folder is in the form `folders/12345`\n    describe google_logging_folder_log_sink(folder: folder_name.split('/')[1], name: 'inspec-gcp-folder-sink') do\n\tit { should exist }\n\tits('filter') { should cmp 'resource.type = gce_instance AND severity >= ERROR' }\nend",
+    "description": null,
+    "scope": "source.ruby.chef_inspec"
+  },
+  "google_logging_folder_log_sinks": {
+    "prefix": "google_logging_folder_log_sinks",
+    "body": "describe.one do\n  google_resourcemanager_folders(parent: 'organizations/12345').names.each do |folder_name|\n    # name on a folder is in the form `folders/12345`\n    describe google_logging_folder_log_sinks(folder: folder_name.split('/')[1]) do\n\tits('names') { should include 'inspec-gcp-folder-sink' }\n\tits('filters') { should include 'resource.type = gce_instance AND severity >= ERROR' }\nend",
+    "description": null,
+    "scope": "source.ruby.chef_inspec"
+  },
+  "google_logging_organization_log_sink": {
+    "prefix": "google_logging_organization_log_sink",
+    "body": "describe google_logging_organization_log_sink(organization: '190694428152', name: 'inspec-gcp-org-sink') do\n  it { should exist }\n  its('filter') { should cmp 'resource.type = gce_instance' }\nend",
+    "description": null,
+    "scope": "source.ruby.chef_inspec"
+  },
+  "google_logging_organization_log_sinks": {
+    "prefix": "google_logging_organization_log_sinks",
+    "body": "describe google_logging_organization_log_sinks(organization: '190694428152') do\n  its('names') { should include 'inspec-gcp-org-sink' }\nend",
+    "description": null,
+    "scope": "source.ruby.chef_inspec"
+  },
+  "google_logging_project_exclusion": {
+    "prefix": "google_logging_project_exclusion",
+    "body": "describe google_logging_project_exclusion(project: 'chef-gcp-inspec', name: 'inspec-project-exclusion') do\n\tit { should exist }\n  its('description'){ should cmp 'My project exclusion description' }\n  its('filter'){ should cmp 'resource.type = gce_instance AND severity <= DEBUG' }\nend",
+    "description": null,
+    "scope": "source.ruby.chef_inspec"
+  },
+  "google_logging_project_exclusions": {
+    "prefix": "google_logging_project_exclusions",
+    "body": "describe google_logging_project_exclusions(project: 'chef-gcp-inspec') do\n  its('names'){ should include 'inspec-folder-exclusion' }\nend",
+    "description": null,
+    "scope": "source.ruby.chef_inspec"
+  },
+  "google_logging_project_sink": {
+    "prefix": "google_logging_project_sink",
+    "body": "describe google_logging_project_sink(project: 'chef-gcp-inspec', name: 'inspec-gcp-org-sink') do\n  it { should exist }\n  its('filter') { should cmp 'resource.type = gce_instance AND severity = DEBUG' }\nend",
+    "description": null,
+    "scope": "source.ruby.chef_inspec"
+  },
+  "google_logging_project_sinks": {
+    "prefix": "google_logging_project_sinks",
+    "body": "describe google_logging_project_sinks(project: 'chef-gcp-inspec') do\n  its('names') { should include 'inspec-gcp-org-sink' }\nend",
+    "description": null,
+    "scope": "source.ruby.chef_inspec"
+  },
+  "google_ml_engine_model": {
+    "prefix": "google_ml_engine_model",
+    "body": "describe google_ml_engine_model(project: 'chef-gcp-inspec', name: 'ml_model') do\n  it { should exist }\n  its('description') { should cmp 'My awesome ML model' }\n  its('regions') { should include 'us-central1' }\n  its('online_prediction_logging') { should cmp 'true' }\n  its('online_prediction_console_logging') { should cmp 'true' }\nend",
+    "description": null,
+    "scope": "source.ruby.chef_inspec"
+  },
+  "google_ml_engine_models": {
+    "prefix": "google_ml_engine_models",
+    "body": "describe google_ml_engine_models(project: 'chef-gcp-inspec') do\n  its('descriptions') { should include 'My awesome ML model' }\n  its('online_prediction_loggings') { should include 'true' }\n  its('online_prediction_console_loggings') { should include 'true' }\nend",
+    "description": null,
+    "scope": "source.ruby.chef_inspec"
+  },
+  "google_organization": {
+    "prefix": "google_organization",
+    "body": "describe google_organization(name: \"organizations/123456\") do\n  its('name') { should eq \"organizations/123456\" }\n  its('lifecycle_state') { should cmp 'ACTIVE' }\nend",
+    "description": null,
+    "scope": "source.ruby.chef_inspec"
+  },
+  "google_organization_iam_binding": {
+    "prefix": "google_organization_iam_binding",
+    "body": "describe google_organization_iam_binding(name: \"name\", role: \"roles/editor\") do\n  it { should exist }\n  its('members') { should include 'user:testuser@example.com' }\nend",
+    "description": null,
+    "scope": "source.ruby.chef_inspec"
+  },
+  "google_organization_iam_policy": {
+    "prefix": "google_organization_iam_policy",
+    "body": "describe google_organization_iam_policy(name: \"name\") do\n  it { should exist }\nend",
+    "description": null,
+    "scope": "source.ruby.chef_inspec"
+  },
+  "google_organization_policy": {
+    "prefix": "google_organization_policy",
+    "body": "describe google_organization_policy(name: 'organizations/123456', constraint: 'constraints/compute.disableGuestAttributesAccess') do\n\tit { should exist }\n\tits('boolean_policy.enforced') { should be true }\nend",
+    "description": "Use the `google_organization_policy` InSpec audit resource to test constraints set on a GCP organization.",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "google_organizations": {
+    "prefix": "google_organizations",
+    "body": "describe google_organizations do\n  its('names') { should include \"organizations/123456\" }\nend",
+    "description": null,
+    "scope": "source.ruby.chef_inspec"
+  },
+  "google_project": {
+    "prefix": "google_project",
+    "body": "describe google_project(project: 'chef-gcp-inspec') do\n  it { should exist }\n  its('project_id') { should cmp 'chef-gcp-inspec' }\n  its('lifecycle_state') { should cmp 'ACTIVE' }\nend",
+    "description": null,
+    "scope": "source.ruby.chef_inspec"
+  },
+  "google_project_alert_policies": {
+    "prefix": "google_project_alert_policies",
+    "body": "describe google_project_alert_policies(project: 'chef-gcp-inspec') do\n  it { should exist }\n  its('policy_display_names') { should include 'Display'}\n  its('combiners') { should include 'OR'}\nend",
+    "description": null,
+    "scope": "source.ruby.chef_inspec"
+  },
+  "google_project_alert_policy": {
+    "prefix": "google_project_alert_policy",
+    "body": "describe.one do\n  google_project_alert_policies(project: 'chef-gcp-inspec').policy_names do |policy_name|\n    describe google_project_alert_policy(project: 'chef-gcp-inspec', name: policy_name) do\n\tit { should exist }\n\tits('display_name') { should cmp 'Display'}\n\tits('combiner') { should cmp 'OR'}\n\tit { should be_enabled }\nend",
+    "description": null,
+    "scope": "source.ruby.chef_inspec"
+  },
+  "google_project_alert_policy_condition": {
+    "prefix": "google_project_alert_policy_condition",
+    "body": "describe google_project_alert_policy_condition(name: 'projects/spaterson-project/alertPolicies/9271751234503117449', filter 'project=\\\"spaterson-project\\\"') do\n\tit { should exist }\nend",
+    "description": "Use the `google_project_alert_policy_condition` InSpec audit resource to test properties of a single GCP project alert policy condition.",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "google_project_iam_binding": {
+    "prefix": "google_project_iam_binding",
+    "body": "describe google_project_iam_binding(project: \"project\", role: \"roles/editor\") do\n  it { should exist }\n  its('members') { should include 'user:testuser@example.com' }\nend",
+    "description": null,
+    "scope": "source.ruby.chef_inspec"
+  },
+  "google_project_iam_bindings": {
+    "prefix": "google_project_iam_bindings",
+    "body": "describe google_project_iam_bindings(project: 'chef-inspec-gcp') do\n\tit { should exist }\nend",
+    "description": "Use the `google_project_iam_bindings` InSpec audit resource to test properties of all, or a filtered group of, GCP project IAM bindings.",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "google_project_iam_custom_role": {
+    "prefix": "google_project_iam_custom_role",
+    "body": "describe google_project_iam_custom_role(project: 'chef-gcp-inspec', name: 'admin-role') do\n  it { should exist }\n  its('stage') { should eq 'GA' }\n  its('included_permissions') { should eq [\"iam.roles.list\"] }\nend",
+    "description": null,
+    "scope": "source.ruby.chef_inspec"
+  },
+  "google_project_iam_custom_roles": {
+    "prefix": "google_project_iam_custom_roles",
+    "body": "describe google_project_iam_custom_roles(project: 'chef-gcp-inspec') do\n  its('names') { should include \"projects/project-id/roles/role-id\" }\nend",
+    "description": null,
+    "scope": "source.ruby.chef_inspec"
+  },
+  "google_project_iam_policy": {
+    "prefix": "google_project_iam_policy",
+    "body": "describe google_project_iam_policy(project: \"project\") do\n  it { should exist }\nend",
+    "description": null,
+    "scope": "source.ruby.chef_inspec"
+  },
+  "google_project_logging_audit_config": {
+    "prefix": "google_project_logging_audit_config",
+    "body": "describe google_project_logging_audit_config(project: 'chef-inspec-gcp') do\n\tit { should exist }\nend",
+    "description": "Use the `google_compute_zone` InSpec audit resource to test properties of a single GCP compute zone.",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "google_project_metric": {
+    "prefix": "google_project_metric",
+    "body": "describe google_project_metric(project: 'chef-gcp-inspec', name: 'some/metric') do\n  it { should exist }\n  its('filter') { should cmp 'resource.type=gae_app AND severity>=ERROR' }\n  its('metric_descriptor.metric_kind') { should cmp 'DELTA' }\n  its('metric_descriptor.value_type') { should cmp 'INT64' }\nend",
+    "description": null,
+    "scope": "source.ruby.chef_inspec"
+  },
+  "google_project_metrics": {
+    "prefix": "google_project_metrics",
+    "body": "describe google_project_metrics(project: 'chef-gcp-inspec') do\n  it { should exist }\n  its('metric_filters') { should include 'resource.type=gae_app AND severity>=ERROR' }\n  its('metric_names') { should include 'some/metric' }\nend",
+    "description": null,
+    "scope": "source.ruby.chef_inspec"
+  },
+  "google_project_service": {
+    "prefix": "google_project_service",
+    "body": "describe google_project_service(project: 'chef-gcp-inspec', name: 'maps-android-backend.googleapis.com') do\n  it { should exist }\n  its('state') { should cmp \"ENABLED\" }\nend",
+    "description": null,
+    "scope": "source.ruby.chef_inspec"
+  },
+  "google_project_services": {
+    "prefix": "google_project_services",
+    "body": "describe.one do\n  google_project_services(project: 'chef-gcp-inspec').names.each do |name|\n    describe name do\n\tit { should match 'maps-android-backend.googleapis.com' }\nend",
+    "description": null,
+    "scope": "source.ruby.chef_inspec"
+  },
+  "google_projects": {
+    "prefix": "google_projects",
+    "body": "describe google_projects() do\n  its('count') { should be >= 1 }\n  its('project_ids') { should include 'chef-gcp-inspec' }\n  its('lifecycle_states') { should include 'ACTIVE' }\nend",
+    "description": null,
+    "scope": "source.ruby.chef_inspec"
+  },
+  "google_pubsub_subscription": {
+    "prefix": "google_pubsub_subscription",
+    "body": "describe google_pubsub_subscription(project: 'chef-gcp-inspec', name: 'inspec-gcp-subscription') do\n  it { should exist }\nend",
+    "description": null,
+    "scope": "source.ruby.chef_inspec"
+  },
+  "google_pubsub_subscription_iam_binding": {
+    "prefix": "google_pubsub_subscription_iam_binding",
+    "body": "describe google_pubsub_subscription_iam_binding(project: \"project\", name: \"name\", role: \"roles/editor\") do\n  it { should exist }\n  its('members') { should include 'user:testuser@example.com' }\nend",
+    "description": null,
+    "scope": "source.ruby.chef_inspec"
+  },
+  "google_pubsub_subscription_iam_policy": {
+    "prefix": "google_pubsub_subscription_iam_policy",
+    "body": "describe google_pubsub_subscription_iam_policy(project: \"project\", name: \"name\") do\n  it { should exist }\nend",
+    "description": null,
+    "scope": "source.ruby.chef_inspec"
+  },
+  "google_pubsub_subscriptions": {
+    "prefix": "google_pubsub_subscriptions",
+    "body": "describe google_pubsub_subscriptions(project: 'chef-gcp-inspec') do\n  its('count') { should be >= 1 }\nend",
+    "description": null,
+    "scope": "source.ruby.chef_inspec"
+  },
+  "google_pubsub_topic": {
+    "prefix": "google_pubsub_topic",
+    "body": "describe google_pubsub_topic(project: 'chef-gcp-inspec', name: 'inspec-gcp-topic') do\n  it { should exist }\nend",
+    "description": null,
+    "scope": "source.ruby.chef_inspec"
+  },
+  "google_pubsub_topic_iam_binding": {
+    "prefix": "google_pubsub_topic_iam_binding",
+    "body": "describe google_pubsub_topic_iam_binding(project: \"project\", name: \"name\", role: \"roles/editor\") do\n  it { should exist }\n  its('members') { should include 'user:testuser@example.com' }\nend",
+    "description": null,
+    "scope": "source.ruby.chef_inspec"
+  },
+  "google_pubsub_topic_iam_policy": {
+    "prefix": "google_pubsub_topic_iam_policy",
+    "body": "describe google_pubsub_topic_iam_policy(project: \"project\", name: \"name\") do\n  it { should exist }\nend",
+    "description": null,
+    "scope": "source.ruby.chef_inspec"
+  },
+  "google_pubsub_topics": {
+    "prefix": "google_pubsub_topics",
+    "body": "describe google_pubsub_topics(project: 'chef-gcp-inspec') do\n  it { should exist }\n  its('names') { should include 'inspec-gcp-topic' }\n  its('count') { should be >=1 }\nend",
+    "description": null,
+    "scope": "source.ruby.chef_inspec"
+  },
+  "google_redis_instance": {
+    "prefix": "google_redis_instance",
+    "body": "describe google_redis_instance(project: 'chef-gcp-inspec', region: 'us-central1', name: 'my-redis-cache') do\n  it { should exist }\n  its('tier') { should cmp 'STANDARD_HA' }\n  its('memory_size_gb') { should cmp '1' }\n  its('alternative_location_id') { should cmp 'us-central1-f' }\n  its('redis_version') { should cmp 'REDIS_3_2' }\n  its('display_name') { should cmp 'InSpec test instance' }\n  its('reserved_ip_range') { should cmp '192.168.0.0/29' }\n  its('labels') { should include('key' => 'value') }\nend",
+    "description": null,
+    "scope": "source.ruby.chef_inspec"
+  },
+  "google_redis_instances": {
+    "prefix": "google_redis_instances",
+    "body": "describe google_redis_instances(project: 'chef-gcp-inspec', region: 'us-central1') do\n  its('tiers') { should include 'STANDARD_HA' }\n  its('memory_size_gbs') { should include '1' }\n  its('alternative_location_ids') { should include 'us-central1-f' }\n  its('redis_versions') { should include 'REDIS_3_2' }\n  its('display_names') { should include 'InSpec test instance' }\n  its('reserved_ip_ranges') { should include '192.168.0.0/29' }\nend",
+    "description": null,
+    "scope": "source.ruby.chef_inspec"
+  },
+  "google_resourcemanager_folder": {
+    "prefix": "google_resourcemanager_folder",
+    "body": "describe.one do\n  google_resourcemanager_folders(parent: 'organizations/12345').names.each do |name|\n    describe google_resourcemanager_folder(name: name) do\n\tit { should exist }\n\tits('display_name') { should eq 'inspec-gcp-folder' }\nend",
+    "description": null,
+    "scope": "source.ruby.chef_inspec"
+  },
+  "google_resourcemanager_folder_iam_binding": {
+    "prefix": "google_resourcemanager_folder_iam_binding",
+    "body": "describe google_resourcemanager_folder_iam_binding(name: \"name\", role: \"roles/editor\") do\n  it { should exist }\n  its('members') { should include 'user:testuser@example.com' }\nend",
+    "description": null,
+    "scope": "source.ruby.chef_inspec"
+  },
+  "google_resourcemanager_folder_iam_policy": {
+    "prefix": "google_resourcemanager_folder_iam_policy",
+    "body": "describe google_resourcemanager_folder_iam_policy(name: \"name\") do\n  it { should exist }\nend",
+    "description": null,
+    "scope": "source.ruby.chef_inspec"
+  },
+  "google_resourcemanager_folders": {
+    "prefix": "google_resourcemanager_folders",
+    "body": "describe.one do\n  google_resourcemanager_folders(parent: 'organizations/12345').display_names.each do |display_name|\n    describe display_name do\n\tit { should eq 'inspec-gcp-folder' }\nend",
+    "description": null,
+    "scope": "source.ruby.chef_inspec"
+  },
+  "google_resourcemanager_organization_policy": {
+    "prefix": "google_resourcemanager_organization_policy",
+    "body": "describe google_resourcemanager_organization_policy(organization_name: \"organizations/123456789\", constraint: \"constraints/compute.disableSerialPortAccess\") do\n  it { should exist }\n  its('constraint') { should eq 'constraints/compute.disableSerialPortAccess' }\n  its('boolean_policy.enforced') { should be true }\nend",
+    "description": null,
+    "scope": "source.ruby.chef_inspec"
+  },
+  "google_resourcemanager_project_iam_binding": {
+    "prefix": "google_resourcemanager_project_iam_binding",
+    "body": "describe google_resourcemanager_project_iam_binding(project_id: \"projectId\", role: \"roles/editor\") do\n  it { should exist }\n  its('members') { should include 'user:testuser@example.com' }\nend",
+    "description": null,
+    "scope": "source.ruby.chef_inspec"
+  },
+  "google_resourcemanager_project_iam_policy": {
+    "prefix": "google_resourcemanager_project_iam_policy",
+    "body": "describe google_resourcemanager_project_iam_policy(project_id: \"projectId\") do\n  it { should exist }\nend",
+    "description": null,
+    "scope": "source.ruby.chef_inspec"
+  },
+  "google_runtime_config_config": {
+    "prefix": "google_runtime_config_config",
+    "body": "describe google_runtime_config_config(project: 'chef-gcp-inspec', name: 'inspec-gcp-runtime-config') do\n  it { should exist }\n  its('description') { should cmp 'My runtime configurations' }\nend",
+    "description": null,
+    "scope": "source.ruby.chef_inspec"
+  },
+  "google_runtime_config_config_iam_binding": {
+    "prefix": "google_runtime_config_config_iam_binding",
+    "body": "describe google_runtime_config_config_iam_binding(project: \"project\", name: \"name\", role: \"roles/editor\") do\n  it { should exist }\n  its('members') { should include 'user:testuser@example.com' }\nend",
+    "description": null,
+    "scope": "source.ruby.chef_inspec"
+  },
+  "google_runtime_config_config_iam_policy": {
+    "prefix": "google_runtime_config_config_iam_policy",
+    "body": "describe google_runtime_config_config_iam_policy(project: \"project\", name: \"name\") do\n  it { should exist }\nend",
+    "description": null,
+    "scope": "source.ruby.chef_inspec"
+  },
+  "google_runtime_config_configs": {
+    "prefix": "google_runtime_config_configs",
+    "body": "describe google_runtime_config_configs(project: 'chef-gcp-inspec') do\n  its('descriptions') { should include 'My runtime configurations' }\nend",
+    "description": null,
+    "scope": "source.ruby.chef_inspec"
+  },
+  "google_runtime_config_variable": {
+    "prefix": "google_runtime_config_variable",
+    "body": "describe google_runtime_config_variable(project: 'chef-gcp-inspec', config: 'inspec-gcp-runtime-config', name: 'prod-variables/hostname') do\n  it { should exist }\n  its('text') { should cmp 'example.com' }\nend",
+    "description": null,
+    "scope": "source.ruby.chef_inspec"
+  },
+  "google_runtime_config_variables": {
+    "prefix": "google_runtime_config_variables",
+    "body": "describe google_runtime_config_variables(project: 'chef-gcp-inspec', config: 'inspec-gcp-runtime-config') do\n  its('texts') { should include 'example.com' }\nend",
+    "description": null,
+    "scope": "source.ruby.chef_inspec"
+  },
+  "google_service_account": {
+    "prefix": "google_service_account",
+    "body": "describe google_service_account(project: 'chef-gcp-inspec', name: \"display-name@project-id.iam.gserviceaccount.com\") do\n  it { should exist }\n  its('display_name') { should cmp '' }\nend",
+    "description": null,
+    "scope": "source.ruby.chef_inspec"
+  },
+  "google_service_account_key": {
+    "prefix": "google_service_account_key",
+    "body": "describe google_service_account_key(project: 'chef-gcp-inspec', service_account: \"display-name@project-id.iam.gserviceaccount.com\", name: sa_key_name.split('/').last) do\n\t\tit { should exist }\n\t\tits('key_type') { should_not cmp 'USER_MANAGED' }\n\tend",
+    "description": null,
+    "scope": "source.ruby.chef_inspec"
+  },
+  "google_service_account_keys": {
+    "prefix": "google_service_account_keys",
+    "body": "describe google_service_account_keys(project: 'chef-gcp-inspec', service_account: \"display-name@project-id.iam.gserviceaccount.com\") do\n  its('count') { should be <= 1000 }\n  its('key_types') { should_not include 'USER_MANAGED' }\nend",
+    "description": null,
+    "scope": "source.ruby.chef_inspec"
+  },
+  "google_service_accounts": {
+    "prefix": "google_service_accounts",
+    "body": "describe google_service_accounts(project: 'chef-gcp-inspec', name: \"display-name@project-id.iam.gserviceaccount.com\") do\n  its('service_account_emails') { should include \"display-name@project-id.iam.gserviceaccount.com\" }\n  its('count') { should be <= 1000 }\nend",
+    "description": null,
+    "scope": "source.ruby.chef_inspec"
+  },
+  "google_sourcerepo_repositories": {
+    "prefix": "google_sourcerepo_repositories",
+    "body": "describe.one do\n  google_sourcerepo_repositories(project: 'chef-gcp-inspec').names.each do |name|\n    describe name do\n\tit { should match /\\/repos\\/#{repo_name}$/ }\nend",
+    "description": null,
+    "scope": "source.ruby.chef_inspec"
+  },
+  "google_sourcerepo_repository": {
+    "prefix": "google_sourcerepo_repository",
+    "body": "describe google_sourcerepo_repository(project: 'chef-gcp-inspec', name: 'inspec-gcp-repository') do\n  it { should exist }\nend",
+    "description": null,
+    "scope": "source.ruby.chef_inspec"
+  },
+  "google_spanner_database": {
+    "prefix": "google_spanner_database",
+    "body": "describe google_spanner_database(project: 'chef-gcp-inspec', instance: 'spinstance', name: 'spdatabase') do\n  it { should exist }\n  its('name') { should match 'spdatabase' }\nend",
+    "description": null,
+    "scope": "source.ruby.chef_inspec"
+  },
+  "google_spanner_databases": {
+    "prefix": "google_spanner_databases",
+    "body": "describe.one do\n  google_spanner_databases(project: 'chef-gcp-inspec', instance: 'spinstance').names.each do |name|\n    describe name do\n\tit { should match 'spdatabase' }\nend",
+    "description": null,
+    "scope": "source.ruby.chef_inspec"
+  },
+  "google_spanner_instance": {
+    "prefix": "google_spanner_instance",
+    "body": "describe google_spanner_instance(project: 'chef-gcp-inspec', name: 'spinstance', config: 'regional-us-east1') do\n  it { should exist }\n  its('config') { should match 'regional-us-east1' }\n  its('name') { should match 'spinstance' }\n  its('display_name') { should eq 'inspectest' }\n  its('node_count') { should eq '1' }\n  its('labels') { should include('env' => 'test') }\nend",
+    "description": null,
+    "scope": "source.ruby.chef_inspec"
+  },
+  "google_spanner_instance_iam_binding": {
+    "prefix": "google_spanner_instance_iam_binding",
+    "body": "describe google_spanner_instance_iam_binding(project: \"project\", name: \"name\", role: \"roles/editor\") do\n  it { should exist }\n  its('members') { should include 'user:testuser@example.com' }\nend",
+    "description": null,
+    "scope": "source.ruby.chef_inspec"
+  },
+  "google_spanner_instance_iam_policy": {
+    "prefix": "google_spanner_instance_iam_policy",
+    "body": "describe google_spanner_instance_iam_policy(project: \"project\", name: \"name\") do\n  it { should exist }\nend",
+    "description": null,
+    "scope": "source.ruby.chef_inspec"
+  },
+  "google_spanner_instances": {
+    "prefix": "google_spanner_instances",
+    "body": "describe.one do\n  google_spanner_instances(project: 'chef-gcp-inspec', config: 'regional-us-east1').configs.each do |config|\n    describe config do\n\tit { should match 'regional-us-east1' }\nend",
+    "description": null,
+    "scope": "source.ruby.chef_inspec"
+  },
+  "google_sql_database_instance": {
+    "prefix": "google_sql_database_instance",
+    "body": "describe google_sql_database_instance(project: 'chef-gcp-inspec', database: 'my-database') do\n  it { should exist }\n  its('state') { should eq 'RUNNABLE' }\n  its('backend_type') { should eq 'SECOND_GEN' }\n  its('database_version') { should eq 'MYSQL_5_7' }\nend",
+    "description": null,
+    "scope": "source.ruby.chef_inspec"
+  },
+  "google_sql_database_instances": {
+    "prefix": "google_sql_database_instances",
+    "body": "describe google_sql_database_instances(project: 'chef-gcp-inspec') do\n  its('instance_states') { should include 'RUNNABLE' }\n  its('instance_names') { should include 'my-database' }\nend",
+    "description": null,
+    "scope": "source.ruby.chef_inspec"
+  },
+  "google_sql_user": {
+    "prefix": "google_sql_user",
+    "body": "describe google_sql_user(project: 'chef-gcp-inspec', database: 'my-database', name: 'user-name', host: \"example.com\") do\n  it { should exist }\n  its('name') { should cmp 'user-name' }\n  its('instance') { should cmp 'my-database' }\nend",
+    "description": null,
+    "scope": "source.ruby.chef_inspec"
+  },
+  "google_sql_users": {
+    "prefix": "google_sql_users",
+    "body": "describe google_sql_users(project: 'chef-gcp-inspec', database: 'my-database') do\n  its('user_names') { should include 'user-name' }\nend",
+    "description": null,
+    "scope": "source.ruby.chef_inspec"
+  },
+  "google_storage_bucket": {
+    "prefix": "google_storage_bucket",
+    "body": "describe google_storage_bucket(name: bucket-name) do\n  it { should exist }\n  its('location') { should cmp 'europe-west2'.upcase }\n\n  its('storage_class') { should eq \"STANDARD\" }\n  its('labels') { should include(\"key\" => \"value\") }\n  its('retention_policy.retention_period') { should cmp 1000 }\nend",
+    "description": null,
+    "scope": "source.ruby.chef_inspec"
+  },
+  "google_storage_bucket_acl": {
+    "prefix": "google_storage_bucket_acl",
+    "body": "describe google_storage_bucket_acl(bucket: 'storage-bucket-name', entity: user-email) do\n  it { should exist }\n  its('role') { should cmp \"OWNER\" }\n\n  its('bucket') { should eq 'storage-bucket-name' }\n  its('email') { should include entity-email.com }\nend",
+    "description": null,
+    "scope": "source.ruby.chef_inspec"
+  },
+  "google_storage_bucket_iam_binding": {
+    "prefix": "google_storage_bucket_iam_binding",
+    "body": "describe google_storage_bucket_iam_binding(bucket: \"bucket\", role: \"roles/editor\") do\n  it { should exist }\n  its('members') { should include 'user:testuser@example.com' }\nend",
+    "description": null,
+    "scope": "source.ruby.chef_inspec"
+  },
+  "google_storage_bucket_iam_bindings": {
+    "prefix": "google_storage_bucket_iam_bindings",
+    "body": "describe google_storage_bucket_iam_bindings(bucket: 'bucket-buvsjjcndqz') do\n\tit { should exist }\nend",
+    "description": "Use the `google_storage_bucket_iam_bindings` InSpec audit resource to test properties of all, or a filtered group of, GCP storage bucket IAM bindings.",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "google_storage_bucket_iam_policy": {
+    "prefix": "google_storage_bucket_iam_policy",
+    "body": "describe google_storage_bucket_iam_policy(bucket: \"bucket\") do\n  it { should exist }\nend",
+    "description": null,
+    "scope": "source.ruby.chef_inspec"
+  },
+  "google_storage_bucket_object": {
+    "prefix": "google_storage_bucket_object",
+    "body": "describe google_storage_bucket_object(bucket: 'bucket-with-object', object: 'image1') do\n  it { should exist }\n  its('size.to_i') { should be > 0 }\n\n  its('time_created') { should be > Time.now - 60*60*24*10 }\n  its('time_updated') { should be > Time.now - 60*60*24*10 }\nend",
+    "description": null,
+    "scope": "source.ruby.chef_inspec"
+  },
+  "google_storage_bucket_objects": {
+    "prefix": "google_storage_bucket_objects",
+    "body": "describe google_storage_bucket_objects(bucket: 'bucket-with-object') do\n\tits('object_names') { should include 'image1' }\n\tits('count') { should be <= 10 }\nend",
+    "description": null,
+    "scope": "source.ruby.chef_inspec"
+  },
+  "google_storage_buckets": {
+    "prefix": "google_storage_buckets",
+    "body": "describe google_storage_buckets(project: 'chef-gcp-inspec') do\n  its('bucket_names') { should include bucket-name }\nend",
+    "description": null,
+    "scope": "source.ruby.chef_inspec"
+  },
+  "google_storage_default_object_acl": {
+    "prefix": "google_storage_default_object_acl",
+    "body": "describe google_storage_default_object_acl(bucket: 'gcp-inspec-storage-bucket', entity: user-email) do\n  it { should exist }\n  its('role') { should cmp \"OWNER\" }\n\n  its('bucket') { should eq 'gcp-inspec-storage-bucket' }\n  its('email') { should include entity-email.com }\nend",
+    "description": null,
+    "scope": "source.ruby.chef_inspec"
+  },
+  "google_storage_object_acl": {
+    "prefix": "google_storage_object_acl",
+    "body": "describe google_storage_object_acl(bucket: 'bucket-with-object', object: 'image1', entity: user-email) do\n  it { should exist }\n  its('role') { should cmp \"OWNER\" }\n\n  its('bucket') { should eq 'bucket-with-object' }\n  its('email') { should include entity-email.com }\nend",
+    "description": null,
+    "scope": "source.ruby.chef_inspec"
+  },
+  "google_user": {
+    "prefix": "google_user",
+    "body": "describe google_user(user_key: 'principal_email_address@domain.com') do\n\tit { should exist }\nend",
+    "description": "Use the `google_user` InSpec audit resource to test properties of a single GCP user.",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "google_users": {
+    "prefix": "google_users",
+    "body": "describe google_users(customer: 'my_customer') do\n\tit { should exist }\nend",
+    "description": "Use the `google_users` InSpec audit resource to test properties of all, or a filtered group of, GCP users.",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "group": {
+    "prefix": "group",
+    "body": "describe group('group_name') do\n\tit { should exist }\n\tits('gid') { should eq 0 }\nend",
+    "description": "Use the `group` Chef InSpec audit resource to test a single group on the system.",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "groups": {
+    "prefix": "groups",
+    "body": "describe groups do\n\tits('names') { should eq ['wheel', 'daemon', 'sys', 'adm'] }\n\tits('names') { should include 'wheel' }\nend",
+    "description": "Use the `groups` Chef InSpec audit resource to test multiple groups on the system.",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "grub_conf": {
+    "prefix": "grub_conf",
+    "body": "describe grub_conf('path', 'kernel') do\n\tits('setting') { should eq 'value' }\nend",
+    "description": "Use the `grub_conf` Chef InSpec audit resource to test boot loader configuration settings that are defined in the `grub.conf` configuration file.",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "habitat_package": {
+    "prefix": "habitat_package",
+    "body": "describe habitat_package(origin: 'core', name: 'httpd') do\n  it             { should exist }\n  its('version') { should eq '2.4.35'}\n  its('release') { should eq '20190307151146'}\nend",
+    "description": "Use the `habitat_package` InSpec audit resource to test properties of a single Habitat package.",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "habitat_packages": {
+    "prefix": "habitat_packages",
+    "body": "describe habitat_packages do\n  its('names') { should include 'httpd' }\n  its('names') { should include 'memcached' }\nend",
+    "description": "Use the `habitat_package` (singular) InSpec audit resource to perform in-depth auditing of a single package.",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "habitat_service": {
+    "prefix": "habitat_service",
+    "body": "describe habitat_service(origin: 'core', name: 'httpd') do\n  it                     { should exist }\n  its('version')         { should eq '2.4.35'}\n  its('topology')        { should eq 'standalone' }\n  its('update_strategy') { should eq 'none' }\nend",
+    "description": "Use the `habitat_service` InSpec audit resource to test properties of a single Habitat service.",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "habitat_services": {
+    "prefix": "habitat_services",
+    "body": "describe habitat_services do\n  its('count') { should cmp 2 }\n  its('names') { should include 'httpd' }\n  its('names') { should include 'memcached' }\nend",
+    "description": "Use the `habitat_service` (singular) InSpec audit resource to perform in-depth auditing of a single service.",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "host": {
+    "prefix": "host",
+    "body": "describe host('example.com', port: 80, protocol: 'tcp') do\n\tit { should be_reachable }\n\tit { should be_resolvable }\n\tits('ipaddress') { should include '12.34.56.78' }\nend",
+    "description": "Use the `host` Chef InSpec audit resource to test the name used to refer to a specific host and its availability, including the Internet protocols and ports over which that host name should be available.",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "http": {
+    "prefix": "http",
+    "body": "describe http('url', auth: {user: 'user', pass: 'test'}, params: {params}, method: 'method', headers: {headers}, data: data, open_timeout: 60, read_timeout: 60, ssl_verify: true, max_redirects: 3) do\n\tits('status') { should eq number }\n\tits('body') { should eq 'body' }\n\tits('headers.name') { should eq 'header' }\nend",
+    "description": "Use the `http` Chef InSpec audit resource to test an http endpoint.",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "iis_app": {
+    "prefix": "iis_app",
+    "body": "describe iis_app('application_path', 'site_name') do\n\tit { should exist }\n\tit { should have_application_pool('application_pool') }\n\tit { should have_protocol('protocol') }\n\tit { should have_site_name('site') }\n\tit { should have_physical_path('physical_path') }\n\tit { should have_path('application_path') }\nend",
+    "description": "Use the `iis_app` Chef InSpec audit resource to test the state of IIS on Windows Server 2012 (and later).",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "iis_site": {
+    "prefix": "iis_site",
+    "body": "describe iis_site('site_name') do\n\tit { should exist }\n\tit { should be_running }\n\tit { should have_app_pool('app_pool_name') }\n\tit { should have_binding('binding_details') }\n\tit { should have_path('path_to_site') }\nend",
+    "description": "Use the `iis_site` Chef InSpec audit resource to test the state of IIS on Windows Server 2012 (and later).",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "inetd_conf": {
+    "prefix": "inetd_conf",
+    "body": "describe inetd_conf('path') do\n\tits('service_name') { should eq 'value' }\nend",
+    "description": "Use the `inetd_conf` Chef InSpec audit resource to test if a service is listed in the `inetd.conf` file on Linux and Unix platforms. inetd---the Internet service daemon---listens on dedicated ports, and then loads the appropriate program based on a request. The `inetd.conf` file is typically located at `/etc/inetd.conf` and contains a list of Internet services associated to the ports on which that service will listen. Only enabled services may handle a request; only services that are required by the system should be enabled.",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "ini": {
+    "prefix": "ini",
+    "body": "describe ini('path') do\n\tits('setting_name') { should eq 'value' }\nend",
+    "description": "Use the `ini` Chef InSpec audit resource to test settings in an INI file.",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "interface": {
+    "prefix": "interface",
+    "body": "describe interface('eth0') do\n\tit { should be_up }\n\tits('speed') { should eq 1000 }\n\tits('name') { should eq eth0 }\n\tits('ipv4_addresses') { should include '10.0.0.5' }\nend",
+    "description": "Use the `interface` Chef InSpec audit resource to test basic network adapter properties, such as name, status, IP addresses, and link speed (in MB/sec).",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "interfaces": {
+    "prefix": "interfaces",
+    "body": "describe interfaces do\n\tits('names') { should include 'eth0' }\nend",
+    "description": "Use the `interfaces` Chef InSpec audit resource to test the properties of multiple network interfaces on the system.",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "ip6tables": {
+    "prefix": "ip6tables",
+    "body": "describe ip6tables(rule:'name', table:'name', chain: 'name') do\n\tit { should have_rule('RULE') }\nend",
+    "description": "Use the `ip6tables` Chef InSpec audit resource to test rules that are defined in `ip6tables`, which maintains tables of IP packet filtering rules for IPv6. There may be more than one table. Each table contains one (or more) chains (both built-in and custom). A chain is a list of rules that match packets. When the rule matches, the rule defines what target to assign to the packet.",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "iptables": {
+    "prefix": "iptables",
+    "body": "describe iptables(rule:'name', table:'name', chain: 'name') do\n\tit { should have_rule('RULE') }\nend",
+    "description": "Use the `iptables` Chef InSpec audit resource to test rules that are defined in `iptables`, which maintains tables of IP packet filtering rules. There may be more than one table. Each table contains one (or more) chains (both built-in and custom). A chain is a list of rules that match packets. When the rule matches, the rule defines what target to assign to the packet.",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "json": {
+    "prefix": "json",
+    "body": "describe json('/path/to/name.json') do\n\tits('name') { should eq 'hello' }\n\tits(['meta','creator']) { should eq 'John Doe' }\n\tits(['array', 1]) { should eq 'one' }\nend",
+    "description": "Use the `json` Chef InSpec audit resource to test data in a JSON file.",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "kernel_module": {
+    "prefix": "kernel_module",
+    "body": "describe kernel_module('module_name') do\n\tit { should be_loaded }\n\tit { should_not be_disabled }\n\tit { should_not be_blacklisted }\nend",
+    "description": "Use the `kernel_module` Chef InSpec audit resource to test kernel modules on Linux",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "kernel_parameter": {
+    "prefix": "kernel_parameter",
+    "body": "describe kernel_parameter('path.to.parameter') do\n\tits('value') { should eq 0 }\nend",
+    "description": "Use the `kernel_parameter` Chef InSpec audit resource to test kernel parameters on Linux platforms.",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "key_rsa": {
+    "prefix": "key_rsa",
+    "body": "describe key_rsa('mycertificate.key') do\n\tit { should be_private }\n\tit { should be_public }\n\tits('public_key') { should match \"-----BEGIN PUBLIC KEY-----\\n3597459df9f3982\" }\n\tits('key_length') { should eq 2048 }\nend",
+    "description": "Use the `key_rsa` Chef InSpec audit resource to test RSA public/private keypairs.",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "launchd_service": {
+    "prefix": "launchd_service",
+    "body": "describe launchd_service('service_name') do\n\tit { should be_installed }\n\tit { should be_enabled }\n\tit { should be_running }\nend",
+    "description": "Use the `launchd_service` Chef InSpec audit resource to test a service using Launchd.",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "limits_conf": {
+    "prefix": "limits_conf",
+    "body": "describe limits_conf('path') do\n\tits('domain') { should include ['type', 'item', 'value'] }\n\tits('domain') { should eq ['type', 'item', 'value'] }\nend",
+    "description": "Use the `limits_conf` Chef InSpec audit resource to test configuration settings in the `/etc/security/limits.conf` file. The `limits.conf` defines limits for processes (by user and/or group names) and helps ensure that the system running those processes remains stable. Each process may be assigned a hard or soft limit.",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "login_defs": {
+    "prefix": "login_defs",
+    "body": "describe login_defs do\n\tits('name') { should include('foo') }\nend",
+    "description": "Use the `login_defs` Chef InSpec audit resource to test configuration settings in the `/etc/login.defs` file. The `logins.defs` file defines site-specific configuration for the shadow password suite on Linux and Unix platforms, such as password expiration ranges, minimum/maximum values for automatic selection of user and group identifiers, or the method with which passwords are encrypted.",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "mount": {
+    "prefix": "mount",
+    "body": "describe mount('path') do\n\tit { should MATCHER 'value' }\nend",
+    "description": "Use the `mount` Chef InSpec audit resource to test the mount points on FreeBSD and Linux systems.",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "mssql_session": {
+    "prefix": "mssql_session",
+    "body": "describe mssql_session(user: 'username', password: 'password').query('QUERY').row(0).column('result') do\n\tits('value') { should eq('') }\nend",
+    "description": "Use the `mssql_session` Chef InSpec audit resource to test SQL commands run against a Microsoft SQL database.",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "mysql_conf": {
+    "prefix": "mysql_conf",
+    "body": "describe mysql_conf('path') do\n\tits('setting') { should eq 'value' }\nend",
+    "description": "Use the `mysql_conf` Chef InSpec audit resource to test the contents of the configuration file for MySQL, typically located at `/etc/mysql/my.cnf` or `/etc/my.cnf`.",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "mysql_session": {
+    "prefix": "mysql_session",
+    "body": "describe mysql_session('username', 'password').query('QUERY') do\n\tits('output') { should match(/expected-result/) }\nend",
+    "description": "Use the `mysql_session` Chef InSpec audit resource to test SQL commands run against a MySQL database.",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "nginx": {
+    "prefix": "nginx",
+    "body": "describe nginx do\n\tits('attribute') { should eq 'value' }\nend",
+    "description": "Use the `nginx` Chef InSpec audit resource to test the fields and validity of nginx.",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "nginx_conf": {
+    "prefix": "nginx_conf",
+    "body": "describe nginx_conf.params['pid'].flatten do\n\tit { should cmp 'logs/nginx.pid' }\nend",
+    "description": "Use the `nginx_conf` Chef InSpec resource to test configuration data for the NGINX server located at `/etc/nginx/nginx.conf` on Linux and Unix platforms.",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "npm": {
+    "prefix": "npm",
+    "body": "describe npm('npm_package_name') do\n\tit { should be_installed }\nend",
+    "description": "Use the `npm` Chef InSpec audit resource to test if a global NPM package is installed. NPM is the the package manager for [Node.js packages](https://docs.npmjs.com), such as Bower and StatsD.",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "ntp_conf": {
+    "prefix": "ntp_conf",
+    "body": "describe ntp_conf('path') do\n\tits('setting_name') { should eq 'value' }\nend",
+    "description": "Use the `ntp_conf` Chef InSpec audit resource to test the synchronization settings defined in the `ntp.conf` file. This file is typically located at `/etc/ntp.conf`.",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "oneget": {
+    "prefix": "oneget",
+    "body": "describe oneget('name') do\n\tit { should be_installed }\nend",
+    "description": "Use the `oneget` Chef InSpec audit resource to test if the named package and/or package version is installed on the system. This resource uses Oneget, which is `part of the Windows Management Framework 5.0 and Windows 10 <https://github.com/OneGet/oneget>`\\_\\_. This resource uses the `Get-Package` cmdlet to return all of the package names in the Oneget repository.",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "oracledb_session": {
+    "prefix": "oracledb_session",
+    "body": "describe oracledb_session(user: 'username', password: 'password', service: 'ORCL.localdomain').query('QUERY').row(0).column('result') do\n\tits('value') { should eq('') }\nend",
+    "description": "Use the `oracledb_session` Chef InSpec audit resource to test SQL commands run against a Oracle database.",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "os": {
+    "prefix": "os",
+    "body": "describe os.family do\n\tit { should eq 'platform_family_name' }\nend",
+    "description": "Use the `os` Chef InSpec audit resource to test the platform on which the system is running.",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "os_env": {
+    "prefix": "os_env",
+    "body": "describe os_env('VARIABLE') do\n\tits('property') { should eq 1 }\nend",
+    "description": "Use the `os_env` Chef InSpec audit resource to test the environment variables for the platform on which the system is running.",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "package": {
+    "prefix": "package",
+    "body": "describe package('name') do\n\tit { should be_installed }\nend",
+    "description": "Use the `package` Chef InSpec audit resource to test if the named package and/or package version is installed on the system.",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "packages": {
+    "prefix": "packages",
+    "body": "describe packages(/name/) do\n\tits('statuses') { should cmp 'installed' }\nend",
+    "description": "Use the `packages` Chef InSpec audit resource to test the properties of multiple packages on the system.",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "parse_config": {
+    "prefix": "parse_config",
+    "body": "describe parse_config(output, { data_config_option: value } ) do\n\tits('setting') { should eq 1 }\nend",
+    "description": "Use the `parse_config` Chef InSpec audit resource to test arbitrary configuration files.",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "parse_config_file": {
+    "prefix": "parse_config_file",
+    "body": "describe parse_config_file('/path/to/file', { data_config_option: value } ) do\n\tits('setting') { should eq 1 }\nend",
+    "description": "Use the `parse_config_file` Chef InSpec audit resource to test arbitrary configuration files. It works in the same way as `parse_config`. Instead of using a command output, this resource works with files.",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "passwd": {
+    "prefix": "passwd",
+    "body": "describe passwd do\n\tits('users') { should_not include 'forbidden_user' }\nend",
+    "description": "Use the `passwd` Chef InSpec audit resource to test the contents of `/etc/passwd`, which contains the following information for users that may log into the system and/or as users that own running processes. The format for `/etc/passwd` includes:",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "pip": {
+    "prefix": "pip",
+    "body": "describe pip('package_name') do\n\tit { should be_installed }\nend",
+    "description": "Use the `pip` Chef InSpec audit resource to test packages that are installed using the Python PIP installer.",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "port": {
+    "prefix": "port",
+    "body": "describe port(514) do\n\tit { should be_listening }\n\tits('processes') {should include 'syslog'}\nend",
+    "description": "Use the `port` Chef InSpec audit resource to test basic port properties, such as port, process, if it's listening.",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "postfix_conf": {
+    "prefix": "postfix_conf",
+    "body": "describe postfix_conf do\n\tits('setting_name') { should cmp 'value' }\nend",
+    "description": "Use the `postfix_conf` Chef InSpec audit resource to test the main configuration of the Postfix Mail Transfer Agent.",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "postgres_conf": {
+    "prefix": "postgres_conf",
+    "body": "describe postgres_conf('path') do\n\tits('setting') { should eq 'value' }\nend",
+    "description": "Use the `postgres_conf` Chef InSpec audit resource to test the contents of the configuration file for PostgreSQL, typically located at `/etc/postgresql/<version>/main/postgresql.conf` or `/var/lib/postgres/data/postgresql.conf`, depending on the platform.",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "postgres_hba_conf": {
+    "prefix": "postgres_hba_conf",
+    "body": "describe postgres_hba_conf.where { type == 'local' } do\n     its('auth_method') { should eq ['peer'] }\nend",
+    "description": "Use the `postgres_hba_conf` Chef InSpec audit resource to test the client authentication data defined in the pg_hba.conf file.",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "postgres_ident_conf": {
+    "prefix": "postgres_ident_conf",
+    "body": "describe postgres_ident_conf.where { pg_username == 'filter_value' } do\n\tits('attribute') { should eq ['value'] }\nend",
+    "description": "Use the `postgres_ident_conf` Chef InSpec audit resource to test the client authentication data defined in the pg_ident.conf file.",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "postgres_session": {
+    "prefix": "postgres_session",
+    "body": "describe sql.query('SELECT * FROM pg_shadow WHERE passwd IS NULL;') do\n\tits('output') { should eq '' }\nend",
+    "description": "Use the `postgres_session` Chef InSpec audit resource to test SQL commands run against a PostgreSQL database.",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "powershell": {
+    "prefix": "powershell",
+    "body": "describe powershell(script) do\n\tits('property') { should eq 'output' }\nend",
+    "description": "Use the `powershell` Chef InSpec audit resource to test a Powershell script on the Windows platform.",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "processes": {
+    "prefix": "processes",
+    "body": "describe processes('process_name') do\n\tits('property_name') { should eq ['property_value'] }\nend",
+    "description": "Use the `processes` Chef InSpec audit resource to test properties for programs that are running on the system.",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "rabbitmq_config": {
+    "prefix": "rabbitmq_config",
+    "body": "describe rabbitmq_config.params('rabbit', 'ssl_listeners') do\n\tit { should cmp 5671 }\nend",
+    "description": "Use the `rabbitmq_config` Chef InSpec audit resource to test configuration data for the RabbitMQ daemon located at `/etc/rabbitmq/rabbitmq.config` on Linux and Unix platforms.",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "registry_key": {
+    "prefix": "registry_key",
+    "body": "describe registry_key('Task Scheduler','HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\services\\Schedule') do\n\tits('Start') { should eq 2 }\nend",
+    "description": "Use the `registry_key` Chef InSpec audit resource to test key values in the Windows registry.",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "runit_service": {
+    "prefix": "runit_service",
+    "body": "describe runit_service('service_name') do\n\tit { should be_installed }\n\tit { should be_enabled }\n\tit { should be_running }\nend",
+    "description": "Use the `runit_service` Chef InSpec audit resource to test a service using runit.",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "security_identifier": {
+    "prefix": "security_identifier",
+    "body": "describe security_identifier(group: 'Everyone') do\n\tits('sid') { should eq 'S-1-1-0' }\nend",
+    "description": "Use the `security_identifier` Chef InSpec resource to test the [Security Identifier (SID)](https://docs.microsoft.com/en-us/windows/desktop/secauthz/security-identifiers) for user and group trustees on Windows.",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "security_policy": {
+    "prefix": "security_policy",
+    "body": "describe security_policy do\n\tits('policy_name') { should eq 'value' }\nend",
+    "description": "Use the `security_policy` Chef InSpec audit resource to test security policies on the Windows platform.",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "selinux": {
+    "prefix": "selinux",
+    "body": "describe selinux do\n\tit { should be_installed }\n\tit { should_not be_disabled }\n\tit { should be_enforcing }\n\tit { should_not be_permissive }\nend",
+    "description": "Use the `selinux` Chef InSpec audit resource to test the configuration data of the SELinux policy, SELinux modules and SELinux booleans.",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "service": {
+    "prefix": "service",
+    "body": "describe service('service_name') do\n\tit { should be_installed }\n\tit { should be_enabled }\n\tit { should be_running }\nend",
+    "description": "Use the `service` Chef InSpec audit resource to test if the named service is installed, running and/or enabled.",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "shadow": {
+    "prefix": "shadow",
+    "body": "describe shadow do\n\tits('count') { should eq 32 }\nend",
+    "description": "Use the `shadow` Chef InSpec audit resource to test the contents of `/etc/shadow`, which contains password details that are readable only by the `root` user. `shadow` is a [plural resource](/inspec/glossary/#plural_resource). Like all plural resources, it functions by performing searches across multiple entries in the shadow file.",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "ssh_config": {
+    "prefix": "ssh_config",
+    "body": "describe ssh_config('path') do\n\tits('name') { should include('foo') }\nend",
+    "description": "Use the `ssh_config` Chef InSpec audit resource to test OpenSSH client configuration data located at `/etc/ssh/ssh_config` on Linux and Unix platforms.",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "sshd_config": {
+    "prefix": "sshd_config",
+    "body": "describe sshd_config('path') do\n\tits('name') { should include('foo') }\nend",
+    "description": "Use the `sshd_config` Chef InSpec audit resource to test configuration data for the OpenSSH daemon located at `/etc/ssh/sshd_config` on Linux and Unix platforms. sshd---the OpenSSH daemon---listens on dedicated ports, starts a daemon for each incoming connection, and then handles encryption, authentication, key exchanges, command execution, and data exchanges.",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "ssl": {
+    "prefix": "ssl",
+    "body": "describe ssl(port: #) do\n\tit { should be_enabled }\nend",
+    "description": "Use the `ssl` Chef InSpec audit resource to test SSL settings for the named port.",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "sys_info": {
+    "prefix": "sys_info",
+    "body": "describe sys_info do\n\tits('hostname') { should eq 'value' }\nend",
+    "description": "Use the `sys_info` Chef InSpec audit resource to test for operating system properties for the named host, and then returns that info as standard output.",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "systemd_service": {
+    "prefix": "systemd_service",
+    "body": "describe systemd_service('service_name') do\n\tit { should be_installed }\n\tit { should be_enabled }\n\tit { should be_running }\nend",
+    "description": "Use the `systemd_service` Chef InSpec audit resource to test a service using SystemD.",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "sysv_service": {
+    "prefix": "sysv_service",
+    "body": "describe sysv_service('service_name') do\n\tit { should be_installed }\n\tit { should be_enabled }\n\tit { should be_running }\nend",
+    "description": "Use the `sysv_service` Chef InSpec audit resource to test a service using SystemV.",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "toml": {
+    "prefix": "toml",
+    "body": "describe toml('path') do\n  its('setting_name') { should eq 'value' }\nend",
+    "description": "Use the `toml` Chef InSpec audit resource to test settings in a TOML file.",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "upstart_service": {
+    "prefix": "upstart_service",
+    "body": "describe upstart_service('service_name') do\n\tit { should be_installed }\n\tit { should be_enabled }\n\tit { should be_running }\nend",
+    "description": "Use the `upstart_service` Chef InSpec audit resource to test a service using Upstart.",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "user": {
+    "prefix": "user",
+    "body": "describe user('root') do\n\tit { should exist }\n\tits('uid') { should eq 1234 }\n\tits('gid') { should eq 1234 }\n\tits('group') { should eq 'root' }\n\tits('groups') { should eq ['root', 'other']}\n\tits('home') { should eq '/root' }\n\tits('shell') { should eq '/bin/bash' }\n\tits('mindays') { should eq 0 }\n\tits('maxdays') { should eq 90 }\n\tits('warndays') { should eq 8 }\n\tits('passwordage') { should eq 355 }\n\tits('maxbadpasswords') { should eq nil } // Only valid on Windows OS\n\tits('badpasswordattempts') { should eq 0 }\n\tits('lastlogin') { should eq nil } // Only valid on Windows OS\nend",
+    "description": "Use the `user` Chef InSpec audit resource to test user profiles for a single, known/expected local user, including the groups to which that user belongs, the frequency of required password changes, and the directory paths to home and shell.",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "users": {
+    "prefix": "users",
+    "body": "describe users.where(uid: 0).entries do\n\tit { should eq ['root'] }\n\tits('uids') { should eq [1234] }\n\tits('gids') { should eq [1234] }\nend",
+    "description": "Use the `users` Chef InSpec audit resource to look up all local users available on the system, and then test specific properties of those users. This resource does not return information about users that may be located on other systems, such as LDAP or Active Directory.",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "vbscript": {
+    "prefix": "vbscript",
+    "body": "describe vbscript('script contents') do\n\tits('stdout') { should eq 'output' }\nend",
+    "description": "Use the `vbscript` Chef InSpec audit resource to test a VBScript on the Windows platform.",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "virtualization": {
+    "prefix": "virtualization",
+    "body": "describe virtualization do\n\tits('system') { should MATCHER 'value' }\nend",
+    "description": "Use the `virtualization` Chef InSpec audit resource to test the virtualization platform on which the system is running.",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "windows_feature": {
+    "prefix": "windows_feature",
+    "body": "describe windows_feature('feature_name') do\n\tit { should be_installed }\nend",
+    "description": "Use the `windows_feature` Chef InSpec audit resource to test features on Windows via the `Get-WindowsFeature` cmdlet.",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "windows_firewall": {
+    "prefix": "windows_firewall",
+    "body": "describe windows_firewall('name') do\n\tit { should be_enabled }\nend",
+    "description": "Use the `windows_firewall` Chef InSpec audit resource to test if a firewall profile is correctly configured on a Windows system.",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "windows_firewall_rule": {
+    "prefix": "windows_firewall_rule",
+    "body": "describe windows_firewall_rule('name') do\n\tit { should be_enabled }\nend",
+    "description": "Use the `windows_firewall_rule` Chef InSpec audit resource to test if a firewall rule is correctly configured on a Windows system.",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "windows_hotfix": {
+    "prefix": "windows_hotfix",
+    "body": "describe windows_hotfix('name') do\n\tit { should be_installed }\nend",
+    "description": "Use the `windows_hotfix` Chef InSpec audit resource to test if the hotfix has been installed on a Windows system.",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "windows_task": {
+    "prefix": "windows_task",
+    "body": "describe windows_task('task name uri') do\n\tits('parameter') { should eq 'value' }\n\tit { should be_enabled }\nend",
+    "description": "Use the `windows_task` Chef InSpec audit resource to test a scheduled tasks configuration on a Windows platform.",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "wmi": {
+    "prefix": "wmi",
+    "body": "describe wmi({\n\tclass: 'class_name',\n\tnamespace: 'path\\\\to\\\\setting',\n\tfilter: 'filter',\n\tquery: 'query'\n    }) do\n\tits('setting_name') { should eq '' }\nend",
+    "description": "Use the `wmi` Chef InSpec audit resource to test WMI settings on the Windows platform.",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "x509_certificate": {
+    "prefix": "x509_certificate",
+    "body": "describe x509_certificate('mycertificate.pem') do\n\tits('validity_in_days') { should be > 30 }\nend",
+    "description": "Use the `x509_certificate` Chef InSpec audit resource to test the fields and validity of an x.509 certificate.",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "xinetd_conf": {
+    "prefix": "xinetd_conf",
+    "body": "describe xinetd_conf.services('service_name') do\n\tit { should be_enabled } # or be_disabled\n\tits('setting') { should eq 'value' }\nend",
+    "description": "Use the `xinetd_conf` Chef InSpec audit resource to test services under `/etc/xinet.d` on Linux and Unix platforms. xinetd---the extended Internet service daemon---listens on all ports, and then loads the appropriate program based on a request. The `xinetd.conf` file is typically located at `/etc/xinetd.conf` and contains a list of Internet services associated to the ports on which that service will listen. Only enabled services may handle a request; only services that are required by the system should be enabled.",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "xml": {
+    "prefix": "xml",
+    "body": "describe xml('/path/to/name.xml') do\n\tits('root/name') { should eq ['hello'] }\n\tits('root/meta/creator') { should eq ['John Doe'] }\n\tits('root/array[2]/element') { should eq ['two'] }\nend",
+    "description": "Use the `xml` Chef InSpec audit resource to test data in an XML file.",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "yaml": {
+    "prefix": "yaml",
+    "body": "describe yaml('filename.yml') do\n\tits('name') { should eq 'foo' }\n\tits(['array', 1]) { should eq 'one' }\nend",
+    "description": "Use the `yaml` Chef InSpec audit resource to test configuration data in a Yaml file.",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "yum": {
+    "prefix": "yum",
+    "body": "describe yum.repo('name') do\n\tit { should exist }\n\tit { should be_enabled }\nend",
+    "description": "Use the `yum` Chef InSpec audit resource to test packages in the Yum repository.",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "zfs_dataset": {
+    "prefix": "zfs_dataset",
+    "body": "describe zfs_dataset('dataset') do\n\tit { should MATCHER 'value' }\nend",
+    "description": "Use the `zfs_dataset` Chef InSpec audit resource to test the ZFS datasets on FreeBSD & Linux (Check [OS Family Details](https://docs.chef.io/inspec/resources/os/#osfamily-helpers) for more details).",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "zfs_pool": {
+    "prefix": "zfs_pool",
+    "body": "describe zfs_pool('pool') do\n\tit { should MATCHER 'value' }\nend",
+    "description": "Use the `zfs_pool` Chef InSpec audit resource to test the ZFS pools on FreeBSD & Linux (Centos, RHEL, Ubuntu, CloudLinux, Debian) systems.",
+    "scope": "source.ruby.chef_inspec"
+  }
+}

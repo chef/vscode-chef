@@ -1,0 +1,34 @@
+---
+  name: ci
+
+  on:
+    pull_request:
+
+  jobs:
+    validate:
+      runs-on: ubuntu-latest
+
+      steps:
+        - name: Check out code
+          uses: actions/checkout@main
+        - name: Validate snippet JSON files
+          run: |
+            for json in `ls snippets/*.json`
+            do
+              (cat ${json} | jq empty) || (echo "JSON parsing problem with ${json}" && exit 1)
+            done
+
+    build:
+      needs: [validate]
+      runs-on: ubuntu-latest
+      strategy:
+        matrix:
+          node-version: [15.x]
+      steps:
+        - uses: actions/checkout@main
+        - name: Use Node.js ${{ matrix.node-version }}
+          uses: actions/setup-node@v1
+          with:
+            node-version: ${{ matrix.node-version }}
+        - run: npm install
+        - run: npx vsce package

@@ -1,0 +1,22 @@
+{
+  "Control Specification": {
+    "prefix": "control",
+    "body": "control '${1:name}' do\n  impact ${2:0.7}\n  title '${3:A human-readable title}'\n  desc '${4:An optional description ...}'\n  ${5}\nend"
+  },
+  "Resource Description - Des": {
+    "prefix": "des",
+    "body": "describe ${1:resource}('${2:name}') do\n  ${3}\nend"
+  },
+  "Resource Description - Describe": {
+    "prefix": "describe",
+    "body": "describe ${1:resource}('${2:name}') do\n  ${3}\nend"
+  },
+  "Subject Example": {
+    "prefix": "it",
+    "body": "it { should${1:_not} ${2:matcher} }${3}"
+  },
+  "Subject Attribute Example": {
+    "prefix": "its",
+    "body": "its('${1:attribute}') { should${2:_not} ${3:matcher} }${4}"
+  }
+}
