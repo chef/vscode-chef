@@ -1,6 +1,6 @@
 # Chef Infra Extension for Visual Studio Code
 
-The Chef Infra Extension for Visual Studio Code offers rich language support for Chef Infra and Chef Inspec when using [Visual Studio Code](http://code.visualstudio.com).
+The Chef Infra Extension for Visual Studio Code offers rich language support for Chef Infra and Chef InSpec when using [Visual Studio Code](http://code.visualstudio.com).
 
 ![install and demo](https://github.com/chef/vscode-chef/raw/master/images/vscode-chef-install.gif)
 
@@ -10,7 +10,7 @@ The Chef Infra Extension for Visual Studio Code offers rich language support for
 
  * Chef Infra Language (traditional and YAML-based) including built-in resources
  * Chef Infra Custom Resources
- * Chef Inspec
+ * Chef InSpec
 
 #### Cookstyle linting and source analysis:
 
@@ -37,10 +37,10 @@ The Chef Infra Extension for Visual Studio Code offers rich language support for
 
  * Please review the [Chef YAML Recipe snippets](snippets/chef_yaml_resources.json) for a complete list.
 
-#### Snippet support for all Chef Inspec:
+#### Snippet support for all Chef InSpec:
 
- * Please review the [Chef Inspec snippets](snippets/chef_inspec_resources.json) for a complete list of included resources.
- * Please review the [Chef Inspec Common snippets](snippets/chef_inspec_common.json) for a listing of common snippets included for Chef Inspec.
+ * Please review the [Chef InSpec snippets](snippets/chef_inspec_resources.json) for a complete list of included resources.
+ * Please review the [Chef InSpec Common snippets](snippets/chef_inspec_common.json) for a listing of common snippets included for Chef InSpec.
 
 ## Installation
 

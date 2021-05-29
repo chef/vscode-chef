@@ -85,11 +85,11 @@ end
 
 task default: :generate_snippets
 
-desc 'Generate Inspec snippets from published resource documentation'
+desc 'Generate InSpec snippets from published resource documentation'
 task :generate_inspec_snippets do
   require 'json'
 
-  # The Inspec/Inspec repository is used to generate snippets from docs
+  # The InSpec/InSpec repository is used to generate snippets from docs
   if Dir.exist?('inspec')
     # If the inspec directory exists, cd to it and pull to make sure it is up to date
     system('cd inspec ; git pull')

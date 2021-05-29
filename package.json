@@ -75,7 +75,7 @@
       {
         "id": "chef_inspec",
         "aliases": [
-          "Chef Inspec",
+          "Chef InSpec",
           "chef inspec"
         ],
         "filenamePatterns": [

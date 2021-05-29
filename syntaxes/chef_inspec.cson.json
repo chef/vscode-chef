@@ -3,7 +3,7 @@
     "**/test/integration/**/*.rb",
     "**/controls/*.rb"
   ],
-  "name": "Chef Inspec",
+  "name": "Chef InSpec",
   "patterns": [
     {
       "include": "source.ruby"
