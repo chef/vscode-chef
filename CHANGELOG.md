@@ -1,21 +1,19 @@
 # vscode-chef Change Log
 
-<!-- latest_release 2.0.0 -->
-## [v2.0.0](https://github.com/chef/vscode-chef/tree/v2.0.0) (2021-05-29)
-
-#### Merged Pull Requests
-- adds Chef InSpec language and github actions testing [#130](https://github.com/chef/vscode-chef/pull/130) ([collinmcneese](https://github.com/collinmcneese))
+<!-- latest_release -->
 <!-- latest_release -->
 
 <!-- release_rollup -->
-### Changes not yet released
-
-#### Merged Pull Requests
-- adds Chef InSpec language and github actions testing [#130](https://github.com/chef/vscode-chef/pull/130) ([collinmcneese](https://github.com/collinmcneese)) <!-- 2.0.0 -->
-- Bump typescript from 4.2.4 to 4.3.2 [#129](https://github.com/chef/vscode-chef/pull/129) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 1.12.1 -->
 <!-- release_rollup -->
 
 <!-- latest_stable_release -->
+## [v2.0.0](https://github.com/chef/vscode-chef/tree/v2.0.0) (2021-05-29)
+
+#### Merged Pull Requests
+- Bump typescript from 4.2.4 to 4.3.2 [#129](https://github.com/chef/vscode-chef/pull/129) ([dependabot[bot]](https://github.com/dependabot[bot]))
+- adds Chef InSpec language and github actions testing [#130](https://github.com/chef/vscode-chef/pull/130) ([collinmcneese](https://github.com/collinmcneese))
+<!-- latest_stable_release -->
+
 ## [v1.12.0](https://github.com/chef/vscode-chef/tree/v1.12.0) (2021-05-26)
 
 #### Merged Pull Requests
@@ -24,7 +22,6 @@
 - syntax fixes for yml resource snippets [#124](https://github.com/chef/vscode-chef/pull/124) ([collinmcneese](https://github.com/collinmcneese))
 - adds resource snippets for inspec_waiver_file_entry [#127](https://github.com/chef/vscode-chef/pull/127) ([collinmcneese](https://github.com/collinmcneese))
 - Remove the build gem expeditor config [#128](https://github.com/chef/vscode-chef/pull/128) ([tas50](https://github.com/tas50))
-<!-- latest_stable_release -->
 
 ## [v1.11.0](https://github.com/chef/vscode-chef/tree/v1.11.0) (2021-04-26)
 
