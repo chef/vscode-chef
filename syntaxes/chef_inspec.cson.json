@@ -1,0 +1,13 @@
+{
+  "fileTypes": [
+    "**/test/integration/**/*.rb",
+    "**/controls/*.rb"
+  ],
+  "name": "Chef InSpec",
+  "patterns": [
+    {
+      "include": "source.ruby"
+    }
+  ],
+  "scopeName": "source.ruby.chef_inspec"
+}
