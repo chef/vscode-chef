@@ -90,16 +90,16 @@ task :generate_inspec_snippets do
   require 'json'
 
   # The Inspec/Inspec repository is used to generate snippets from docs
-  if Dir.exist?('../inspec')
+  if Dir.exist?('inspec')
     # If the inspec directory exists, cd to it and pull to make sure it is up to date
-    system('cd ../inspec ; git pull')
+    system('cd inspec ; git pull')
   else
-    system('cd .. ; git clone https://github.com/inspec/inspec')
+    system('git clone https://github.com/inspec/inspec')
   end
 
   resources_content = {}
 
-  Dir.glob('../inspec/docs-chef-io/content/inspec/resources/*.md').sort.each do |doc_file|
+  Dir.glob('inspec/docs-chef-io/content/inspec/resources/*.md').sort.each do |doc_file|
     doc_file_content = File.read(doc_file)
 
     doc_file_name = doc_file.split('/').last.split('.').first

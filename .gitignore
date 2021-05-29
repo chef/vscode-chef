@@ -6,4 +6,4 @@ Gemfile.lock
 vendor
 .yardoc
 package-lock.json
-inspec
+autogeneration/inspec
