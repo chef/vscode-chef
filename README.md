@@ -96,7 +96,7 @@ The directory `autogeneration` located within this project contains tooling whic
     ```
 
     ```plain
-    $ bundle install                                                                                                                                                   [7:01:45]
+    $ bundle install
     Using rake 13.0.3
     Using bundler 2.1.4
     Using concurrent-ruby 1.1.8
