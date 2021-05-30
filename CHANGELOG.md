@@ -1,9 +1,17 @@
 # vscode-chef Change Log
 
-<!-- latest_release -->
+<!-- latest_release 2.0.1 -->
+## [v2.0.1](https://github.com/chef/vscode-chef/tree/v2.0.1) (2021-05-30)
+
+#### Merged Pull Requests
+- Updates README and autogeneration Rakefile [#132](https://github.com/chef/vscode-chef/pull/132) ([collinmcneese](https://github.com/collinmcneese))
 <!-- latest_release -->
 
 <!-- release_rollup -->
+### Changes not yet released
+
+#### Merged Pull Requests
+- Updates README and autogeneration Rakefile [#132](https://github.com/chef/vscode-chef/pull/132) ([collinmcneese](https://github.com/collinmcneese)) <!-- 2.0.1 -->
 <!-- release_rollup -->
 
 <!-- latest_stable_release -->
