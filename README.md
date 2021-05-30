@@ -6,46 +6,46 @@ The Chef Infra Extension for Visual Studio Code offers rich language support for
 
 ## Features
 
-#### Syntax/keyword highlighting:
+### Syntax/keyword highlighting
 
- * Chef Infra Language (traditional and YAML-based) including built-in resources
- * Chef Infra Custom Resources
- * Chef InSpec
+* Chef Infra Language (traditional and YAML-based) including built-in resources
+* Chef Infra Custom Resources
+* Chef InSpec
 
-#### Cookstyle linting and source analysis:
+### Cookstyle linting and source analysis
 
- * Enabled by default (disable by adding ```{ "rubocop.enable": false }``` in user/workspace settings) and activated when the first Ruby file is loaded.
- * The entire repo will be linted when files are saved, unless there are more than 400 `*.rb` files in the workspace, in which case only open files will be linted. Adjust this threshold using the ```{ "rubocop.fileCountThreshold": 400 }``` setting in user/workspace settings.
- * You may lint the entire workspace, even if it is larger than the above threshold, using the `Chef: Validate Entire Workspace` command from the Command Pallette.
- * If you have [Chef Workstation](https://downloads.chef.io/chef-workstation) installed, linting should "just work" on Windows, macOS and Linux. [Cookstyle](https://github.com/chef/cookstyle) will be used by default.
- * If you do not have Chef Workstation but do have Rubocop installed, you can set the executable path by setting ```{ "rubocop.path": "c:\\path\\to\\rubocop.bat"}``` in user/workspace settings).
- * To override the config file used by Rubocop/Cookstyle, use the ```{ "rubocop.configFile": "path/to/config.yml" }``` in user/workspace settings.
+* Enabled by default (disable by adding ```{ "rubocop.enable": false }``` in user/workspace settings) and activated when the first Ruby file is loaded.
+* The entire repo will be linted when files are saved, unless there are more than 400 `*.rb` files in the workspace, in which case only open files will be linted. Adjust this threshold using the ```{ "rubocop.fileCountThreshold": 400 }``` setting in user/workspace settings.
+* You may lint the entire workspace, even if it is larger than the above threshold, using the `Chef: Validate Entire Workspace` command from the Command Pallette.
+* If you have [Chef Workstation](https://downloads.chef.io/chef-workstation) installed, linting should "just work" on Windows, macOS and Linux. [Cookstyle](https://github.com/chef/cookstyle) will be used by default.
+* If you do not have Chef Workstation but do have Rubocop installed, you can set the executable path by setting ```{ "rubocop.path": "c:\\path\\to\\rubocop.bat"}``` in user/workspace settings).
+* To override the config file used by Rubocop/Cookstyle, use the ```{ "rubocop.configFile": "path/to/config.yml" }``` in user/workspace settings.
 
-#### Snippet support (with tabbing) for all Chef Infra built-in Resources:
+### Snippet support (with tabbing) for all Chef Infra built-in Resources
 
- * Please review the [Resource snippets](snippets/chef_resources.json) for a complete list.
+* Please review the [Resource snippets](snippets/chef_resources.json) for a complete list.
 
-#### Snippet support (with tabbing) for all Chef Infra Metadata fields:
+### Snippet support (with tabbing) for all Chef Infra Metadata fields
 
- * Please review the [Metadata snippets](snippets/chef_metadata.json) for a complete list.
+* Please review the [Metadata snippets](snippets/chef_metadata.json) for a complete list.
 
-#### Snippet support (with tabbing) for all Chef Infra DSL methods included in chef-utils:
+### Snippet support (with tabbing) for all Chef Infra DSL methods included in chef-utils
 
- * Please review the [DSL snippets](snippets/automated_dsl_snippets.json) for a complete list.
+* Please review the [DSL snippets](snippets/automated_dsl_snippets.json) for a complete list.
 
-#### Snippet support (with tabbing) for all Chef Infra YAML Recipe format:
+### Snippet support (with tabbing) for all Chef Infra YAML Recipe format
 
- * Please review the [Chef YAML Recipe snippets](snippets/chef_yaml_resources.json) for a complete list.
+* Please review the [Chef YAML Recipe snippets](snippets/chef_yaml_resources.json) for a complete list.
 
-#### Snippet support for all Chef InSpec:
+### Snippet support for all Chef InSpec
 
- * Please review the [Chef InSpec snippets](snippets/chef_inspec_resources.json) for a complete list of included resources.
- * Please review the [Chef InSpec Common snippets](snippets/chef_inspec_common.json) for a listing of common snippets included for Chef InSpec.
+* Please review the [Chef InSpec snippets](snippets/chef_inspec_resources.json) for a complete list of included resources.
+* Please review the [Chef InSpec Common snippets](snippets/chef_inspec_common.json) for a listing of common snippets included for Chef InSpec.
 
 ## Installation
 
- * You will need to install Visual Studio Code `1.0` or higher.
- * From the command palette ```Ctrl-Shift-P``` (Windows, Linux) or ```Cmd-Shift-P``` (OSX) select `Install Extension`, choose `Chef` and reload Visual Studio Code.
+* You will need to install Visual Studio Code `1.0` or higher.
+* From the command palette ```Ctrl-Shift-P``` (Windows, Linux) or ```Cmd-Shift-P``` (OSX) select `Install Extension`, choose `Chef` and reload Visual Studio Code.
 
 ## Contributions
 
@@ -57,17 +57,70 @@ This project contains development launch settings. A recent Node.js LTS build is
 
 ### Install dependencies
 
-```
+Dependencies for development work of this extension are maintained in the `package.json` file under the `devDependencies` key and can be installed via NPM:
+
+```shell
 npm install
-npm install -g typescript
-npm install -g vsce
 ```
+
+### Updating Snippets
+
+The following Snippet configurations are included with this extension:
+
+| Snippet File | Description | Update Method |
+| --- | --- | --- |
+| automated_dsl_snippets.json | Chef Infra Language/DSL Snippets | [**Autogenerated using Rakefile**](#autogenerated-snippet-updates) |
+| chef_inspec_resources.json | Chef InSpec Resource Snippets | [**Autogenerated using Rakefile**](#autogenerated-snippet-updates) |
+| chef_dsl_and_helpers.json | Chef Infra Language/DSL Snippets | Manually generated and maintained |
+| chef_inspec_common.json | Chef InSpec Common Control Snippets| Manually generated and maintained |
+| chef_metadata.json | Chef Infra Metadata Snippets | Manually generated and maintained |
+| chef_resources.json | Chef Infra Recipe Resources (Ruby Format) | Manually generated and maintained |
+| chef_yaml_resources.json | Chef Infra Recipe Resources (YAML Format) | Manually generated and maintained |
+| chefspec.json | Chef Infra ChefSpec | Manually generated and maintained |
+| shell_out.json | Chef Infra Language Helpers for shell_out type Examples | Manually generated and maintained |
+
+#### Autogenerated Snippet Updates
+
+The directory `autogeneration` located within this project contains tooling which is used to perform updates on autogenerated Snippet data.
+
+* From a terminal, `cd` to the `autogeneration` directory:
+
+    ```sh
+    cd ./autogeneration
+    ```
+
+* Verify that local Ruby gems which are required for Snippet updates have been installed (defined within `./autogeneration/Gemfile`):
+
+    ```sh
+    bundle install
+    ```
+
+    ```plain
+    $ bundle install
+    Using rake 13.0.3
+    Using bundler 2.1.4
+    Using concurrent-ruby 1.1.8
+    Using chef-utils 17.2.11 from https://github.com/chef/chef (at master@0af4909)
+    Using coderay 1.1.3
+    Using method_source 1.0.0
+    Using pry 0.14.1
+    Using yard 0.9.26
+    Bundle complete! 4 Gemfile dependencies, 8 gems now installed.
+    Bundled gems are installed into `./vendor`
+    ```
+
+* Run Rake task `generate_snippets` to perform any required Snippet updates which are handled via autogeneration process:
+
+    ```sh
+    rake generate_snippets
+    ```
 
 ### Packaging/releasing
 
-To produce a local .vsix for testing:
-```
-vsce package
+To produce a local .vsix for testing use `npx vsce package`:
+
+```plain
+npx vsce package
 
 Executing prepublish script 'npm run vscode:prepublish'...
 
@@ -77,15 +130,15 @@ Executing prepublish script 'npm run vscode:prepublish'...
  DONE  Packaged: /Users/tsmith/dev/work/vscode-chef/chef-1.4.0.vsix (15 files, 39.32KB)
 ```
 
-To test the extension locally.
+To test the extension locally:
 
-```
+```shell
 code --install-extension C:\projects\chef\vscode-chef\chef-1.4.0.vsix
 ```
 
 To release requires a PAT token for the relevant publisher on the Visual Studio Marketplace.
 
-```
+```plain
 vsce publish
 
 Executing prepublish script 'npm run vscode:prepublish'...
@@ -106,8 +159,8 @@ This extension was written by Stuart Preston ([stuart@chef.io](stuart@chef.io))
 
 This extension is licensed under an [Apache 2](LICENSE) license.
 
-```
-   (c) 2015-2019 Chef Software, Inc
+```plain
+   (c) 2015-2021 Chef Software, Inc
 
    Licensed under the Apache License, Version 2.0 (the "License");
    you may not use this file except in compliance with the License.

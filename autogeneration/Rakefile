@@ -81,6 +81,8 @@ task :generate_snippets do
   File.open("../snippets/automated_dsl_snippets.json", "w") do |f|
     f.write(JSON.pretty_generate(doc_data.sort.to_h))
   end
+
+  Rake::Task["generate_inspec_snippets"].invoke
 end
 
 task default: :generate_snippets
@@ -89,6 +91,9 @@ desc 'Generate InSpec snippets from published resource documentation'
 task :generate_inspec_snippets do
   require 'json'
 
+  puts 'Running task generate_inspec_snippets'
+
+  puts 'generate_inspec_snippets :: Validating that InSpec git repository is available locally and up to date.'
   # The InSpec/InSpec repository is used to generate snippets from docs
   if Dir.exist?('inspec')
     # If the inspec directory exists, cd to it and pull to make sure it is up to date
@@ -99,6 +104,7 @@ task :generate_inspec_snippets do
 
   resources_content = {}
 
+  puts 'generate_inspec_snippets :: Processing resources'
   Dir.glob('inspec/docs-chef-io/content/inspec/resources/*.md').sort.each do |doc_file|
     doc_file_content = File.read(doc_file)
 
@@ -126,5 +132,6 @@ task :generate_inspec_snippets do
 
   file_content = JSON.pretty_generate(resources_content)
 
+  puts 'generate_inspec_snippets :: Saving Updates to ../snippets/chef_inspec_resources.json'
   File.write('../snippets/chef_inspec_resources.json', file_content)
 end
