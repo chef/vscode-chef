@@ -185,11 +185,11 @@
       }
     },
     "commands": [
-      {
-      "command": "chef.validateEntireWorkspace",
-      "title": "Chef: Validate Workspace"
-    }
-  ],
+        {
+        "command": "chef.validateEntireWorkspace",
+        "title": "Chef: Validate Workspace"
+      }
+    ],
     "configurationDefaults": {
       "[chef_recipe_yaml]": {
         "editor.quickSuggestions": {
