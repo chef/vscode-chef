@@ -26,10 +26,12 @@
     "language"
   ],
   "activationEvents": [
-    "onLanguage:ruby"
+    "onLanguage:chef_metadata",
+    "onLanguage:chef_inspec",
+    "onLanguage:chef_recipe_yaml",
+    "workspaceContains:**/metadata.rb"
   ],
   "main": "./out/extension",
-  "dependencies": {},
   "devDependencies": {
     "@types/node": "^15.0.1",
     "fs": "0.0.1-security",
@@ -65,12 +67,13 @@
       {
         "id": "chef_metadata",
         "aliases": [
-          "Chef Metadata",
-          "chef metadata"
+          "Chef Infra Metadata",
+          "chef Infra metadata"
         ],
         "extensions": [
           "metadata.rb"
-        ]
+        ],
+        "configuration": "./syntaxes/language_configuration_chef_ruby.json"
       },
       {
         "id": "chef_inspec",
@@ -81,18 +84,20 @@
         "filenamePatterns": [
           "**/test/integration/**/*.rb",
           "**/controls/*.rb"
-        ]
+        ],
+        "configuration": "./syntaxes/language_configuration_chef_ruby.json"
       },
       {
         "id": "chef_recipe_yaml",
         "aliases": [
-          "Chef Recipe YAML",
-          "chef recipe yaml"
+          "Chef Infra Language YAML",
+          "chef infra language yaml"
         ],
         "filenamePatterns": [
           "**/recipes/*.yml",
           "**/recipes/*.yaml"
-        ]
+        ],
+        "configuration": "./syntaxes/language_configuration_chef_yaml.json"
       }
     ],
     "grammars": [
