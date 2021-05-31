@@ -1,0 +1,14 @@
+{
+	"source": {
+		"prefix": "source",
+		"scope": "source.chef.berksfile",
+		"body": "source '${1:https://supermarket.chef.io}'",
+		"description": "A source defines where Berkshelf should look for cookbooks. Sources are processed in the order that they are defined in, and processing stops as soon as a suitable cookbook is found."
+	},
+	"metadata": {
+		"prefix": "metadata",
+		"scope": "source.chef.berksfile",
+		"body": "metadata",
+		"description": "The metadata keyword causes Berkshelf to process the local cookbook metadata. This ensures that the dependencies of the cookbook are resolved by Berkshelf."
+	}
+}

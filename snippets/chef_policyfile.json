@@ -1,0 +1,14 @@
+{
+	"default_source": {
+		"prefix": "default_source",
+		"scope": "source.chef.policyfile",
+		"body": "default_source ${1::supermarket}",
+		"description": "The location in which any cookbooks not specified by cookbook are located."
+	},
+	"name": {
+		"prefix": "name",
+		"scope": "source.chef.policyfile",
+		"body": "name '${1::my_cookbook}'",
+		"description": "The name of the policy. Use a name that reflects the purpose of the machines against which the policy will run."
+	}
+}

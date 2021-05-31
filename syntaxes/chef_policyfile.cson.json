@@ -1,0 +1,10 @@
+{
+	"name": "Chef Infra Policyfile",
+	"scopeName": "source.chef.policyfile",
+	"fileTypes": ["Policyfile.rb"],
+	"patterns": [
+		{
+			"include": "source.ruby"
+		}
+	]
+}
