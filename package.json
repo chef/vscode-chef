@@ -32,7 +32,6 @@
     "workspaceContains:**/metadata.rb"
   ],
   "main": "./out/extension",
-  "dependencies": {},
   "devDependencies": {
     "@types/node": "^15.0.1",
     "fs": "0.0.1-security",
@@ -73,7 +72,8 @@
         ],
         "extensions": [
           "metadata.rb"
-        ]
+        ],
+        "configuration": "./syntaxes/language_configuration_chef_ruby.json"
       },
       {
         "id": "chef_inspec",
@@ -84,7 +84,8 @@
         "filenamePatterns": [
           "**/test/integration/**/*.rb",
           "**/controls/*.rb"
-        ]
+        ],
+        "configuration": "./syntaxes/language_configuration_chef_ruby.json"
       },
       {
         "id": "chef_recipe_yaml",
@@ -95,7 +96,8 @@
         "filenamePatterns": [
           "**/recipes/*.yml",
           "**/recipes/*.yaml"
-        ]
+        ],
+        "configuration": "./syntaxes/language_configuration_chef_yaml.json"
       }
     ],
     "grammars": [
@@ -185,7 +187,7 @@
       }
     },
     "commands": [
-        {
+      {
         "command": "chef.validateEntireWorkspace",
         "title": "Chef: Validate Workspace"
       }
