@@ -165,7 +165,7 @@
       },
       {
         "language": "chef_policyfile",
-        "path": "./snippets/chef_berksfile.json"
+        "path": "./snippets/chef_policyfile.json"
       },
       {
         "language": "chef_inspec",

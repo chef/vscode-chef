@@ -1,8 +1,8 @@
 {
-	"source": {
+	"default_source": {
 		"prefix": "default_source",
 		"scope": "source.chef.policyfile",
-		"body": "source '${1::supermarket}'",
+		"body": "default_source ${1::supermarket}",
 		"description": "The location in which any cookbooks not specified by cookbook are located."
 	},
 	"name": {
