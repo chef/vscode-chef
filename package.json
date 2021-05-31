@@ -99,28 +99,28 @@
         ],
         "configuration": "./syntaxes/language_configuration_chef_yaml.json"
       },
-			{
-				"id": "chef_policyfile",
-				"aliases": [
-					"Chef Infra Policyfile",
-					"chef Infra policyfile"
-				],
-				"configuration": "./syntaxes/language_configuration_chef_ruby.json",
-				"extensions": [
-					"Policyfile.rb"
-				]
-			},
       {
-				"id": "chef_berksfile",
-				"aliases": [
-					"Chef Infra Berksfile",
-					"chef Infra berksfile"
-				],
-				"configuration": "./syntaxes/language_configuration_chef_ruby.json",
-				"extensions": [
-					"Berksfile"
-				]
-			}
+        "id": "chef_policyfile",
+        "aliases": [
+          "Chef Infra Policyfile",
+          "chef Infra policyfile"
+        ],
+        "configuration": "./syntaxes/language_configuration_chef_ruby.json",
+        "extensions": [
+          "Policyfile.rb"
+        ]
+      },
+      {
+        "id": "chef_berksfile",
+        "aliases": [
+          "Chef Infra Berksfile",
+          "chef Infra berksfile"
+        ],
+        "configuration": "./syntaxes/language_configuration_chef_ruby.json",
+        "extensions": [
+          "Berksfile"
+        ]
+      }
     ],
     "grammars": [
       {
