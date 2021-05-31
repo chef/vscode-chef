@@ -1,16 +1,17 @@
 # vscode-chef Change Log
 
-<!-- latest_release 2.0.2 -->
-## [v2.0.2](https://github.com/chef/vscode-chef/tree/v2.0.2) (2021-05-31)
+<!-- latest_release 2.1.0 -->
+## [v2.1.0](https://github.com/chef/vscode-chef/tree/v2.1.0) (2021-05-31)
 
 #### Merged Pull Requests
-- Update language branding + fix how we load the plugin [#133](https://github.com/chef/vscode-chef/pull/133) ([tas50](https://github.com/tas50))
+- Add initial support for Berkshelf and Policyfiles snippets [#134](https://github.com/chef/vscode-chef/pull/134) ([tas50](https://github.com/tas50))
 <!-- latest_release -->
 
 <!-- release_rollup -->
 ### Changes not yet released
 
 #### Merged Pull Requests
+- Add initial support for Berkshelf and Policyfiles snippets [#134](https://github.com/chef/vscode-chef/pull/134) ([tas50](https://github.com/tas50)) <!-- 2.1.0 -->
 - Update language branding + fix how we load the plugin [#133](https://github.com/chef/vscode-chef/pull/133) ([tas50](https://github.com/tas50)) <!-- 2.0.2 -->
 - Updates README and autogeneration Rakefile [#132](https://github.com/chef/vscode-chef/pull/132) ([collinmcneese](https://github.com/collinmcneese)) <!-- 2.0.1 -->
 <!-- release_rollup -->
