@@ -1,205 +1,203 @@
 {
-  "name": "chef",
-  "description": "Official Chef Infra extension for VSCode with code linting support and snippets.",
-  "version": "2.0.1",
-  "publisher": "chef-software",
-  "icon": "images/chef-logo.png",
-  "displayName": "Chef Infra Extension for Visual Studio Code",
-  "license": "Apache-2.0",
-  "homepage": "https://github.com/chef/vscode-chef",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/chef/vscode-chef.git"
-  },
-  "bugs": {
-    "url": "https://github.com/chef/vscode-chef/issues"
-  },
-  "engines": {
-    "vscode": "^1.1.14"
-  },
-  "keywords": [
-    "chef",
-    "cookstyle",
-    "chef-client",
-    "linters",
-    "snippet",
-    "language"
-  ],
-  "activationEvents": [
-    "onLanguage:ruby"
-  ],
-  "main": "./out/extension",
-  "dependencies": {},
-  "devDependencies": {
-    "@types/node": "^15.0.1",
-    "fs": "0.0.1-security",
-    "path": "0.12.7",
-    "tslint": "6.1.3",
-    "typescript": "4.3.2",
-    "vsce": "^1.85.0",
-    "vscode": "^1.1.14"
-  },
-  "extensionDependencies": [
-    "rebornix.ruby",
-    "wingrunr21.vscode-ruby",
-    "redhat.vscode-yaml"
-  ],
-  "categories": [
-    "Programming Languages",
-    "Snippets",
-    "Linters"
-  ],
-  "contributes": {
-    "languages": [
-      {
-        "id": "ruby",
-        "aliases": [
-          "Ruby"
-        ],
-        "extensions": [
-          "Berksfile",
-          "Policyfile",
-          ".rb"
-        ]
-      },
-      {
-        "id": "chef_metadata",
-        "aliases": [
-          "Chef Metadata",
-          "chef metadata"
-        ],
-        "extensions": [
-          "metadata.rb"
-        ]
-      },
-      {
-        "id": "chef_inspec",
-        "aliases": [
-          "Chef InSpec",
-          "chef inspec"
-        ],
-        "filenamePatterns": [
-          "**/test/integration/**/*.rb",
-          "**/controls/*.rb"
-        ]
-      },
-      {
-        "id": "chef_recipe_yaml",
-        "aliases": [
-          "Chef Recipe YAML",
-          "chef recipe yaml"
-        ],
-        "filenamePatterns": [
-          "**/recipes/*.yml",
-          "**/recipes/*.yaml"
-        ]
-      }
-    ],
-    "grammars": [
-      {
-        "language": "ruby",
-        "scopeName": "source.ruby.chef",
-        "path": "./syntaxes/chef.plist"
-      },
-      {
-        "language": "chef_inspec",
-        "scopeName": "source.ruby.chef_inspec",
-        "path": "./syntaxes/chef_inspec.cson.json"
-      },
-      {
-        "language": "chef_metadata",
-        "scopeName": "source.chef.metadata",
-        "path": "./syntaxes/chef_metadata.cson.json"
-      },
-      {
-        "language": "chef_recipe_yaml",
-        "scopeName": "source.yaml.chef_recipe_yaml",
-        "path": "./syntaxes/chef_recipe_yaml.cson.json"
-      }
-    ],
-    "snippets": [
-      {
-        "language": "ruby",
-        "path": "./snippets/chef_resources.json"
-      },
-      {
-        "language": "chef_inspec",
-        "path": "./snippets/chef_inspec_resources.json"
-      },
-      {
-        "language": "chef_inspec",
-        "path": "./snippets/chef_inspec_common.json"
-      },
-      {
-        "language": "chef_recipe_yaml",
-        "path": "./snippets/chef_yaml_resources.json"
-      },
-      {
-        "language": "ruby",
-        "path": "./snippets/chef_dsl_and_helpers.json"
-      },
-      {
-        "language": "ruby",
-        "path": "./snippets/chefspec.json"
-      },
-      {
-        "language": "ruby",
-        "path": "./snippets/automated_dsl_snippets.json"
-      },
-      {
-        "language": "ruby",
-        "path": "./snippets/shell_out.json"
-      },
-      {
-        "language": "chef_metadata",
-        "path": "./snippets/chef_metadata.json"
-      }
-    ],
-    "configuration": {
-      "type": "object",
-      "title": "Chef Infra Extension for Visual Studio Code configuration",
-      "properties": {
-        "rubocop.enable": {
-          "type": "boolean",
-          "default": true,
-          "description": "Control whether Rubocop analysis is enabled or not."
-        },
-        "rubocop.path": {
-          "type": "string",
-          "default": "",
-          "description": "Full path to Rubocop, only change this if you have the Chef Workstation installed in a non-standard location."
-        },
-        "rubocop.configFile": {
-          "type": "string",
-          "default": "",
-          "description": "Path to a Rubocop config file (e.g. .rubocop_shared.yml) - relative paths resolve inside the workspace."
-        },
-        "rubocop.fileCountThreshold": {
-          "type": "number",
-          "default": 400,
-          "description": "If there are are fewer than this many Ruby files, the extension will validate all files in the workspace. If greater, it will only validate the open files to keep the extension responsive."
-        }
-      }
-    },
-    "commands": [
-      {
-        "command": "chef.validateEntireWorkspace",
-        "title": "Chef: Validate Workspace"
-      }
-    ],
-    "configurationDefaults": {
-      "[chef_recipe_yaml]": {
-        "editor.quickSuggestions": {
-          "other": true,
-          "comments": false,
-          "strings": true
-        }
-      }
-    }
-  },
-  "scripts": {
-    "vscode:prepublish": "tsc -p ./",
-    "compile": "tsc -watch -p ./",
-    "postinstall": "node ./node_modules/vscode/bin/install"
-  }
+	"name": "chef",
+	"description": "Official Chef Infra extension for VSCode with code linting support and snippets.",
+	"version": "2.0.1",
+	"publisher": "chef-software",
+	"icon": "images/chef-logo.png",
+	"displayName": "Chef Infra Extension for Visual Studio Code",
+	"license": "Apache-2.0",
+	"homepage": "https://github.com/chef/vscode-chef",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/chef/vscode-chef.git"
+	},
+	"bugs": {
+		"url": "https://github.com/chef/vscode-chef/issues"
+	},
+	"engines": {
+		"vscode": "^1.1.14"
+	},
+	"keywords": [
+		"chef",
+		"cookstyle",
+		"chef-client",
+		"linters",
+		"snippet",
+		"language"
+	],
+	"activationEvents": [
+		"onLanguage:chef_metadata",
+		"onLanguage:chef_inspec",
+		"onLanguage:chef_recipe_yaml",
+		"workspaceContains:**/metadata.rb"
+	],
+	"main": "./out/extension",
+	"dependencies": {},
+	"devDependencies": {
+		"@types/node": "^15.0.1",
+		"fs": "0.0.1-security",
+		"path": "0.12.7",
+		"tslint": "6.1.3",
+		"typescript": "4.3.2",
+		"vsce": "^1.85.0",
+		"vscode": "^1.1.14"
+	},
+	"extensionDependencies": [
+		"rebornix.ruby",
+		"wingrunr21.vscode-ruby",
+		"redhat.vscode-yaml"
+	],
+	"categories": [
+		"Programming Languages",
+		"Snippets",
+		"Linters"
+	],
+	"contributes": {
+		"languages": [{
+				"id": "ruby",
+				"aliases": [
+					"Ruby"
+				],
+				"extensions": [
+					"Berksfile",
+					"Policyfile",
+					".rb"
+				]
+			},
+			{
+				"id": "chef_metadata",
+				"aliases": [
+					"Chef Infra Metadata",
+					"chef Infra metadata"
+				],
+				"extensions": [
+					"metadata.rb"
+				]
+			},
+			{
+				"id": "chef_inspec",
+				"aliases": [
+					"Chef InSpec",
+					"chef inspec"
+				],
+				"filenamePatterns": [
+					"**/test/integration/**/*.rb",
+					"**/controls/*.rb"
+				]
+			},
+			{
+				"id": "chef_recipe_yaml",
+				"aliases": [
+					"Chef Infra Language YAML",
+					"chef infra language yaml"
+				],
+				"filenamePatterns": [
+					"**/recipes/*.yml",
+					"**/recipes/*.yaml"
+				]
+			}
+		],
+		"grammars": [{
+				"language": "ruby",
+				"scopeName": "source.ruby.chef",
+				"path": "./syntaxes/chef.plist"
+			},
+			{
+				"language": "chef_inspec",
+				"scopeName": "source.ruby.chef_inspec",
+				"path": "./syntaxes/chef_inspec.cson.json"
+			},
+			{
+				"language": "chef_metadata",
+				"scopeName": "source.chef.metadata",
+				"path": "./syntaxes/chef_metadata.cson.json"
+			},
+			{
+				"language": "chef_recipe_yaml",
+				"scopeName": "source.yaml.chef_recipe_yaml",
+				"path": "./syntaxes/chef_recipe_yaml.cson.json"
+			}
+		],
+		"snippets": [{
+				"language": "ruby",
+				"path": "./snippets/chef_resources.json"
+			},
+			{
+				"language": "chef_inspec",
+				"path": "./snippets/chef_inspec_resources.json"
+			},
+			{
+				"language": "chef_inspec",
+				"path": "./snippets/chef_inspec_common.json"
+			},
+			{
+				"language": "chef_recipe_yaml",
+				"path": "./snippets/chef_yaml_resources.json"
+			},
+			{
+				"language": "ruby",
+				"path": "./snippets/chef_dsl_and_helpers.json"
+			},
+			{
+				"language": "ruby",
+				"path": "./snippets/chefspec.json"
+			},
+			{
+				"language": "ruby",
+				"path": "./snippets/automated_dsl_snippets.json"
+			},
+			{
+				"language": "ruby",
+				"path": "./snippets/shell_out.json"
+			},
+			{
+				"language": "chef_metadata",
+				"path": "./snippets/chef_metadata.json"
+			}
+		],
+		"configuration": {
+			"type": "object",
+			"title": "Chef Infra Extension for Visual Studio Code configuration",
+			"properties": {
+				"rubocop.enable": {
+					"type": "boolean",
+					"default": true,
+					"description": "Control whether Rubocop analysis is enabled or not."
+				},
+				"rubocop.path": {
+					"type": "string",
+					"default": "",
+					"description": "Full path to Rubocop, only change this if you have the Chef Workstation installed in a non-standard location."
+				},
+				"rubocop.configFile": {
+					"type": "string",
+					"default": "",
+					"description": "Path to a Rubocop config file (e.g. .rubocop_shared.yml) - relative paths resolve inside the workspace."
+				},
+				"rubocop.fileCountThreshold": {
+					"type": "number",
+					"default": 400,
+					"description": "If there are are fewer than this many Ruby files, the extension will validate all files in the workspace. If greater, it will only validate the open files to keep the extension responsive."
+				}
+			}
+		},
+		"commands": [{
+			"command": "chef.validateEntireWorkspace",
+			"title": "Chef: Validate Workspace"
+		}],
+		"configurationDefaults": {
+			"[chef_recipe_yaml]": {
+				"editor.quickSuggestions": {
+					"other": true,
+					"comments": false,
+					"strings": true
+				}
+			}
+		}
+	},
+	"scripts": {
+		"vscode:prepublish": "tsc -p ./",
+		"compile": "tsc -watch -p ./",
+		"postinstall": "node ./node_modules/vscode/bin/install"
+	}
 }
