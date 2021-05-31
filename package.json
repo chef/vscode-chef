@@ -26,8 +26,10 @@
     "language"
   ],
   "activationEvents": [
-    "onLanguage:chef_metadata",
+    "onLanguage:chef_berkshelf",
     "onLanguage:chef_inspec",
+    "onLanguage:chef_metadata",
+    "onLanguage:chef_policyfile",
     "onLanguage:chef_recipe_yaml",
     "workspaceContains:**/metadata.rb"
   ],
@@ -59,8 +61,6 @@
           "Ruby"
         ],
         "extensions": [
-          "Berksfile",
-          "Policyfile",
           ".rb"
         ]
       },
@@ -98,7 +98,29 @@
           "**/recipes/*.yaml"
         ],
         "configuration": "./syntaxes/language_configuration_chef_yaml.json"
-      }
+      },
+			{
+				"id": "chef_policyfile",
+				"aliases": [
+					"Chef Infra Policyfile",
+					"chef Infra policyfile"
+				],
+				"configuration": "./syntaxes/language_configuration_chef_ruby.json",
+				"extensions": [
+					"Policyfile.rb"
+				]
+			},
+      {
+				"id": "chef_berksfile",
+				"aliases": [
+					"Chef Infra Berksfile",
+					"chef Infra berksfile"
+				],
+				"configuration": "./syntaxes/language_configuration_chef_ruby.json",
+				"extensions": [
+					"Berksfile"
+				]
+			}
     ],
     "grammars": [
       {
@@ -110,6 +132,16 @@
         "language": "chef_inspec",
         "scopeName": "source.ruby.chef_inspec",
         "path": "./syntaxes/chef_inspec.cson.json"
+      },
+      {
+        "language": "chef_berkshelf",
+        "scopeName": "source.chef.berkshelf",
+        "path": "./syntaxes/chef_berkshelf.cson.json"
+      },
+      {
+        "language": "chef_policyfile",
+        "scopeName": "source.chef.policyfile",
+        "path": "./syntaxes/chef_policyfile.cson.json"
       },
       {
         "language": "chef_metadata",
@@ -126,6 +158,14 @@
       {
         "language": "ruby",
         "path": "./snippets/chef_resources.json"
+      },
+      {
+        "language": "chef_berksfile",
+        "path": "./snippets/chef_berksfile.json"
+      },
+      {
+        "language": "chef_policyfile",
+        "path": "./snippets/chef_berksfile.json"
       },
       {
         "language": "chef_inspec",

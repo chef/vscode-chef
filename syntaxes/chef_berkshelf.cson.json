@@ -1,0 +1,10 @@
+{
+	"name": "Chef Infra Berksfile",
+	"scopeName": "source.chef.berksfile",
+	"fileTypes": ["Berksfile"],
+	"patterns": [
+		{
+			"include": "source.ruby"
+		}
+	]
+}

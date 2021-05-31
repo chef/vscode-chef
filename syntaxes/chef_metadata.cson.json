@@ -1,5 +1,5 @@
 {
-	"name": "Chef Metadata",
+	"name": "Chef Infra Metadata",
 	"scopeName": "source.chef.metadata",
 	"fileTypes": ["metadata.rb"],
 	"patterns": [
