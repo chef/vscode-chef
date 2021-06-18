@@ -2579,6 +2579,12 @@
     "description": "Use the `login_defs` Chef InSpec audit resource to test configuration settings in the `/etc/login.defs` file. The `logins.defs` file defines site-specific configuration for the shadow password suite on Linux and Unix platforms, such as password expiration ranges, minimum/maximum values for automatic selection of user and group identifiers, or the method with which passwords are encrypted.",
     "scope": "source.ruby.chef_inspec"
   },
+  "mongodb_conf": {
+    "prefix": "mongodb_conf",
+    "body": "describe mongodb_conf('path') do\n\tits('setting') { should eq 'value' }\nend",
+    "description": "Use the `mongodb_conf` Chef InSpec audit resource to test the contents of the configuration file for MongoDB, typically located at `/etc/mongod.conf` or `C:\\Program Files\\MongoDB\\Server\\<version>\\bin\\mongod.cfg`, depending on the platform.",
+    "scope": "source.ruby.chef_inspec"
+  },
   "mount": {
     "prefix": "mount",
     "body": "describe mount('path') do\n\tit { should MATCHER 'value' }\nend",

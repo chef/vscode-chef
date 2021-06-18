@@ -401,6 +401,12 @@
     "description": "Determine if the current node is macOS. Introduced in Chef Infra Client 15.5.",
     "scope": "source.ruby.chef"
   },
+  "macos_ruby?": {
+    "prefix": "macos_ruby?",
+    "body": "macos_ruby?",
+    "description": "Determine if the Ruby VM is currently running on a Mac node (This is useful primarily for internal use\nby Chef Infra Client before the node object exists). Introduced in Chef Infra Client 17.3.",
+    "scope": "source.ruby.chef"
+  },
   "netbsd?": {
     "prefix": "netbsd?",
     "body": "netbsd?",
