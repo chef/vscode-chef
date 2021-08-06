@@ -2585,6 +2585,12 @@
     "description": "Use the `mongodb_conf` Chef InSpec audit resource to test the contents of the configuration file for MongoDB, typically located at `/etc/mongod.conf` or `C:\\Program Files\\MongoDB\\Server\\<version>\\bin\\mongod.cfg`, depending on the platform.",
     "scope": "source.ruby.chef_inspec"
   },
+  "mongodb_session": {
+    "prefix": "mongodb_session",
+    "body": "describe mongodb_session(user: \"username\", password: \"password\", database: \"test\").query(key: value) do\n    its(\"params\") { should match(/expected-result/) }\n  end",
+    "description": "Use the `mongodb_session` Chef InSpec audit resource to run MongoDB command against a MongoDB Database.",
+    "scope": "source.ruby.chef_inspec"
+  },
   "mount": {
     "prefix": "mount",
     "body": "describe mount('path') do\n\tit { should MATCHER 'value' }\nend",
@@ -2637,6 +2643,18 @@
     "prefix": "oneget",
     "body": "describe oneget('name') do\n\tit { should be_installed }\nend",
     "description": "Use the `oneget` Chef InSpec audit resource to test if the named package and/or package version is installed on the system. This resource uses Oneget, which is `part of the Windows Management Framework 5.0 and Windows 10 <https://github.com/OneGet/oneget>`\\_\\_. This resource uses the `Get-Package` cmdlet to return all of the package names in the Oneget repository.",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "opa_api": {
+    "prefix": "opa_api",
+    "body": "describe opa_api(url: \"localhost:8181/v1/data/example/violation\", data: \"input.json\") do\n\tits([\"result\"]) { should eq 'value' }\nend",
+    "description": "Use the `opa_api` Chef InSpec audit resource to query Open Policy Agent (OPA) using the OPA URL and data.",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "opa_cli": {
+    "prefix": "opa_cli",
+    "body": "describe opa_cli(policy: \"example.rego\", data: \"input.json\", query: \"data.example.allow\") do\n\tits([\"result\"]) { should eq \"value\" }\nend",
+    "description": "Use the `opa_cli` Chef InSpec audit resource to query Open Policy Agent (OPA) using an OPA policy file, a data file, and a query.",
     "scope": "source.ruby.chef_inspec"
   },
   "oracledb_session": {
