@@ -1,16 +1,17 @@
 # vscode-chef Change Log
 
-<!-- latest_release 2.1.5 -->
-## [v2.1.5](https://github.com/chef/vscode-chef/tree/v2.1.5) (2021-08-06)
+<!-- latest_release 2.1.6 -->
+## [v2.1.6](https://github.com/chef/vscode-chef/tree/v2.1.6) (2021-08-27)
 
 #### Merged Pull Requests
-- Bump typescript from 4.3.4 to 4.3.5 [#138](https://github.com/chef/vscode-chef/pull/138) ([dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump typescript from 4.3.5 to 4.4.2 [#144](https://github.com/chef/vscode-chef/pull/144) ([dependabot[bot]](https://github.com/dependabot[bot]))
 <!-- latest_release -->
 
 <!-- release_rollup -->
 ### Changes not yet released
 
 #### Merged Pull Requests
+- Bump typescript from 4.3.5 to 4.4.2 [#144](https://github.com/chef/vscode-chef/pull/144) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 2.1.6 -->
 - Bump typescript from 4.3.4 to 4.3.5 [#138](https://github.com/chef/vscode-chef/pull/138) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 2.1.5 -->
 - Update default Cookstyle paths for bin vs embedded [#143](https://github.com/chef/vscode-chef/pull/143) ([collinmcneese](https://github.com/collinmcneese)) <!-- 2.1.4 -->
 - Bump @types/node from 15.14.1 to 16.0.1 [#140](https://github.com/chef/vscode-chef/pull/140) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 2.1.3 -->
