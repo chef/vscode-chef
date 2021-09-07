@@ -749,6 +749,12 @@
     "description": "The windows_user_privilege resource allows to add and set principal (User/Group) to the specified privilege. Ref: https://docs.microsoft.com/en-us/windows/security/threat-protection/security-policy-settings/user-rights-assignment",
     "scope": "source.ruby.chef"
   },
+  "windows_update_settings": {
+    "prefix": "windows_update_settings",
+    "body": "windows_update_settings '${1:name}' do\r\n\tdisable_os_upgrades ${2:false}\r\n\televate_non_admins ${3:true}\r\n\ttarget_wsus_group_name '${4:group_name}'\r\n\twsus_server_url '{$5:https://server_url}'\r\n\tblock_windows_update_website {$6:false}\r\n\tautomatic_update_option :{$7:download_and_schedule}\r\n\tautomatically_install_minor_updates {$8:false}\r\n\tenable_detection_frequency {$9:false}\r\n\tcustom_detection_frequency {$10:22}\r\n\tno_reboot_with_users_logged_on {$11:true}\r\n\tdisable_automatic_updates {$12:false}\r\n\tscheduled_install_day '{$13:https://server_url}'\r\n\tscheduled_install_hour {$14:23}\r\n\tupdate_other_ms_products {$15:true}\r\n\taction :${5:set}\r\nend\r\n",
+    "description": "Use the windows_update_settings resource to manage the various Windows Update patching options.",
+    "scope": "source.ruby.chef"
+  },
 	"yum_package": {
 		"prefix": "yum_package",
 		"body": "yum_package '${1:package_name}' do\r\n\taction :${2:install}\r\nend\r\n",
