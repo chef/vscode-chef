@@ -605,6 +605,12 @@
     "description": "Determine if the current node is Scientific Linux. Introduced in Chef Infra Client 15.5.",
     "scope": "source.ruby.chef"
   },
+  "secret": {
+    "prefix": "secret",
+    "body": "secret",
+    "description": "Helper method which looks up a secret using the given service and configuration,\nand returns the retrieved secret value.\nThis DSL providers a wrapper around [Chef::SecretFetcher]\n\nUse of the secret helper in the context of a resource block will automatically mark\nthat resource as 'sensitive', preventing resource data from being logged.  See [Chef::Resource#sensitive].\n\nSee individual fetcher documentation to know what to expect for a given service.\n\nThis example uses the built-in :example secret manager service, which\naccepts a hash of secrets.\n\n  value = secret(name: \"test1\", service: :example, config: { \"test1\" => \"value1\" })\n  log \"My secret is #{value}\"\n\n  value = secret(name: \"test1\", service: :aws_secrets_manager, version: \"v1\", config: { region: \"us-west-1\" })\n  log \"My secret is #{value}\".",
+    "scope": "source.ruby.chef"
+  },
   "service_script_exist?": {
     "prefix": "service_script_exist?",
     "body": "service_script_exist?",

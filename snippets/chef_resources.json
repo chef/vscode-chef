@@ -245,6 +245,42 @@
 		"description": "Use the group resource to manage a local group.",
 		"scope": "source.ruby.chef"
 	},
+  "habitat_config": {
+    "prefix": "habitat_config",
+    "body": "habitat_config 'name' do\n\tconfig                  Mash (Hash-like)\n\tgateway_auth_token      String\n\tremote_sup              String # default value: \"127.0.0.1:9632\"\n\tremote_sup_http         String # default value: \"127.0.0.1:9631\"\n\tservice_group           String # default value: 'name' unless specified\n\tuser                    String\n\taction                  Symbol # defaults to :apply if not specified\nend",
+    "description": "Use the **habitat_config** resource to apply a configuration to a Chef Habitat service.",
+    "scope": "source.ruby.chef"
+  },
+  "habitat_install": {
+    "prefix": "habitat_install",
+    "body": "habitat_install 'name' do\n\tbldr_url         String\n\tcreate_user      true, false # default value: true\n\thab_version      String\n\tinstall_url      String\n\tlicense          String\n\ttmp_dir          String\n\taction           Symbol # defaults to :install if not specified\nend",
+    "description": "Use the **habitat_install** resource to install Chef Habitat.",
+    "scope": "source.ruby.chef"
+  },
+  "habitat_package": {
+    "prefix": "habitat_package",
+    "body": "habitat_package 'name' do\n\tauth_token        String\n\tbinlink           true, false, force # default value: false\n\tbldr_url          String # default value: \"https://bldr.habitat.sh\"\n\tchannel           String # default value: \"stable\"\n\texclude           String\n\tkeep_latest       String\n\tno_deps           true, false # default value: false\n\toptions           String\n\tpackage_name      String, Array\n\tsource            String\n\ttimeout           String, Integer\n\tversion           String, Array\n\taction            Symbol # defaults to :install if not specified\nend",
+    "description": "Use the **habitat_package** to install or remove Chef Habitat packages from Habitat Builder.",
+    "scope": "source.ruby.chef"
+  },
+  "habitat_service": {
+    "prefix": "habitat_service",
+    "body": "habitat_service 'name' do\n\tbind                       String, Array # default value: []\n\tbinding_mode               Symbol, String # default value: :strict\n\tbldr_url                   String # default value: \"https://bldr.habitat.sh/\"\n\tchannel                    Symbol, String # default value: :stable\n\tgateway_auth_token         String\n\thealth_check_interval      Integer # default value: 30\n\tremote_sup                 String # default value: \"127.0.0.1:9632\"\n\tremote_sup_http            String # default value: \"127.0.0.1:9631\"\n\tservice_group              String # default value: \"default\"\n\tservice_name               String # default value: 'name' unless specified\n\tshutdown_timeout           Integer # default value: 8\n\tstrategy                   Symbol, String # default value: :none\n\ttopology                   Symbol, String # default value: :standalone\n\tupdate_condition           Symbol, String # default value: :latest\n\taction                     Symbol # defaults to :load if not specified\nend",
+    "description": "Use the **habitat_service** resource to manage Chef Habitat services. This requires that `core/hab-sup` be running as a service. See the `habitat_sup` resource documentation for more information.",
+    "scope": "source.ruby.chef"
+  },
+  "habitat_sup": {
+    "prefix": "habitat_sup",
+    "body": "habitat_sup 'name' do\n\tauth_token                    String\n\tauto_update                   true, false # default value: false\n\tbldr_url                      String\n\tevent_stream_application      String\n\tevent_stream_cert             String\n\tevent_stream_environment      String\n\tevent_stream_site             String\n\tevent_stream_token            String\n\tevent_stream_url              String\n\tgateway_auth_token            String\n\thab_channel                   String\n\thealth_check_interval         String, Integer\n\tkeep_latest                   String\n\tlauncher_version              String\n\tlicense                       String\n\tlimit_no_files                String\n\tlisten_ctl                    String\n\tlisten_gossip                 String\n\tlisten_http                   String\n\torg                           String # default value: \"default\"\n\tpeer                          String, Array\n\tpermanent_peer                true, false # default value: false\n\tring                          String\n\tservice_version               String\n\tsup_version                   String\n\ttoml_config                   true, false # default value: false\n\tupdate_condition              String\n\taction                        Symbol # defaults to :run if not specified\nend",
+    "description": "Use the **habitat_sup** resource to runs a Chef Habitat supervisor for one or more Chef Habitat services. The resource is commonly used in conjunction with `habitat_service` which will manage the services loaded and started within the supervisor.",
+    "scope": "source.ruby.chef"
+  },
+  "habitat_user_toml": {
+    "prefix": "habitat_user_toml",
+    "body": "habitat_user_toml 'name' do\n\tconfig            Mash (Hash-like)\n\tservice_name      String # default value: 'name' unless specified\n\taction            Symbol # defaults to :create if not specified\nend",
+    "description": "Use the **habitat_user_toml** to template a `user.toml` for Chef Habitat services. Configurations set in the  `user.toml` override the `default.toml` for a given package, which makes it an alternative to applying service group level configuration.",
+    "scope": "source.ruby.chef"
+  },
 	"homebrew_cask": {
 		"prefix": "homebrew_cask",
 		"body": "homebrew_cask '${1:cask_name}' do\r\n\taction :${2:install}\r\nend\r\n",

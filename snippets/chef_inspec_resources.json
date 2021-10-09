@@ -1013,6 +1013,12 @@
     "description": "Use the `chocolatey_package` Chef InSpec audit resource to test if the named [Chocolatey](https://chocolatey.org/) package and/or package version is installed on the system.",
     "scope": "source.ruby.chef_inspec"
   },
+  "chrony_conf": {
+    "prefix": "chrony_conf",
+    "body": "describe chrony_conf('PATH') do\n  its('setting_name') { should eq 'VALUE' }\nend",
+    "description": "Use the `chrony_conf` Chef InSpec audit resource to test the synchronization settings defined in the `chrony.conf` file. This file is typically located at `/etc/chrony.conf`.",
+    "scope": "source.ruby.chef_inspec"
+  },
   "command": {
     "prefix": "command",
     "body": "describe command('command') do\n\tit { should exist }\n\tits('property') { should eq 'value' }\nend",
@@ -1039,7 +1045,7 @@
   },
   "csv": {
     "prefix": "csv",
-    "body": "describe csv('file') do\n\tits('name') { should cmp 'foo' }\nend",
+    "body": "describe csv('file', true) do\n\tits('name') { should cmp 'foo' }\nend",
     "description": "Use the `csv` Chef InSpec audit resource to test configuration data in a CSV file.",
     "scope": "source.ruby.chef_inspec"
   },
@@ -2053,7 +2059,7 @@
   },
   "google_project_alert_policy": {
     "prefix": "google_project_alert_policy",
-    "body": "describe.one do\n  google_project_alert_policies(project: 'chef-gcp-inspec').policy_names do |policy_name|\n    describe google_project_alert_policy(project: 'chef-gcp-inspec', name: policy_name) do\n\tit { should exist }\n\tits('display_name') { should cmp 'Display'}\n\tits('combiner') { should cmp 'OR'}\n\tit { should be_enabled }\nend",
+    "body": "describe.one do\n  google_project_alert_policies(project: 'chef-gcp-inspec').policy_names.each do |policy_name|\n    describe google_project_alert_policy(project: 'chef-gcp-inspec', name: policy_name.split('/').last) do\n\tit { should exist }\n\tits('display_name') { should cmp 'Display'}\n\tits('combiner') { should cmp 'OR'}\n\tit { should be_enabled }\nend",
     "description": null,
     "scope": "source.ruby.chef_inspec"
   },
@@ -2489,6 +2495,18 @@
     "description": "Use the `http` Chef InSpec audit resource to test an http endpoint.",
     "scope": "source.ruby.chef_inspec"
   },
+  "ibmdb2_conf": {
+    "prefix": "ibmdb2_conf",
+    "body": "describe ibmdb2_conf(db2_executable_file_path: \"/opt/ibm/db2/V11.5/bin/db2\", db_instance: \"db2inst1\") do\n     its(\"output\") { should_not be_empty }\n     its(\"output\") { should include(\"Audit buffer size (4KB) (AUDIT_BUF_SZ) = 0\")}\nend",
+    "description": "Use the `ibmdb2_conf` Chef InSpec audit resource to test the configuration settings. Make sure you are using the IBM Db2 database instance user credentials to run the InSpec test.",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "ibmdb2_session": {
+    "prefix": "ibmdb2_session",
+    "body": "describe ibmdb2_session(db2_executable_file_path: \"/opt/ibm/db2/V11.5/bin/db2\", db_instance: \"db2inst1\", db_name: \"sample\").query(\"select rolename from syscat.roleauth\") do\n\tits(\"output\") { should match(/SYSTS_MGR/) }\nend",
+    "description": "Use the `ibmdb2_session` Chef InSpec audit resource to test SQL commands run against an IBM Db2 database.",
+    "scope": "source.ruby.chef_inspec"
+  },
   "iis_app": {
     "prefix": "iis_app",
     "body": "describe iis_app('application_path', 'site_name') do\n\tit { should exist }\n\tit { should have_application_pool('application_pool') }\n\tit { should have_protocol('protocol') }\n\tit { should have_site_name('site') }\n\tit { should have_physical_path('physical_path') }\n\tit { should have_path('application_path') }\nend",
@@ -2603,6 +2621,12 @@
     "description": "Use the `mssql_session` Chef InSpec audit resource to test SQL commands run against a Microsoft SQL database.",
     "scope": "source.ruby.chef_inspec"
   },
+  "mssql_sys_conf": {
+    "prefix": "mssql_sys_conf",
+    "body": "describe mssql_sys_conf(\"CONFIGURATION ITEM TO TEST\", user: 'USER', password: 'PASSWORD') do\n  its(\"value_in_use\") { should cmp \"EXPECTED_VALUE\" }\n  its(\"value_configured\") { should cmp \"EXPECTED_VALUE\" }\nend",
+    "description": "Use the `mssql_sys_conf` Chef InSpec audit resource to test the configuration of a Microsoft SQL Server database.",
+    "scope": "source.ruby.chef_inspec"
+  },
   "mysql_conf": {
     "prefix": "mysql_conf",
     "body": "describe mysql_conf('path') do\n\tits('setting') { should eq 'value' }\nend",
@@ -2655,6 +2679,18 @@
     "prefix": "opa_cli",
     "body": "describe opa_cli(policy: \"example.rego\", data: \"input.json\", query: \"data.example.allow\") do\n\tits([\"result\"]) { should eq \"value\" }\nend",
     "description": "Use the `opa_cli` Chef InSpec audit resource to query Open Policy Agent (OPA) using an OPA policy file, a data file, and a query.",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "oracledb_conf": {
+    "prefix": "oracledb_conf",
+    "body": "describe oracledb_conf(user: 'USER', password: 'PASSWORD') do\n\tits(\"config item\") { should cmp \"value\" }\nend",
+    "description": "Use the `oracledb_conf` Chef InSpec audit resource to test the Oracle system parameters.",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "oracledb_listener_conf": {
+    "prefix": "oracledb_listener_conf",
+    "body": "describe oracledb_listener_conf do\n\tits('config item') { should eq 'value' }\nend",
+    "description": "Use the `oracledb_listener_conf` Chef InSpec audit resource to test the listeners settings of Oracle DB, typically located at `$ORACLE_HOME/network/admin/listener.ora` or `$ORACLE_HOME\\network\\admin\\listener.ora` depending upon the platform.",
     "scope": "source.ruby.chef_inspec"
   },
   "oracledb_session": {
@@ -2823,6 +2859,18 @@
     "prefix": "ssl",
     "body": "describe ssl(port: #) do\n\tit { should be_enabled }\nend",
     "description": "Use the `ssl` Chef InSpec audit resource to test SSL settings for the named port.",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "sybase_conf": {
+    "prefix": "sybase_conf",
+    "body": "describe sybase_session('config item', server: 'SYBASE', password: 'PASSWORD') do\n\tits('run_value') { should cmp 'EXPECTED' }\n\tits('config_value') { should cmp 'EXPECTED' }\nend",
+    "description": "Use the `sybase_conf` Chef InSpec audit resource to test the configuration of an SAP Adaptive Server Enterprise (ASE) database.",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "sybase_session": {
+    "prefix": "sybase_session",
+    "body": "describe sybase_session(database: 'pubs2', server: 'SYBASE', username: 'USERNAME', password: 'PASSWORD').query('QUERY').row(0).column('RESULT') do\n\tits('value') { should eq('EXPECTED') }\nend",
+    "description": "Use the `sybase_session` Chef InSpec audit resource to test the SQL commands run against an SAP Adaptive Server Enterprise (ASE) database.",
     "scope": "source.ruby.chef_inspec"
   },
   "sys_info": {
