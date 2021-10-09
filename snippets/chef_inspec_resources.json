@@ -1007,6 +1007,18 @@
     "description": "Use the `bsd_service` Chef InSpec audit resource to test a service using a Berkeley OS-style `init` on the FreeBSD platform.",
     "scope": "source.ruby.chef_inspec"
   },
+  "cassandradb_conf": {
+    "prefix": "cassandradb_conf",
+    "body": "describe cassandradb_conf do\n\tits('config item') { should eq 'value' }\nend",
+    "description": "Use the `cassandradb_conf` Chef InSpec audit resource to test the configuration of a Cassandra database, which is typically located at `$CASSANDRA_HOME/cassandra.yaml` or `$CASSANDRA_HOME\\conf\\cassandra.yaml` depending upon the platform.",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "cassandradb_session": {
+    "prefix": "cassandradb_session",
+    "body": "describe cassandradb_session(user: 'USERNAME', password: 'PASSWORD', host: 'localhost', port: 9042).query('QUERY') do\n\tits('value') { should eq('EXPECTED') }\nend",
+    "description": "Use the `cassandradb_session` Chef InSpec audit resource to test Cassandra Query Language (CQL) commands run against a Cassandra database.",
+    "scope": "source.ruby.chef_inspec"
+  },
   "chocolatey_package": {
     "prefix": "chocolatey_package",
     "body": "describe chocolatey_package('name') do\n\tit { should be_installed }\nend",

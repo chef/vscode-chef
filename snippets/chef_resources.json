@@ -119,6 +119,12 @@
 		"description": "Exception and report handlers are used to trigger certain behaviors in response to specific situations, typically identified during a chef-client run.",
 		"scope": "source.ruby.chef"
 	},
+  "chef_sleep": {
+    "prefix": "chef_sleep",
+    "body": "chef_sleep 'name' do\n\tseconds      String, Integer # default value: 'name' unless specified\n\taction       Symbol # defaults to :sleep if not specified\nend",
+    "description": "Use the **chef_sleep** resource to pause (sleep) for a number of seconds during a Chef Infra Client run. Only use this resource when a command or service exits successfully but is not ready for the next step in a recipe.",
+    "scope": "source.ruby.chef"
+  },
 	"chocolatey_config": {
 		"prefix": "chocolatey_config",
 		"body": "chocolatey_config '${1:name}' do\r\n\tvalue '${2:foo}'\r\n\taction :${3:set}\r\nend\r\n",
@@ -167,6 +173,7 @@
 		"description": "Use the cron_access resource to manage the /etc/cron.allow and /etc/cron.deny files.",
 		"scope": "source.ruby.chef"
 	},
+
 	"csh": {
 		"prefix": "csh",
 		"body": "csh '${1:name}' do\r\n\tcode <<-EOH\r\n\t${5:script commands}\r\n\tEOH\r\n\taction :${6:run}\r\nend\r\n",
@@ -299,6 +306,12 @@
 		"description": "Use the homebrew_tap resource to add formula repositories to the Homebrew package manager.",
 		"scope": "source.ruby.chef"
 	},
+  "homebrew_update": {
+    "prefix": "homebrew_update",
+    "body": "homebrew_update 'name' do\n\tfrequency      Integer # default value: 86400\n\taction         Symbol # defaults to :periodic if not specified\nend",
+    "description": "Use the **homebrew_update** resource to manage Homebrew repository updates on macOS.",
+    "scope": "source.ruby.chef"
+  },
 	"hostname": {
 		"prefix": "hostname",
 		"body": "hostname '${1:hostname}' do\r\n\taction :${2:set}\r\nend\r\n",
@@ -317,6 +330,18 @@
 		"description": "Use the ifconfig resource to manage interfaces.",
 		"scope": "source.ruby.chef"
 	},
+  "inspec_input": {
+    "prefix": "inspec_input",
+    "body": "inspec_input 'name' do\n\tinput       Hash, String # default value: 'name' unless specified\n\tsource      Hash, String # default value: 'name' unless specified\n\taction      Symbol # defaults to :add if not specified\nend",
+    "description": "Use the **inspec_input** resource to add an input to the Compliance Phase.",
+    "scope": "source.ruby.chef"
+  },
+  "inspec_waiver": {
+    "prefix": "inspec_waiver",
+    "body": "inspec_waiver 'name' do\n\tcontrol            String # default value: 'name' unless specified\n\texpiration         String\n\tjustification      String\n\trun_test           true, false\n\tsource             Hash, String\n\taction             Symbol # defaults to :add if not specified\nend",
+    "description": "Use the **inspec_waiver** resource to add a waiver to the Compliance Phase.",
+    "scope": "source.ruby.chef"
+  },
   "inspec_waiver_file_entry": {
 		"prefix": "inspec_waiver_file_entry",
 		"body": "inspec_waiver_file_entry '${1:name}' do\r\n\tbackup ${2:false}\r\n\texpiration '${3:YYYY-MM-DD}'\r\n\tfile_path '${4:/etc/chef/inspec_waivers.yml}'\r\n\tjustification '${5:reason for waiver}'\r\n\trun_test ${6:false}\r\n\taction :${7:add}\r\nend\r\n",
@@ -677,6 +702,24 @@
 		"description": "Use the windows_auto_run resource to set applications to run at login.",
 		"scope": "source.ruby.chef"
 	},
+  "windows_certificate": {
+    "prefix": "windows_certificate",
+    "body": "windows_certificate 'name' do\n\texportable           true, false # default value: false\n\toutput_path          String\n\tpfx_password         String\n\tprivate_key_acl      Array\n\tsource               String # default value: 'name' unless specified\n\tstore_name           String # default value: \"MY\"\n\tuser_store           true, false # default value: false\n\taction               Symbol # defaults to :create if not specified\nend",
+    "description": "Use the **windows_certificate** resource to install a certificate into the Windows certificate store from a file. The resource grants read-only access to the private key for designated accounts. Due to current limitations in WinRM, installing certificates remotely may not work if the operation requires a user profile. Operations on the local machine store should still work.",
+    "scope": "source.ruby.chef"
+  },
+  "windows_defender": {
+    "prefix": "windows_defender",
+    "body": "windows_defender 'name' do\n\tintrusion_protection_system      true, false # default value: true\n\tlock_ui                          true, false # default value: false\n\trealtime_protection              true, false # default value: true\n\tscan_archives                    true, false # default value: true\n\tscan_email                       true, false # default value: false\n\tscan_mapped_drives               true, false # default value: true\n\tscan_network_files               true, false # default value: false\n\tscan_removable_drives            true, false # default value: false\n\tscan_scripts                     true, false # default value: false\n\taction                           Symbol # defaults to :enable if not specified\nend",
+    "description": "Use the **windows_defender** resource to enable or disable the Microsoft Windows Defender service.",
+    "scope": "source.ruby.chef"
+  },
+  "windows_defender_exclusion": {
+    "prefix": "windows_defender_exclusion",
+    "body": "windows_defender_exclusion 'name' do\n\textensions         String, Array # default value: []\n\tpaths              String, Array # default value: []\n\tprocess_paths      String, Array # default value: []\n\taction             Symbol # defaults to :add if not specified\nend",
+    "description": "Use the **windows_defender_exclusion** resource to exclude paths, processes, or file types from Windows Defender realtime protection scanning.",
+    "scope": "source.ruby.chef"
+  },
 	"windows_env": {
 		"prefix": "windows_env",
 		"body": "windows_env '${1:name}' do\r\n\tvalue '${2:value}'\r\nend\r\n",
