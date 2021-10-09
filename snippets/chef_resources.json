@@ -119,6 +119,12 @@
 		"description": "Exception and report handlers are used to trigger certain behaviors in response to specific situations, typically identified during a chef-client run.",
 		"scope": "source.ruby.chef"
 	},
+  "chef_sleep": {
+    "prefix": "chef_sleep",
+    "body": "chef_sleep 'name' do\n\tseconds      String, Integer # default value: 'name' unless specified\n\taction       Symbol # defaults to :sleep if not specified\nend",
+    "description": "Use the **chef_sleep** resource to pause (sleep) for a number of seconds during a Chef Infra Client run. Only use this resource when a command or service exits successfully but is not ready for the next step in a recipe.",
+    "scope": "source.ruby.chef"
+  },
 	"chocolatey_config": {
 		"prefix": "chocolatey_config",
 		"body": "chocolatey_config '${1:name}' do\r\n\tvalue '${2:foo}'\r\n\taction :${3:set}\r\nend\r\n",
@@ -167,6 +173,7 @@
 		"description": "Use the cron_access resource to manage the /etc/cron.allow and /etc/cron.deny files.",
 		"scope": "source.ruby.chef"
 	},
+
 	"csh": {
 		"prefix": "csh",
 		"body": "csh '${1:name}' do\r\n\tcode <<-EOH\r\n\t${5:script commands}\r\n\tEOH\r\n\taction :${6:run}\r\nend\r\n",
@@ -245,6 +252,42 @@
 		"description": "Use the group resource to manage a local group.",
 		"scope": "source.ruby.chef"
 	},
+  "habitat_config": {
+    "prefix": "habitat_config",
+    "body": "habitat_config 'name' do\n\tconfig                  Mash (Hash-like)\n\tgateway_auth_token      String\n\tremote_sup              String # default value: \"127.0.0.1:9632\"\n\tremote_sup_http         String # default value: \"127.0.0.1:9631\"\n\tservice_group           String # default value: 'name' unless specified\n\tuser                    String\n\taction                  Symbol # defaults to :apply if not specified\nend",
+    "description": "Use the **habitat_config** resource to apply a configuration to a Chef Habitat service.",
+    "scope": "source.ruby.chef"
+  },
+  "habitat_install": {
+    "prefix": "habitat_install",
+    "body": "habitat_install 'name' do\n\tbldr_url         String\n\tcreate_user      true, false # default value: true\n\thab_version      String\n\tinstall_url      String\n\tlicense          String\n\ttmp_dir          String\n\taction           Symbol # defaults to :install if not specified\nend",
+    "description": "Use the **habitat_install** resource to install Chef Habitat.",
+    "scope": "source.ruby.chef"
+  },
+  "habitat_package": {
+    "prefix": "habitat_package",
+    "body": "habitat_package 'name' do\n\tauth_token        String\n\tbinlink           true, false, force # default value: false\n\tbldr_url          String # default value: \"https://bldr.habitat.sh\"\n\tchannel           String # default value: \"stable\"\n\texclude           String\n\tkeep_latest       String\n\tno_deps           true, false # default value: false\n\toptions           String\n\tpackage_name      String, Array\n\tsource            String\n\ttimeout           String, Integer\n\tversion           String, Array\n\taction            Symbol # defaults to :install if not specified\nend",
+    "description": "Use the **habitat_package** to install or remove Chef Habitat packages from Habitat Builder.",
+    "scope": "source.ruby.chef"
+  },
+  "habitat_service": {
+    "prefix": "habitat_service",
+    "body": "habitat_service 'name' do\n\tbind                       String, Array # default value: []\n\tbinding_mode               Symbol, String # default value: :strict\n\tbldr_url                   String # default value: \"https://bldr.habitat.sh/\"\n\tchannel                    Symbol, String # default value: :stable\n\tgateway_auth_token         String\n\thealth_check_interval      Integer # default value: 30\n\tremote_sup                 String # default value: \"127.0.0.1:9632\"\n\tremote_sup_http            String # default value: \"127.0.0.1:9631\"\n\tservice_group              String # default value: \"default\"\n\tservice_name               String # default value: 'name' unless specified\n\tshutdown_timeout           Integer # default value: 8\n\tstrategy                   Symbol, String # default value: :none\n\ttopology                   Symbol, String # default value: :standalone\n\tupdate_condition           Symbol, String # default value: :latest\n\taction                     Symbol # defaults to :load if not specified\nend",
+    "description": "Use the **habitat_service** resource to manage Chef Habitat services. This requires that `core/hab-sup` be running as a service. See the `habitat_sup` resource documentation for more information.",
+    "scope": "source.ruby.chef"
+  },
+  "habitat_sup": {
+    "prefix": "habitat_sup",
+    "body": "habitat_sup 'name' do\n\tauth_token                    String\n\tauto_update                   true, false # default value: false\n\tbldr_url                      String\n\tevent_stream_application      String\n\tevent_stream_cert             String\n\tevent_stream_environment      String\n\tevent_stream_site             String\n\tevent_stream_token            String\n\tevent_stream_url              String\n\tgateway_auth_token            String\n\thab_channel                   String\n\thealth_check_interval         String, Integer\n\tkeep_latest                   String\n\tlauncher_version              String\n\tlicense                       String\n\tlimit_no_files                String\n\tlisten_ctl                    String\n\tlisten_gossip                 String\n\tlisten_http                   String\n\torg                           String # default value: \"default\"\n\tpeer                          String, Array\n\tpermanent_peer                true, false # default value: false\n\tring                          String\n\tservice_version               String\n\tsup_version                   String\n\ttoml_config                   true, false # default value: false\n\tupdate_condition              String\n\taction                        Symbol # defaults to :run if not specified\nend",
+    "description": "Use the **habitat_sup** resource to runs a Chef Habitat supervisor for one or more Chef Habitat services. The resource is commonly used in conjunction with `habitat_service` which will manage the services loaded and started within the supervisor.",
+    "scope": "source.ruby.chef"
+  },
+  "habitat_user_toml": {
+    "prefix": "habitat_user_toml",
+    "body": "habitat_user_toml 'name' do\n\tconfig            Mash (Hash-like)\n\tservice_name      String # default value: 'name' unless specified\n\taction            Symbol # defaults to :create if not specified\nend",
+    "description": "Use the **habitat_user_toml** to template a `user.toml` for Chef Habitat services. Configurations set in the  `user.toml` override the `default.toml` for a given package, which makes it an alternative to applying service group level configuration.",
+    "scope": "source.ruby.chef"
+  },
 	"homebrew_cask": {
 		"prefix": "homebrew_cask",
 		"body": "homebrew_cask '${1:cask_name}' do\r\n\taction :${2:install}\r\nend\r\n",
@@ -263,6 +306,12 @@
 		"description": "Use the homebrew_tap resource to add formula repositories to the Homebrew package manager.",
 		"scope": "source.ruby.chef"
 	},
+  "homebrew_update": {
+    "prefix": "homebrew_update",
+    "body": "homebrew_update 'name' do\n\tfrequency      Integer # default value: 86400\n\taction         Symbol # defaults to :periodic if not specified\nend",
+    "description": "Use the **homebrew_update** resource to manage Homebrew repository updates on macOS.",
+    "scope": "source.ruby.chef"
+  },
 	"hostname": {
 		"prefix": "hostname",
 		"body": "hostname '${1:hostname}' do\r\n\taction :${2:set}\r\nend\r\n",
@@ -281,6 +330,18 @@
 		"description": "Use the ifconfig resource to manage interfaces.",
 		"scope": "source.ruby.chef"
 	},
+  "inspec_input": {
+    "prefix": "inspec_input",
+    "body": "inspec_input 'name' do\n\tinput       Hash, String # default value: 'name' unless specified\n\tsource      Hash, String # default value: 'name' unless specified\n\taction      Symbol # defaults to :add if not specified\nend",
+    "description": "Use the **inspec_input** resource to add an input to the Compliance Phase.",
+    "scope": "source.ruby.chef"
+  },
+  "inspec_waiver": {
+    "prefix": "inspec_waiver",
+    "body": "inspec_waiver 'name' do\n\tcontrol            String # default value: 'name' unless specified\n\texpiration         String\n\tjustification      String\n\trun_test           true, false\n\tsource             Hash, String\n\taction             Symbol # defaults to :add if not specified\nend",
+    "description": "Use the **inspec_waiver** resource to add a waiver to the Compliance Phase.",
+    "scope": "source.ruby.chef"
+  },
   "inspec_waiver_file_entry": {
 		"prefix": "inspec_waiver_file_entry",
 		"body": "inspec_waiver_file_entry '${1:name}' do\r\n\tbackup ${2:false}\r\n\texpiration '${3:YYYY-MM-DD}'\r\n\tfile_path '${4:/etc/chef/inspec_waivers.yml}'\r\n\tjustification '${5:reason for waiver}'\r\n\trun_test ${6:false}\r\n\taction :${7:add}\r\nend\r\n",
@@ -641,6 +702,24 @@
 		"description": "Use the windows_auto_run resource to set applications to run at login.",
 		"scope": "source.ruby.chef"
 	},
+  "windows_certificate": {
+    "prefix": "windows_certificate",
+    "body": "windows_certificate 'name' do\n\texportable           true, false # default value: false\n\toutput_path          String\n\tpfx_password         String\n\tprivate_key_acl      Array\n\tsource               String # default value: 'name' unless specified\n\tstore_name           String # default value: \"MY\"\n\tuser_store           true, false # default value: false\n\taction               Symbol # defaults to :create if not specified\nend",
+    "description": "Use the **windows_certificate** resource to install a certificate into the Windows certificate store from a file. The resource grants read-only access to the private key for designated accounts. Due to current limitations in WinRM, installing certificates remotely may not work if the operation requires a user profile. Operations on the local machine store should still work.",
+    "scope": "source.ruby.chef"
+  },
+  "windows_defender": {
+    "prefix": "windows_defender",
+    "body": "windows_defender 'name' do\n\tintrusion_protection_system      true, false # default value: true\n\tlock_ui                          true, false # default value: false\n\trealtime_protection              true, false # default value: true\n\tscan_archives                    true, false # default value: true\n\tscan_email                       true, false # default value: false\n\tscan_mapped_drives               true, false # default value: true\n\tscan_network_files               true, false # default value: false\n\tscan_removable_drives            true, false # default value: false\n\tscan_scripts                     true, false # default value: false\n\taction                           Symbol # defaults to :enable if not specified\nend",
+    "description": "Use the **windows_defender** resource to enable or disable the Microsoft Windows Defender service.",
+    "scope": "source.ruby.chef"
+  },
+  "windows_defender_exclusion": {
+    "prefix": "windows_defender_exclusion",
+    "body": "windows_defender_exclusion 'name' do\n\textensions         String, Array # default value: []\n\tpaths              String, Array # default value: []\n\tprocess_paths      String, Array # default value: []\n\taction             Symbol # defaults to :add if not specified\nend",
+    "description": "Use the **windows_defender_exclusion** resource to exclude paths, processes, or file types from Windows Defender realtime protection scanning.",
+    "scope": "source.ruby.chef"
+  },
 	"windows_env": {
 		"prefix": "windows_env",
 		"body": "windows_env '${1:name}' do\r\n\tvalue '${2:value}'\r\nend\r\n",
@@ -747,6 +826,12 @@
     "prefix": "windows_user_privilege",
     "body": "windows_user_privilege '${1:principal}' do\r\n\tprivilege '${2:value}'\r\n\taction :${3:add}\r\nend\r\n",
     "description": "The windows_user_privilege resource allows to add and set principal (User/Group) to the specified privilege. Ref: https://docs.microsoft.com/en-us/windows/security/threat-protection/security-policy-settings/user-rights-assignment",
+    "scope": "source.ruby.chef"
+  },
+  "windows_update_settings": {
+    "prefix": "windows_update_settings",
+    "body": "windows_update_settings '${1:name}' do\r\n\tdisable_os_upgrades ${2:false}\r\n\televate_non_admins ${3:true}\r\n\ttarget_wsus_group_name '${4:group_name}'\r\n\twsus_server_url '{$5:https://server_url}'\r\n\tblock_windows_update_website {$6:false}\r\n\tautomatic_update_option :{$7:download_and_schedule}\r\n\tautomatically_install_minor_updates {$8:false}\r\n\tenable_detection_frequency {$9:false}\r\n\tcustom_detection_frequency {$10:22}\r\n\tno_reboot_with_users_logged_on {$11:true}\r\n\tdisable_automatic_updates {$12:false}\r\n\tscheduled_install_day '{$13:https://server_url}'\r\n\tscheduled_install_hour {$14:23}\r\n\tupdate_other_ms_products {$15:true}\r\n\taction :${5:set}\r\nend\r\n",
+    "description": "Use the windows_update_settings resource to manage the various Windows Update patching options.",
     "scope": "source.ruby.chef"
   },
 	"yum_package": {

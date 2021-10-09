@@ -245,6 +245,42 @@
 		"description": "Use the group resource to manage a local group.",
 		"scope": "source.yaml.chef"
 	},
+  "habitat_config": {
+    "prefix": "habitat_config",
+    "body": "- type: habitat_config\r\n\tname: '${1:service_name}'\r\n\tconfig:\r\n\t\tkey: value\r\n\tservice_group: String # default value: 'name' unless specified\r\n\taction:\r\n\t\t- apply\r\n",
+    "description": "Use the **habitat_config** resource to apply a configuration to a Chef Habitat service.",
+    "scope": "source.yaml.chef"
+  },
+  "habitat_install": {
+    "prefix": "habitat_install",
+    "body": "- type: habitat_install\r\n\tname: '${1:name}'\r\n\tbldr_url:  String\r\n\tcreate_user: true, false # default value: true\r\n\thab_version: String\r\n\tinstall_url: String\r\n\tlicense:   String\r\n\ttmp_dir:   String\r\n\taction:\r\n\t\t- install\r\n",
+    "description": "Use the **habitat_install** resource to install Chef Habitat.",
+    "scope": "source.yaml.chef"
+  },
+  "habitat_package": {
+    "prefix": "habitat_package",
+    "body": "- type: habitat_package\r\n\tname: '${1:package_name}'\r\n\tauth_token: String\r\n\tbinlink: true, false, force # default value: false\r\n\tbldr_url:   String # default value: \"https://bldr.habitat.sh\"\r\n\tchannel: String # default value: \"stable\"\r\n\texclude: String\r\n\tkeep_latest:  String\r\n\tno_deps: true, false # default value: false\r\n\toptions: String\r\n\tpackage_name: String, Array\r\n\tsource:  String\r\n\ttimeout: String, Integer\r\n\tversion: String, Array\r\n\taction:\r\n\t\t- install\r\n",
+    "description": "Use the **habitat_package** to install or remove Chef Habitat packages from Habitat Builder.",
+    "scope": "source.yaml.chef"
+  },
+  "habitat_service": {
+    "prefix": "habitat_service",
+    "body": "- type: habitat_service\r\n\tname: '${1:service_name}'\r\n\tbldr_url: String # default value: \"https://bldr.habitat.sh/\"\r\n\tchannel: String # default value: stable\r\n\tservice_group:    String # default value: \"default\"\r\n\tservice_name: String # default value: 'name' unless specified\r\n\tstrategy: String # default value: :none\r\n\ttopology: String # default value: standalone\r\n\tupdate_condition: String # default value: latest\r\n\taction:\r\n\t\t- load\r\n",
+    "description": "Use the **habitat_service** resource to manage Chef Habitat services. This requires that `core/hab-sup` be running as a service. See the `habitat_sup` resource documentation for more information.",
+    "scope": "source.yaml.chef"
+  },
+  "habitat_sup": {
+    "prefix": "habitat_sup",
+    "body": "- type: habitat_sup\r\n\tname: '${1:name}'\r\n\tauto_update: true, false # default value: false\r\n\tbldr_url:   String\r\n\tevent_stream_application: String\r\n\tevent_stream_cert:   String\r\n\tevent_stream_environment: String\r\n\tevent_stream_site:   String\r\n\tevent_stream_token:  String\r\n\tevent_stream_url:    String\r\n\tkeep_latest: String\r\n\tlauncher_version:    String\r\n\tlicense:    String\r\n\tlimit_no_files:  String\r\n\tlisten_ctl: String\r\n\tlisten_gossip:   String\r\n\tlisten_http: String\r\n\torg: String # default value: \"default\"\r\n\tpeer:  String, Array\r\n\tpermanent_peer:  true, false # default value: false\r\n\tring:  String\r\n\tservice_version: String\r\n\tsup_version: String\r\n\ttoml_config: true, false # default value: false\r\n\tupdate_condition:    String\r\n\taction:\r\n\t\t- run\r\n",
+    "description": "Use the **habitat_sup** resource to runs a Chef Habitat supervisor for one or more Chef Habitat services. The resource is commonly used in conjunction with `habitat_service` which will manage the services loaded and started within the supervisor.",
+    "scope": "source.yaml.chef"
+  },
+  "habitat_user_toml": {
+    "prefix": "habitat_user_toml",
+    "body": "- type: habitat_user_toml\r\n\tname: '${1:name}'\r\n\tconfig:\r\n\t\tkey: value\r\n\tservice_name: String # default value: 'name' unless specified\r\n\taction:\r\n\t\t- create\r\n",
+    "description": "Use the **habitat_user_toml** to template a `user.toml` for Chef Habitat services. Configurations set in the  `user.toml` override the `default.toml` for a given package, which makes it an alternative to applying service group level configuration.",
+    "scope": "source.yaml.chef"
+  },
 	"homebrew_cask": {
 		"prefix": "homebrew_cask",
 		"body": "- type: homebrew_cask\r\n\tname: '${1:cask_name}'\r\n\taction:\r\n\t\t- ${2:install}\r\n",
@@ -748,6 +784,12 @@
     "body": "- type: windows_user_privilege\r\n\tname: '${1:principal}'\r\n\tprivilege: '${2:value}'\r\n\taction:\r\n\t\t- ${3:add}\r\n",
     "description": "The windows_user_privilege resource allows to add and set principal (User/Group) to the specified privilege. Ref: https://docs.microsoft.com/en-us/windows/security/threat-protection/security-policy-settings/user-rights-assignment",
     "scope": "source.yaml.chef"
+  },
+  "windows_update_settings": {
+    "prefix": "windows_update_settings",
+    "body": "- type: windows_update_settings\r\n\tname: '${1:name}'\r\n\tdisable_os_upgrades: ${2:false}\r\n\televate_non_admins: ${3:true}\r\n\ttarget_wsus_group_name: '${4:group_name}'\r\n\twsus_server_url: '{$5:https://server_url}'\r\n\tblock_windows_update_website: {$6:false}\r\n\tautomatic_update_option: :{$7:download_and_schedule}\r\n\tautomatically_install_minor_updates: {$8:false}\r\n\tenable_detection_frequency: {$9:false}\r\n\tcustom_detection_frequency: {$10:22}\r\n\tno_reboot_with_users_logged_on: {$11:true}\r\n\tdisable_automatic_updates: {$12:false}\r\n\tscheduled_install_day: '{$13:https://server_url}'\r\n\tscheduled_install_hour: {$14:23}\r\n\tupdate_other_ms_products: {$15:true}\r\n\taction:\r\n\t\t- ${5:set}\r\n",
+    "description": "Use the windows_update_settings resource to manage the various Windows Update patching options.",
+    "scope": "source.ruby.chef"
   },
 	"yum_package": {
 		"prefix": "yum_package",
