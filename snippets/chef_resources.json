@@ -1,776 +1,950 @@
 {
-	"alternatives": {
-		"prefix": "alternatives",
-		"body": "alternatives '${1:command_name}' do\r\n\tlink_name '${2:link name}'\r\n\taction :${3:set}\r\nend\r\n",
-		"description": "Use the alternatives resource to configure command alternatives in Linux using the alternatives or update-alternatives packages.",
-		"scope": "source.ruby.chef"
-	},
-	"apt_package": {
-		"prefix": "apt_package",
-		"body": "apt_package '${1:package_name}' do\r\n\taction :${2:install}\r\nend\r\n",
-		"description": "Use the apt_package resource to manage packages for the Debian and Ubuntu platforms.",
-		"scope": "source.ruby.chef"
-	},
-	"apt_preference": {
-		"prefix": "apt_preference",
-		"body": "apt_preference '${1:name}' do\r\n\tpin '${2:version 1.2.3}'\r\n\tpin_priority ${3:700}\r\n\taction :${4:add}\r\nend\r\n",
-		"description": "Use the apt_preference resource to manage APT preference files for the Debian and Ubuntu platforms.",
-		"scope": "source.ruby.chef"
-	},
-	"apt_repository": {
-		"prefix": "apt_repository",
-		"body": "apt_repository '${1:name}' do\r\n\turi '${2:https://example.com/deb}'\r\n\tcomponents ${3:['main']}\r\n\taction :${4:add}\r\nend\r\n",
-		"description": "Use the apt_repository resource to manage APT repositories for the Debian and Ubuntu platforms.",
-		"scope": "source.ruby.chef"
-	},
-	"apt_update": {
-		"prefix": "apt_update",
-		"body": "apt_update '${1:name}' do\r\n\tignore_failure ${2:true}\r\n\taction :${3:update}\r\nend\r\n",
-		"description": "Use the apt_update resource to manage APT cache for the Debian and Ubuntu platforms.",
-		"scope": "source.ruby.chef"
-	},
-	"archive_file": {
-		"prefix": "archive_file",
-		"body": "archive_file '${1:name}' do\r\n\tpath '${2:/foo/bar/baz.zip}'\r\n\tdestination '${3:/example/}'\r\n\taction :${4:extract}\r\nend\r\n",
-		"description": "Use the archive_file resource to extract archive files to disk. This resource uses the libarchive library to extract multiple archive formats including tar, gzip, bzip, and zip formats.",
-		"scope": "source.ruby.chef"
-	},
-	"bash": {
-		"prefix": "bash",
-		"body": "bash '${1:name}' do\r\n\tcode <<-EOH\r\n\t${5:script commands}\r\n\tEOH\r\n\taction :${2:run}\r\nend\r\n",
-		"description": "A bash resource block executes scripts using Bash.",
-		"scope": "source.ruby.chef"
-	},
-	"batch": {
-		"prefix": "batch",
-		"body": "batch '${1:name}' do\r\n\tcode <<-EOH\r\n\t${5:batch commands}\r\n\tEOH\r\n\taction :${2:run}\r\nend\r\n",
-		"description": "A batch resource block executes a batch script using the cmd.exe interpreter.",
-		"scope": "source.ruby.chef"
-	},
-	"bff_package": {
-		"prefix": "bff_package",
-		"body": "bff_package '${1:package_name}' do\r\n\taction :${2:install}\r\nend\r\n",
-		"description": "Use the bff_package resource to manage packages for the Aix platform.",
-		"scope": "source.ruby.chef"
-	},
-	"breakpoint": {
-		"prefix": "breakpoint",
-		"body": "breakpoint '${1:name}' do\r\n\taction :${2:break}\r\nend\r\n",
-		"description": "A breakpoint resource block creates a breakpoint in a recipe.",
-		"scope": "source.ruby.chef"
-	},
-	"build_essential": {
-		"prefix": "build_essential",
-		"body": "build_essential '${1:name}' do\r\n\tcompile_time ${2:true}\r\n\taction :${3:install}\r\nend\r\n",
-		"description": "Use the build_essential resource to install the packages required for compiling C software from source.",
-		"scope": "source.ruby.chef"
-	},
-	"cab_package": {
-		"prefix": "cab_package",
-		"body": "cab_package '${1:name}' do\r\n\tsource '${2:C:\\path\\to\\a.cab}'\r\n\taction :${3:install}\r\nend\r\n",
-		"description": "Use the cab_package resource to install or remove Microsoft Windows cabinet (.cab) packages.",
-		"scope": "source.ruby.chef"
-	},
-	"chef_gem": {
-		"prefix": "chef_gem",
-		"body": "chef_gem '${1:package_name}' do\r\n\taction :${2:install}\r\nend\r\n",
-		"description": "A chef_gem resource block manages a package on a node, typically by installing it.",
-		"scope": "source.ruby.chef"
-	},
-	"chef_client_config": {
-		"prefix": "chef_client_config",
-		"body": "chef_client_config '${1:Create client.rb}' do\r\n\tchef_server_url '${2:https://chef.example.com}'\r\n\taction :${3:create}\r\nend\r\n",
-		"description": "Use the chef_client_config resource to create a client.rb file in the Chef Infra Client configuration directory.",
-		"scope": "source.ruby.chef"
-	},
-	"chef_client_cron": {
-		"prefix": "chef_client_cron",
-		"body": "chef_client_cron '${1:Run Chef Infra Client as a cron job}' do\r\n\tminute '${2:0,30}'\r\n\thour '${3:*}'\r\n\taction :${4:add}\r\nend\r\n",
-		"description": "Use the chef_client_cron resource to setup the Chef Infra Client to run as a cron job. This resource will also create the specified log directory if it doesn’t already exist.",
-		"scope": "source.ruby.chef"
-	},
-	"chef_client_launchd": {
-		"prefix": "chef_client_launchd",
-		"body": "chef_client_launchd '${1:Run Chef Infra Client as a launchd daemon}' do\r\n\tinterval ${2:30}\r\n\taction :${3:enable}\r\nend\r\n",
-		"description": "Use the chef_client_launchd resource to configure the Chef Infra Client to run on a schedule on macOS nodes.",
-		"scope": "source.ruby.chef"
-	},
-	"chef_client_scheduled_task": {
-		"prefix": "chef_client_scheduled_task",
-		"body": "chef_client_scheduled_task '${1:Run Chef Infra Client as a scheduled task}' do\r\n\tfrequency '${2:minute}'\r\n\tfrequency_modifier ${3:30}\r\n\taction :${4:add}\r\nend\r\n",
-		"description": "Use the chef_client_scheduled_task resource to setup the Chef Infra Client to run as a Windows scheduled task. This resource will also create the specified log directory if it doesn’t already exist.",
-		"scope": "source.ruby.chef"
-	},
-	"chef_client_systemd_timer": {
-		"prefix": "chef_client_systemd_timer",
-		"body": "chef_client_systemd_timer '${1:Run Chef Infra Client as a systemd timer}' do\r\n\tinterval '${2:30min}'\r\n\tdelay_after_boot '${3:5min}'\r\n\tsplay '${4:5min}'\r\n\taction :${5:add}\r\nend\r\n",
-		"description": "Use the chef_client_systemd_timer resource to setup the Chef Infra Client to run as a systemd timer.",
-		"scope": "source.ruby.chef"
-	},
-	"chef_client_trusted_certificate": {
-		"prefix": "chef_client_trusted_certificate",
-		"body": "chef_client_trusted_certificate '${1:chef.example.com}' do\r\n\tcertificate <<~CERT\r\n\t${2:CERT_CONTENT_HERE}\r\n\tCERT\r\n\taction :${3:add}\r\nend\r\n",
-		"description": "Use the chef_client_trusted_certificate resource to add certificates to Chef Infra Client’s trusted certificate directory. This allows the Chef Infra Client to communicate with internal encrypted resources without errors.",
-		"scope": "source.ruby.chef"
-	},
-	"chef_handler": {
-		"prefix": "chef_handler",
-		"body": "chef_handler '${1:name}' do\r\n\tsource '${2:/path/to/handler/handler_name.rb}'\r\n\taction :${3:enable}\r\nend\r\n",
-		"description": "Exception and report handlers are used to trigger certain behaviors in response to specific situations, typically identified during a chef-client run.",
-		"scope": "source.ruby.chef"
-	},
-	"chocolatey_config": {
-		"prefix": "chocolatey_config",
-		"body": "chocolatey_config '${1:name}' do\r\n\tvalue '${2:foo}'\r\n\taction :${3:set}\r\nend\r\n",
-		"description": "Use the chocolatey_config resource to add or remove Chocolatey configuration keys.",
-		"scope": "source.ruby.chef"
-	},
-	"chocolatey_feature": {
-		"prefix": "chocolatey_feature",
-		"body": "chocolatey_feature '${1:name}' do\r\n\taction :${2:enable}\r\nend\r\n",
-		"description": "Use the chocolatey_feature resource to enable and disable Chocolatey features.",
-		"scope": "source.ruby.chef"
-	},
-	"chocolatey_package": {
-		"prefix": "chocolatey_package",
-		"body": "chocolatey_package '${1:package_name}' do\r\n\taction :${2:install}\r\nend\r\n",
-		"description": "Use the chocolatey_package resource to manage packages using Chocolatey on the Microsoft Windows platform.",
-		"scope": "source.ruby.chef"
-	},
-	"chocolatey_source": {
-		"prefix": "chocolatey_source",
-		"body": "chocolatey_source '${1:name}' do\r\n\tbypass_proxy ${2:true}\r\n\tsource '${3:http://example.com/something}'\r\n\taction :${4:add}\r\nend\r\n",
-		"description": "Use the chocolatey_source resource to add, remove, enable, or disable Chocolatey sources.",
-		"scope": "source.ruby.chef"
-	},
-	"cookbook_file": {
-		"prefix": "cookbook_file",
-		"body": "cookbook_file '${1:/path/to/file}' do\r\n\tsource '${2:filename}'\r\n\towner '${3:root}'\r\n\tgroup '${4:$3}'\r\n\tmode '${5:0755}'\r\n\taction :${6:create}\r\nend\r\n",
-		"description": "A cookbook_file resource block manages files by using files that exist within a cookbook’s /files directory",
-		"scope": "source.ruby.chef"
-	},
-	"cron": {
-		"prefix": "cron",
-		"body": "cron '${1:name}' do\r\n\thour '${2:5}'\r\n\tminute '${3:5}'\r\n\tcommand '${4:/bin/script}'\r\nend\r\n",
-		"description": "A cron resource block manage cron entries.",
-		"scope": "source.ruby.chef"
-	},
-	"cron_d": {
-		"prefix": "cron_d",
-		"body": "cron_d '${1:name}' do\r\n\thour '${2:5}'\r\n\tminute '${3:5}'\r\n\tcommand '${4:/bin/script}'\r\nend\r\n",
-		"description": "Use the cron_d resource to manage cron job files in the /etc/cron.d directory.",
-		"scope": "source.ruby.chef"
-	},
-	"cron_access": {
-		"prefix": "cron_access",
-		"body": "cron_access '${1:name}'",
-		"description": "Use the cron_access resource to manage the /etc/cron.allow and /etc/cron.deny files.",
-		"scope": "source.ruby.chef"
-	},
-	"csh": {
-		"prefix": "csh",
-		"body": "csh '${1:name}' do\r\n\tcode <<-EOH\r\n\t${5:script commands}\r\n\tEOH\r\n\taction :${6:run}\r\nend\r\n",
-		"description": "A csh resource block executes scripts using csh.",
-		"scope": "source.ruby.chef"
-	},
-	"directory": {
-		"prefix": "directory",
-		"body": "directory '${1:/path/to/directory}' do\r\n\towner '${2:root}'\r\n\tgroup '${3:$2}'\r\n\tmode '${4:0755}'\r\n\taction :${5:create}\r\nend\r\n",
-		"description": "A directory resource block declares a directory and the permissions needed on that directory.",
-		"scope": "source.ruby.chef"
-	},
-	"dmg_package": {
-		"prefix": "dmg_package",
-		"body": "dmg_package '${1:app}' do\r\n\tsource '${2:https://example.com/app.dmg}'\r\n\tchecksum '${3:9435f79d5b52d0febeddfad392adf82db9df159196f496c1ab139a6957242ce9}'\r\n\taccept_eula ${4:true}\r\n\taction :${5:install}\r\nend\r\n",
-		"description": "Use the dmg_package resource to install a package from a .dmg file. The resource will retrieve the file from a remote URL, mount it using OS X’s hdidutil, copy the application to the specified destination (/Applications), and detach the image using hdiutil. The .dmg file will be stored in the Chef::Config[:file_cache_path].",
-		"scope": "source.ruby.chef"
-	},
-	"dnf_package": {
-		"prefix": "dnf_package",
-		"body": "dnf_package '${1:package_name}' do\r\n\taction :${2:install}\r\nend\r\n",
-		"description": "Use the dnf_package resource to install, upgrade, and remove packages with DNF for Fedora platforms. The dnf_package resource is able to resolve provides data for packages much like DNF can do when it is run from the command line. This allows a variety of options for installing packages, like minimum versions, virtual provides, and library names.",
-		"scope": "source.ruby.chef"
-	},
-	"dpkg_package": {
-		"prefix": "dpkg_package",
-		"body": "dpkg_package '${1:package_name}' do\r\n\taction :${2:install}\r\nend\r\n",
-		"description": "Use the apt_package resource to manage packages for the dpkg platform.",
-		"scope": "source.ruby.chef"
-	},
-	"dsc_resource": {
-		"prefix": "dsc_resource",
-		"body": "dsc_resource '${1:name}' do\r\n\tresource :${2:resource_name}\r\n\tproperty :${3:property_name}, '${4:property_value}'\r\nend\r\n",
-		"description": "A dsc_resource resource block allows DSC resource to be used in a Chef recipe.",
-		"scope": "source.ruby.chef"
-	},
-	"dsc_script": {
-		"prefix": "dsc_script",
-		"body": "dsc_script '${1:name}' do\r\n\tcode <<-EOH\r\n\t${5:DSC code}\r\n\tEOH\r\nend\r\n",
-		"description": "A dsc_script resource block embeds the code that defines a DSC configuration directly within a Chef recipe.",
-		"scope": "source.ruby.chef"
-	},
-	"execute": {
-		"prefix": "execute",
-		"body": "execute '${1:name}' do\r\n\tcommand '${2:command}'\r\n\taction :${3:run}\r\nend\r\n",
-		"description": "Use the execute resource to execute a single command.",
-		"scope": "source.ruby.chef"
-	},
-	"file": {
-		"prefix": "file",
-		"body": "file '${1:/path/to/file}' do\r\n\tcontent '${2:content}'\r\n\towner '${3:root}'\r\n\tgroup '${4:$3}'\r\n\tmode '${5:0755}'\r\n\taction :${6:create}\r\nend\r\n",
-		"description": "A file resource block manages files that exist on nodes.",
-		"scope": "source.ruby.chef"
-	},
-	"freebsd_package": {
-		"prefix": "freebsd_package",
-		"body": "freebsd_package '${1:package_name}' do\r\n\taction :${2:install}\r\nend\r\n",
-		"description": "Use the freebsd_package resource to manage packages for the FreeBSD platform.",
-		"scope": "source.ruby.chef"
-	},
-	"gem_package": {
-		"prefix": "gem_package",
-		"body": "gem_package '${1:package_name}' do\r\n\taction :${2:install}\r\nend\r\n",
-		"description": "A gem_package resource block manages a package on a node.",
-		"scope": "source.ruby.chef"
-	},
-	"git": {
-		"prefix": "git",
-		"body": "git '${1:destination}' do\r\n\trepository '${2:git_repository}'\r\n\trevision '${3:revision}'\r\n\taction :${4:sync}\r\nend\r\n",
-		"description": "A git resource block manages source control resources that exist in a git repository.",
-		"scope": "source.ruby.chef"
-	},
-	"group": {
-		"prefix": "group",
-		"body": "group '${1:group_name}' do\r\n\tmembers '${2:members}'\r\n\taction :${3:create}\r\nend\r\n",
-		"description": "Use the group resource to manage a local group.",
-		"scope": "source.ruby.chef"
-	},
-	"homebrew_cask": {
-		"prefix": "homebrew_cask",
-		"body": "homebrew_cask '${1:cask_name}' do\r\n\taction :${2:install}\r\nend\r\n",
-		"description": "Use the homebrew_cask resource to install binaries distributed via the Homebrew package manager.",
-		"scope": "source.ruby.chef"
-	},
-	"homebrew_package": {
-		"prefix": "homebrew_package",
-		"body": "homebrew_package '${1:package_name}' do\r\n\taction :${2:install}\r\nend\r\n",
-		"description": "Use the homebrew_package resource to manage packages for the Mac OS X platform.",
-		"scope": "source.ruby.chef"
-	},
-	"homebrew_tap": {
-		"prefix": "homebrew_tap",
-		"body": "homebrew_tap '${1:tap_name}' do\r\n\taction :${2:tap}\r\nend\r\n",
-		"description": "Use the homebrew_tap resource to add formula repositories to the Homebrew package manager.",
-		"scope": "source.ruby.chef"
-	},
-	"hostname": {
-		"prefix": "hostname",
-		"body": "hostname '${1:hostname}' do\r\n\taction :${2:set}\r\nend\r\n",
-		"description": "The hostname resource sets the system’s hostname and hosts configuration, ensures that the hostname persists after a reboot, and then re-run the Ohai plugin so the hostname will be available in subsequent cookbooks.",
-		"scope": "source.ruby.chef"
-	},
-	"http_request": {
-		"prefix": "http_request",
-		"body": "http_request '${1:name}' do\r\n\turl '${2:url}'\r\n\taction :${3:get}\r\nend\r\n",
-		"description": "Use the http_request resource to send an HTTP request.",
-		"scope": "source.ruby.chef"
-	},
-	"ifconfig": {
-		"prefix": "ifconfig",
-		"body": "ifconfig '${1:name}' do\r\n\tdevice '${2:eth1}'\r\n\taction :${3:create}\r\nend\r\n",
-		"description": "Use the ifconfig resource to manage interfaces.",
-		"scope": "source.ruby.chef"
-	},
-  "inspec_waiver_file_entry": {
-		"prefix": "inspec_waiver_file_entry",
-		"body": "inspec_waiver_file_entry '${1:name}' do\r\n\tbackup ${2:false}\r\n\texpiration '${3:YYYY-MM-DD}'\r\n\tfile_path '${4:/etc/chef/inspec_waivers.yml}'\r\n\tjustification '${5:reason for waiver}'\r\n\trun_test ${6:false}\r\n\taction :${7:add}\r\nend\r\n",
-		"description": "Use the inspec_waiver_file_entry resource to add or remove entries from an InSpec waiver file. This can be used in conjunction with the Compliance Phase.",
-		"scope": "source.ruby.chef"
-	},
-	"ips_package": {
-		"prefix": "ips_package",
-		"body": "ips_package '${1:package_name}' do\r\n\taction :${2:install}\r\nend\r\n",
-		"description": "Use the ips_package resource to manage packages for the Solaris 11 platform.",
-		"scope": "source.ruby.chef"
-	},
-	"kernel_module": {
-		"prefix": "kernel_module",
-		"body": "kernel_module '${1:name}' do\r\n\taction :${2:install}\r\nend\r\n",
-		"description": "Use the kernel_module resource to manage kernel modules on Linux systems. This resource can load, unload, blacklist, install, and uninstall modules.",
-		"scope": "source.ruby.chef"
-	},
-	"ksh": {
-		"prefix": "ksh",
-		"body": "ksh '${1:name}' do\r\n\tcode <<-EOH\r\n\t${2:ksh code}\r\n\tEOH\r\nend\r\n",
-		"description": "Use the ksh resource to execute scripts using the Korn shell (ksh) interpreter. This resource may also use any of the actions and properties that are available to the execute resource. Commands that are executed with this resource are (by their nature) not idempotent, as they are typically unique to the environment in which they are run. Use not_if and only_if to guard this resource for idempotence.",
-		"scope": "source.ruby.chef"
-	},
-	"launchd": {
-		"prefix": "launchd",
-		"body": "launchd '${1:name}' do\r\n\taction :${2:create}\r\nend\r\n",
-		"description": "Use the launchd resource to manage system-wide services (daemons) and per-user services (agents) on the macOS platform.",
-		"scope": "source.ruby.chef"
-	},
-	"link": {
-		"prefix": "link",
-		"body": "link '${1:source_path}' do\r\n\tto '${2:target_path}'\r\n\tlink_type :${3:hard}\r\nend\r\n",
-		"description": "Use the link resource to create symbolic or hard links.",
-		"scope": "source.ruby.chef"
-	},
-	"log": {
-		"prefix": "log",
-		"body": "log '${1:message}' do\r\n\tlevel :${2:info}\r\nend\r\n",
-		"description": "Use the log resource to to create log entries.",
-		"scope": "source.ruby.chef"
-	},
-	"macos_userdefaults": {
-		"prefix": "macos_userdefaults",
-		"body": "macos_userdefaults '${1:description}' do\r\n\tdomain '${2:domain}'\r\n\tglobal ${3:false}\r\n\tvalue '${4:value}'\r\n\ttype '${5:type}'\r\n\taction :${6:write}\r\nend\r\n",
-		"description": "Use the macos_userdefaults resource to manage the macOS user defaults system. The properties of the resource are passed to the defaults command, and the parameters follow the conventions of that command. See the defaults man page for additional information.",
-		"scope": "source.ruby.chef"
-	},
-	"macports_package": {
-		"prefix": "macports_package",
-		"body": "macports_package '${1:package_name}' do\r\n\taction :${2:install}\r\nend\r\n",
-		"description": "Use the macports_package resource to manage packages for the Mac OSX platform.",
-		"scope": "source.ruby.chef"
-	},
-	"mdadm": {
-		"prefix": "mdadm",
-		"body": "mdadm '${1:/dev/md0}' do\r\n\tdevices ['${2:/dev/sda}']\r\n\taction :${3:create}\r\nend\r\n",
-		"description": "Use the mdadm resource to manage RAID devices in a Linux environment.",
-		"scope": "source.ruby.chef"
-	},
-	"mount": {
-		"prefix": "mount",
-		"body": "mount '${1:path}' do\r\n\tdevice ['${2:device}']\r\n\tfstype '${2:fs_type}'\r\n\taction :${4:mount}\r\nend\r\n",
-		"description": "Use the mount resource to manage a mounted file system.",
-		"scope": "source.ruby.chef"
-	},
-	"msu_package": {
-		"prefix": "msu_package",
-		"body": "msu_package '${1:name}' do\r\n\tsource '${2:C:\\path\\to\\file}'\r\n\taction :${3:install}\r\nend\r\n",
-		"description": "Use the msu_package resource to install Microsoft Update(MSU) packages on Microsoft Windows machines.",
-		"scope": "source.ruby.chef"
-	},
-	"ohai_hint": {
-		"prefix": "ohai_hint",
-		"body": "ohai_hint '${1:hint_name}' do\r\n\tcontent Hash[:${2:key}, '${3:value}']\r\n\taction :${4:create}\r\nend\r\n",
-		"description": "Use the ohai_hint resource to aid in configuration detection by passing hint data to Ohai.",
-		"scope": "source.ruby.chef"
-	},
-	"ohai": {
-		"prefix": "ohai",
-		"body": "ohai '${1:name}' do\r\n\taction :${2:reload}\r\nend\r\n",
-		"description": "Use the ohai resource to reload the Ohai configuration on a node.",
-		"scope": "source.ruby.chef"
-	},
-	"openbsd_package": {
-		"prefix": "openbsd_package",
-		"body": "openbsd_package '${1:package_name}' do\r\n\taction :${2:install}\r\nend\r\n",
-		"description": "Use the openbsd_package resource to manage packages for the OpenBSD platform.",
-		"scope": "source.ruby.chef"
-	},
-	"openssl_dhparam": {
-		"prefix": "openssl_dhparam",
-		"body": "openssl_dhparam '${1:path}' do\r\n\taction :${2:create}\r\nend\r\n",
-		"description": "Use the openssl_dhparam resource to generate dhparam.pem files. If a valid dhparam.pem file is found at the specified location, no new file will be created. If a file is found at the specified location, but it is not a valid dhparam file, it will be overwritten.",
-		"scope": "source.ruby.chef"
-	},
-	"openssl_ec_private_key": {
-		"prefix": "openssl_ec_private_key",
-		"body": "openssl_ec_private_key '${1:path}' do\r\n\taction :${2:create}\r\nend\r\n",
-		"description": "Use the openssl_ec_private_key resource to generate elliptic curve (EC) private key files. If a valid EC key file can be opened at the specified location, no new file will be created. If the EC key file cannot be opened or does not exist, it will be overwritten.",
-		"scope": "source.ruby.chef"
-	},
-	"openssl_ec_public_key": {
-		"prefix": "openssl_ec_public_key",
-		"body": "openssl_ec_public_key '${1:path}' do\r\n\taction :${2:create}\r\nend\r\n",
-		"description": "Use the openssl_ec_public_key resource to generate elliptic curve (EC) public key files for a given EC private key.",
-		"scope": "source.ruby.chef"
-	},
-	"openssl_rsa_private_key": {
-		"prefix": "openssl_rsa_private_key",
-		"body": "openssl_rsa_private_key '${1:path}' do\r\n\taction :${2:create}\r\nend\r\n",
-		"description": "Use the openssl_rsa_private_key resource to generate RSA private key files. If a valid RSA key file can be opened at the specified location, no new file will be created. If the RSA key file cannot be opened or does not exist, it will be overwritten.",
-		"scope": "source.ruby.chef"
-	},
-	"openssl_rsa_public_key": {
-		"prefix": "openssl_rsa_public_key",
-		"body": "openssl_rsa_public_key '${1:path}' do\r\n\taction :${2:create}\r\nend\r\n",
-		"description": "Use the openssl_rsa_public_key resource to generate RSA public key files for a given RSA private key.",
-		"scope": "source.ruby.chef"
-	},
-	"osx_profile": {
-		"prefix": "osx_profile",
-		"body": "osx_profile '${1:profile_name}' do\r\n\tprofile '${2:profile}\r\n\taction :${3:install}\r\nend\r\n",
-		"description": "Use the osx_profile resource to manage configuration profiles (.mobileconfig files) on the macOS platform. The osx_profile resource installs profiles by using the uuidgen library to generate a unique ProfileUUID, and then using the profiles command to install the profile on the system.",
-		"scope": "source.ruby.chef"
-	},
-	"package": {
-		"prefix": "package",
-		"body": "package '${1:package_name}' do\r\n\taction :${2:install}\r\nend\r\n",
-		"description": "Use the package resource to manage packages.",
-		"scope": "source.ruby.chef"
-	},
-	"pacman_package": {
-		"prefix": "pacman_package",
-		"body": "pacman_package '${1:package_name}' do\r\n\taction :${2:install}\r\nend\r\n",
-		"description": "Use the pacman_package resource to manage packages for the ArchLinux platform.",
-		"scope": "source.ruby.chef"
-	},
-	"paludis_package": {
-		"prefix": "paludis_package",
-		"body": "paludis_package '${1:package_name}' do\r\n\taction :${2:install}\r\nend\r\n",
-		"description": "Use the paludis_package resource to manage packages for the Paludis platform.",
-		"scope": "source.ruby.chef"
-	},
-	"perl": {
-		"prefix": "perl",
-		"body": "perl '${1:name}' do\r\n\tcode <<-EOH\r\n\t${2:perl code}\r\n\tEOH\r\nend\r\n",
-		"description": "A perl resource block executes Perl scripts.",
-		"scope": "source.ruby.chef"
-	},
-	"portage_package": {
-		"prefix": "portage_package",
-		"body": "portage_package '${1:package_name}' do\r\n\taction :${2:install}\r\nend\r\n",
-		"description": "Use the portage_package resource to manage packages for the Gentoo platform.",
-		"scope": "source.ruby.chef"
-	},
-	"powershell_package": {
-		"prefix": "powershell_package",
-		"body": "powershell_package '${1:package_name}' do\r\n\taction :${2:install}\r\nend\r\n",
-		"description": "Use the powershell_package resource to install and manage packages via the Powershell Package Manager for the Microsoft Windows platform. The powershell_package resource requires administrative access, and a source must be configured in the Powershell Package Manager via the Register-PackageSource command",
-		"scope": "source.ruby.chef"
-	},
-	"powershell_package_source": {
-		"prefix": "powershell_package_source",
-		"body": "powershell_package_source '${1:name}' do\r\n\turl '${2:https://mygallery.company.co/api/v2/}'\r\n\tprovider_name '${3:NuGet}'\r\n\taction :${4:register}\r\nend\r\n",
-		"description": "Use the powershell_package_source resource to register a PowerShell package repository.",
-		"scope": "source.ruby.chef"
-	},
-	"powershell_script": {
-		"prefix": "powershell_script",
-		"body": "powershell_script '${1:name}' do\r\n\tcode <<-EOH\r\n\t${2:powershell code}\r\n\tEOH\r\nend\r\n",
-		"description": "Use the powershell_script resource to execute a script using the Windows PowerShell interpreter.",
-		"scope": "source.ruby.chef"
-	},
-	"python": {
-		"prefix": "python",
-		"body": "python '${1:name}' do\r\n\tcode <<-EOH\r\n\t${2:python code}\r\n\tEOH\r\nend\r\n",
-		"description": "Use the python resource to execute a script using the Python interpreter.",
-		"scope": "source.ruby.chef"
-	},
-	"reboot": {
-		"prefix": "reboot",
-		"body": "reboot '${1:name}' do\r\n\taction :${2:request_reboot}\r\n\treason '${3:reason}'\r\n\tdelay_mins ${4:minutes}\r\nend\r\n",
-		"description": "A reboot resource block reboots a node.",
-		"scope": "source.ruby.chef"
-	},
-	"registry_key": {
-		"prefix": "registry_key",
-		"body": "registry_key '${1:key_name}' do\r\n\tvalues [{\r\n\t\tname: '${2:name}',\r\n\t\ttype: '${3:type}',\r\n\t\tdata: '${4:data}'\r\n\t}]\r\n\taction :${5:create}\r\nend\r\n",
-		"description": "Use the registry_key resource to create and delete registry keys in Microsoft Windows.",
-		"scope": "source.ruby.chef"
-	},
-	"remote_directory": {
-		"prefix": "remote_directory",
-		"body": "remote_directory '${1:/path/to/directory}' do\r\n\tsource '${2:source_directory}'\r\n\towner '${3:root}'\r\n\tgroup '${4:$3}'\r\n\tmode '${5:0755}'\r\n\taction :${6:create}\r\nend\r\n",
-		"description": "A remote_directory resource block transfers a directory from a cookbook to a node, and then assigns the permissions needed on that directory.",
-		"scope": "source.ruby.chef"
-	},
-	"remote_file": {
-		"prefix": "remote_file",
-		"body": "remote_file '${1:/path/to/file}' do\r\n\tsource '${2:source_file}'\r\n\towner '${3:root}'\r\n\tgroup '${4:$3}'\r\n\tmode '${5:0755}'\r\n\taction :${6:create}\r\nend\r\n",
-		"description": "Use the remote_file resource to transfer a file from a remote location using file specificity.",
-		"scope": "source.ruby.chef"
-	},
-	"rhsm_errata_level": {
-		"prefix": "rhsm_errata_level",
-		"body": "rhsm_errata_level '${1:errata_level}' do\r\n\taction :${2:install}\r\nend\r\n",
-		"description": "Use the rhsm_errata resource to install all packages of a specified errata level from the Red Hat Subscription Manager. For example, you can ensure that all packages associated with errata marked at a “Critical” security level are installed.",
-		"scope": "source.ruby.chef"
-	},
-	"rhsm_errata": {
-		"prefix": "rhsm_errata",
-		"body": "rhsm_errata '${1:errata_id}' do\r\n\taction :${2:install}'\r\nend\r\n",
-		"description": "Use the rhsm_errata resource to install packages associated with a given Red Hat Subscription Manager Errata ID.",
-		"scope": "source.ruby.chef"
-	},
-	"rhsm_register": {
-		"prefix": "rhsm_register",
-		"body": "rhsm_register '${1:server_host}' do\r\n\taction :${2:register}\r\nend\r\n",
-		"description": "Use the rhsm_register resource to register a node with the Red Hat Subscription Manager or a local Red Hat Satellite server.",
-		"scope": "source.ruby.chef"
-	},
-	"rhsm_repo": {
-		"prefix": "rhsm_repo",
-		"body": "rhsm_repo '${1:repo_name}' do\r\n\taction :${2:enable}\r\nend\r\n",
-		"description": "Use the rhsm_repo resource to enable or disable Red Hat Subscription Manager repositories that are made available via attached subscriptions.",
-		"scope": "source.ruby.chef"
-	},
-	"rhsm_subscription": {
-		"prefix": "rhsm_subscription",
-		"body": "rhsm_subscription '${1:pool_id}' do\r\n\taction :${2:attach}\r\nend\r\n",
-		"description": "Use the rhsm_subscription to add and remove Redhat Subscription Manager subscriptions to your host. This can be used when a host’s activation_key does not attach all necessary subscriptions to your host.",
-		"scope": "source.ruby.chef"
-	},
-	"route": {
-		"prefix": "route",
-		"body": "route '${1:10.0.1.10/32}' do\r\n\tgateway '${2:10.0.0.1}'\r\n\tdevice '${3:eth1}'\r\nend\r\n",
-		"description": "Use the route resource to manage the system routing table in a Linux environment.",
-		"scope": "source.ruby.chef"
-	},
-	"rpm_package": {
-		"prefix": "rpm_package",
-		"body": "rpm_package '${1:package_name}' do\r\n\taction :${2:install}\r\nend\r\n",
-		"description": "Use the rpm_package resource to manage packages for the RPM platform.",
-		"scope": "source.ruby.chef"
-	},
-	"ruby": {
-		"prefix": "ruby",
-		"body": "ruby '${1:name}' do\r\n\tcode <<-EOH\r\n\t${2:ruby code}\r\n\tEOH\r\nend\r\n",
-		"description": "Use the ruby resource to execute a script using Ruby.",
-		"scope": "source.ruby.chef"
-	},
-	"ruby_block": {
-		"prefix": "ruby_block",
-		"body": "ruby_block '${1:name}' do\r\n\tblock do\r\n\t\t${2:code}\r\n\tend\r\n\taction :${3:run}\r\nend\r\n",
-		"description": "Use the ruby_block resource to execute a script block using Ruby.",
-		"scope": "source.ruby.chef"
-	},
-	"script": {
-		"prefix": "script",
-		"body": "ruby '${1:name}' do\r\n\tinterpreter '${2:bash}'\r\n\tcode <<-EOH\r\n\t${3:code}\r\n\tEOH\r\nend\r\n",
-		"description": "Use the script resource to execute a script using a specified interpreter.",
-		"scope": "source.ruby.chef"
-	},
-	"service": {
-		"prefix": "service",
-		"body": "service '${1:service_name}' do\r\n\taction :${2:start}\r\nend\r\n",
-		"description": "Use the service resource to manage a service.",
-		"scope": "source.ruby.chef"
-	},
-	"smartos_package": {
-		"prefix": "smartos_package",
-		"body": "smartos_package '${1:package_name}' do\r\n\taction :${2:install}\r\nend\r\n",
-		"description": "Use the smartos_package resource to manage packages for the SmartOS platform.",
-		"scope": "source.ruby.chef"
-	},
-	"snap_package": {
-		"prefix": "snap_package",
-		"body": "snap_package '${1:package_name}' do\r\n\taction :${2:install}\r\nend\r\n",
-		"description": "Use the snap_package resource to manage snap packages on Debian and Ubuntu platforms.",
-		"scope": "source.ruby.chef"
-	},
-	"solaris_package": {
-		"prefix": "solaris_package",
-		"body": "solaris_package '${1:package_name}' do\r\n\taction :${2:install}\r\nend\r\n",
-		"description": "Use the solaris_package resource to manage packages for the Solaris platform.",
-		"scope": "source.ruby.chef"
-	},
-	"ssh_known_hosts_entry": {
-		"prefix": "ssh_known_hosts_entry",
-		"body": "ssh_known_hosts_entry '${1:example.com}' do\r\n\tkey '${2:node.example.com ssh-rsa ...}'\r\n\taction :${3:create}\r\nend\r\n",
-		"description": "Use the ssh_known_hosts_entry resource to add an entry for the specified host in /etc/ssh/ssh_known_hosts or a user’s known hosts file if specified.",
-		"scope": "source.ruby.chef"
-	},
-	"subversion": {
-		"prefix": "subversion",
-		"body": "subversion '${1:name}' do\r\n\trepository '${2:svn_repository}'\r\n\trevision '${3:HEAD}'\r\n\tdestination '${4:destination_path}'\r\n\taction :${5:sync}\r\nend\r\n",
-		"description": "Use the subversion resource to manage source control resources that exist in a Subversion repository.",
-		"scope": "source.ruby.chef"
-	},
-	"sudo": {
-		"prefix": "sudo",
-		"body": "sudo '${1:filename}' do\r\n\tuser '${2:user}'\r\n\taction :${3:create}\r\nend\r\n",
-		"description": "Use the sudo resource to add or remove individual sudo entries using sudoers.d files. Sudo version 1.7.2 or newer is required to use the sudo resource, as it relies on the #includedir directive introduced in version 1.7.2. This resource does not enforce installation of the required sudo version. Chef-supported releases of Ubuntu, Debian and RHEL (6+) all support this feature.",
-		"scope": "source.ruby.chef"
-	},
-	"swap_file": {
-		"prefix": "swap_file",
-		"body": "swap_file '${1:path}' do\r\n\taction :${2:create}\r\nend\r\n",
-		"description": "Use the swap_file resource to create or delete swap files on Linux systems, and optionally to manage the swappiness configuration for a host.",
-		"scope": "source.ruby.chef"
-	},
-	"sysctl": {
-		"prefix": "sysctl",
-		"body": "sysctl '${1:key}' do\r\n\tvalue '${2:value}'\r\n\taction :${3:apply}\r\nend\r\n",
-		"description": "Use the sysctl resource to set or remove kernel parameters using the sysctl command line tool and configuration files in the system’s sysctl.d directory. Configuration files managed by this resource are named 99-chef-KEYNAME.conf. If an existing value was already set, it will be backed up to the node and restored if the :remove action is used later.",
-		"scope": "source.ruby.chef"
-	},
-	"systemd_unit": {
-		"prefix": "systemd_unit",
-		"body": "systemd_unit '${1:unit}' do\r\n\tcontent <<~EOU\r\n\t[Unit]\r\n\tDescription=Run system activity accounting tool every 10 minutes\r\n\t\r\n\t[Timer]\r\n\tOnCalendar=*:00/10\r\n\t\r\n\t[Install]\r\n\tWantedBy=sysstat.service\r\n\tEOU\r\naction :${2:create}\r\nend\r\n",
-		"description": "Use the systemd_unit resource to create, manage, and run systemd units.",
-		"scope": "source.ruby.chef"
-	},
-	"template": {
-		"prefix": "template",
-		"body": "template '${1:destination_path}' do\r\n\tsource '${2:source_file}'\r\n\towner '${3:root}'\r\n\tgroup '${4:$3}'\r\n\tmode '${5:0755}'\r\n\taction :${6:create}\r\nend\r\n",
-		"description": "Use the template resource to manage the contents of a file using an Embedded Ruby (ERB) template.",
-		"scope": "source.ruby.chef"
-	},
-	"timezone": {
-		"prefix": "timezone",
-		"body": "timezone '${1:name}' do\r\n\ttimezone '${2:UTC}'\r\n\taction :${3:set}\r\nend\r\n",
-		"description": "Use the timezone resource to change the system timezone on Windows, Linux, and macOS hosts. Timezones are specified in tz database format, with a complete list of available TZ values for Linux and macOS here: https://en.wikipedia.org/wiki/List_of_tz_database_time_zones and for Windows here: https://ss64.com/nt/timezones.html.",
-		"scope": "source.ruby.chef"
-	},
-	"user": {
-		"prefix": "user",
-		"body": "user '${1:user_name}' do\r\n\tcomment '${2:comment}'\r\n\tuid '${3:uid}'\r\n\tgid '${4:gid}'\r\n\thome '${5:home_folder}'\r\n\tshell '${6:shell}'\r\n\tpassword '${7:password}'\r\n\taction :${8:create}\r\nend\r\n",
-		"description": "Use the user resource to add users, update existing users, remove users, and to lock/unlock user passwords.",
-		"scope": "source.ruby.chef"
-	},
-	"windows_ad_join": {
-		"prefix": "windows_ad_join",
-		"body": "windows_ad_join '${1:domain_name}' do\r\n\tdomain_user '${2:domain_user}'\r\n\tdomain_password '${3:domain_password}'\r\n\taction :${4:join}\r\nend\r\n",
-		"description": "Use the windows_ad_join resource to join a Windows Active Directory domain.",
-		"scope": "source.ruby.chef"
-  },
-  "windows_audit_policy":{
-    "prefix": "windows_audit_policy",
-    "body": "windows_audit_policy '${1:Update advanced audit policy}' do\r\n\tsubcategory '${2:Credential Validation}'\r\n\tsuccess ${3:true}\r\n\tfailure ${4:false}\r\n\taction :set\r\nend\r\n",
-    "description": "Use the windows_audit_policy resource to configure system level and per-user Windows advanced audit policy settings.",
+  "alternatives": {
+    "prefix": "alternatives",
+    "body": "alternatives 'name' do\r\n\tlink           String # default value: \"/usr/bin/LINK_NAME\"\r\n\tlink_name      String # default value: 'name' unless specified\r\n\tpath           String\r\n\tpriority       String, Integer\r\n\taction         Symbol # defaults to :install if not specified\nend",
+    "description": "Use the **alternatives** resource to configure command alternatives in Linux using the alternatives or update-alternatives packages.",
     "scope": "source.ruby.chef"
   },
-	"windows_auto_run": {
-		"prefix": "windows_auto_run",
-		"body": "windows_auto_run '${1:program_name}' do\r\n\tpath '${2:path}'\r\n\taction :${3:create}\r\nend\r\n",
-		"description": "Use the windows_auto_run resource to set applications to run at login.",
-		"scope": "source.ruby.chef"
-	},
-	"windows_env": {
-		"prefix": "windows_env",
-		"body": "windows_env '${1:name}' do\r\n\tvalue '${2:value}'\r\nend\r\n",
-		"description": "Use the windows_env resource to manage environment keys in Microsoft Windows.",
-		"scope": "source.ruby.chef"
-	},
-	"windows_feature": {
-		"prefix": "windows_feature",
-		"body": "windows_feature '${1:feature_name}' do\r\n\taction :${2:install}\r\nend\r\n",
-		"description": "Use the windows_feature resource to add, remove or entirely delete Windows features and roles. This resource calls the windows_feature_dism or windows_feature_powershell resources depending on the specified installation method, and defaults to DISM, which is available on both Workstation and Server editions of Windows.",
-		"scope": "source.ruby.chef"
-	},
-	"windows_feature_dism": {
-		"prefix": "windows_feature_dism",
-		"body": "windows_feature_dism '${1:feature_name}' do\r\n\taction :${2:install}\r\nend\r\n",
-		"description": "Use the windows_feature_dism resource to add, remove, or entirely delete Windows features and roles using DISM.",
-		"scope": "source.ruby.chef"
-	},
-	"windows_feature_powershell": {
-		"prefix": "windows_feature_powershell",
-		"body": "windows_feature_powershell '${1:feature_name}' do\r\n\taction :${2:install}\r\nend\r\n",
-		"description": "Use the windows_feature_powershell resource to add, remove or entirely delete Windows features and roles via PowerShell. This resource offers significant speed benefits over the windows_feature_dism resource, but requires installation of the Remote Server Administration Tools on non-server releases of Windows.",
-		"scope": "source.ruby.chef"
-	},
+  "apt_package": {
+    "prefix": "apt_package",
+    "body": "apt_package 'name' do\r\n\tdefault_release              String\r\n\toptions                      String, Array\r\n\toverwrite_config_files       true, false # default value: false\r\n\tpackage_name                 String, Array\r\n\tresponse_file                String\r\n\tresponse_file_variables      Hash # default value: {}\r\n\tsource                       String\r\n\ttimeout                      String, Integer\r\n\tversion                      String, Array\r\n\taction                       Symbol # defaults to :install if not specified\nend",
+    "description": "Use the **apt_package** resource to manage packages on Debian and Ubuntu platforms.",
+    "scope": "source.ruby.chef"
+  },
+  "apt_preference": {
+    "prefix": "apt_preference",
+    "body": "apt_preference 'name' do\r\n\tglob              String\r\n\tpackage_name      String # default value: 'name' unless specified\r\n\tpin               String\r\n\tpin_priority      String, Integer\r\n\taction            Symbol # defaults to :add if not specified\nend",
+    "description": "Use the **apt_preference** resource to create APT [preference files](https://wiki.debian.org/AptPreferences). Preference files are used to control which package versions and sources are prioritized during installation.",
+    "scope": "source.ruby.chef"
+  },
+  "apt_repository": {
+    "prefix": "apt_repository",
+    "body": "apt_repository 'name' do\r\n\tarch               String, false\r\n\tcache_rebuild      true, false # default value: true\r\n\tcomponents         Array # default value: `main` if using a PPA repository.\r\n\tcookbook           String, false\r\n\tdeb_src            true, false # default value: false\r\n\tdistribution       String, false # default value: The LSB codename of the node such as 'focal'.\r\n\tkey                String, Array, false # default value: []\r\n\tkey_proxy          String, false\r\n\tkeyserver          String, false # default value: \"keyserver.ubuntu.com\"\r\n\trepo_name          String # default value: 'name' unless specified\r\n\ttrusted            true, false # default value: false\r\n\turi                String\r\n\taction             Symbol # defaults to :add if not specified\nend",
+    "description": "Use the **apt_repository** resource to specify additional APT repositories. Adding a new repository will update the APT package cache immediately.",
+    "scope": "source.ruby.chef"
+  },
+  "apt_update": {
+    "prefix": "apt_update",
+    "body": "apt_update 'name' do\r\n\tfrequency      Integer # default value: 86400\r\n\taction         Symbol # defaults to :periodic if not specified\nend",
+    "description": "Use the **apt_update** resource to manage APT repository updates on Debian and Ubuntu platforms.",
+    "scope": "source.ruby.chef"
+  },
+  "archive_file": {
+    "prefix": "archive_file",
+    "body": "archive_file 'name' do\r\n\tdestination           String\r\n\tgroup                 String\r\n\tmode                  String, Integer # default value: \"'755'\"\r\n\toptions               Array, Symbol\r\n\toverwrite             true, false, auto # default value: false\r\n\towner                 String\r\n\tpath                  String # default value: 'name' unless specified\r\n\tstrip_components      Integer # default value: 0\r\n\taction                Symbol # defaults to :extract if not specified\nend",
+    "description": "Use the **archive_file** resource to extract archive files to disk. This resource uses the libarchive library to extract multiple archive formats including tar, gzip, bzip, and zip formats.",
+    "scope": "source.ruby.chef"
+  },
+  "bash": {
+    "prefix": "bash",
+    "body": "bash 'name' do\r\n\tcode             String\r\n\tcommand          String, Array # default value: 'name' unless specified\r\n\tcreates          String\r\n\tcwd              String\r\n\tdefault_env      true, false # default value: false\r\n\tdomain           String\r\n\televated         true, false # default value: false\r\n\tenvironment      Hash\r\n\tflags            String\r\n\tgroup            String, Integer\r\n\tinput            String\r\n\tinterpreter      String\r\n\tlive_stream      true, false # default value: false\r\n\tlogin            true, false # default value: false\r\n\tpassword         String\r\n\treturns          Integer, Array # default value: 0\r\n\ttimeout          Integer, String, Float # default value: 3600\r\n\tumask            String, Integer\r\n\tuser             String, Integer\r\n\taction           Symbol # defaults to :run if not specified\nend",
+    "description": "Use the **bash** resource to execute scripts using the Bash interpreter. This resource may also use any of the actions and properties that are available to the **execute** resource. Commands that are executed with this resource are (by their nature) not idempotent, as they are typically unique to the environment in which they are run. Use `not_if` and `only_if` to guard this resource for idempotence.",
+    "scope": "source.ruby.chef"
+  },
+  "batch": {
+    "prefix": "batch",
+    "body": "batch 'name' do\r\n\tcode             String\r\n\tcommand          String, Array # default value: 'name' unless specified\r\n\tcreates          String\r\n\tcwd              String\r\n\tdefault_env      true, false # default value: false\r\n\tdomain           String\r\n\televated         true, false # default value: false\r\n\tenvironment      Hash\r\n\tflags            String\r\n\tgroup            String, Integer\r\n\tinput            String\r\n\tinterpreter      String\r\n\tlive_stream      true, false # default value: false\r\n\tlogin            true, false # default value: false\r\n\tpassword         String\r\n\treturns          Integer, Array # default value: 0\r\n\ttimeout          Integer, String, Float # default value: 3600\r\n\tumask            String, Integer\r\n\tuser             String, Integer\r\n\taction           Symbol # defaults to :run if not specified\nend",
+    "description": "Use the **batch** resource to execute a batch script using the cmd.exe interpreter on Windows. The batch resource creates and executes a temporary file (similar to how the script resource behaves), rather than running the command inline. Commands that are executed with this resource are (by their nature) not idempotent, as they are typically unique to the environment in which they are run. Use `not_if` and `only_if` to guard this resource for idempotence.",
+    "scope": "source.ruby.chef"
+  },
+  "bff_package": {
+    "prefix": "bff_package",
+    "body": "bff_package 'name' do\r\n\toptions           String, Array\r\n\tpackage_name      String\r\n\tsource            String\r\n\ttimeout           String, Integer\r\n\tversion           String\r\n\taction            Symbol # defaults to :install if not specified\nend",
+    "description": "Use the **bff_package** resource to manage packages for the AIX platform using the installp utility. When a package is installed from a local file, it must be added to the node using the **remote_file** or **cookbook_file** resources.",
+    "scope": "source.ruby.chef"
+  },
+  "breakpoint": {
+    "prefix": "breakpoint",
+    "body": "breakpoint 'name' do\r\n\taction      Symbol # defaults to :break if not specified\nend",
+    "description": "Use the **breakpoint** resource to add breakpoints to recipes. Run the chef-shell in Chef Infra Client mode, and then use those breakpoints to debug recipes. Breakpoints are ignored by the chef-client during an actual chef-client run. That said, breakpoints are typically used to debug recipes only when running them in a non-production environment, after which they are removed from those recipes before the parent cookbook is uploaded to the Chef server.",
+    "scope": "source.ruby.chef"
+  },
+  "build_essential": {
+    "prefix": "build_essential",
+    "body": "build_essential 'name' do\r\n\traise_if_unsupported      true, false # default value: false\r\n\taction                    Symbol # defaults to :install if not specified\nend",
+    "description": "Use the **build_essential** resource to install the packages required for compiling C software from source.",
+    "scope": "source.ruby.chef"
+  },
+  "cab_package": {
+    "prefix": "cab_package",
+    "body": "cab_package 'name' do\r\n\toptions           String, Array\r\n\tpackage_name      String\r\n\tsource            String # default value: The package name.\r\n\ttimeout           String, Integer\r\n\tversion           String\r\n\taction            Symbol # defaults to :install if not specified\nend",
+    "description": "Use the **cab_package** resource to install or remove Microsoft Windows cabinet (.cab) packages.",
+    "scope": "source.ruby.chef"
+  },
+  "chef_client_config": {
+    "prefix": "chef_client_config",
+    "body": "chef_client_config 'name' do\r\n\tadditional_config              String\r\n\tchef_license                   String\r\n\tchef_server_url                String\r\n\tconfig_directory               String\r\n\tevent_loggers                  Array # default value: []\r\n\texception_handlers             Array # default value: []\r\n\tfile_backup_path               String\r\n\tfile_cache_path                String\r\n\tfile_staging_uses_destdir      String\r\n\tformatters                     Array # default value: []\r\n\tftp_proxy                      String\r\n\tgroup                          String\r\n\thttp_proxy                     String\r\n\thttps_proxy                    String\r\n\tlog_level                      Symbol\r\n\tlog_location                   String, Symbol\r\n\tminimal_ohai                   true, false\r\n\tnamed_run_list                 String\r\n\tno_proxy                       String, Array # default value: []\r\n\tnode_name                      String\r\n\tohai_disabled_plugins          Array # default value: []\r\n\tohai_optional_plugins          Array # default value: []\r\n\tpid_file                       String\r\n\tpolicy_group                   String\r\n\tpolicy_name                    String\r\n\tpolicy_persist_run_list        true, false\r\n\treport_handlers                Array # default value: []\r\n\tssl_verify_mode                Symbol, String\r\n\tstart_handlers                 Array # default value: []\r\n\tuser                           String\r\n\taction                         Symbol # defaults to :create if not specified\nend",
+    "description": "Use the **chef_client_config** resource to create a client.rb file in the Chef Infra Client configuration directory. See the [client.rb docs](https://docs.chef.io/config_rb_client/) for more details on options available in the client.rb configuration file.",
+    "scope": "source.ruby.chef"
+  },
+  "chef_client_cron": {
+    "prefix": "chef_client_cron",
+    "body": "chef_client_cron 'name' do\r\n\taccept_chef_license      true, false # default value: false\r\n\tappend_log_file          true, false # default value: true\r\n\tchef_binary_path         String # default value: \"/opt/chef/bin/chef-client\"\r\n\tcomment                  String\r\n\tconfig_directory         String # default value: \"/etc/chef\"\r\n\tdaemon_options           Array # default value: []\r\n\tday                      Integer, String # default value: \"*\"\r\n\tenvironment              Hash # default value: {}\r\n\thour                     Integer, String # default value: \"*\"\r\n\tjob_name                 String # default value: \"chef-client\"\r\n\tlog_directory            String\r\n\tlog_file_name            String # default value: \"client.log\"\r\n\tmailto                   String\r\n\tminute                   Integer, String # default value: \"0,30\"\r\n\tmonth                    Integer, String # default value: \"*\"\r\n\tnice                     Integer, String\r\n\tsplay                    Integer, String # default value: 300\r\n\tuser                     String # default value: \"root\"\r\n\tweekday                  Integer, String # default value: \"*\"\r\n\taction                   Symbol # defaults to :add if not specified\nend",
+    "description": "Use the **chef_client_cron** resource to setup the Chef Infra Client to run as a cron job. This resource will also create the specified log directory if it doesn't already exist.",
+    "scope": "source.ruby.chef"
+  },
+  "chef_client_launchd": {
+    "prefix": "chef_client_launchd",
+    "body": "chef_client_launchd 'name' do\r\n\taccept_chef_license      true, false # default value: false\r\n\tchef_binary_path         String # default value: \"/opt/chef/bin/chef-client\"\r\n\tconfig_directory         String # default value: \"/etc/chef\"\r\n\tdaemon_options           Array # default value: []\r\n\tenvironment              Hash # default value: {}\r\n\tinterval                 Integer, String # default value: 30\r\n\tlog_directory            String # default value: \"/Library/Logs/Chef\"\r\n\tlog_file_name            String # default value: \"client.log\"\r\n\tlow_priority_io          true, false # default value: true\r\n\tnice                     Integer, String\r\n\tsplay                    Integer, String # default value: 300\r\n\tuser                     String # default value: \"root\"\r\n\tworking_directory        String # default value: \"/var/root\"\r\n\taction                   Symbol # defaults to :enable if not specified\nend",
+    "description": "Use the **chef_client_launchd** resource to configure the Chef Infra Client to run on a schedule on macOS systems.",
+    "scope": "source.ruby.chef"
+  },
+  "chef_client_scheduled_task": {
+    "prefix": "chef_client_scheduled_task",
+    "body": "chef_client_scheduled_task 'name' do\r\n\taccept_chef_license       true, false # default value: false\r\n\tchef_binary_path          String # default value: \"C:/opscode/chef/bin/chef-client\"\r\n\tconfig_directory          String # default value: \"/etc/chef\"\r\n\tdaemon_options            Array # default value: []\r\n\tfrequency                 String # default value: \"minute\"\r\n\tfrequency_modifier        Integer, String # default value: \"30 if frequency is 'minute', 1 otherwise\"\r\n\tlog_directory             String # default value: \"CONFIG_DIRECTORY/log\"\r\n\tlog_file_name             String # default value: \"client.log\"\r\n\tpassword                  String\r\n\tpriority                  Integer # default value: 7\r\n\trun_on_battery            true, false # default value: true\r\n\tsplay                     Integer, String # default value: 300\r\n\tstart_date                String\r\n\tstart_time                String\r\n\ttask_name                 String # default value: \"chef-client\"\r\n\tuse_consistent_splay      true, false # default value: false\r\n\tuser                      String # default value: \"System\"\r\n\taction                    Symbol # defaults to :add if not specified\nend",
+    "description": "Use the **chef_client_scheduled_task** resource to setup the Chef Infra Client to run as a Windows scheduled task. This resource will also create the specified log directory if it doesn't already exist.",
+    "scope": "source.ruby.chef"
+  },
+  "chef_client_systemd_timer": {
+    "prefix": "chef_client_systemd_timer",
+    "body": "chef_client_systemd_timer 'name' do\r\n\taccept_chef_license      true, false # default value: false\r\n\tchef_binary_path         String # default value: \"/opt/chef/bin/chef-client\"\r\n\tconfig_directory         String # default value: \"/etc/chef\"\r\n\tcpu_quota                Integer, String\r\n\tdaemon_options           Array # default value: []\r\n\tdelay_after_boot         String # default value: \"1min\"\r\n\tdescription              String # default value: \"Chef Infra Client periodic execution\"\r\n\tenvironment              Hash # default value: {}\r\n\tinterval                 String # default value: \"30min\"\r\n\tjob_name                 String # default value: \"chef-client\"\r\n\trun_on_battery           true, false # default value: true\r\n\tsplay                    String # default value: \"5min\"\r\n\tuser                     String # default value: \"root\"\r\n\taction                   Symbol # defaults to :add if not specified\nend",
+    "description": "Use the **chef_client_systemd_timer** resource to setup the Chef Infra Client to run as a systemd timer.",
+    "scope": "source.ruby.chef"
+  },
+  "chef_client_trusted_certificate": {
+    "prefix": "chef_client_trusted_certificate",
+    "body": "chef_client_trusted_certificate 'name' do\r\n\tcert_name        String # default value: 'name' unless specified\r\n\tcertificate      String\r\n\taction           Symbol # defaults to :add if not specified\nend",
+    "description": "Use the **chef_client_trusted_certificate** resource to add certificates to Chef Infra Client's trusted certificate directory. This allows the Chef Infra Client to communicate with internal encrypted resources without errors.",
+    "scope": "source.ruby.chef"
+  },
+  "chef_gem": {
+    "prefix": "chef_gem",
+    "body": "chef_gem 'name' do\r\n\tclear_sources               true, false\r\n\tgem_binary                  String\r\n\tinclude_default_source      true, false\r\n\toptions                     String, Hash, Array\r\n\tpackage_name                String\r\n\tsource                      String, Array\r\n\ttimeout                     String, Integer\r\n\tversion                     String\r\n\taction                      Symbol # defaults to :install if not specified\nend",
+    "description": "Use the **chef_gem** resource to install a gem only for the instance of Ruby that is dedicated to the chef-client.\nWhen a gem is installed from a local file, it must be added to the node using the **remote_file** or **cookbook_file** resources.\n\nThe **chef_gem** resource works with all of the same properties and options as the **gem_package** resource, but does not\naccept the `gem_binary` property because it always uses the `CurrentGemEnvironment` under which the `chef-client` is\nrunning. In addition to performing actions similar to the **gem_package** resource, the **chef_gem** resource does the\nfollowing:\n- Runs its actions immediately, before convergence, allowing a gem to be used in a recipe immediately after it is installed.\n- Runs `Gem.clear_paths` after the action, ensuring that gem is aware of changes so that it can be required immediately after it is installed.",
+    "scope": "source.ruby.chef"
+  },
+  "chef_handler": {
+    "prefix": "chef_handler",
+    "body": "chef_handler 'name' do\r\n\targuments       Array, Hash # default value: []\r\n\tclass_name      String # default value: 'name' unless specified\r\n\tsource          String\r\n\ttype            Hash # default value: {\"report\"=>true, \"exception\"=>true}\r\n\taction          Symbol # defaults to :enable if not specified\nend",
+    "description": "Use the **chef_handler** resource to enable handlers during a Chef Infra Client run. The resource allows arguments to be passed to Chef Infra Client, which then applies the conditions defined by the custom handler to the node attribute data collected during a Chef Infra Client run, and then processes the handler based on that data.\nThe **chef_handler** resource is typically defined early in a node's run-list (often being the first item). This ensures that all of the handlers will be available for the entire Chef Infra Client run.",
+    "scope": "source.ruby.chef"
+  },
+  "chef_sleep": {
+    "prefix": "chef_sleep",
+    "body": "chef_sleep 'name' do\r\n\tseconds      String, Integer # default value: 'name' unless specified\r\n\taction       Symbol # defaults to :sleep if not specified\nend",
+    "description": "Use the **chef_sleep** resource to pause (sleep) for a number of seconds during a Chef Infra Client run. Only use this resource when a command or service exits successfully but is not ready for the next step in a recipe.",
+    "scope": "source.ruby.chef"
+  },
+  "chef_vault_secret": {
+    "prefix": "chef_vault_secret",
+    "body": "chef_vault_secret 'name' do\r\n\tadmins           String, Array\r\n\tclients          String, Array\r\n\tdata_bag         String\r\n\tenvironment      String\r\n\tid               String # default value: 'name' unless specified\r\n\traw_data         Hash, Mash (Hash-like) # default value: {}\r\n\tsearch           String # default value: \"*:*\"\r\n\taction           Symbol # defaults to :create if not specified\nend",
+    "description": "Use the **chef_vault_secret** resource to store secrets in Chef Vault items. Where possible and relevant, this resource attempts to map behavior and functionality to the knife vault sub-commands.",
+    "scope": "source.ruby.chef"
+  },
+  "chocolatey_config": {
+    "prefix": "chocolatey_config",
+    "body": "chocolatey_config 'name' do\r\n\tconfig_key      String # default value: 'name' unless specified\r\n\tvalue           String\r\n\taction          Symbol # defaults to :set if not specified\nend",
+    "description": "Use the **chocolatey_config** resource to add or remove Chocolatey configuration keys.",
+    "scope": "source.ruby.chef"
+  },
+  "chocolatey_feature": {
+    "prefix": "chocolatey_feature",
+    "body": "chocolatey_feature 'name' do\r\n\tfeature_name      String # default value: 'name' unless specified\r\n\taction            Symbol # defaults to :enable if not specified\nend",
+    "description": "Use the **chocolatey_feature** resource to enable and disable Chocolatey features.",
+    "scope": "source.ruby.chef"
+  },
+  "chocolatey_package": {
+    "prefix": "chocolatey_package",
+    "body": "chocolatey_package 'name' do\r\n\tlist_options      String\r\n\toptions           String, Array\r\n\tpackage_name      String, Array\r\n\tpassword          String\r\n\treturns           Integer, Array # default value: [0, 2]\r\n\tsource            String\r\n\ttimeout           String, Integer\r\n\tuser              String\r\n\tversion           String, Array\r\n\taction            Symbol # defaults to :install if not specified\nend",
+    "description": "Use the **chocolatey_package** resource to manage packages using Chocolatey on the Microsoft Windows platform.",
+    "scope": "source.ruby.chef"
+  },
+  "chocolatey_source": {
+    "prefix": "chocolatey_source",
+    "body": "chocolatey_source 'name' do\r\n\tadmin_only              true, false # default value: false\r\n\tallow_self_service      true, false # default value: false\r\n\tbypass_proxy            true, false # default value: false\r\n\tpriority                Integer # default value: 0\r\n\tsource                  String\r\n\tsource_name             String # default value: 'name' unless specified\r\n\taction                  Symbol # defaults to :add if not specified\nend",
+    "description": "Use the **chocolatey_source** resource to add, remove, enable, or disable Chocolatey sources.",
+    "scope": "source.ruby.chef"
+  },
+  "cookbook_file": {
+    "prefix": "cookbook_file",
+    "body": "cookbook_file 'name' do\r\n\tatomic_update              true, false\r\n\tbackup                     Integer, false # default value: 5\r\n\tchecksum                   String\r\n\tcontent                    String\r\n\tcookbook                   String # default value: \"The current cookbook name\"\r\n\tforce_unlink               true, false # default value: false\r\n\tgroup                      \r\n\tmanage_symlink_source      true, false\r\n\tmode                       \r\n\towner                      \r\n\tpath                       String # default value: 'name' unless specified\r\n\tsource                     String, Array\r\n\taction                     Symbol # defaults to :create if not specified\nend",
+    "description": "Use the **cookbook_file** resource to transfer files from a sub-directory of COOKBOOK_NAME/files/ to a specified path located on a host that is running the Chef Infra Client. The file is selected according to file specificity, which allows different source files to be used based on the hostname, host platform (operating system, distro, or as appropriate), or platform version. Files that are located in the COOKBOOK_NAME/files/default sub-directory may be used on any platform.\n\nDuring a Chef Infra Client run, the checksum for each local file is calculated and then compared against the checksum for the same file as it currently exists in the cookbook on the Chef Infra Server. A file is not transferred when the checksums match. Only files that require an update are transferred from the Chef Infra Server to a node.",
+    "scope": "source.ruby.chef"
+  },
+  "cron": {
+    "prefix": "cron",
+    "body": "cron 'name' do\r\n\tcommand          String\r\n\tday              Integer, String # default value: \"*\"\r\n\tenvironment      Hash # default value: {}\r\n\thome             String\r\n\thour             Integer, String # default value: \"*\"\r\n\tmailto           String\r\n\tminute           Integer, String # default value: \"*\"\r\n\tmonth            Integer, String # default value: \"*\"\r\n\tpath             String\r\n\tshell            String\r\n\ttime             Symbol\r\n\ttime_out         Hash # default value: {}\r\n\tuser             String # default value: \"root\"\r\n\tweekday          Integer, String, Symbol # default value: \"*\"\r\n\taction           Symbol # defaults to :create if not specified\nend",
+    "description": "Use the **cron** resource to manage cron entries for time-based job scheduling. Properties for a schedule will default to * if not provided. The cron resource requires access to a crontab program, typically cron.",
+    "scope": "source.ruby.chef"
+  },
+  "cron_access": {
+    "prefix": "cron_access",
+    "body": "cron_access 'name' do\r\n\tuser      String # default value: 'name' unless specified\r\n\taction    Symbol # defaults to :allow if not specified\nend",
+    "description": "Use the **cron_access** resource to manage cron's cron.allow and cron.deny files.",
+    "scope": "source.ruby.chef"
+  },
+  "cron_d": {
+    "prefix": "cron_d",
+    "body": "cron_d 'name' do\r\n\tcommand               String\r\n\tcomment               String\r\n\tcron_name             String # default value: 'name' unless specified\r\n\tday                   Integer, String # default value: \"*\"\r\n\tenvironment           Hash # default value: {}\r\n\thome                  String\r\n\thour                  Integer, String # default value: \"*\"\r\n\tmailto                String\r\n\tminute                Integer, String # default value: \"*\"\r\n\tmode                  String, Integer # default value: \"0600\"\r\n\tmonth                 Integer, String # default value: \"*\"\r\n\tpath                  String\r\n\tpredefined_value      String\r\n\trandom_delay          Integer\r\n\tshell                 String\r\n\ttime_out              Hash # default value: {}\r\n\tuser                  String # default value: \"root\"\r\n\tweekday               Integer, String, Symbol # default value: \"*\"\r\n\taction                Symbol # defaults to :create if not specified\nend",
+    "description": "Use the **cron_d** resource to manage cron job files in the `/etc/cron.d` directory. This is similar to the 'cron' resource, but it does not use the monolithic /etc/crontab file.",
+    "scope": "source.ruby.chef"
+  },
+  "csh": {
+    "prefix": "csh",
+    "body": "csh 'name' do\r\n\tcode             String\r\n\tcommand          String, Array # default value: 'name' unless specified\r\n\tcreates          String\r\n\tcwd              String\r\n\tdefault_env      true, false # default value: false\r\n\tdomain           String\r\n\televated         true, false # default value: false\r\n\tenvironment      Hash\r\n\tflags            String\r\n\tgroup            String, Integer\r\n\tinput            String\r\n\tinterpreter      String\r\n\tlive_stream      true, false # default value: false\r\n\tlogin            true, false # default value: false\r\n\tpassword         String\r\n\treturns          Integer, Array # default value: 0\r\n\ttimeout          Integer, String, Float # default value: 3600\r\n\tumask            String, Integer\r\n\tuser             String, Integer\r\n\taction           Symbol # defaults to :run if not specified\nend",
+    "description": "Use the **csh** resource to execute scripts using the csh interpreter. This resource may also use any of the actions and properties that are available to the **execute** resource. Commands that are executed with this resource are (by their nature) not idempotent, as they are typically unique to the environment in which they are run. Use `not_if` and `only_if` to guard this resource for idempotence.",
+    "scope": "source.ruby.chef"
+  },
+  "directory": {
+    "prefix": "directory",
+    "body": "directory 'name' do\r\n\tgroup          \r\n\tmode           \r\n\towner          \r\n\tpath           String # default value: 'name' unless specified\r\n\trecursive      true, false # default value: false\r\n\taction         Symbol # defaults to :create if not specified\nend",
+    "description": "Use the **directory** resource to manage a directory, which is a hierarchy of folders that comprises all of the information stored on a computer. The root directory is the top-level, under which the rest of the directory is organized. The directory resource uses the name property to specify the path to a location in a directory. Typically, permission to access that location in the directory is required.",
+    "scope": "source.ruby.chef"
+  },
+  "dmg_package": {
+    "prefix": "dmg_package",
+    "body": "dmg_package 'name' do\r\n\taccept_eula          true, false # default value: false\r\n\tallow_untrusted      true, false # default value: false\r\n\tapp                  String # default value: 'name' unless specified\r\n\tchecksum             String\r\n\tdestination          String # default value: \"/Applications\"\r\n\tdmg_name             String # default value: The value passed for the application name.\r\n\tdmg_passphrase       String\r\n\tfile                 String\r\n\theaders              Hash\r\n\towner                String, Integer\r\n\tpackage_id           String\r\n\tsource               String\r\n\ttype                 String # default value: \"app\"\r\n\tvolumes_dir          String # default value: The value passed for the application name.\r\n\taction               Symbol # defaults to :install if not specified\nend",
+    "description": "Use the **dmg_package** resource to install a package from a .dmg file. The resource will retrieve the dmg file from a remote URL, mount it using macOS' `hdidutil`, copy the application (.app directory) to the specified destination (`/Applications`), and detach the image using `hdiutil`. The dmg file will be stored in the `Chef::Config[:file_cache_path]`.",
+    "scope": "source.ruby.chef"
+  },
+  "dnf_package": {
+    "prefix": "dnf_package",
+    "body": "dnf_package 'name' do\r\n\tarch              String, Array\r\n\tflush_cache       Hash # default value: {\"before\"=>false, \"after\"=>false}\r\n\toptions           String, Array\r\n\tpackage_name      String, Array\r\n\tsource            String\r\n\ttimeout           String, Integer\r\n\tversion           String, Array\r\n\taction            Symbol # defaults to :install if not specified\nend",
+    "description": "Use the **dnf_package** resource to install, upgrade, and remove packages with DNF for Fedora and RHEL 8+. The dnf_package resource is able to resolve provides data for packages much like DNF can do when it is run from the command line. This allows a variety of options for installing packages, like minimum versions, virtual provides and library names.",
+    "scope": "source.ruby.chef"
+  },
+  "dpkg_package": {
+    "prefix": "dpkg_package",
+    "body": "dpkg_package 'name' do\r\n\toptions                      String, Array\r\n\tpackage_name                 String, Array\r\n\tresponse_file                String\r\n\tresponse_file_variables      Hash # default value: {}\r\n\tsource                       String, Array\r\n\ttimeout                      String, Integer\r\n\tversion                      String, Array\r\n\taction                       Symbol # defaults to :install if not specified\nend",
+    "description": "Use the **dpkg_package** resource to manage packages for the dpkg platform. When a package is installed from a local file, it must be added to the node using the **remote_file** or **cookbook_file** resources.",
+    "scope": "source.ruby.chef"
+  },
+  "dsc_resource": {
+    "prefix": "dsc_resource",
+    "body": "dsc_resource 'name' do\r\n\tmodule_version      String\r\n\treboot_action       Symbol # default value: :nothing\r\n\ttimeout             Integer\r\n\taction              Symbol # defaults to :run if not specified\nend",
+    "description": "The dsc_resource resource allows any DSC resource to be used in a recipe, as well as any custom resources that have been added to your Windows PowerShell environment. Microsoft frequently adds new resources to the DSC resource collection.",
+    "scope": "source.ruby.chef"
+  },
+  "dsc_script": {
+    "prefix": "dsc_script",
+    "body": "dsc_script 'name' do\r\n\tcwd              String\r\n\tenvironment      Hash\r\n\tflags            Hash\r\n\ttimeout          Integer\r\n\taction           Symbol # defaults to :run if not specified\nend",
+    "description": "Many DSC resources are comparable to built-in Chef Infra Client resources. For example, both DSC and Chef Infra Client\nhave file, package, and service resources. The dsc_script resource is most useful for those DSC resources that do not have a direct comparison to a\nresource in Chef Infra Client, such as the Archive resource, a custom DSC resource, an existing DSC script that performs an important\ntask, and so on. Use the dsc_script resource to embed the code that defines a DSC configuration directly within a Chef Infra Client recipe.",
+    "scope": "source.ruby.chef"
+  },
+  "execute": {
+    "prefix": "execute",
+    "body": "execute 'name' do\r\n\tcommand          String, Array # default value: 'name' unless specified\r\n\tcreates          String\r\n\tcwd              String\r\n\tdefault_env      true, false # default value: false\r\n\tdomain           String\r\n\televated         true, false # default value: false\r\n\tenvironment      Hash\r\n\tgroup            String, Integer\r\n\tinput            String\r\n\tlive_stream      true, false # default value: false\r\n\tlogin            true, false # default value: false\r\n\tpassword         String\r\n\treturns          Integer, Array # default value: 0\r\n\ttimeout          Integer, String, Float # default value: 3600\r\n\tumask            String, Integer\r\n\tuser             String, Integer\r\n\taction           Symbol # defaults to :run if not specified\nend",
+    "description": "Use the **execute** resource to execute a single command. Commands that are executed with this resource are (by their nature) not idempotent, as they are typically unique to the environment in which they are run. Use `not_if` and `only_if` to guard this resource for idempotence.",
+    "scope": "source.ruby.chef"
+  },
+  "file": {
+    "prefix": "file",
+    "body": "file 'name' do\r\n\tatomic_update              true, false\r\n\tbackup                     Integer, false # default value: 5\r\n\tchecksum                   String\r\n\tcontent                    String\r\n\tforce_unlink               true, false # default value: false\r\n\tgroup                      \r\n\tmanage_symlink_source      true, false\r\n\tmode                       \r\n\towner                      \r\n\tpath                       String # default value: 'name' unless specified\r\n\taction                     Symbol # defaults to :create if not specified\nend",
+    "description": "Use the **file** resource to manage files directly on a node.",
+    "scope": "source.ruby.chef"
+  },
+  "freebsd_package": {
+    "prefix": "freebsd_package",
+    "body": "freebsd_package 'name' do\r\n\toptions           String, Array\r\n\tpackage_name      String, Array\r\n\tsource            String\r\n\ttimeout           String, Integer\r\n\tversion           String, Array\r\n\taction            Symbol # defaults to :install if not specified\nend",
+    "description": "Use the **freebsd_package** resource to manage packages for the FreeBSD platform.",
+    "scope": "source.ruby.chef"
+  },
+  "gem_package": {
+    "prefix": "gem_package",
+    "body": "gem_package 'name' do\r\n\tclear_sources               true, false\r\n\tgem_binary                  String\r\n\tinclude_default_source      true, false\r\n\toptions                     String, Hash, Array\r\n\tpackage_name                String\r\n\tsource                      String, Array\r\n\ttimeout                     String, Integer\r\n\tversion                     String\r\n\taction                      Symbol # defaults to :install if not specified\nend",
+    "description": "Use the **gem_package** resource to manage gem packages that are only included in recipes.\nWhen a gem is installed from a local file, it must be added to the node using the **remote_file** or **cookbook_file** resources.",
+    "scope": "source.ruby.chef"
+  },
+  "git": {
+    "prefix": "git",
+    "body": "git 'name' do\r\n\tadditional_remotes      Hash # default value: {}\r\n\tcheckout_branch         String\r\n\tdepth                   Integer\r\n\tdestination             String # default value: 'name' unless specified\r\n\tenable_checkout         true, false # default value: true\r\n\tenable_submodules       true, false # default value: false\r\n\tenvironment             Hash\r\n\tgroup                   String, Integer\r\n\tremote                  String # default value: \"origin\"\r\n\trepository              String\r\n\trevision                String # default value: \"HEAD\"\r\n\tssh_wrapper             String\r\n\ttimeout                 Integer\r\n\tuser                    String, Integer\r\n\taction                  Symbol # defaults to :sync if not specified\nend",
+    "description": "Use the **git** resource to manage source control resources that exist in a git repository. git version 1.6.5 (or higher) is required to use all of the functionality in the git resource.",
+    "scope": "source.ruby.chef"
+  },
+  "group": {
+    "prefix": "group",
+    "body": "group 'name' do\r\n\tappend                true, false # default value: false\r\n\tcomment               String\r\n\texcluded_members      String, Array # default value: []\r\n\tgid                   String, Integer\r\n\tgroup_name            String # default value: 'name' unless specified\r\n\tmembers               String, Array # default value: []\r\n\tnon_unique            true, false # default value: false\r\n\tsystem                true, false # default value: false\r\n\taction                Symbol # defaults to :create if not specified\nend",
+    "description": "Use the **group** resource to manage a local group.",
+    "scope": "source.ruby.chef"
+  },
+  "habitat_config": {
+    "prefix": "habitat_config",
+    "body": "habitat_config 'name' do\r\n\tconfig                  Mash (Hash-like)\r\n\tgateway_auth_token      String\r\n\tremote_sup              String # default value: \"127.0.0.1:9632\"\r\n\tremote_sup_http         String # default value: \"127.0.0.1:9631\"\r\n\tservice_group           String # default value: 'name' unless specified\r\n\tuser                    String\r\n\taction                  Symbol # defaults to :apply if not specified\nend",
+    "description": "Use the **habitat_config** resource to apply a configuration to a Chef Habitat service.",
+    "scope": "source.ruby.chef"
+  },
+  "habitat_install": {
+    "prefix": "habitat_install",
+    "body": "habitat_install 'name' do\r\n\tbldr_url         String\r\n\tcreate_user      true, false # default value: true\r\n\thab_version      String\r\n\tinstall_url      String\r\n\tlicense          String\r\n\ttmp_dir          String\r\n\taction           Symbol # defaults to :install if not specified\nend",
+    "description": "Use the **habitat_install** resource to install Chef Habitat.",
+    "scope": "source.ruby.chef"
+  },
+  "habitat_package": {
+    "prefix": "habitat_package",
+    "body": "habitat_package 'name' do\r\n\tauth_token        String\r\n\tbinlink           true, false, force # default value: false\r\n\tbldr_url          String # default value: \"https://bldr.habitat.sh\"\r\n\tchannel           String # default value: \"stable\"\r\n\texclude           String\r\n\tkeep_latest       String\r\n\tno_deps           true, false # default value: false\r\n\toptions           String\r\n\tpackage_name      String, Array\r\n\tsource            String\r\n\ttimeout           String, Integer\r\n\tversion           String, Array\r\n\taction            Symbol # defaults to :install if not specified\nend",
+    "description": "Use the **habitat_package** to install or remove Chef Habitat packages from Habitat Builder.",
+    "scope": "source.ruby.chef"
+  },
+  "habitat_service": {
+    "prefix": "habitat_service",
+    "body": "habitat_service 'name' do\r\n\tbind                       String, Array # default value: []\r\n\tbinding_mode               Symbol, String # default value: :strict\r\n\tbldr_url                   String # default value: \"https://bldr.habitat.sh/\"\r\n\tchannel                    Symbol, String # default value: :stable\r\n\tgateway_auth_token         String\r\n\thealth_check_interval      Integer # default value: 30\r\n\tremote_sup                 String # default value: \"127.0.0.1:9632\"\r\n\tremote_sup_http            String # default value: \"127.0.0.1:9631\"\r\n\tservice_group              String # default value: \"default\"\r\n\tservice_name               String # default value: 'name' unless specified\r\n\tshutdown_timeout           Integer # default value: 8\r\n\tstrategy                   Symbol, String # default value: :none\r\n\ttopology                   Symbol, String # default value: :standalone\r\n\tupdate_condition           Symbol, String # default value: :latest\r\n\taction                     Symbol # defaults to :load if not specified\nend",
+    "description": "Use the **habitat_service** resource to manage Chef Habitat services. This requires that `core/hab-sup` be running as a service. See the `habitat_sup` resource documentation for more information.",
+    "scope": "source.ruby.chef"
+  },
+  "habitat_sup": {
+    "prefix": "habitat_sup",
+    "body": "habitat_sup 'name' do\r\n\tauth_token                    String\r\n\tauto_update                   true, false # default value: false\r\n\tbldr_url                      String\r\n\tevent_stream_application      String\r\n\tevent_stream_cert             String\r\n\tevent_stream_environment      String\r\n\tevent_stream_site             String\r\n\tevent_stream_token            String\r\n\tevent_stream_url              String\r\n\tgateway_auth_token            String\r\n\thab_channel                   String\r\n\thealth_check_interval         String, Integer\r\n\tkeep_latest                   String\r\n\tlauncher_version              String\r\n\tlicense                       String\r\n\tlimit_no_files                String\r\n\tlisten_ctl                    String\r\n\tlisten_gossip                 String\r\n\tlisten_http                   String\r\n\torg                           String # default value: \"default\"\r\n\tpeer                          String, Array\r\n\tpermanent_peer                true, false # default value: false\r\n\tring                          String\r\n\tservice_version               String\r\n\tsup_version                   String\r\n\ttoml_config                   true, false # default value: false\r\n\tupdate_condition              String\r\n\taction                        Symbol # defaults to :run if not specified\nend",
+    "description": "Use the **habitat_sup** resource to runs a Chef Habitat supervisor for one or more Chef Habitat services. The resource is commonly used in conjunction with `habitat_service` which will manage the services loaded and started within the supervisor.",
+    "scope": "source.ruby.chef"
+  },
+  "habitat_user_toml": {
+    "prefix": "habitat_user_toml",
+    "body": "habitat_user_toml 'name' do\r\n\tconfig            Mash (Hash-like)\r\n\tservice_name      String # default value: 'name' unless specified\r\n\taction            Symbol # defaults to :create if not specified\nend",
+    "description": "Use the **habitat_user_toml** to template a `user.toml` for Chef Habitat services. Configurations set in the  `user.toml` override the `default.toml` for a given package, which makes it an alternative to applying service group level configuration.",
+    "scope": "source.ruby.chef"
+  },
+  "homebrew_cask": {
+    "prefix": "homebrew_cask",
+    "body": "homebrew_cask 'name' do\r\n\tcask_name          String # default value: 'name' unless specified\r\n\thomebrew_path      String # default value: \"/usr/local/bin/brew\"\r\n\tinstall_cask       true, false # default value: true\r\n\toptions            String\r\n\towner              String, Integer # default value: \"Calculated default username\"\r\n\taction             Symbol # defaults to :install if not specified\nend",
+    "description": "Use the **homebrew_cask** resource to install binaries distributed via the Homebrew package manager.",
+    "scope": "source.ruby.chef"
+  },
+  "homebrew_package": {
+    "prefix": "homebrew_package",
+    "body": "homebrew_package 'name' do\r\n\thomebrew_user      String, Integer\r\n\toptions            String, Array\r\n\tpackage_name       String, Array\r\n\tsource             String\r\n\ttimeout            String, Integer\r\n\tversion            String, Array\r\n\taction             Symbol # defaults to :install if not specified\nend",
+    "description": "Use the **homebrew_package** resource to manage packages for the macOS platform.",
+    "scope": "source.ruby.chef"
+  },
+  "homebrew_tap": {
+    "prefix": "homebrew_tap",
+    "body": "homebrew_tap 'name' do\r\n\tfull               true, false # default value: false\r\n\thomebrew_path      String # default value: \"/usr/local/bin/brew\"\r\n\towner              String # default value: \"Calculated default username\"\r\n\ttap_name           String # default value: 'name' unless specified\r\n\turl                String\r\n\taction             Symbol # defaults to :tap if not specified\nend",
+    "description": "Use the **homebrew_tap** resource to add additional formula repositories to the Homebrew package manager.",
+    "scope": "source.ruby.chef"
+  },
+  "homebrew_update": {
+    "prefix": "homebrew_update",
+    "body": "homebrew_update 'name' do\r\n\tfrequency      Integer # default value: 86400\r\n\taction         Symbol # defaults to :periodic if not specified\nend",
+    "description": "Use the **homebrew_update** resource to manage Homebrew repository updates on macOS.",
+    "scope": "source.ruby.chef"
+  },
+  "hostname": {
+    "prefix": "hostname",
+    "body": "hostname 'name' do\r\n\taliases              Array\r\n\tcompile_time         true, false # default value: true\r\n\tdomain_password      String\r\n\tdomain_user          String\r\n\tfqdn                 String\r\n\thostname             String # default value: 'name' unless specified\r\n\tipaddress            String # default value: The node's IP address as determined by Ohai.\r\n\twindows_reboot       true, false # default value: true\r\n\taction               Symbol # defaults to :set if not specified\nend",
+    "description": "Use the **hostname** resource to set the system's hostname, configure hostname and hosts config file, and re-run the Ohai hostname plugin so the hostname will be available in subsequent cookbooks.",
+    "scope": "source.ruby.chef"
+  },
+  "http_request": {
+    "prefix": "http_request",
+    "body": "http_request 'name' do\r\n\theaders      Hash # default value: {}\r\n\turl          String\r\n\taction       Symbol # defaults to :get if not specified\nend",
+    "description": "Use the **http_request** resource to send an HTTP request (`GET`, `PUT`, `POST`, `DELETE`, `HEAD`, or `OPTIONS`) with an arbitrary message. This resource is often useful when custom callbacks are necessary.",
+    "scope": "source.ruby.chef"
+  },
+  "ifconfig": {
+    "prefix": "ifconfig",
+    "body": "ifconfig 'name' do\r\n\tbcast             String\r\n\tbonding_opts      String\r\n\tbootproto         String\r\n\tbridge            String\r\n\tdevice            String\r\n\tethtool_opts      String\r\n\tfamily            String # default value: \"inet\"\r\n\tgateway           String\r\n\thwaddr            String\r\n\tinet_addr         String\r\n\tmask              String\r\n\tmaster            String\r\n\tmetric            String\r\n\tmtu               String\r\n\tnetwork           String\r\n\tonboot            String\r\n\tonparent          String\r\n\tslave             String\r\n\ttarget            String # default value: 'name' unless specified\r\n\tvlan              String\r\n\taction            Symbol # defaults to :add if not specified\nend",
+    "description": "Use the **ifconfig** resource to manage interfaces on Unix and Linux systems.",
+    "scope": "source.ruby.chef"
+  },
+  "inspec_input": {
+    "prefix": "inspec_input",
+    "body": "inspec_input 'name' do\r\n\tinput       Hash, String # default value: 'name' unless specified\r\n\tsource      Hash, String # default value: 'name' unless specified\r\n\taction      Symbol # defaults to :add if not specified\nend",
+    "description": "Use the **inspec_input** resource to add an input to the Compliance Phase.",
+    "scope": "source.ruby.chef"
+  },
+  "inspec_waiver": {
+    "prefix": "inspec_waiver",
+    "body": "inspec_waiver 'name' do\r\n\tcontrol            String # default value: 'name' unless specified\r\n\texpiration         String\r\n\tjustification      String\r\n\trun_test           true, false\r\n\tsource             Hash, String\r\n\taction             Symbol # defaults to :add if not specified\nend",
+    "description": "Use the **inspec_waiver** resource to add a waiver to the Compliance Phase.",
+    "scope": "source.ruby.chef"
+  },
+  "inspec_waiver_file_entry": {
+    "prefix": "inspec_waiver_file_entry",
+    "body": "inspec_waiver_file_entry 'name' do\r\n\tbackup             false, Integer # default value: false\r\n\tcontrol            String # default value: 'name' unless specified\r\n\texpiration         String\r\n\tfile_path          String\r\n\tjustification      String\r\n\trun_test           true, false\r\n\taction             Symbol # defaults to :add if not specified\nend",
+    "description": "Use the **inspec_waiver_file_entry** resource to add or remove entries from an InSpec waiver file. This can be used in conjunction with the Compliance Phase.",
+    "scope": "source.ruby.chef"
+  },
+  "ips_package": {
+    "prefix": "ips_package",
+    "body": "ips_package 'name' do\r\n\taccept_license      true, false # default value: false\r\n\toptions             String, Array\r\n\tpackage_name        String\r\n\tsource              String\r\n\ttimeout             String, Integer\r\n\tversion             String\r\n\taction              Symbol # defaults to :install if not specified\nend",
+    "description": "Use the **ips_package** resource to manage packages (using Image Packaging System (IPS)) on the Solaris 11 platform.",
+    "scope": "source.ruby.chef"
+  },
+  "kernel_module": {
+    "prefix": "kernel_module",
+    "body": "kernel_module 'name' do\r\n\tload_dir        String # default value: \"/etc/modules-load.d\"\r\n\tmodname         String # default value: 'name' unless specified\r\n\toptions         Array\r\n\tunload_dir      String # default value: \"/etc/modprobe.d\"\r\n\taction          Symbol # defaults to :install if not specified\nend",
+    "description": "Use the **kernel_module** resource to manage kernel modules on Linux systems. This resource can load, unload, blacklist, disable, install, and uninstall modules.",
+    "scope": "source.ruby.chef"
+  },
+  "ksh": {
+    "prefix": "ksh",
+    "body": "ksh 'name' do\r\n\tcode             String\r\n\tcommand          String, Array # default value: 'name' unless specified\r\n\tcreates          String\r\n\tcwd              String\r\n\tdefault_env      true, false # default value: false\r\n\tdomain           String\r\n\televated         true, false # default value: false\r\n\tenvironment      Hash\r\n\tflags            String\r\n\tgroup            String, Integer\r\n\tinput            String\r\n\tinterpreter      String\r\n\tlive_stream      true, false # default value: false\r\n\tlogin            true, false # default value: false\r\n\tpassword         String\r\n\treturns          Integer, Array # default value: 0\r\n\ttimeout          Integer, String, Float # default value: 3600\r\n\tumask            String, Integer\r\n\tuser             String, Integer\r\n\taction           Symbol # defaults to :run if not specified\nend",
+    "description": "Use the **ksh** resource to execute scripts using the Korn shell (ksh) interpreter. This resource may also use any of the actions and properties that are available to the **execute** resource. Commands that are executed with this resource are (by their nature) not idempotent, as they are typically unique to the environment in which they are run. Use `not_if` and `only_if` to guard this resource for idempotence.",
+    "scope": "source.ruby.chef"
+  },
+  "launchd": {
+    "prefix": "launchd",
+    "body": "launchd 'name' do\r\n\tabandon_process_group           true, false\r\n\tbackup                          Integer, false\r\n\tcookbook                        String\r\n\tdebug                           true, false\r\n\tdisabled                        true, false # default value: false\r\n\tenable_globbing                 true, false\r\n\tenable_transactions             true, false\r\n\tenvironment_variables           Hash\r\n\texit_timeout                    Integer\r\n\tgroup                           String, Integer\r\n\thard_resource_limits            Hash\r\n\tinetd_compatibility             Hash\r\n\tinit_groups                     true, false\r\n\tkeep_alive                      true, false, Hash\r\n\tlabel                           String # default value: 'name' unless specified\r\n\tlaunch_events                   Hash\r\n\tlaunch_only_once                true, false\r\n\tld_group                        String\r\n\tlimit_load_from_hosts           Array\r\n\tlimit_load_to_hosts             Array\r\n\tlimit_load_to_session_type      Array, String\r\n\tlow_priority_io                 true, false\r\n\tmach_services                   Hash\r\n\tmode                            String, Integer\r\n\tnice                            Integer\r\n\ton_demand                       true, false\r\n\towner                           String, Integer\r\n\tpath                            String\r\n\tplist_hash                      Hash\r\n\tprocess_type                    String\r\n\tprogram                         String\r\n\tprogram_arguments               Array\r\n\tqueue_directories               Array\r\n\troot_directory                  String\r\n\trun_at_load                     true, false\r\n\tsession_type                    String\r\n\tsockets                         Hash\r\n\tsoft_resource_limits            Array\r\n\tsource                          String\r\n\tstandard_error_path             String\r\n\tstandard_in_path                String\r\n\tstandard_out_path               String\r\n\tstart_calendar_interval         Hash, Array\r\n\tstart_interval                  Integer\r\n\tstart_on_mount                  true, false\r\n\tthrottle_interval               Integer\r\n\ttime_out                        Integer\r\n\ttype                            String # default value: \"daemon\"\r\n\tumask                           Integer\r\n\tusername                        String\r\n\twait_for_debugger               true, false\r\n\twatch_paths                     Array\r\n\tworking_directory               String\r\n\taction                          Symbol # defaults to :create if not specified\nend",
+    "description": "Use the **launchd** resource to manage system-wide services (daemons) and per-user services (agents) on the macOS platform.",
+    "scope": "source.ruby.chef"
+  },
+  "link": {
+    "prefix": "link",
+    "body": "link 'name' do\r\n\tgroup            String, Integer\r\n\tlink_type        String, Symbol # default value: :symbolic\r\n\towner            String, Integer\r\n\ttarget_file      String # default value: 'name' unless specified\r\n\tto               String\r\n\taction           Symbol # defaults to :create if not specified\nend",
+    "description": "Use the **link** resource to create symbolic or hard links.\n\nA symbolic link—sometimes referred to as a soft link—is a directory entry that associates a file name with a string that contains an absolute or relative path to a file on any file system. In other words, 'a file that contains a path that points to another file.' A symbolic link creates a new file with a new inode that points to the inode location of the original file.\n\nA hard link is a directory entry that associates a file with another file in the same file system. In other words, 'multiple directory entries to the same file.' A hard link creates a new file that points to the same inode as the original file.",
+    "scope": "source.ruby.chef"
+  },
+  "locale": {
+    "prefix": "locale",
+    "body": "locale 'name' do\r\n\tlang        String\r\n\tlc_env      Hash # default value: {}\r\n\taction      Symbol # defaults to :update if not specified\nend",
+    "description": "Use the **locale** resource to set the system's locale on Debian and Windows systems. Windows support was added in Chef Infra Client 16.0",
+    "scope": "source.ruby.chef"
+  },
+  "log": {
+    "prefix": "log",
+    "body": "log 'name' do\r\n\tlevel        Symbol # default value: :info\r\n\tmessage      String # default value: 'name' unless specified\r\n\taction       Symbol # defaults to :write if not specified\nend",
+    "description": "Use the **log** resource to create log entries. The log resource behaves like any other resource: built into the resource collection during the compile phase, and then run during the execution phase. (To create a log entry that is not built into the resource collection, use Chef::Log instead of the log resource.)",
+    "scope": "source.ruby.chef"
+  },
+  "macos_userdefaults": {
+    "prefix": "macos_userdefaults",
+    "body": "macos_userdefaults 'name' do\r\n\tdomain      String # default value: NSGlobalDomain: the global domain.\r\n\thost        String, Symbol\r\n\tkey         String\r\n\tsudo        true, false # default value: false\r\n\ttype        String\r\n\tuser        String\r\n\tvalue       Integer, Float, String, true, false, Hash, Array\r\n\taction      Symbol # defaults to :write if not specified\nend",
+    "description": "Use the **macos_userdefaults** resource to manage the macOS user defaults system. The properties of this resource are passed to the defaults command, and the parameters follow the convention of that command. See the defaults(1) man page for details on how the tool works.",
+    "scope": "source.ruby.chef"
+  },
+  "macosx_service": {
+    "prefix": "macosx_service",
+    "body": "macosx_service 'name' do\r\n\tinit_command         String\r\n\toptions              Array, String\r\n\tparameters           Hash\r\n\tpattern              String\r\n\tplist                String\r\n\tpriority             Integer, String, Hash\r\n\treload_command       String, false\r\n\trestart_command      String, false\r\n\trun_levels           Array\r\n\tservice_name         String # default value: 'name' unless specified\r\n\tsession_type         String\r\n\tstart_command        String, false\r\n\tstatus_command       String, false\r\n\tstop_command         String, false\r\n\tsupports             Hash # default value: {\"restart\"=>nil, \"reload\"=>nil, \"status\"=>nil}\r\n\ttimeout              Integer # default value: 900\r\n\tuser                 String\r\n\taction               Symbol # defaults to :nothing if not specified\nend",
+    "description": "Use the **macosx_service** resource to manage services on the macOS platform.",
+    "scope": "source.ruby.chef"
+  },
+  "macports_package": {
+    "prefix": "macports_package",
+    "body": "macports_package 'name' do\r\n\toptions           String, Array\r\n\tpackage_name      String\r\n\tsource            String\r\n\ttimeout           String, Integer\r\n\tversion           String\r\n\taction            Symbol # defaults to :install if not specified\nend",
+    "description": "Use the **macports_package** resource to manage packages for the macOS platform using the MacPorts package management system.",
+    "scope": "source.ruby.chef"
+  },
+  "mdadm": {
+    "prefix": "mdadm",
+    "body": "mdadm 'name' do\r\n\tbitmap           String\r\n\tchunk            Integer # default value: 16\r\n\tdevices          Array # default value: []\r\n\tlayout           String\r\n\tlevel            Integer # default value: 1\r\n\tmetadata         String # default value: \"0.90\"\r\n\traid_device      String # default value: 'name' unless specified\r\n\taction           Symbol # defaults to :create if not specified\nend",
+    "description": "Use the **mdadm** resource to manage RAID devices in a Linux environment using the mdadm utility. The mdadm resource will create and assemble an array, but it will not create the config file that is used to persist the array upon reboot. If the config file is required, it must be done by specifying a template with the correct array layout, and then by using the mount provider to create a file systems table (fstab) entry.",
+    "scope": "source.ruby.chef"
+  },
+  "mount": {
+    "prefix": "mount",
+    "body": "mount 'name' do\r\n\tdevice           String\r\n\tdevice_type      String, Symbol # default value: :device\r\n\tdomain           String\r\n\tdump             Integer, false # default value: 0\r\n\tenabled          true, false # default value: false\r\n\tfsck_device      String # default value: \"-\"\r\n\tfstype           String # default value: \"auto\"\r\n\tmount_point      String # default value: 'name' unless specified\r\n\toptions          Array, String # default value: [\"defaults\"]\r\n\tpass             Integer, false # default value: 2\r\n\tpassword         String\r\n\tsupports         Array, Hash # default value: \"{ remount: false }\"\r\n\tusername         String\r\n\taction           Symbol # defaults to :mount if not specified\nend",
+    "description": "Use the **mount** resource to manage a mounted file system.",
+    "scope": "source.ruby.chef"
+  },
+  "msu_package": {
+    "prefix": "msu_package",
+    "body": "msu_package 'name' do\r\n\tchecksum          String\r\n\toptions           String, Array\r\n\tpackage_name      String\r\n\tsource            String\r\n\ttimeout           String, Integer # default value: 3600\r\n\taction            Symbol # defaults to :install if not specified\nend",
+    "description": "Use the **msu_package** resource to install Microsoft Update(MSU) packages on Microsoft Windows machines.",
+    "scope": "source.ruby.chef"
+  },
+  "notify_group": {
+    "prefix": "notify_group",
+    "body": "notify_group 'name' do\r\n\taction      Symbol # defaults to :nothing if not specified\nend",
+    "description": "The notify_group resource does nothing, and always fires notifications which are set on it.  Use it to DRY blocks of notifications that are common to multiple resources, and provide a single target for other resources to notify.  Unlike most resources, its default action is :nothing.",
+    "scope": "source.ruby.chef"
+  },
+  "ohai": {
+    "prefix": "ohai",
+    "body": "ohai 'name' do\r\n\tplugin      String\r\n\taction      Symbol # defaults to :reload if not specified\nend",
+    "description": "Use the **ohai** resource to reload the Ohai configuration on a node. This allows recipes that change system attributes (like a recipe that adds a user) to refer to those attributes later on during the Chef Infra Client run.",
+    "scope": "source.ruby.chef"
+  },
+  "ohai_hint": {
+    "prefix": "ohai_hint",
+    "body": "ohai_hint 'name' do\r\n\tcompile_time      true, false # default value: true\r\n\tcontent           Hash\r\n\thint_name         String # default value: 'name' unless specified\r\n\taction            Symbol # defaults to :create if not specified\nend",
+    "description": "Use the **ohai_hint** resource to aid in configuration detection by passing hint data to Ohai.",
+    "scope": "source.ruby.chef"
+  },
+  "openbsd_package": {
+    "prefix": "openbsd_package",
+    "body": "openbsd_package 'name' do\r\n\toptions           String, Array\r\n\tpackage_name      String\r\n\tsource            String\r\n\ttimeout           String, Integer\r\n\tversion           String\r\n\taction            Symbol # defaults to :install if not specified\nend",
+    "description": "Use the **openbsd_package** resource to manage packages for the OpenBSD platform.",
+    "scope": "source.ruby.chef"
+  },
+  "openssl_dhparam": {
+    "prefix": "openssl_dhparam",
+    "body": "openssl_dhparam 'name' do\r\n\tgenerator       Integer # default value: 2\r\n\tgroup           String, Integer\r\n\tkey_length      Integer # default value: 2048\r\n\tmode            Integer, String # default value: \"0640\"\r\n\towner           String, Integer\r\n\tpath            String # default value: 'name' unless specified\r\n\taction          Symbol # defaults to :create if not specified\nend",
+    "description": "Use the **openssl_dhparam** resource to generate `dhparam.pem` files. If a valid `dhparam.pem` file is found at the specified location, no new file will be created. If a file is found at the specified location but it is not a valid `dhparam.pem` file, it will be overwritten.",
+    "scope": "source.ruby.chef"
+  },
+  "openssl_ec_private_key": {
+    "prefix": "openssl_ec_private_key",
+    "body": "openssl_ec_private_key 'name' do\r\n\tforce           true, false # default value: false\r\n\tgroup           String, Integer\r\n\tkey_cipher      String # default value: \"des3\"\r\n\tkey_curve       String # default value: \"prime256v1\"\r\n\tkey_pass        String\r\n\tmode            Integer, String # default value: \"0600\"\r\n\towner           String, Integer\r\n\tpath            String # default value: 'name' unless specified\r\n\taction          Symbol # defaults to :create if not specified\nend",
+    "description": "Use the **openssl_ec_private_key** resource to generate an elliptic curve (EC) private key file. If a valid EC key file can be opened at the specified location, no new file will be created. If the EC key file cannot be opened, either because it does not exist or because the password to the EC key file does not match the password in the recipe, then it will be overwritten.",
+    "scope": "source.ruby.chef"
+  },
+  "openssl_ec_public_key": {
+    "prefix": "openssl_ec_public_key",
+    "body": "openssl_ec_public_key 'name' do\r\n\tgroup                    String, Integer\r\n\tmode                     Integer, String # default value: \"0640\"\r\n\towner                    String, Integer\r\n\tpath                     String # default value: 'name' unless specified\r\n\tprivate_key_content      String\r\n\tprivate_key_pass         String\r\n\tprivate_key_path         String\r\n\taction                   Symbol # defaults to :create if not specified\nend",
+    "description": "Use the **openssl_ec_public_key** resource to generate elliptic curve (EC) public key files from a given EC private key.",
+    "scope": "source.ruby.chef"
+  },
+  "openssl_rsa_private_key": {
+    "prefix": "openssl_rsa_private_key",
+    "body": "openssl_rsa_private_key 'name' do\r\n\tforce           true, false # default value: false\r\n\tgroup           String, Integer\r\n\tkey_cipher      String # default value: \"des3\"\r\n\tkey_length      Integer # default value: 2048\r\n\tkey_pass        String\r\n\tmode            Integer, String # default value: \"0600\"\r\n\towner           String, Integer\r\n\tpath            String # default value: 'name' unless specified\r\n\taction          Symbol # defaults to :create if not specified\nend",
+    "description": "Use the **openssl_rsa_private_key** resource to generate RSA private key files. If a valid RSA key file can be opened at the specified location, no new file will be created. If the RSA key file cannot be opened, either because it does not exist or because the password to the RSA key file does not match the password in the recipe, it will be overwritten.",
+    "scope": "source.ruby.chef"
+  },
+  "openssl_rsa_public_key": {
+    "prefix": "openssl_rsa_public_key",
+    "body": "openssl_rsa_public_key 'name' do\r\n\tgroup                    String, Integer\r\n\tmode                     Integer, String # default value: \"0640\"\r\n\towner                    String, Integer\r\n\tpath                     String # default value: 'name' unless specified\r\n\tprivate_key_content      String\r\n\tprivate_key_pass         String\r\n\tprivate_key_path         String\r\n\taction                   Symbol # defaults to :create if not specified\nend",
+    "description": "Use the **openssl_rsa_public_key** resource to generate RSA public key files for a given RSA private key.",
+    "scope": "source.ruby.chef"
+  },
+  "openssl_x509_certificate": {
+    "prefix": "openssl_x509_certificate",
+    "body": "openssl_x509_certificate 'name' do\r\n\tca_cert_file             String\r\n\tca_key_file              String\r\n\tca_key_pass              String\r\n\tcity                     String\r\n\tcommon_name              String\r\n\tcountry                  String\r\n\tcsr_file                 String\r\n\temail                    String\r\n\texpire                   Integer # default value: 365\r\n\textensions               Hash # default value: {}\r\n\tgroup                    String, Integer\r\n\tkey_curve                String # default value: \"prime256v1\"\r\n\tkey_file                 String\r\n\tkey_length               Integer # default value: 2048\r\n\tkey_pass                 String\r\n\tkey_type                 String # default value: \"rsa\"\r\n\tmode                     Integer, String\r\n\torg                      String\r\n\torg_unit                 String\r\n\towner                    String, Integer\r\n\tpath                     String # default value: 'name' unless specified\r\n\trenew_before_expiry      Integer\r\n\tstate                    String\r\n\tsubject_alt_name         Array # default value: []\r\n\taction                   Symbol # defaults to :create if not specified\nend",
+    "description": "Use the **openssl_x509_certificate** resource to generate signed or self-signed, PEM-formatted x509 certificates. If no existing key is specified, the resource will automatically generate a passwordless key with the certificate. If a CA private key and certificate are provided, the certificate will be signed with them.",
+    "scope": "source.ruby.chef"
+  },
+  "openssl_x509_crl": {
+    "prefix": "openssl_x509_crl",
+    "body": "openssl_x509_crl 'name' do\r\n\tca_cert_file           String\r\n\tca_key_file            String\r\n\tca_key_pass            String\r\n\texpire                 Integer # default value: 8\r\n\tgroup                  String, Integer\r\n\tmode                   Integer, String\r\n\towner                  String, Integer\r\n\tpath                   String # default value: 'name' unless specified\r\n\trenewal_threshold      Integer # default value: 1\r\n\trevocation_reason      Integer # default value: 0\r\n\tserial_to_revoke       Integer, String\r\n\taction                 Symbol # defaults to :create if not specified\nend",
+    "description": "Use the **openssl_x509_crl** resource to generate PEM-formatted x509 certificate revocation list (CRL) files.",
+    "scope": "source.ruby.chef"
+  },
+  "openssl_x509_request": {
+    "prefix": "openssl_x509_request",
+    "body": "openssl_x509_request 'name' do\r\n\tcity             String\r\n\tcommon_name      String\r\n\tcountry          String\r\n\temail            String\r\n\tgroup            String, Integer\r\n\tkey_curve        String # default value: \"prime256v1\"\r\n\tkey_file         String\r\n\tkey_length       Integer # default value: 2048\r\n\tkey_pass         String\r\n\tkey_type         String # default value: \"ec\"\r\n\tmode             Integer, String\r\n\torg              String\r\n\torg_unit         String\r\n\towner            String, Integer\r\n\tpath             String # default value: 'name' unless specified\r\n\tstate            String\r\n\taction           Symbol # defaults to :create if not specified\nend",
+    "description": "Use the **openssl_x509_request** resource to generate PEM-formatted x509 certificates requests. If no existing key is specified, the resource will automatically generate a passwordless key with the certificate.",
+    "scope": "source.ruby.chef"
+  },
+  "osx_profile": {
+    "prefix": "osx_profile",
+    "body": "osx_profile 'name' do\r\n\tidentifier        String\r\n\tprofile           String, Hash\r\n\tprofile_name      String # default value: 'name' unless specified\r\n\taction            Symbol # defaults to :install if not specified\nend",
+    "description": "Use the **osx_profile** resource to manage configuration profiles (`.mobileconfig` files) on the macOS platform. The **osx_profile** resource installs profiles by using the uuidgen library to generate a unique `ProfileUUID`, and then using the `profiles` command to install the profile on the system.",
+    "scope": "source.ruby.chef"
+  },
+  "package": {
+    "prefix": "package",
+    "body": "package 'name' do\r\n\toptions           String, Array\r\n\tpackage_name      String, Array\r\n\tsource            String\r\n\ttimeout           String, Integer\r\n\tversion           String, Array\r\n\taction            Symbol # defaults to :install if not specified\nend",
+    "description": "Use the **package** resource to manage packages. When the package is installed from a local file (such as with RubyGems, dpkg, or RPM Package Manager), the file must be added to the node using the remote_file or cookbook_file resources.\n\nThis resource is the base resource for several other resources used for package management on specific platforms. While it is possible to use each of these specific resources, it is recommended to use the package resource as often as possible.",
+    "scope": "source.ruby.chef"
+  },
+  "pacman_package": {
+    "prefix": "pacman_package",
+    "body": "pacman_package 'name' do\r\n\toptions           String, Array\r\n\tpackage_name      String, Array\r\n\tsource            String\r\n\ttimeout           String, Integer\r\n\tversion           String, Array\r\n\taction            Symbol # defaults to :install if not specified\nend",
+    "description": "Use the **pacman_package** resource to manage packages (using pacman) on the Arch Linux platform.",
+    "scope": "source.ruby.chef"
+  },
+  "paludis_package": {
+    "prefix": "paludis_package",
+    "body": "paludis_package 'name' do\r\n\toptions           String, Array\r\n\tpackage_name      String\r\n\tsource            String\r\n\ttimeout           String, Integer # default value: 3600\r\n\tversion           String\r\n\taction            Symbol # defaults to :install if not specified\nend",
+    "description": "Use the **paludis_package** resource to manage packages for the Paludis platform.",
+    "scope": "source.ruby.chef"
+  },
+  "perl": {
+    "prefix": "perl",
+    "body": "perl 'name' do\r\n\tcode             String\r\n\tcommand          String, Array # default value: 'name' unless specified\r\n\tcreates          String\r\n\tcwd              String\r\n\tdefault_env      true, false # default value: false\r\n\tdomain           String\r\n\televated         true, false # default value: false\r\n\tenvironment      Hash\r\n\tflags            String\r\n\tgroup            String, Integer\r\n\tinput            String\r\n\tinterpreter      String\r\n\tlive_stream      true, false # default value: false\r\n\tlogin            true, false # default value: false\r\n\tpassword         String\r\n\treturns          Integer, Array # default value: 0\r\n\ttimeout          Integer, String, Float # default value: 3600\r\n\tumask            String, Integer\r\n\tuser             String, Integer\r\n\taction           Symbol # defaults to :run if not specified\nend",
+    "description": "Use the **perl** resource to execute scripts using the Perl interpreter. This resource may also use any of the actions and properties that are available to the **execute** resource. Commands that are executed with this resource are (by their nature) not idempotent, as they are typically unique to the environment in which they are run. Use `not_if` and `only_if` to guard this resource for idempotence.",
+    "scope": "source.ruby.chef"
+  },
+  "plist": {
+    "prefix": "plist",
+    "body": "plist 'name' do\r\n\tencoding      String # default value: \"binary\"\r\n\tentry         String\r\n\tgroup         String # default value: \"wheel\"\r\n\tmode          String, Integer\r\n\towner         String # default value: \"root\"\r\n\tpath          String # default value: 'name' unless specified\r\n\tvalue         true, false, String, Integer, Float, Hash\r\n\taction        Symbol # defaults to :set if not specified\nend",
+    "description": "Use the **plist** resource to set config values in plist files on macOS systems.",
+    "scope": "source.ruby.chef"
+  },
+  "portage_package": {
+    "prefix": "portage_package",
+    "body": "portage_package 'name' do\r\n\toptions           String, Array\r\n\tpackage_name      String\r\n\tsource            String\r\n\ttimeout           String, Integer # default value: 3600\r\n\tversion           String\r\n\taction            Symbol # defaults to :install if not specified\nend",
+    "description": "Use the **portage_package** resource to manage packages for the Gentoo platform.",
+    "scope": "source.ruby.chef"
+  },
+  "powershell_package": {
+    "prefix": "powershell_package",
+    "body": "powershell_package 'name' do\r\n\toptions                   String, Array\r\n\tpackage_name              String, Array\r\n\tskip_publisher_check      true, false # default value: false\r\n\tsource                    String\r\n\ttimeout                   String, Integer\r\n\tversion                   String, Array\r\n\taction                    Symbol # defaults to :install if not specified\nend",
+    "description": "Use the **powershell_package** resource to install and manage packages via the PowerShell Package Manager for the Microsoft Windows platform. The powershell_package resource requires administrative access, and a source must be configured in the PowerShell Package Manager via the powershell_package_source resource.",
+    "scope": "source.ruby.chef"
+  },
+  "powershell_package_source": {
+    "prefix": "powershell_package_source",
+    "body": "powershell_package_source 'name' do\r\n\tnew_name                     String\r\n\tpassword                     String\r\n\tprovider_name                String # default value: \"NuGet\"\r\n\tpublish_location             String\r\n\tscript_publish_location      String\r\n\tscript_source_location       String\r\n\tsource_location              String\r\n\tsource_name                  String # default value: 'name' unless specified\r\n\ttrusted                      true, false # default value: false\r\n\tuser                         String\r\n\taction                       Symbol # defaults to :register if not specified\nend",
+    "description": "Use the **powershell_package_source** resource to register a PowerShell package source and a Powershell package provider. There are 2 distinct objects we care about here. The first is a Package Source like a PowerShell Repository or a Nuget Source. The second object is a provider that PowerShell uses to get to that source with, like PowerShellGet, Nuget, Chocolatey, etc.",
+    "scope": "source.ruby.chef"
+  },
+  "powershell_script": {
+    "prefix": "powershell_script",
+    "body": "powershell_script 'name' do\r\n\tcode                        String\r\n\tcommand                     String, Array # default value: 'name' unless specified\r\n\tconvert_boolean_return      true, false # default value: false\r\n\tcreates                     String\r\n\tcwd                         String\r\n\tdefault_env                 true, false # default value: false\r\n\tdomain                      String\r\n\televated                    true, false # default value: false\r\n\tenvironment                 Hash\r\n\tflags                       String\r\n\tgroup                       String, Integer\r\n\tinput                       String\r\n\tinterpreter                 String # default value: \"powershell\"\r\n\tlive_stream                 true, false # default value: false\r\n\tlogin                       true, false # default value: false\r\n\tpassword                    String\r\n\treturns                     Integer, Array # default value: 0\r\n\ttimeout                     Integer, String, Float # default value: 3600\r\n\tumask                       String, Integer\r\n\tuser                        String, Integer\r\n\taction                      Symbol # defaults to :run if not specified\nend",
+    "description": "Use the **powershell_script** resource to execute a script using the Windows PowerShell interpreter, much like how the script and script-based resources **bash**, **csh**, **perl**, **python**, and **ruby** are used. The **powershell_script** resource is specific to the Microsoft Windows platform, but may use both the Windows PowerShell interpreter or the PowerShell Core (pwsh) interpreter as of Chef Infra Client 16.6 and later.\n\nThe **powershell_script** resource creates and executes a temporary file rather than running the command inline. Commands that are executed with this resource are (by their nature) not idempotent, as they are typically unique to the environment in which they are run. Use `not_if` and `only_if` conditionals to guard this resource for idempotence.",
+    "scope": "source.ruby.chef"
+  },
+  "python": {
+    "prefix": "python",
+    "body": "python 'name' do\r\n\tcode             String\r\n\tcommand          String, Array # default value: 'name' unless specified\r\n\tcreates          String\r\n\tcwd              String\r\n\tdefault_env      true, false # default value: false\r\n\tdomain           String\r\n\televated         true, false # default value: false\r\n\tenvironment      Hash\r\n\tflags            String\r\n\tgroup            String, Integer\r\n\tinput            String\r\n\tinterpreter      String\r\n\tlive_stream      true, false # default value: false\r\n\tlogin            true, false # default value: false\r\n\tpassword         String\r\n\treturns          Integer, Array # default value: 0\r\n\ttimeout          Integer, String, Float # default value: 3600\r\n\tumask            String, Integer\r\n\tuser             String, Integer\r\n\taction           Symbol # defaults to :run if not specified\nend",
+    "description": "Use the **python** resource to execute scripts using the Python interpreter. This resource may also use any of the actions and properties that are available to the **execute** resource. Commands that are executed with this resource are (by their nature) not idempotent, as they are typically unique to the environment in which they are run. Use `not_if` and `only_if` to guard this resource for idempotence.",
+    "scope": "source.ruby.chef"
+  },
+  "reboot": {
+    "prefix": "reboot",
+    "body": "reboot 'name' do\r\n\tdelay_mins      Integer # default value: 0\r\n\treason          String # default value: \"Reboot by Chef Infra Client\"\r\n\taction          Symbol # defaults to :nothing if not specified\nend",
+    "description": "Use the **reboot** resource to reboot a node, a necessary step with some installations on certain platforms. This resource is supported for use on the Microsoft Windows, macOS, and Linux platforms.\nIn using this resource via notifications, it's important to *only* use immediate notifications. Delayed notifications produce unintuitive and probably undesired results.",
+    "scope": "source.ruby.chef"
+  },
+  "registry_key": {
+    "prefix": "registry_key",
+    "body": "registry_key 'name' do\r\n\tarchitecture      Symbol # default value: :machine\r\n\tkey               String # default value: 'name' unless specified\r\n\trecursive         true, false # default value: false\r\n\tvalues            Hash, Array # default value: []\r\n\taction            Symbol # defaults to :create if not specified\nend",
+    "description": "Use the **registry_key** resource to create and delete registry keys in Microsoft Windows.",
+    "scope": "source.ruby.chef"
+  },
+  "remote_directory": {
+    "prefix": "remote_directory",
+    "body": "remote_directory 'name' do\r\n\tcookbook          String\r\n\tfiles_backup      Integer, false # default value: 5\r\n\tfiles_group       String, Integer\r\n\tfiles_mode        String, Integer # default value: \"0644 on *nix systems\"\r\n\tfiles_owner       String, Integer\r\n\tgroup             \r\n\tmode              \r\n\toverwrite         true, false # default value: true\r\n\towner             \r\n\tpath              String # default value: 'name' unless specified\r\n\tpurge             true, false # default value: false\r\n\trecursive         true, false # default value: true\r\n\tsource            String\r\n\taction            Symbol # defaults to :create if not specified\nend",
+    "description": "Use the **remote_directory** resource to incrementally transfer a directory from a cookbook to a node. The directory that is copied from the cookbook should be located under `COOKBOOK_NAME/files/default/REMOTE_DIRECTORY`. The `remote_directory` resource will obey file specificity.",
+    "scope": "source.ruby.chef"
+  },
+  "remote_file": {
+    "prefix": "remote_file",
+    "body": "remote_file 'name' do\r\n\tatomic_update              true, false\r\n\tauthentication             Symbol # default value: :remote\r\n\tbackup                     Integer, false # default value: 5\r\n\tchecksum                   String\r\n\tcontent                    String\r\n\tforce_unlink               true, false # default value: false\r\n\tftp_active_mode            true, false # default value: false\r\n\tgroup                      \r\n\theaders                    Hash # default value: {}\r\n\thttp_options               Hash # default value: {}\r\n\tmanage_symlink_source      true, false\r\n\tmode                       \r\n\towner                      \r\n\tpath                       String # default value: 'name' unless specified\r\n\tremote_domain              String\r\n\tremote_password            String\r\n\tremote_user                String\r\n\tshow_progress              true, false # default value: false\r\n\tssl_verify_mode            Symbol\r\n\tuse_etag                   true, false # default value: true\r\n\tuse_last_modified          true, false # default value: true\r\n\taction                     Symbol # defaults to :create if not specified\nend",
+    "description": "Use the **remote_file** resource to transfer a file from a remote location using file specificity. This resource is similar to the **file** resource.",
+    "scope": "source.ruby.chef"
+  },
+  "rhsm_errata": {
+    "prefix": "rhsm_errata",
+    "body": "rhsm_errata 'name' do\r\n\terrata_id      String # default value: 'name' unless specified\r\n\taction         Symbol # defaults to :install if not specified\nend",
+    "description": "Use the **rhsm_errata** resource to install packages associated with a given Red Hat Subscription Manager Errata ID. This is helpful if packages to mitigate a single vulnerability must be installed on your hosts.",
+    "scope": "source.ruby.chef"
+  },
+  "rhsm_errata_level": {
+    "prefix": "rhsm_errata_level",
+    "body": "rhsm_errata_level 'name' do\r\n\terrata_level      String # default value: 'name' unless specified\r\n\taction            Symbol # defaults to :install if not specified\nend",
+    "description": "Use the **rhsm_errata_level** resource to install all packages of a specified errata level from the Red Hat Subscription Manager. For example, you can ensure that all packages associated with errata marked at a 'Critical' security level are installed.",
+    "scope": "source.ruby.chef"
+  },
+  "rhsm_register": {
+    "prefix": "rhsm_register",
+    "body": "rhsm_register 'name' do\r\n\tactivation_key             String, Array\r\n\tauto_attach                true, false # default value: false\r\n\tenvironment                String\r\n\tforce                      true, false # default value: false\r\n\thttps_for_ca_consumer      true, false # default value: false\r\n\tinstall_katello_agent      true, false # default value: true\r\n\torganization               String\r\n\tpassword                   String\r\n\tsatellite_host             String\r\n\tsystem_name                String\r\n\tusername                   String\r\n\taction                     Symbol # defaults to :register if not specified\nend",
+    "description": "Use the **rhsm_register** resource to register a node with the Red Hat Subscription Manager or a local Red Hat Satellite server.",
+    "scope": "source.ruby.chef"
+  },
+  "rhsm_repo": {
+    "prefix": "rhsm_repo",
+    "body": "rhsm_repo 'name' do\r\n\trepo_name      String # default value: 'name' unless specified\r\n\taction         Symbol # defaults to :enable if not specified\nend",
+    "description": "Use the **rhsm_repo** resource to enable or disable Red Hat Subscription Manager repositories that are made available via attached subscriptions.",
+    "scope": "source.ruby.chef"
+  },
+  "rhsm_subscription": {
+    "prefix": "rhsm_subscription",
+    "body": "rhsm_subscription 'name' do\r\n\tpool_id      String # default value: 'name' unless specified\r\n\taction       Symbol # defaults to :attach if not specified\nend",
+    "description": "Use the **rhsm_subscription** resource to add or remove Red Hat Subscription Manager subscriptions from your host. This can be used when a host's activation_key does not attach all necessary subscriptions to your host.",
+    "scope": "source.ruby.chef"
+  },
+  "route": {
+    "prefix": "route",
+    "body": "route 'name' do\r\n\tcomment         String\r\n\tdevice          String\r\n\tgateway         String\r\n\tmetric          Integer\r\n\tnetmask         String\r\n\troute_type      Symbol, String # default value: :host\r\n\ttarget          String # default value: 'name' unless specified\r\n\taction          Symbol # defaults to :add if not specified\nend",
+    "description": "Use the **route** resource to manage the system routing table in a Linux environment.",
+    "scope": "source.ruby.chef"
+  },
+  "rpm_package": {
+    "prefix": "rpm_package",
+    "body": "rpm_package 'name' do\r\n\tallow_downgrade      true, false # default value: true\r\n\toptions              String, Array\r\n\tpackage_name         String\r\n\tsource               String\r\n\ttimeout              String, Integer\r\n\tversion              String\r\n\taction               Symbol # defaults to :install if not specified\nend",
+    "description": "Use the **rpm_package** resource to manage packages using the RPM Package Manager.",
+    "scope": "source.ruby.chef"
+  },
+  "ruby": {
+    "prefix": "ruby",
+    "body": "ruby 'name' do\r\n\tcode             String\r\n\tcommand          String, Array # default value: 'name' unless specified\r\n\tcreates          String\r\n\tcwd              String\r\n\tdefault_env      true, false # default value: false\r\n\tdomain           String\r\n\televated         true, false # default value: false\r\n\tenvironment      Hash\r\n\tflags            String\r\n\tgroup            String, Integer\r\n\tinput            String\r\n\tinterpreter      String\r\n\tlive_stream      true, false # default value: false\r\n\tlogin            true, false # default value: false\r\n\tpassword         String\r\n\treturns          Integer, Array # default value: 0\r\n\ttimeout          Integer, String, Float # default value: 3600\r\n\tumask            String, Integer\r\n\tuser             String, Integer\r\n\taction           Symbol # defaults to :run if not specified\nend",
+    "description": "Use the **ruby** resource to execute scripts using the Ruby interpreter. This resource may also use any of the actions and properties that are available to the **execute** resource. Commands that are executed with this resource are (by their nature) not idempotent, as they are typically unique to the environment in which they are run. Use `not_if` and `only_if` to guard this resource for idempotence.",
+    "scope": "source.ruby.chef"
+  },
+  "ruby_block": {
+    "prefix": "ruby_block",
+    "body": "ruby_block 'name' do\r\n\tblock_name      String # default value: 'name' unless specified\r\n\taction          Symbol # defaults to :run if not specified\nend",
+    "description": "Use the **ruby_block** resource to execute Ruby code during a Chef Infra Client run. Ruby code in the `ruby_block` resource is evaluated with other resources during convergence, whereas Ruby code outside of a `ruby_block` resource is evaluated before other resources, as the recipe is compiled.",
+    "scope": "source.ruby.chef"
+  },
+  "script": {
+    "prefix": "script",
+    "body": "script 'name' do\r\n\tcode             String\r\n\tcommand          String, Array # default value: 'name' unless specified\r\n\tcreates          String\r\n\tcwd              String\r\n\tdefault_env      true, false # default value: false\r\n\tdomain           String\r\n\televated         true, false # default value: false\r\n\tenvironment      Hash\r\n\tflags            String\r\n\tgroup            String, Integer\r\n\tinput            String\r\n\tinterpreter      String\r\n\tlive_stream      true, false # default value: false\r\n\tlogin            true, false # default value: false\r\n\tpassword         String\r\n\treturns          Integer, Array # default value: 0\r\n\ttimeout          Integer, String, Float # default value: 3600\r\n\tumask            String, Integer\r\n\tuser             String, Integer\r\n\taction           Symbol # defaults to :run if not specified\nend",
+    "description": "Use the **script** resource to execute scripts using a specified interpreter, such as Bash, csh, Perl, Python, or Ruby. This resource may also use any of the actions and properties that are available to the **execute** resource. Commands that are executed with this resource are (by their nature) not idempotent, as they are typically unique to the environment in which they are run. Use `not_if` and `only_if` to guard this resource for idempotence.",
+    "scope": "source.ruby.chef"
+  },
+  "service": {
+    "prefix": "service",
+    "body": "service 'name' do\r\n\tinit_command         String\r\n\toptions              Array, String\r\n\tparameters           Hash\r\n\tpattern              String\r\n\tpriority             Integer, String, Hash\r\n\treload_command       String, false\r\n\trestart_command      String, false\r\n\trun_levels           Array\r\n\tservice_name         String # default value: 'name' unless specified\r\n\tstart_command        String, false\r\n\tstatus_command       String, false\r\n\tstop_command         String, false\r\n\tsupports             Hash # default value: {\"restart\"=>nil, \"reload\"=>nil, \"status\"=>nil}\r\n\ttimeout              Integer # default value: 900\r\n\tuser                 String\r\n\taction               Symbol # defaults to :nothing if not specified\nend",
+    "description": "Use the **service** resource to manage a service.",
+    "scope": "source.ruby.chef"
+  },
+  "smartos_package": {
+    "prefix": "smartos_package",
+    "body": "smartos_package 'name' do\r\n\toptions           String, Array\r\n\tpackage_name      String\r\n\tsource            String\r\n\ttimeout           String, Integer\r\n\tversion           String\r\n\taction            Symbol # defaults to :install if not specified\nend",
+    "description": "Use the **smartos_package** resource to manage packages for the SmartOS platform.",
+    "scope": "source.ruby.chef"
+  },
+  "snap_package": {
+    "prefix": "snap_package",
+    "body": "snap_package 'name' do\r\n\tchannel           String # default value: \"stable\"\r\n\toptions           String, Array\r\n\tpackage_name      String, Array\r\n\tsource            String\r\n\ttimeout           String, Integer\r\n\tversion           String, Array\r\n\taction            Symbol # defaults to :install if not specified\nend",
+    "description": "Use the **snap_package** resource to manage snap packages on Debian and Ubuntu platforms.",
+    "scope": "source.ruby.chef"
+  },
+  "solaris_package": {
+    "prefix": "solaris_package",
+    "body": "solaris_package 'name' do\r\n\toptions           String, Array\r\n\tpackage_name      String\r\n\tsource            String\r\n\ttimeout           String, Integer\r\n\tversion           String\r\n\taction            Symbol # defaults to :install if not specified\nend",
+    "description": "Use the **solaris_package** resource to manage packages on the Solaris platform.",
+    "scope": "source.ruby.chef"
+  },
+  "ssh_known_hosts_entry": {
+    "prefix": "ssh_known_hosts_entry",
+    "body": "ssh_known_hosts_entry 'name' do\r\n\tfile_location      String # default value: \"/etc/ssh/ssh_known_hosts\"\r\n\tgroup              String, Integer # default value: The root user's group depending on platform.\r\n\thash_entries       true, false # default value: false\r\n\thost               String # default value: 'name' unless specified\r\n\tkey                String\r\n\tkey_type           String # default value: \"rsa\"\r\n\tmode               String # default value: \"0644\"\r\n\towner              String, Integer # default value: \"root\"\r\n\tport               Integer # default value: 22\r\n\ttimeout            Integer # default value: 30\r\n\taction             Symbol # defaults to :create if not specified\nend",
+    "description": "Use the **ssh_known_hosts_entry** resource to add an entry for the specified host in /etc/ssh/ssh_known_hosts or a user's known hosts file if specified.",
+    "scope": "source.ruby.chef"
+  },
+  "subversion": {
+    "prefix": "subversion",
+    "body": "subversion 'name' do\r\n\tdestination        String # default value: 'name' unless specified\r\n\tenvironment        Hash\r\n\tgroup              String, Integer\r\n\trepository         String\r\n\trevision           String # default value: \"HEAD\"\r\n\tsvn_arguments      String, false # default value: \"--no-auth-cache\"\r\n\tsvn_binary         String\r\n\tsvn_info_args      String, false # default value: \"--no-auth-cache\"\r\n\tsvn_password       String\r\n\tsvn_username       String\r\n\ttimeout            Integer\r\n\tuser               String, Integer\r\n\taction             Symbol # defaults to :sync if not specified\nend",
+    "description": "Use the **subversion** resource to manage source control resources that exist in a Subversion repository.",
+    "scope": "source.ruby.chef"
+  },
+  "sudo": {
+    "prefix": "sudo",
+    "body": "sudo 'name' do\r\n\tcommand_aliases        Array # default value: []\r\n\tcommands               Array # default value: [\"ALL\"]\r\n\tconfig_prefix          String # default value: \"Prefix values based on the node's platform\"\r\n\tdefaults               Array # default value: []\r\n\tenv_keep_add           Array # default value: []\r\n\tenv_keep_subtract      Array # default value: []\r\n\tfilename               String # default value: 'name' unless specified\r\n\tgroups                 String, Array # default value: []\r\n\thost                   String # default value: \"ALL\"\r\n\tnoexec                 true, false # default value: false\r\n\tnopasswd               true, false # default value: false\r\n\trunas                  String # default value: \"ALL\"\r\n\tsetenv                 true, false # default value: false\r\n\ttemplate               String\r\n\tusers                  String, Array # default value: []\r\n\tvariables              Hash\r\n\tvisudo_binary          String # default value: \"/usr/sbin/visudo\"\r\n\taction                 Symbol # defaults to :create if not specified\nend",
+    "description": "Use the **sudo** resource to add or remove individual sudo entries using sudoers.d files. Sudo version 1.7.2 or newer is required to use the sudo resource, as it relies on the `#includedir` directive introduced in version 1.7.2. This resource does not enforce installation of the required sudo version. Chef-supported releases of Ubuntu, SuSE, Debian, and RHEL (6+) all support this feature.",
+    "scope": "source.ruby.chef"
+  },
+  "swap_file": {
+    "prefix": "swap_file",
+    "body": "swap_file 'name' do\r\n\tpath            String # default value: 'name' unless specified\r\n\tpersist         true, false # default value: false\r\n\tsize            Integer\r\n\tswappiness      Integer\r\n\ttimeout         Integer # default value: 600\r\n\taction          Symbol # defaults to :create if not specified\nend",
+    "description": "Use the **swap_file** resource to create or delete swap files on Linux systems, and optionally to manage the swappiness configuration for a host.",
+    "scope": "source.ruby.chef"
+  },
+  "sysctl": {
+    "prefix": "sysctl",
+    "body": "sysctl 'name' do\r\n\tcomment           Array, String # default value: []\r\n\tconf_dir          String # default value: \"/etc/sysctl.d\"\r\n\tignore_error      true, false # default value: false\r\n\tkey               String # default value: 'name' unless specified\r\n\tvalue             Array, String, Integer, Float\r\n\taction            Symbol # defaults to :apply if not specified\nend",
+    "description": "Use the **sysctl** resource to set or remove kernel parameters using the `sysctl` command line tool and configuration files in the system's `sysctl.d` directory. Configuration files managed by this resource are named `99-chef-KEYNAME.conf`.",
+    "scope": "source.ruby.chef"
+  },
+  "systemd_unit": {
+    "prefix": "systemd_unit",
+    "body": "systemd_unit 'name' do\r\n\tcontent              String, Hash\r\n\ttriggers_reload      true, false # default value: true\r\n\tunit_name            String # default value: 'name' unless specified\r\n\tuser                 String\r\n\tverify               true, false # default value: true\r\n\taction               Symbol # defaults to :nothing if not specified\nend",
+    "description": "Use the **systemd_unit** resource to create, manage, and run [systemd units](https://www.freedesktop.org/software/systemd/man/systemd.html#Concepts).",
+    "scope": "source.ruby.chef"
+  },
+  "template": {
+    "prefix": "template",
+    "body": "template 'name' do\r\n\tatomic_update              true, false\r\n\tbackup                     Integer, false # default value: 5\r\n\tchecksum                   String\r\n\tcontent                    String\r\n\tcookbook                   String\r\n\tforce_unlink               true, false # default value: false\r\n\tgroup                      \r\n\tlocal                      true, false # default value: false\r\n\tmanage_symlink_source      true, false\r\n\tmode                       \r\n\towner                      \r\n\tpath                       String # default value: 'name' unless specified\r\n\tvariables                  Hash # default value: {}\r\n\taction                     Symbol # defaults to :create if not specified\nend",
+    "description": null,
+    "scope": "source.ruby.chef"
+  },
+  "timezone": {
+    "prefix": "timezone",
+    "body": "timezone 'name' do\r\n\ttimezone      String # default value: 'name' unless specified\r\n\taction        Symbol # defaults to :set if not specified\nend",
+    "description": "Use the **timezone** resource to change the system timezone on Windows, Linux, and macOS hosts. Timezones are specified in tz database format, with a complete list of available TZ values for Linux and macOS here: <https://en.wikipedia.org/wiki/List_of_tz_database_time_zones>. On Windows systems run `tzutil /l` for a complete list of valid timezones.",
+    "scope": "source.ruby.chef"
+  },
+  "user_ulimit": {
+    "prefix": "user_ulimit",
+    "body": "user_ulimit 'name' do\r\n\tcore_hard_limit            String, Integer\r\n\tcore_limit                 String, Integer\r\n\tcore_soft_limit            String, Integer\r\n\tfilehandle_hard_limit      String, Integer\r\n\tfilehandle_limit           String, Integer\r\n\tfilehandle_soft_limit      String, Integer\r\n\tfilename                   String\r\n\tmemory_limit               String, Integer\r\n\tprocess_hard_limit         String, Integer\r\n\tprocess_limit              String, Integer\r\n\tprocess_soft_limit         String, Integer\r\n\trtprio_hard_limit          String, Integer\r\n\trtprio_limit               String, Integer\r\n\trtprio_soft_limit          String, Integer\r\n\tstack_hard_limit           String, Integer\r\n\tstack_limit                String, Integer\r\n\tstack_soft_limit           String, Integer\r\n\tusername                   String # default value: 'name' unless specified\r\n\tvirt_limit                 String, Integer\r\n\taction                     Symbol # defaults to :create if not specified\nend",
+    "description": "Use the **user_ulimit** resource to create individual ulimit files that are installed into the `/etc/security/limits.d/` directory.",
+    "scope": "source.ruby.chef"
+  },
+  "windows_ad_join": {
+    "prefix": "windows_ad_join",
+    "body": "windows_ad_join 'name' do\r\n\tdomain_name          String # default value: 'name' unless specified\r\n\tdomain_password      String\r\n\tdomain_user          String\r\n\tnew_hostname         String\r\n\tou_path              String\r\n\treboot               Symbol # default value: :immediate\r\n\treboot_delay         Integer # default value: 0\r\n\tworkgroup_name       String\r\n\taction               Symbol # defaults to :join if not specified\nend",
+    "description": "Use the **windows_ad_join** resource to join a Windows Active Directory domain.",
+    "scope": "source.ruby.chef"
+  },
+  "windows_audit_policy": {
+    "prefix": "windows_audit_policy",
+    "body": "windows_audit_policy 'name' do\r\n\taudit_base_directories       true, false\r\n\taudit_base_objects           true, false\r\n\tcrash_on_audit_fail          true, false\r\n\texclude_user                 String\r\n\tfailure                      true, false\r\n\tfull_privilege_auditing      true, false\r\n\tinclude_user                 String\r\n\tsubcategory                  String, Array\r\n\tsuccess                      true, false\r\n\taction                       Symbol # defaults to :set if not specified\nend",
+    "description": "Use the **windows_audit_policy** resource to configure system level and per-user Windows advanced audit policy settings.",
+    "scope": "source.ruby.chef"
+  },
+  "windows_auto_run": {
+    "prefix": "windows_auto_run",
+    "body": "windows_auto_run 'name' do\r\n\targs              String\r\n\tpath              String\r\n\tprogram_name      String # default value: 'name' unless specified\r\n\troot              Symbol # default value: :machine\r\n\taction            Symbol # defaults to :create if not specified\nend",
+    "description": "Use the **windows_auto_run** resource to set applications to run at login.",
+    "scope": "source.ruby.chef"
+  },
+  "windows_certificate": {
+    "prefix": "windows_certificate",
+    "body": "windows_certificate 'name' do\r\n\texportable           true, false # default value: false\r\n\toutput_path          String\r\n\tpfx_password         String\r\n\tprivate_key_acl      Array\r\n\tsource               String # default value: 'name' unless specified\r\n\tstore_name           String # default value: \"MY\"\r\n\tuser_store           true, false # default value: false\r\n\taction               Symbol # defaults to :create if not specified\nend",
+    "description": "Use the **windows_certificate** resource to install a certificate into the Windows certificate store from a file. The resource grants read-only access to the private key for designated accounts. Due to current limitations in WinRM, installing certificates remotely may not work if the operation requires a user profile. Operations on the local machine store should still work.",
+    "scope": "source.ruby.chef"
+  },
+  "windows_defender": {
+    "prefix": "windows_defender",
+    "body": "windows_defender 'name' do\r\n\tintrusion_protection_system      true, false # default value: true\r\n\tlock_ui                          true, false # default value: false\r\n\trealtime_protection              true, false # default value: true\r\n\tscan_archives                    true, false # default value: true\r\n\tscan_email                       true, false # default value: false\r\n\tscan_mapped_drives               true, false # default value: true\r\n\tscan_network_files               true, false # default value: false\r\n\tscan_removable_drives            true, false # default value: false\r\n\tscan_scripts                     true, false # default value: false\r\n\taction                           Symbol # defaults to :enable if not specified\nend",
+    "description": "Use the **windows_defender** resource to enable or disable the Microsoft Windows Defender service.",
+    "scope": "source.ruby.chef"
+  },
+  "windows_defender_exclusion": {
+    "prefix": "windows_defender_exclusion",
+    "body": "windows_defender_exclusion 'name' do\r\n\textensions         String, Array # default value: []\r\n\tpaths              String, Array # default value: []\r\n\tprocess_paths      String, Array # default value: []\r\n\taction             Symbol # defaults to :add if not specified\nend",
+    "description": "Use the **windows_defender_exclusion** resource to exclude paths, processes, or file types from Windows Defender realtime protection scanning.",
+    "scope": "source.ruby.chef"
+  },
+  "windows_dfs_folder": {
+    "prefix": "windows_dfs_folder",
+    "body": "windows_dfs_folder 'name' do\r\n\tdescription         String\r\n\tfolder_path         String # default value: 'name' unless specified\r\n\tnamespace_name      String\r\n\ttarget_path         String\r\n\taction              Symbol # defaults to :create if not specified\nend",
+    "description": "Use the **windows_dfs_folder** resource to creates a folder within DFS as many levels deep as required.",
+    "scope": "source.ruby.chef"
+  },
+  "windows_dfs_namespace": {
+    "prefix": "windows_dfs_namespace",
+    "body": "windows_dfs_namespace 'name' do\r\n\tchange_users        Array # default value: []\r\n\tdescription         String\r\n\tfull_users          Array # default value: [\"BUILTIN\\\\administrators\"]\r\n\tnamespace_name      String # default value: 'name' unless specified\r\n\tread_users          Array # default value: []\r\n\troot                String # default value: \"C:\\\\DFSRoots\"\r\n\taction              Symbol # defaults to :create if not specified\nend",
+    "description": "Use the **windows_dfs_namespace** resource to creates a share and DFS namespace on a Windows server.",
+    "scope": "source.ruby.chef"
+  },
+  "windows_dfs_server": {
+    "prefix": "windows_dfs_server",
+    "body": "windows_dfs_server 'name' do\r\n\tenable_site_costed_referrals      true, false # default value: false\r\n\tldap_timeout_secs                 Integer # default value: 30\r\n\tprefer_login_dc                   true, false # default value: false\r\n\tsync_interval_secs                Integer # default value: 3600\r\n\tuse_fqdn                          true, false # default value: false\r\n\taction                            Symbol # defaults to :configure if not specified\nend",
+    "description": "Use the **windows_dfs_server** resource to set system-wide DFS settings.",
+    "scope": "source.ruby.chef"
+  },
+  "windows_dns_record": {
+    "prefix": "windows_dns_record",
+    "body": "windows_dns_record 'name' do\r\n\tdns_server       String # default value: \"localhost\"\r\n\trecord_name      String # default value: 'name' unless specified\r\n\trecord_type      String # default value: \"ARecord\"\r\n\ttarget           String\r\n\tzone             String\r\n\taction           Symbol # defaults to :create if not specified\nend",
+    "description": "The windows_dns_record resource creates a DNS record for the given domain.",
+    "scope": "source.ruby.chef"
+  },
+  "windows_dns_zone": {
+    "prefix": "windows_dns_zone",
+    "body": "windows_dns_zone 'name' do\r\n\treplication_scope      String # default value: \"Domain\"\r\n\tserver_type            String # default value: \"Domain\"\r\n\tzone_name              String # default value: 'name' unless specified\r\n\taction                 Symbol # defaults to :create if not specified\nend",
+    "description": "The windows_dns_zone resource creates an Active Directory Integrated DNS Zone on the local server.",
+    "scope": "source.ruby.chef"
+  },
+  "windows_env": {
+    "prefix": "windows_env",
+    "body": "windows_env 'name' do\r\n\tdelim         String, false\r\n\tkey_name      String # default value: 'name' unless specified\r\n\tuser          String # default value: \"<System>\"\r\n\tvalue         String\r\n\taction        Symbol # defaults to :create if not specified\nend",
+    "description": "Use the **windows_env** resource to manage environment keys in Microsoft Windows. After an environment key is set, Microsoft Windows must be restarted before the environment key will be available to the Task Scheduler.\n\nThis resource was previously called the **env** resource; its name was updated in Chef Infra Client 14.0 to reflect the fact that only Windows is supported. Existing cookbooks using `env` will continue to function, but should be updated to use the new name.",
+    "scope": "source.ruby.chef"
+  },
+  "windows_feature": {
+    "prefix": "windows_feature",
+    "body": "windows_feature 'name' do\r\n\tall                   true, false # default value: false\r\n\tfeature_name          Array, String # default value: 'name' unless specified\r\n\tinstall_method        Symbol # default value: :windows_feature_dism\r\n\tmanagement_tools      true, false # default value: false\r\n\tsource                String\r\n\ttimeout               Integer # default value: 600\r\n\taction                Symbol # defaults to :install if not specified\nend",
+    "description": "Use the **windows_feature** resource to add, remove or entirely delete Windows features and roles. This resource calls the 'windows_feature_dism' or 'windows_feature_powershell' resources depending on the specified installation method, and defaults to DISM, which is available on both Workstation and Server editions of Windows.",
+    "scope": "source.ruby.chef"
+  },
+  "windows_feature_dism": {
+    "prefix": "windows_feature_dism",
+    "body": "windows_feature_dism 'name' do\r\n\tall               true, false # default value: false\r\n\tfeature_name      Array, String # default value: 'name' unless specified\r\n\tsource            String\r\n\ttimeout           Integer # default value: 600\r\n\taction            Symbol # defaults to :install if not specified\nend",
+    "description": "Use the **windows_feature_dism** resource to add, remove, or entirely delete Windows features and roles using DISM.",
+    "scope": "source.ruby.chef"
+  },
+  "windows_feature_powershell": {
+    "prefix": "windows_feature_powershell",
+    "body": "windows_feature_powershell 'name' do\r\n\tall                   true, false # default value: false\r\n\tfeature_name          Array, String # default value: 'name' unless specified\r\n\tmanagement_tools      true, false # default value: false\r\n\tsource                String\r\n\ttimeout               Integer # default value: 600\r\n\taction                Symbol # defaults to :install if not specified\nend",
+    "description": "Use the **windows_feature_powershell** resource to add, remove, or entirely delete Windows features and roles using PowerShell. This resource offers significant speed benefits over the windows_feature_dism resource, but requires installation of the Remote Server Administration Tools on non-server releases of Windows.",
+    "scope": "source.ruby.chef"
+  },
   "windows_firewall_profile": {
     "prefix": "windows_firewall_profile",
-    "body": "windows_firewall_profile '${1:profile_name}' do\r\n\tdefault_inbound_action '${2:Block}'\r\n\tdefault_outbound_action '${3:Allow}'\r\n\tallow_inbound_rules ${4:true}\r\n\tdisplay_notification ${5:false}\r\n\taction :${6:enable}\r\nend\r\n",
-    "description": "Use the windows_firewall_profile resource to enable, disable, and configure the Windows firewall profiles ",
+    "body": "windows_firewall_profile 'name' do\r\n\tallow_inbound_rules             true, false, String\r\n\tallow_local_firewall_rules      true, false, String\r\n\tallow_local_ipsec_rules         true, false, String\r\n\tallow_unicast_response          true, false, String\r\n\tallow_user_apps                 true, false, String\r\n\tallow_user_ports                true, false, String\r\n\tdefault_inbound_action          String\r\n\tdefault_outbound_action         String\r\n\tdisplay_notification            true, false, String\r\n\tprofile                         String # default value: 'name' unless specified\r\n\taction                          Symbol # defaults to :enable if not specified\nend",
+    "description": "Use the **windows_firewall_profile** resource to enable, disable, and configure the Windows firewall.",
     "scope": "source.ruby.chef"
   },
-	"windows_firewall_rule": {
-		"prefix": "windows_firewall_rule",
-		"body": "windows_firewall_rule '${1:App}' do\r\n\tlocal_port '${2:80}'\r\n\tprotocol '${3:TCP}'\r\n\tfirewall_action :${4:allow}\r\n\taction :${5:create}\r\nend\r\n",
-		"description": "Use the windows_firewall_rule resource to create, change or remove windows firewall rules.",
-		"scope": "source.ruby.chef"
+  "windows_firewall_rule": {
+    "prefix": "windows_firewall_rule",
+    "body": "windows_firewall_rule 'name' do\r\n\tdescription          String\r\n\tdirection            Symbol, String # default value: :inbound\r\n\tdisplayname          String # default value: The rule_name property value.\r\n\tenabled              true, false # default value: true\r\n\tfirewall_action      Symbol, String # default value: :allow\r\n\tgroup                String\r\n\ticmp_type            String, Integer # default value: \"Any\"\r\n\tinterface_type       Symbol, String # default value: :any\r\n\tlocal_address        String\r\n\tlocal_port           String, Integer, Array\r\n\tprofile              Symbol, String, Array # default value: :any\r\n\tprogram              String\r\n\tprotocol             String # default value: \"TCP\"\r\n\tremote_address       String, Array\r\n\tremote_port          String, Integer, Array\r\n\trule_name            String # default value: 'name' unless specified\r\n\tservice              String\r\n\taction               Symbol # defaults to :create if not specified\nend",
+    "description": "Use the **windows_firewall_rule** resource to create, change or remove Windows firewall rules.",
+    "scope": "source.ruby.chef"
   },
-	"windows_font": {
-		"prefix": "windows_font",
-		"body": "windows_font '${1:font_name}' do\r\n\tsource '${2:source}\r\n\taction :${3:install}\r\nend\r\n",
-		"description": "Use the windows_font resource to install font files on Windows. By default, the font is sourced from the cookbook using the resource, but a URI source can be specified as well.",
-		"scope": "source.ruby.chef"
-	},
-	"windows_package": {
-		"prefix": "windows_package",
-		"body": "windows_package '${1:package_name}' do\r\n\taction :${2:install}\r\nend\r\n",
-		"description": "Use the windows_package resource to manage packages for the Windows platform.",
-		"scope": "source.ruby.chef"
-	},
+  "windows_font": {
+    "prefix": "windows_font",
+    "body": "windows_font 'name' do\r\n\tfont_name      String # default value: 'name' unless specified\r\n\tsource         String\r\n\taction         Symbol # defaults to :install if not specified\nend",
+    "description": "Use the **windows_font** resource to install font files on Windows. By default, the font is sourced from the cookbook using the resource, but a URI source can be specified as well.",
+    "scope": "source.ruby.chef"
+  },
+  "windows_package": {
+    "prefix": "windows_package",
+    "body": "windows_package 'name' do\r\n\tchecksum                    String\r\n\tinstaller_type              Symbol\r\n\toptions                     String\r\n\tpackage_name                String\r\n\tremote_file_attributes      Hash\r\n\treturns                     String, Integer, Array\r\n\tsource                      String # default value: \"The resource block's name\"\r\n\ttimeout                     String, Integer # default value: \"600 (seconds)\"\r\n\tversion                     String, Array\r\n\taction                      Symbol # defaults to :install if not specified\nend",
+    "description": "Use the **windows_package** resource to manage packages on the Microsoft Windows platform.\nThe **windows_package** resource supports these installer formats:\n  * Microsoft Installer Package (MSI)\n  * Nullsoft Scriptable Install System (NSIS)\n  * Inno Setup (inno)\n  * Wise\n  * InstallShield\n  * Custom installers such as installing a non-.msi file that embeds an .msi-based installer\n\nTo enable idempotence of the `:install` action or to enable the `:remove` action with no source property specified,\n`package_name` MUST be an exact match of the name used by the package installer. The names of installed packages\nWindows knows about can be found in **Add/Remove programs**, in the output of `ohai packages`, or in the\n`DisplayName` property in one of the following in the Windows registry:\n\n* `HKEY_LOCAL_MACHINE\\Software\\Microsoft\\Windows\\CurrentVersion\\Uninstall`\n* `HKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\CurrentVersion\\Uninstall`\n* `HKEY_LOCAL_MACHINE\\Software\\Wow6432Node\\Microsoft\\Windows\\CurrentVersion\\Uninstall`",
+    "scope": "source.ruby.chef"
+  },
   "windows_pagefile": {
-		"prefix": "windows_pagefile",
-		"body": "windows_pagefile '${1:path}' do\r\n\tautomatic_managed ${2:false}\r\n\tinitial_size ${3:0}\r\n\tmaximum_size ${4:0}\r\n\taction :${5:set}\r\nend\r\n",
-		"description": "Use the windows_pagefile resource to configure pagefile settings on Windows.",
-		"scope": "source.ruby.chef"
-	},
-	"windows_path": {
-		"prefix": "windows_path",
-		"body": "windows_path '${1:path}' do\r\n\taction :${2:add}\r\nend\r\n",
-		"description": "Use the windows_path resource to manage the path environment variable on Microsoft Windows.",
-		"scope": "source.ruby.chef"
-	},
-	"windows_printer": {
-		"prefix": "windows_printer",
-		"body": "windows_printer '${1:package_name}' do\r\n\taction :${2:install}\r\nend\r\n",
-		"description": "Use the windows_printer resource to setup Windows printers. This resource does not install a printer driver; you must already have the driver installed on the system.",
-		"scope": "source.ruby.chef"
-	},
-	"windows_printer_port": {
-		"prefix": "windows_printer_port",
-		"body": "windows_printer_port '${1:package_name}' do\r\n\taction :${2:install}\r\nend\r\n",
-		"description": "",
-		"scope": "source.ruby.chef"
-	},
+    "prefix": "windows_pagefile",
+    "body": "windows_pagefile 'name' do\r\n\tautomatic_managed      true, false\r\n\tinitial_size           Integer\r\n\tmaximum_size           Integer\r\n\tpath                   String # default value: 'name' unless specified\r\n\tsystem_managed         true, false\r\n\taction                 Symbol # defaults to :set if not specified\nend",
+    "description": "Use the **windows_pagefile** resource to configure pagefile settings on Windows.",
+    "scope": "source.ruby.chef"
+  },
+  "windows_path": {
+    "prefix": "windows_path",
+    "body": "windows_path 'name' do\r\n\tpath      String # default value: 'name' unless specified\r\n\taction    Symbol # defaults to :add if not specified\nend",
+    "description": "Use the **windows_path** resource to manage the path environment variable on Microsoft Windows.",
+    "scope": "source.ruby.chef"
+  },
+  "windows_printer": {
+    "prefix": "windows_printer",
+    "body": "windows_printer 'name' do\r\n\tcomment           String\r\n\tcreate_port       true, false # default value: true\r\n\tdefault           true, false # default value: false\r\n\tdevice_id         String # default value: 'name' unless specified\r\n\tdriver_name       String\r\n\tipv4_address      String\r\n\tlocation          String\r\n\tport_name         String\r\n\tshare_name        String\r\n\tshared            true, false # default value: false\r\n\taction            Symbol # defaults to :create if not specified\nend",
+    "description": "Use the **windows_printer** resource to setup Windows printers. This resource will automatically install the driver specified in the `driver_name` property and will automatically create a printer port using either the `ipv4_address` property or the `port_name` property.",
+    "scope": "source.ruby.chef"
+  },
+  "windows_printer_port": {
+    "prefix": "windows_printer_port",
+    "body": "windows_printer_port 'name' do\r\n\tipv4_address       String # default value: 'name' unless specified\r\n\tport_name          String\r\n\tport_number        Integer # default value: 9100\r\n\tport_protocol      Integer # default value: 1\r\n\tsnmp_enabled       true, false # default value: false\r\n\taction             Symbol # defaults to :create if not specified\nend",
+    "description": "Use the **windows_printer_port** resource to create and delete TCP/IPv4 printer ports on Windows.",
+    "scope": "source.ruby.chef"
+  },
   "windows_security_policy": {
     "prefix": "windows_security_policy",
-    "body": "windows_security_policy '${1:secoption}' do\r\n\tsecvalue '${2:value}'\r\n\taction :${3:set}\r\nend\r\n",
-    "description": "Use the windows_security_policy resource to set a security policy on the Microsoft Windows platform.",
+    "body": "windows_security_policy 'name' do\r\n\tsecoption      String # default value: 'name' unless specified\r\n\tsecvalue       String\r\n\taction         Symbol # defaults to :set if not specified\nend",
+    "description": "Use the **windows_security_policy** resource to set a security policy on the Microsoft Windows platform.",
     "scope": "source.ruby.chef"
   },
-	"windows_service": {
-		"prefix": "windows_service",
-		"body": "windows_service '${1:service_name}' do\r\n\taction :${2:start}\r\n\tstartup_type :${2:manual}\r\nend\r\n",
-		"description": "Use the windows_service resource to manage a Windows service.",
-		"scope": "source.ruby.chef"
-	},
-	"windows_shortcut": {
-		"prefix": "windows_shortcut",
-		"body": "windows_shortcut '${1:service_name}' do\r\n\taction :${2:start}\r\n\tstartup_type :${2:manual}\r\nend\r\n",
-		"description": "",
-		"scope": "source.ruby.chef"
-	},
-	"windows_task": {
-		"prefix": "windows_task",
-		"body": "windows_task '${1:service_name}' do\r\n\taction :${2:start}\r\n\tstartup_type :${2:manual}\r\nend\r\n",
-		"description": "",
-		"scope": "source.ruby.chef"
-	},
+  "windows_service": {
+    "prefix": "windows_service",
+    "body": "windows_service 'name' do\r\n\tbinary_path_name      String\r\n\tdelayed_start         true, false # default value: false\r\n\tdependencies          String, Array\r\n\tdescription           String\r\n\tdesired_access        Integer # default value: 983551\r\n\tdisplay_name          String\r\n\terror_control         Integer # default value: 1\r\n\tinit_command          String\r\n\tload_order_group      String\r\n\toptions               Array, String\r\n\tparameters            Hash\r\n\tpattern               String\r\n\tpriority              Integer, String, Hash\r\n\treload_command        String, false\r\n\trestart_command       String, false\r\n\trun_as_password       String\r\n\trun_as_user           String # default value: \"localsystem\"\r\n\trun_levels            Array\r\n\tservice_name          String # default value: 'name' unless specified\r\n\tservice_type          Integer # default value: 16\r\n\tstart_command         String, false\r\n\tstartup_type          Symbol # default value: :automatic\r\n\tstatus_command        String, false\r\n\tstop_command          String, false\r\n\tsupports              Hash # default value: {\"restart\"=>nil, \"reload\"=>nil, \"status\"=>nil}\r\n\ttimeout               Integer # default value: 60\r\n\tuser                  String\r\n\taction                Symbol # defaults to :nothing if not specified\nend",
+    "description": "Use the **windows_service** resource to create, delete, or manage a service on the Microsoft Windows platform.",
+    "scope": "source.ruby.chef"
+  },
+  "windows_share": {
+    "prefix": "windows_share",
+    "body": "windows_share 'name' do\r\n\tca_timeout                  Integer # default value: 0\r\n\tchange_users                Array # default value: []\r\n\tconcurrent_user_limit       Integer # default value: 0\r\n\tcontinuously_available      true, false # default value: false\r\n\tdescription                 String\r\n\tencrypt_data                true, false # default value: false\r\n\tfull_users                  Array # default value: []\r\n\tpath                        String\r\n\tread_users                  Array # default value: []\r\n\tscope_name                  String # default value: \"*\"\r\n\tshare_name                  String # default value: 'name' unless specified\r\n\ttemporary                   true, false # default value: false\r\n\taction                      Symbol # defaults to :create if not specified\nend",
+    "description": "Use the **windows_share** resource to create, modify and remove Windows shares.",
+    "scope": "source.ruby.chef"
+  },
+  "windows_shortcut": {
+    "prefix": "windows_shortcut",
+    "body": "windows_shortcut 'name' do\r\n\targuments          String\r\n\tcwd                String\r\n\tdescription        String\r\n\ticonlocation       String\r\n\tshortcut_name      String # default value: 'name' unless specified\r\n\ttarget             String\r\n\taction             Symbol # defaults to :create if not specified\nend",
+    "description": "Use the **windows_shortcut** resource to create shortcut files on Windows.",
+    "scope": "source.ruby.chef"
+  },
+  "windows_task": {
+    "prefix": "windows_task",
+    "body": "windows_task 'name' do\r\n\tbackup                              Integer, false # default value: 5\r\n\tcommand                             String\r\n\tcwd                                 String\r\n\tday                                 String, Integer\r\n\tdescription                         String\r\n\tdisallow_start_if_on_batteries      true, false # default value: false\r\n\texecution_time_limit                String, Integer # default value: \"PT72H (72 hours in ISO8601 duration format)\"\r\n\tforce                               true, false # default value: false\r\n\tfrequency                           Symbol\r\n\tfrequency_modifier                  Integer, String # default value: 1\r\n\tidle_time                           Integer\r\n\tinteractive_enabled                 true, false # default value: false\r\n\tminutes_duration                    String, Integer\r\n\tminutes_interval                    String, Integer\r\n\tmonths                              String\r\n\tpassword                            String\r\n\tpriority                            Integer # default value: 7\r\n\trandom_delay                        String, Integer\r\n\trun_level                           Symbol # default value: :limited\r\n\tstart_day                           String # default value: The current date.\r\n\tstart_time                          String\r\n\tstart_when_available                true, false # default value: false\r\n\tstop_if_going_on_batteries          true, false # default value: false\r\n\ttask_name                           String # default value: 'name' unless specified\r\n\tuser                                String # default value: The localized SYSTEM user for the node.\r\n\taction                              Symbol # defaults to :create if not specified\nend",
+    "description": "Use the **windows_task** resource to create, delete or run a Windows scheduled task.",
+    "scope": "source.ruby.chef"
+  },
   "windows_uac": {
     "prefix": "windows_uac",
-    "body": "windows_uac '${1:name}' do\r\n\tenable_uac '${2:true}'\r\n\taction :${3:configure}\r\nend\r\n",
-    "description": "The windows_uac resource configures UAC on Windows hosts by setting registry keys at HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Policies\\System",
+    "body": "windows_uac 'name' do\r\n\tconsent_behavior_admins       Symbol # default value: :prompt_for_consent_non_windows_binaries\r\n\tconsent_behavior_users        Symbol # default value: :prompt_for_creds\r\n\tdetect_installers             true, false\r\n\tenable_uac                    true, false # default value: true\r\n\tprompt_on_secure_desktop      true, false # default value: true\r\n\trequire_signed_binaries       true, false # default value: false\r\n\taction                        Symbol # defaults to :configure if not specified\nend",
+    "description": "The *windows_uac* resource configures UAC on Windows hosts by setting registry keys at `HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Policies\\System`",
+    "scope": "source.ruby.chef"
+  },
+  "windows_update_settings": {
+    "prefix": "windows_update_settings",
+    "body": "windows_update_settings 'name' do\r\n\tautomatic_update_option                  Integer, Symbol # default value: :download_and_schedule\r\n\tautomatically_install_minor_updates      true, false # default value: false\r\n\tblock_windows_update_website             true, false # default value: false\r\n\tcustom_detection_frequency               Integer # default value: 22\r\n\tdisable_automatic_updates                true, false # default value: false\r\n\tdisable_os_upgrades                      true, false # default value: false\r\n\televate_non_admins                       true, false # default value: true\r\n\tenable_detection_frequency               true, false # default value: false\r\n\tno_reboot_with_users_logged_on           true, false # default value: true\r\n\tscheduled_install_day                    String # default value: \"Everyday\"\r\n\tscheduled_install_hour                   Integer\r\n\ttarget_wsus_group_name                   String\r\n\tupdate_other_ms_products                 true, false # default value: true\r\n\twsus_server_url                          String\r\n\taction                                   Symbol # defaults to :set if not specified\nend",
+    "description": "Use the **windows_update_settings** resource to manage the various Windows Update patching options.",
     "scope": "source.ruby.chef"
   },
   "windows_user_privilege": {
     "prefix": "windows_user_privilege",
-    "body": "windows_user_privilege '${1:principal}' do\r\n\tprivilege '${2:value}'\r\n\taction :${3:add}\r\nend\r\n",
-    "description": "The windows_user_privilege resource allows to add and set principal (User/Group) to the specified privilege. Ref: https://docs.microsoft.com/en-us/windows/security/threat-protection/security-policy-settings/user-rights-assignment",
+    "body": "windows_user_privilege 'name' do\r\n\tprincipal      String # default value: 'name' unless specified\r\n\tprivilege      Array, String\r\n\tusers          Array, String\r\n\taction         Symbol # defaults to :add if not specified\nend",
+    "description": "The windows_user_privilege resource allows to add and set principal (User/Group) to the specified privilege.\n Ref: https://docs.microsoft.com/en-us/windows/security/threat-protection/security-policy-settings/user-rights-assignment",
     "scope": "source.ruby.chef"
   },
-	"yum_package": {
-		"prefix": "yum_package",
-		"body": "yum_package '${1:package_name}' do\r\n\taction :${2:install}\r\nend\r\n",
-		"description": "Use the yum_package resource to manage packages for the RedHat and CentOS platforms.",
-		"scope": "source.ruby.chef"
-	},
-	"yum_repository": {
-		"prefix": "yum_repository",
-		"body": "yum_repository '${1:package_name}' do\r\n\taction :${2:install}\r\nend\r\n",
-		"description": "",
-		"scope": "source.ruby.chef"
-	},
-	"zypper_package": {
-		"prefix": "zypper_package",
-		"body": "zypper_package '${1:package_name}' do\r\n\taction :${2:install}\r\nend\r\n",
-		"description": "",
-		"scope": "source.ruby.chef"
-	},
-	"zypper_repository": {
-		"prefix": "zypper_repository",
-		"body": "zypper_repository '${1:repo_name}' do\r\n\tbaseurl '${2:https://example.com/zypper}'\r\n\tpath '${3:/opensuse}'\r\n\ttype '${4:rpm-md}'\r\n\tpriority '${5:/100}'\r\n\taction :${6:add}\r\nend\r\n",
-		"description": "",
-		"scope": "source.ruby.chef"
-	}
+  "windows_workgroup": {
+    "prefix": "windows_workgroup",
+    "body": "windows_workgroup 'name' do\r\n\tpassword            String\r\n\treboot              Symbol # default value: :immediate\r\n\tuser                String\r\n\tworkgroup_name      String # default value: 'name' unless specified\r\n\taction              Symbol # defaults to :join if not specified\nend",
+    "description": "Use the **windows_workgroup** resource to join or change the workgroup of a Windows host.",
+    "scope": "source.ruby.chef"
+  },
+  "yum_package": {
+    "prefix": "yum_package",
+    "body": "yum_package 'name' do\r\n\tallow_downgrade      true, false # default value: true\r\n\tarch                 String, Array\r\n\tflush_cache          Hash # default value: {\"before\"=>false, \"after\"=>false}\r\n\toptions              String, Array\r\n\tpackage_name         String, Array\r\n\tsource               String\r\n\ttimeout              String, Integer\r\n\tversion              String, Array\r\n\tyum_binary           String\r\n\taction               Symbol # defaults to :install if not specified\nend",
+    "description": "Use the **yum_package** resource to install, upgrade, and remove packages with Yum for the Red Hat and CentOS platforms. The yum_package resource is able to resolve `provides` data for packages much like Yum can do when it is run from the command line. This allows a variety of options for installing packages, like minimum versions, virtual provides, and library names.",
+    "scope": "source.ruby.chef"
+  },
+  "yum_repository": {
+    "prefix": "yum_repository",
+    "body": "yum_repository 'name' do\r\n\tbaseurl                    String, Array\r\n\tclean_metadata             true, false # default value: true\r\n\tcost                       String\r\n\tdescription                String # default value: \"Yum Repository\"\r\n\tenabled                    true, false # default value: true\r\n\tenablegroups               true, false\r\n\texclude                    String\r\n\tfailovermethod             String\r\n\tfastestmirror_enabled      true, false\r\n\tgpgcheck                   true, false # default value: true\r\n\tgpgkey                     String, Array\r\n\thttp_caching               String\r\n\tinclude_config             String\r\n\tincludepkgs                String\r\n\tkeepalive                  true, false\r\n\tmake_cache                 true, false # default value: true\r\n\tmax_retries                String, Integer\r\n\tmetadata_expire            String\r\n\tmetalink                   String\r\n\tmirror_expire              String\r\n\tmirrorlist                 String\r\n\tmirrorlist_expire          String\r\n\tmode                       String, Integer # default value: \"0644\"\r\n\toptions                    Hash\r\n\tpassword                   String\r\n\tpriority                   String\r\n\tproxy                      String\r\n\tproxy_password             String\r\n\tproxy_username             String\r\n\trepo_gpgcheck              true, false\r\n\treport_instanceid          true, false\r\n\treposdir                   String # default value: \"/etc/yum.repos.d/\"\r\n\trepositoryid               String # default value: 'name' unless specified\r\n\tskip_if_unavailable        true, false\r\n\tsource                     String\r\n\tsslcacert                  String\r\n\tsslclientcert              String\r\n\tsslclientkey               String\r\n\tsslverify                  true, false\r\n\tthrottle                   String, Integer\r\n\ttimeout                    String\r\n\tusername                   String\r\n\taction                     Symbol # defaults to :create if not specified\nend",
+    "description": "Use the **yum_repository** resource to manage a Yum repository configuration file located at `/etc/yum.repos.d/repositoryid.repo` on the local machine. This configuration file specifies which repositories to reference, how to handle cached data, etc.",
+    "scope": "source.ruby.chef"
+  },
+  "zypper_package": {
+    "prefix": "zypper_package",
+    "body": "zypper_package 'name' do\r\n\tallow_downgrade      true, false # default value: true\r\n\tglobal_options       String, Array\r\n\tgpg_check            true, false # default value: \"true\"\r\n\toptions              String, Array\r\n\tpackage_name         String, Array\r\n\tsource               String\r\n\ttimeout              String, Integer\r\n\tversion              String, Array\r\n\taction               Symbol # defaults to :install if not specified\nend",
+    "description": "Use the **zypper_package** resource to install, upgrade, and remove packages with Zypper for the SUSE Enterprise and openSUSE platforms.",
+    "scope": "source.ruby.chef"
+  },
+  "zypper_repository": {
+    "prefix": "zypper_repository",
+    "body": "zypper_repository 'name' do\r\n\tautorefresh            true, false # default value: true\r\n\tbaseurl                String\r\n\tcookbook               String # default value: \"The cookbook containing the resource\"\r\n\tdescription            String\r\n\tenabled                true, false # default value: true\r\n\tgpgautoimportkeys      true, false # default value: true\r\n\tgpgcheck               true, false # default value: true\r\n\tgpgkey                 String, Array # default value: []\r\n\tkeeppackages           true, false # default value: false\r\n\tmirrorlist             String\r\n\tmode                   String, Integer # default value: \"0644\"\r\n\tpath                   String\r\n\tpriority               Integer # default value: 99\r\n\trefresh_cache          true, false # default value: true\r\n\trepo_name              String # default value: 'name' unless specified\r\n\tsource                 String\r\n\ttype                   String # default value: \"NONE\"\r\n\taction                 Symbol # defaults to :create if not specified\nend",
+    "description": "Use the **zypper_repository** resource to create Zypper package repositories on SUSE Enterprise Linux and openSUSE systems. This resource maintains full compatibility with the **zypper_repository** resource in the existing **zypper** cookbook.",
+    "scope": "source.ruby.chef"
+  }
 }

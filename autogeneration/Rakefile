@@ -1,9 +1,9 @@
-require "yard" unless defined?(YARD)
+require 'yard' unless defined?(YARD)
 
-desc "noop task that is used by other tasks"
+desc 'noop task that is used by other tasks'
 
 YARD::Rake::YardocTask.new(:yard_for_generate_documentation) do |task|
-  util_files = %w{
+  util_files = %w(
     architecture
     cloud
     introspection
@@ -13,30 +13,30 @@ YARD::Rake::YardocTask.new(:yard_for_generate_documentation) do |task|
     platform_version
     service
     virtualization
-    which
     windows
-  }
+  )
 
   task.files = ["vendor/ruby/**/bundler/gems/chef*/chef-utils/lib/chef-utils/dsl/{#{util_files.join(',')}}.rb"]
 
-  dsl_files = %w{
+  dsl_files = %w(
     chef_vault
     declare_resource
-  }
+    secret
+  )
 
   task.files.concat(["vendor/ruby/**/bundler/gems/chef*/lib/chef/dsl/{#{dsl_files.join(',')}}.rb"])
-  task.options = ["--no-output"]
+  task.options = ['--no-output']
 end
 
-desc "Generate vscode snippets for chef-utils helpers"
+desc 'Generate vscode snippets for chef-utils helpers'
 
-def install_gem_utils
-  require "bundler"
+def install_gem_utils(gemfile = 'Gemfile')
+  require 'bundler'
 
   Bundler.with_clean_env do
     sh "bundle config --local path 'vendor'"
-    sh "bundle install"
-    sh "bundle update"
+    sh "bundle install --gemfile #{gemfile}"
+    sh "bundle update --gemfile #{gemfile}"
   end
 end
 
@@ -46,8 +46,8 @@ task :generate_snippets do
   # make sure we have chef-utils files locally for yard inspection
   install_gem_utils
 
-  require "fileutils" unless defined?(FileUtils)
-  require "json" unless defined?(JSON)
+  require 'fileutils' unless defined?(FileUtils)
+  require 'json' unless defined?(JSON)
 
   Rake::Task[:yard_for_generate_documentation].execute
 
@@ -64,28 +64,156 @@ task :generate_snippets do
     next unless obj.visibility == :public
 
     doc_data[obj.name.to_s] = {}
-    doc_data[obj.name.to_s]["prefix"] = obj.name.to_s
-    doc_data[obj.name.to_s]["body"] = obj.name.to_s
-    doc_data[obj.name.to_s]["description"] = obj.docstring
-    doc_data[obj.name.to_s]["scope"] = "source.ruby.chef"
+    doc_data[obj.name.to_s]['prefix'] = obj.name.to_s
+    doc_data[obj.name.to_s]['body'] = obj.name.to_s
+    doc_data[obj.name.to_s]['description'] = obj.docstring
+    doc_data[obj.name.to_s]['scope'] = 'source.ruby.chef'
 
-    unless doc_data[obj.name.to_s]["description"].end_with?('.')
-      doc_data[obj.name.to_s]["description"] << '.'
+    unless doc_data[obj.name.to_s]['description'].end_with?('.')
+      doc_data[obj.name.to_s]['description'] << '.'
     end
 
     if obj.has_tag?('since')
-      doc_data[obj.name.to_s]["description"] << " Introduced in Chef Infra Client #{obj.tag('since').text}."
+      doc_data[obj.name.to_s]['description'] << " Introduced in Chef Infra Client #{obj.tag('since').text}."
     end
   end
 
-  File.open("../snippets/automated_dsl_snippets.json", "w") do |f|
+  File.open('../snippets/automated_dsl_snippets.json', 'w') do |f|
     f.write(JSON.pretty_generate(doc_data.sort.to_h))
   end
 
-  Rake::Task["generate_inspec_snippets"].invoke
+  Rake::Task['generate_inspec_snippets'].invoke
+  Rake::Task['fetch_chef_repo_for_docs_site'].invoke
+  Rake::Task['generate_infra_resource_snippets'].invoke
+  Rake::Task['generate_infra_resource_yaml_snippets'].invoke
 end
 
 task default: :generate_snippets
+
+task :fetch_chef_repo_for_docs_site do
+  puts 'Running task fetch_chef_repo_for_docs_site'
+
+  # The chef/chef repository is used to generate snippets from docs
+  if Dir.exist?('chef')
+    # If the chef directory exists, cd to it and pull to make sure it is up to date
+    system('cd chef ; git pull')
+  else
+    system('git clone https://github.com/chef/chef')
+  end
+
+  require 'bundler'
+
+  Bundler.with_original_env do
+    Dir.chdir 'chef' do
+      system('bundle install')
+      system('bundle exec rake docs_site:resources')
+    end
+  end
+end
+
+desc 'Generate Chef Infra Resource snippets from published resource documentation'
+task :generate_infra_resource_snippets do
+  require 'yaml' unless defined?(YAML)
+  require 'json' unless defined?(JSON)
+
+  puts 'Running task generate_infra_resource_snippets'
+
+  puts 'generate_infra_resource_snippets :: Validating that Chef git repository is available locally and up to date.'
+
+  resources_content = {}
+  puts 'generate_infra_resources :: Processing resources'
+  Dir.glob('chef/docs_site/*.yaml').sort.each do |doc_file|
+    doc_file_content = YAML.load(File.read(doc_file))
+
+    doc_file_name = doc_file.split('/').last.split('.').first
+
+    # Skip any docs that start with "_" (such as _index)
+    next if doc_file_name =~ /^\_.*/
+
+    resource_description_content = doc_file_content['resource_description_list'].each do |h|
+      next unless h['markdown']
+      h['markdown'].to_s
+    end
+
+    resource_description = resource_description_content[0]['markdown']
+
+    # Grab the first syntax example from the Markdown file
+    resource_example = doc_file_content['syntax_full_code_block']
+                       .gsub("\n      ", "\r\n\t")
+                       .gsub("\n    end", "\r\nend")
+                       .gsub("\n  ", "\r\n\t")
+
+    # Build the snippet for this resource
+    resource_output_content = {
+      'prefix' => doc_file_name,
+      'body' => resource_example,
+      'description' => resource_description,
+      'scope' => 'source.ruby.chef',
+    }
+
+    # Save the parsed resource to the resources_content hash to be written later
+    resources_content[doc_file_name] = resource_output_content
+  end
+
+  file_content = JSON.pretty_generate(resources_content)
+
+  puts 'generate_infra_snippets :: Saving Updates to ../snippets/chef_resources.json'
+  File.write('../snippets/chef_resources.json', file_content)
+end
+
+desc 'Generate YAML Chef Infra Resource snippets from published resource documentation'
+task :generate_infra_resource_yaml_snippets do
+  require 'yaml' unless defined?(YAML)
+  require 'json' unless defined?(JSON)
+
+  puts 'Running task generate_infra_resource_yaml_snippets'
+
+  puts 'generate_infra_resource_yaml_snippets :: Validating that Chef git repository is available locally and up to date.'
+
+  resources_content = {}
+  puts 'generate_infra_resources :: Processing resources'
+  Dir.glob('chef/docs_site/*.yaml').sort.each do |doc_file|
+    doc_file_content = YAML.load(File.read(doc_file))
+
+    doc_file_name = doc_file.split('/').last.split('.').first
+
+    # Skip any docs that start with "_" (such as _index)
+    next if doc_file_name =~ /^\_.*/
+
+    resource_description_content = doc_file_content['resource_description_list'].each do |h|
+      next unless h['markdown']
+      h['markdown'].to_s
+    end
+
+    resource_description = resource_description_content[0]['markdown']
+
+    # Grab the first syntax example from the Markdown file
+    resource_example = doc_file_content['syntax_full_code_block']
+                       .gsub(/.*name' do/, "- type: #{doc_file_content['resource']}\r\n\tname: name")
+                       .gsub("\n      ", "\r\n\t")
+                       .gsub("\n    end", "\r\n")
+                       .gsub("\nend", "\r\n")
+                       .gsub("\n  ", "\r\n\t")
+                       .gsub(/[^\S\r\n]{2,}/, ': ')
+                       .gsub('action: Symbol', "action:\r\n\t\t- String")
+
+    # Build the snippet for this resource
+    resource_output_content = {
+      'prefix' => doc_file_name,
+      'body' => resource_example,
+      'description' => resource_description,
+      'scope' => 'source.ruby.chef',
+    }
+
+    # Save the parsed resource to the resources_content hash to be written later
+    resources_content[doc_file_name] = resource_output_content
+  end
+
+  file_content = JSON.pretty_generate(resources_content)
+
+  puts 'generate_infra_resource_yaml_snippets :: Saving Updates to ../snippets/chef_yaml_resources.json'
+  File.write('../snippets/chef_yaml_resources.json', file_content)
+end
 
 desc 'Generate InSpec snippets from published resource documentation'
 task :generate_inspec_snippets do
