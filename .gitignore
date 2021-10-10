@@ -7,3 +7,4 @@ vendor
 .yardoc
 package-lock.json
 autogeneration/inspec
+autogeneration/chef
