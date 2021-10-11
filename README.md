@@ -17,7 +17,7 @@ The Chef Infra Extension for Visual Studio Code offers rich language support for
 * Enabled by default (disable by adding ```{ "rubocop.enable": false }``` in user/workspace settings) and activated when the first Ruby file is loaded.
 * The entire repo will be linted when files are saved, unless there are more than 400 `*.rb` files in the workspace, in which case only open files will be linted. Adjust this threshold using the ```{ "rubocop.fileCountThreshold": 400 }``` setting in user/workspace settings.
 * You may lint the entire workspace, even if it is larger than the above threshold, using the `Chef: Validate Entire Workspace` command from the Command Pallette.
-* If you have [Chef Workstation](https://downloads.chef.io/chef-workstation) installed, linting should "just work" on Windows, macOS and Linux. [Cookstyle](https://github.com/chef/cookstyle) will be used by default.
+* If you have [Chef Workstation](https://downloads.chef.io/chef-workstation) installed, linting should "just work" on Windows, macOS, and Linux. [Cookstyle](https://github.com/chef/cookstyle) will be used by default.
 * If you do not have Chef Workstation but do have Rubocop installed, you can set the executable path by setting ```{ "rubocop.path": "c:\\path\\to\\rubocop.bat"}``` in user/workspace settings).
 * To override the config file used by Rubocop/Cookstyle, use the ```{ "rubocop.configFile": "path/to/config.yml" }``` in user/workspace settings.
 
@@ -109,7 +109,7 @@ The directory `autogeneration` located within this project contains tooling whic
     Bundled gems are installed into `./vendor`
     ```
 
-* Run Rake task `generate_snippets` to perform any required Snippet updates which are handled via autogeneration process:
+* Run Rake task `generate_snippets` to perform any required Snippet updates, which are handled via autogeneration process:
 
     ```sh
     rake generate_snippets
