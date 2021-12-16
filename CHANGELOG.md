@@ -1,16 +1,17 @@
 # vscode-chef Change Log
 
-<!-- latest_release 2.2.0 -->
-## [v2.2.0](https://github.com/chef/vscode-chef/tree/v2.2.0) (2021-10-09)
+<!-- latest_release 2.2.1 -->
+## [v2.2.1](https://github.com/chef/vscode-chef/tree/v2.2.1) (2021-12-16)
 
 #### Merged Pull Requests
-- snippet updates 2021-Oct-09 [#146](https://github.com/chef/vscode-chef/pull/146) ([collinmcneese](https://github.com/collinmcneese))
+- Bump @types/node from 16.11.14 to 17.0.0 [#162](https://github.com/chef/vscode-chef/pull/162) ([dependabot[bot]](https://github.com/dependabot[bot]))
 <!-- latest_release -->
 
 <!-- release_rollup -->
 ### Changes not yet released
 
 #### Merged Pull Requests
+- Bump @types/node from 16.11.14 to 17.0.0 [#162](https://github.com/chef/vscode-chef/pull/162) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 2.2.1 -->
 - snippet updates 2021-Oct-09 [#146](https://github.com/chef/vscode-chef/pull/146) ([collinmcneese](https://github.com/collinmcneese)) <!-- 2.2.0 -->
 - Bump typescript from 4.4.2 to 4.4.3 [#145](https://github.com/chef/vscode-chef/pull/145) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 2.1.7 -->
 - Bump typescript from 4.3.5 to 4.4.2 [#144](https://github.com/chef/vscode-chef/pull/144) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 2.1.6 -->
