@@ -926,7 +926,7 @@
   "azurerm_subnets": {
     "prefix": "azurerm_subnets",
     "body": "describe azurerm_subnets(resource_group: 'MyResourceGroup', vnet: 'MyVnetName') do\n\t...\nend",
-    "description": "Use the `azurerm\\_subnets` InSpec audit resource to test properties related to",
+    "description": "Use the `azurerm_subnets` InSpec audit resource to test properties related to",
     "scope": "source.ruby.chef_inspec"
   },
   "azurerm_subscription": {
@@ -998,7 +998,7 @@
   "bridge": {
     "prefix": "bridge",
     "body": "describe bridge('br0') do\n\tit { should exist }\n\tit { should have_interface 'eth0' }\nend",
-    "description": "Use the `bridge` Chef InSpec audit resource to test basic network bridge properties, such as name, if an interface is defined, and the associations for any defined interface.",
+    "description": "Use the `bridge` Chef InSpec audit resource to test basic network bridge properties, such as `name`, if an interface is defined, and the associations for any defined interface.",
     "scope": "source.ruby.chef_inspec"
   },
   "bsd_service": {
@@ -1118,7 +1118,7 @@
   "etc_group": {
     "prefix": "etc_group",
     "body": "describe etc_group('path') do\n\tits('property') { should eq 'some_value' }\nend",
-    "description": "Use the `etc_group` Chef InSpec audit resource to test groups that are defined on Linux and Unix platforms. The `/etc/group` file stores details about each group: group name, password, group identifier, along with a comma-separate list of users that belong to the group.",
+    "description": "Use the `etc_group` Chef InSpec audit resource to test groups that are defined on Linux and Unix platforms. The `/etc/group` file stores details about each group: group name, password, group identifier, along with a comma-separated list of users that belong to the group.",
     "scope": "source.ruby.chef_inspec"
   },
   "etc_hosts": {
@@ -1129,7 +1129,7 @@
   },
   "etc_hosts_allow": {
     "prefix": "etc_hosts_allow",
-    "body": "describe etc_hosts_allow.where { daemon == 'value' } do\n\tits ('client_list') { should include ['values'] }\n\tits ('options') { should include ['values'] }\nend",
+    "body": "describe etc_hosts_allow.where { daemon == 'value' } do\n\tits ('client_list') { should include ['values'] }\n\tits ('options') { should include ['values'] }p\nend",
     "description": "Use the `etc_hosts_allow` Chef InSpec audit resource to test rules defined for accepting daemon and client traffic in the `'/etc/hosts.allow'` file.",
     "scope": "source.ruby.chef_inspec"
   },
@@ -2419,7 +2419,7 @@
   },
   "google_storage_bucket_objects": {
     "prefix": "google_storage_bucket_objects",
-    "body": "describe google_storage_bucket_objects(bucket: 'bucket-with-object') do\n\tits('object_names') { should include 'image1' }\n\tits('count') { should be <= 10 }\nend",
+    "body": "describe google_storage_bucket_objects(bucket: 'bucket-with-object') do\n  its('object_names') { should include 'image1' }\n  its('count') { should be <= 10 }\nend",
     "description": null,
     "scope": "source.ruby.chef_inspec"
   },
@@ -2563,7 +2563,7 @@
   },
   "iptables": {
     "prefix": "iptables",
-    "body": "describe iptables(rule:'name', table:'name', chain: 'name') do\n\tit { should have_rule('RULE') }\nend",
+    "body": "describe iptables(rule:'name', table:'name', chain: 'name', ignore_comments: true) do\n\tit { should have_rule('RULE') }\nend",
     "description": "Use the `iptables` Chef InSpec audit resource to test rules that are defined in `iptables`, which maintains tables of IP packet filtering rules. There may be more than one table. Each table contains one (or more) chains (both built-in and custom). A chain is a list of rules that match packets. When the rule matches, the rule defines what target to assign to the packet.",
     "scope": "source.ruby.chef_inspec"
   },
@@ -2583,6 +2583,12 @@
     "prefix": "kernel_parameter",
     "body": "describe kernel_parameter('path.to.parameter') do\n\tits('value') { should eq 0 }\nend",
     "description": "Use the `kernel_parameter` Chef InSpec audit resource to test kernel parameters on Linux platforms.",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "kernel_parameters": {
+    "prefix": "kernel_parameters",
+    "body": "describe kernel_parameters do\n\tits('parameters') { should include \"PARAMETER_NAME\" }\n\tits('values') { should include 1 }\nend",
+    "description": "Use the `kernel_parameters` Chef InSpec audit resource to test multiple kernel parameters on Linux platforms.",
     "scope": "source.ruby.chef_inspec"
   },
   "key_rsa": {
@@ -2678,7 +2684,7 @@
   "oneget": {
     "prefix": "oneget",
     "body": "describe oneget('name') do\n\tit { should be_installed }\nend",
-    "description": "Use the `oneget` Chef InSpec audit resource to test if the named package and/or package version is installed on the system. This resource uses Oneget, which is `part of the Windows Management Framework 5.0 and Windows 10 <https://github.com/OneGet/oneget>`\\_\\_. This resource uses the `Get-Package` cmdlet to return all of the package names in the Oneget repository.",
+    "description": "Use the `oneget` Chef InSpec audit resource to test if the named package and/or package version is installed on the system. This resource uses Oneget, which is `part of the Windows Management Framework 5.0 and Windows 10 <https://github.com/OneGet/oneget>`. This resource uses the `Get-Package` cmdlet to return all of the package names in the Oneget repository.",
     "scope": "source.ruby.chef_inspec"
   },
   "opa_api": {
@@ -2901,6 +2907,12 @@
     "prefix": "sysv_service",
     "body": "describe sysv_service('service_name') do\n\tit { should be_installed }\n\tit { should be_enabled }\n\tit { should be_running }\nend",
     "description": "Use the `sysv_service` Chef InSpec audit resource to test a service using SystemV.",
+    "scope": "source.ruby.chef_inspec"
+  },
+  "timezone": {
+    "prefix": "timezone",
+    "body": "describe timezone do\n\tits('property') { should eq 'expected value' }\nend",
+    "description": "Use the `timezone` Chef InSpec audit resource to test timezone configurations of the system.",
     "scope": "source.ruby.chef_inspec"
   },
   "toml": {
