@@ -5,10 +5,22 @@
 		"body": "default_source ${1::supermarket}",
 		"description": "The location in which any cookbooks not specified by cookbook are located."
 	},
+	"cookbook": {
+		"prefix": "cookbook",
+		"scope": "source.chef.policyfile",
+		"body": "cookbook '${1:my_cookbook}'",
+		"description": "The name of a cookbook dependency."
+	},
+	"named_run_list": {
+		"prefix": "named_run_list",
+		"scope": "source.chef.policyfile",
+		"body": "named_run_list ${1::my_named_runlist} '${2:my_cookbook::recipe}'",
+		"description": "A named run list for use when overriding the default run list in the Policyfile."
+	},
 	"name": {
 		"prefix": "name",
 		"scope": "source.chef.policyfile",
-		"body": "name '${1::my_cookbook}'",
+		"body": "name '${1:my_cookbook}'",
 		"description": "The name of the policy. Use a name that reflects the purpose of the machines against which the policy will run."
 	}
 }
