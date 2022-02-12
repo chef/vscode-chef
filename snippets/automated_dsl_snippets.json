@@ -719,10 +719,22 @@
     "description": "Determine if the current node is a VMWare guest. Introduced in Chef Infra Client 15.8.",
     "scope": "source.ruby.chef"
   },
+  "vmware_desktop?": {
+    "prefix": "vmware_desktop?",
+    "body": "vmware_desktop?",
+    "description": "Determine if the current node is virtualized on VMware Desktop (Fusion/Player/Workstation). Introduced in Chef Infra Client 17.9.",
+    "scope": "source.ruby.chef"
+  },
   "vmware_host?": {
     "prefix": "vmware_host?",
     "body": "vmware_host?",
     "description": "Determine if the current node is VMware host. Introduced in Chef Infra Client 15.8.",
+    "scope": "source.ruby.chef"
+  },
+  "vmware_vsphere?": {
+    "prefix": "vmware_vsphere?",
+    "body": "vmware_vsphere?",
+    "description": "Determine if the current node is virtualized on VMware vSphere (ESX). Introduced in Chef Infra Client 17.9.",
     "scope": "source.ruby.chef"
   },
   "where": {
