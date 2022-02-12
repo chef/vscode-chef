@@ -1,16 +1,17 @@
 # vscode-chef Change Log
 
-<!-- latest_release 2.2.4 -->
-## [v2.2.4](https://github.com/chef/vscode-chef/tree/v2.2.4) (2022-02-12)
+<!-- latest_release 2.2.5 -->
+## [v2.2.5](https://github.com/chef/vscode-chef/tree/v2.2.5) (2022-02-12)
 
 #### Merged Pull Requests
-- Add vmware helpers [#173](https://github.com/chef/vscode-chef/pull/173) ([tas50](https://github.com/tas50))
+- Bump typescript from 4.5.4 to 4.5.5 [#168](https://github.com/chef/vscode-chef/pull/168) ([dependabot[bot]](https://github.com/dependabot[bot]))
 <!-- latest_release -->
 
 <!-- release_rollup -->
 ### Changes not yet released
 
 #### Merged Pull Requests
+- Bump typescript from 4.5.4 to 4.5.5 [#168](https://github.com/chef/vscode-chef/pull/168) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 2.2.5 -->
 - Add vmware helpers [#173](https://github.com/chef/vscode-chef/pull/173) ([tas50](https://github.com/tas50)) <!-- 2.2.4 -->
 - Bump vsce from 1.103.1 to 2.6.7 [#172](https://github.com/chef/vscode-chef/pull/172) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 2.2.3 -->
 - Bump typescript from 4.4.4 to 4.5.4 [#161](https://github.com/chef/vscode-chef/pull/161) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 2.2.2 -->
