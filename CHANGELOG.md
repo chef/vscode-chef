@@ -1,16 +1,17 @@
 # vscode-chef Change Log
 
-<!-- latest_release 2.2.7 -->
-## [v2.2.7](https://github.com/chef/vscode-chef/tree/v2.2.7) (2022-02-12)
+<!-- latest_release 2.2.8 -->
+## [v2.2.8](https://github.com/chef/vscode-chef/tree/v2.2.8) (2022-06-27)
 
 #### Merged Pull Requests
-- Add more policyfile snippets [#175](https://github.com/chef/vscode-chef/pull/175) ([tas50](https://github.com/tas50))
+- Update codeowners to workstation team [#183](https://github.com/chef/vscode-chef/pull/183) ([vkarve-chef](https://github.com/vkarve-chef))
 <!-- latest_release -->
 
 <!-- release_rollup -->
 ### Changes not yet released
 
 #### Merged Pull Requests
+- Update codeowners to workstation team [#183](https://github.com/chef/vscode-chef/pull/183) ([vkarve-chef](https://github.com/vkarve-chef)) <!-- 2.2.8 -->
 - Add more policyfile snippets [#175](https://github.com/chef/vscode-chef/pull/175) ([tas50](https://github.com/tas50)) <!-- 2.2.7 -->
 - Add new inspec snippets [#174](https://github.com/chef/vscode-chef/pull/174) ([tas50](https://github.com/tas50)) <!-- 2.2.6 -->
 - Bump typescript from 4.5.4 to 4.5.5 [#168](https://github.com/chef/vscode-chef/pull/168) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 2.2.5 -->
