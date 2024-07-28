@@ -1,16 +1,17 @@
 # vscode-chef Change Log
 
-<!-- latest_release 2.2.11 -->
-## [v2.2.11](https://github.com/chef/vscode-chef/tree/v2.2.11) (2024-01-31)
+<!-- latest_release 2.2.12 -->
+## [v2.2.12](https://github.com/chef/vscode-chef/tree/v2.2.12) (2024-07-28)
 
 #### Merged Pull Requests
-- Upgrade dependencies to remove deprecation [#245](https://github.com/chef/vscode-chef/pull/245) ([sinfomicien](https://github.com/sinfomicien))
+- Update branding and copyright [#261](https://github.com/chef/vscode-chef/pull/261) ([clintoncwolfe](https://github.com/clintoncwolfe))
 <!-- latest_release -->
 
 <!-- release_rollup -->
 ### Changes not yet released
 
 #### Merged Pull Requests
+- Update branding and copyright [#261](https://github.com/chef/vscode-chef/pull/261) ([clintoncwolfe](https://github.com/clintoncwolfe)) <!-- 2.2.12 -->
 - Upgrade dependencies to remove deprecation [#245](https://github.com/chef/vscode-chef/pull/245) ([sinfomicien](https://github.com/sinfomicien)) <!-- 2.2.11 -->
 - Bump typescript from 4.5.5 to 4.7.4 [#182](https://github.com/chef/vscode-chef/pull/182) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 2.2.10 -->
 - Bump @types/node from 17.0.45 to 18.0.0 [#181](https://github.com/chef/vscode-chef/pull/181) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 2.2.9 -->
