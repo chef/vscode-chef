@@ -1,6 +1,6 @@
-# Chef Infra Extension for Visual Studio Code
+# Progress Chef Infra Extension for Visual Studio Code
 
-The Chef Infra Extension for Visual Studio Code offers rich language support for Chef Infra and Chef InSpec when using [Visual Studio Code](http://code.visualstudio.com).
+The Progress Chef Infra Extension for Visual Studio Code offers rich language support for Chef Infra and Chef InSpec when using [Visual Studio Code](http://code.visualstudio.com).
 
 ![install and demo](https://github.com/chef/vscode-chef/raw/master/images/vscode-chef-install.gif)
 
@@ -160,7 +160,8 @@ This extension was written by Stuart Preston ([stuart@chef.io](stuart@chef.io))
 This extension is licensed under an [Apache 2](LICENSE) license.
 
 ```plain
-   (c) 2015-2021 Chef Software, Inc
+   (c) 2015-2020 Chef Software, Inc
+   (c) 2021-2024 Progress Software Corporation
 
    Licensed under the Apache License, Version 2.0 (the "License");
    you may not use this file except in compliance with the License.
