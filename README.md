@@ -175,3 +175,6 @@ This extension is licensed under an [Apache 2](LICENSE) license.
    See the License for the specific language governing permissions and
    limitations under the License.
 ```
+
+# Copyright
+See [COPYRIGHT.md](./COPYRIGHT.md).
