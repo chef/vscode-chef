@@ -1,16 +1,17 @@
 # vscode-chef Change Log
 
-<!-- latest_release 2.2.12 -->
-## [v2.2.12](https://github.com/chef/vscode-chef/tree/v2.2.12) (2024-07-28)
+<!-- latest_release 2.2.13 -->
+## [v2.2.13](https://github.com/chef/vscode-chef/tree/v2.2.13) (2026-04-17)
 
 #### Merged Pull Requests
-- Update branding and copyright [#261](https://github.com/chef/vscode-chef/pull/261) ([clintoncwolfe](https://github.com/clintoncwolfe))
+- CHEF-27227 - Replace CODE_OF_CONDUCT.md file [#265](https://github.com/chef/vscode-chef/pull/265) ([Saburesh07](https://github.com/Saburesh07))
 <!-- latest_release -->
 
 <!-- release_rollup -->
 ### Changes not yet released
 
 #### Merged Pull Requests
+- CHEF-27227 - Replace CODE_OF_CONDUCT.md file [#265](https://github.com/chef/vscode-chef/pull/265) ([Saburesh07](https://github.com/Saburesh07)) <!-- 2.2.13 -->
 - Update branding and copyright [#261](https://github.com/chef/vscode-chef/pull/261) ([clintoncwolfe](https://github.com/clintoncwolfe)) <!-- 2.2.12 -->
 - Upgrade dependencies to remove deprecation [#245](https://github.com/chef/vscode-chef/pull/245) ([sinfomicien](https://github.com/sinfomicien)) <!-- 2.2.11 -->
 - Bump typescript from 4.5.5 to 4.7.4 [#182](https://github.com/chef/vscode-chef/pull/182) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 2.2.10 -->
