@@ -7,11 +7,3 @@ updates:
     time: "06:00"
     timezone: America/Los_Angeles
   open-pull-requests-limit: 10
-  ignore:
-  - dependency-name: "@types/node"
-    versions:
-    - 15.0.0
-  - dependency-name: typescript
-    versions:
-    - 4.1.4
-    - 4.2.2

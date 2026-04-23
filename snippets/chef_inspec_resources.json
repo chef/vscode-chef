@@ -397,7 +397,7 @@
   },
   "aws_lambda": {
     "prefix": "aws_lambda",
-    "body": "describe aws_lambda do\n  it { should exist}\n  its ('handler') { should eq 'main.on_event'}\n  its ('version') { should eq '$LATEST' }\n  its ('runtime') { should eq 'python3.7' }\nend",
+    "body": "describe aws_lambda do\n  it { should exist}\n  its ('handler') { should eq 'main.on_event'}\n  its ('version') { should eq '\\$LATEST' }\n  its ('runtime') { should eq 'python3.7' }\nend",
     "description": "Use the `aws_lambda` resource to test a specific lambda.",
     "scope": "source.ruby.chef_inspec"
   },
@@ -1010,7 +1010,7 @@
   "cassandradb_conf": {
     "prefix": "cassandradb_conf",
     "body": "describe cassandradb_conf do\n\tits('config item') { should eq 'value' }\nend",
-    "description": "Use the `cassandradb_conf` Chef InSpec audit resource to test the configuration of a Cassandra database, which is typically located at `$CASSANDRA_HOME/cassandra.yaml` or `$CASSANDRA_HOME\\conf\\cassandra.yaml` depending upon the platform.",
+    "description": "Use the `cassandradb_conf` Chef InSpec audit resource to test the configuration of a Cassandra database, which is typically located at `\\$CASSANDRA_HOME/cassandra.yaml` or `\\$CASSANDRA_HOME\\conf\\cassandra.yaml` depending upon the platform.",
     "scope": "source.ruby.chef_inspec"
   },
   "cassandradb_session": {
@@ -1255,7 +1255,7 @@
   },
   "google_cloudfunctions_cloud_function": {
     "prefix": "google_cloudfunctions_cloud_function",
-    "body": "describe google_cloudfunctions_cloud_function(project: 'chef-gcp-inspec', location: 'europe-west1', name: 'inspec-gcp-function') do\n  it { should exist }\n  its('description') { should eq 'A description of the function' }\n  its('available_memory_mb') { should eq '128' }\n  its('https_trigger.url') { should match /\\/inspec-gcp-function$/ }\n  its('entry_point') { should eq 'hello' }\n  its('environment_variables') { should include('MY_ENV_VAR' => 'val1') }\nend",
+    "body": "describe google_cloudfunctions_cloud_function(project: 'chef-gcp-inspec', location: 'europe-west1', name: 'inspec-gcp-function') do\n  it { should exist }\n  its('description') { should eq 'A description of the function' }\n  its('available_memory_mb') { should eq '128' }\n  its('https_trigger.url') { should match /\\/inspec-gcp-function\\$/ }\n  its('entry_point') { should eq 'hello' }\n  its('environment_variables') { should include('MY_ENV_VAR' => 'val1') }\nend",
     "description": null,
     "scope": "source.ruby.chef_inspec"
   },
@@ -1279,7 +1279,7 @@
   },
   "google_compute_autoscaler": {
     "prefix": "google_compute_autoscaler",
-    "body": "describe google_compute_autoscaler(project: 'chef-gcp-inspec', zone: 'zone', name: 'inspec-gcp-autoscaler') do\n  it { should exist }\n\n  its('target') { should match /\\/inspec-gcp-igm$/ }\n  its('autoscaling_policy.max_num_replicas') { should eq '5' }\n  its('autoscaling_policy.min_num_replicas') { should eq '1' }\n  its('autoscaling_policy.cool_down_period_sec') { should eq '60' }\n  its('autoscaling_policy.cpu_utilization.utilization_target') { should eq '0.5' }\nend",
+    "body": "describe google_compute_autoscaler(project: 'chef-gcp-inspec', zone: 'zone', name: 'inspec-gcp-autoscaler') do\n  it { should exist }\n\n  its('target') { should match /\\/inspec-gcp-igm\\$/ }\n  its('autoscaling_policy.max_num_replicas') { should eq '5' }\n  its('autoscaling_policy.min_num_replicas') { should eq '1' }\n  its('autoscaling_policy.cool_down_period_sec') { should eq '60' }\n  its('autoscaling_policy.cpu_utilization.utilization_target') { should eq '0.5' }\nend",
     "description": null,
     "scope": "source.ruby.chef_inspec"
   },
@@ -1363,7 +1363,7 @@
   },
   "google_compute_global_forwarding_rule": {
     "prefix": "google_compute_global_forwarding_rule",
-    "body": "describe google_compute_global_forwarding_rule(project: 'chef-gcp-inspec', name: 'inspec-gcp-global-forwarding-rule') do\n  it { should exist }\n  its('port_range') { should eq '80-80' }\n  its('target') { should  match /\\/inspec-gcp-http-proxy$/ }\nend",
+    "body": "describe google_compute_global_forwarding_rule(project: 'chef-gcp-inspec', name: 'inspec-gcp-global-forwarding-rule') do\n  it { should exist }\n  its('port_range') { should eq '80-80' }\n  its('target') { should  match /\\/inspec-gcp-http-proxy\\$/ }\nend",
     "description": null,
     "scope": "source.ruby.chef_inspec"
   },
@@ -1561,13 +1561,13 @@
   },
   "google_compute_route": {
     "prefix": "google_compute_route",
-    "body": "describe google_compute_route(project: 'chef-gcp-inspec', name: 'inspec-gcp-route') do\n  it { should exist }\n  its('dest_range') { should eq '15.0.0.0/24' }\n  its('network') { should match /\\/gcp-inspec-network$/ }\n  its('next_hop_ip') { should eq '10.2.0.1' }\n  its('priority') { should eq '100' }\nend",
+    "body": "describe google_compute_route(project: 'chef-gcp-inspec', name: 'inspec-gcp-route') do\n  it { should exist }\n  its('dest_range') { should eq '15.0.0.0/24' }\n  its('network') { should match /\\/gcp-inspec-network\\$/ }\n  its('next_hop_ip') { should eq '10.2.0.1' }\n  its('priority') { should eq '100' }\nend",
     "description": null,
     "scope": "source.ruby.chef_inspec"
   },
   "google_compute_router": {
     "prefix": "google_compute_router",
-    "body": "describe google_compute_router(project: 'chef-gcp-inspec', region: 'europe-west2', name: 'inspec-gcp-router') do\n  it { should exist }\n  its('bgp.asn') { should eq '64514' }\n  its('bgp.advertise_mode') { should eq 'CUSTOM' }\n  its('bgp.advertised_groups') { should include 'ALL_SUBNETS' }\n  its('bgp.advertised_ip_ranges.count') { should eq 2 }\n  its('bgp.advertised_ip_ranges.first.range') { should eq '1.2.3.4' }\n  its('bgp.advertised_ip_ranges.last.range') { should eq '1.2.3.4' }\n    its('network') { should match /\\/gcp-inspec-network$/ }\n  end",
+    "body": "describe google_compute_router(project: 'chef-gcp-inspec', region: 'europe-west2', name: 'inspec-gcp-router') do\n  it { should exist }\n  its('bgp.asn') { should eq '64514' }\n  its('bgp.advertise_mode') { should eq 'CUSTOM' }\n  its('bgp.advertised_groups') { should include 'ALL_SUBNETS' }\n  its('bgp.advertised_ip_ranges.count') { should eq 2 }\n  its('bgp.advertised_ip_ranges.first.range') { should eq '1.2.3.4' }\n  its('bgp.advertised_ip_ranges.last.range') { should eq '1.2.3.4' }\n    its('network') { should match /\\/gcp-inspec-network\\$/ }\n  end",
     "description": null,
     "scope": "source.ruby.chef_inspec"
   },
@@ -1675,7 +1675,7 @@
   },
   "google_compute_target_http_proxy": {
     "prefix": "google_compute_target_http_proxy",
-    "body": "describe google_compute_target_http_proxy(project: 'chef-gcp-inspec', name: 'inspec-gcp-http-proxy') do\n  it { should exist }\n  its('description') { should eq 'A HTTP proxy' }\n  its('url_map') { should  match /\\/inspec-gcp-url-map$/ }\nend",
+    "body": "describe google_compute_target_http_proxy(project: 'chef-gcp-inspec', name: 'inspec-gcp-http-proxy') do\n  it { should exist }\n  its('description') { should eq 'A HTTP proxy' }\n  its('url_map') { should  match /\\/inspec-gcp-url-map\\$/ }\nend",
     "description": null,
     "scope": "source.ruby.chef_inspec"
   },
@@ -1687,7 +1687,7 @@
   },
   "google_compute_target_https_proxy": {
     "prefix": "google_compute_target_https_proxy",
-    "body": "describe google_compute_target_https_proxy(project: 'chef-gcp-inspec', name: 'inspec-gcp-https-proxy') do\n  it { should exist }\n  its('url_map') { should match /\\/inspec-gcp-url-map$/ }\n  its('description') { should eq 'A HTTPS target proxy' }\nend",
+    "body": "describe google_compute_target_https_proxy(project: 'chef-gcp-inspec', name: 'inspec-gcp-https-proxy') do\n  it { should exist }\n  its('url_map') { should match /\\/inspec-gcp-url-map\\$/ }\n  its('description') { should eq 'A HTTPS target proxy' }\nend",
     "description": null,
     "scope": "source.ruby.chef_inspec"
   },
@@ -1711,13 +1711,13 @@
   },
   "google_compute_target_tcp_proxy": {
     "prefix": "google_compute_target_tcp_proxy",
-    "body": "describe google_compute_target_tcp_proxy(project: 'chef-gcp-inspec', name: 'inspec-gcp-target-tcp-proxy') do\n  it { should exist }\n  its('proxy_header') { should eq 'NONE' }\n  its('service') { should  match /\\/gcp-inspec-tcp-backend-service$/ }\nend",
+    "body": "describe google_compute_target_tcp_proxy(project: 'chef-gcp-inspec', name: 'inspec-gcp-target-tcp-proxy') do\n  it { should exist }\n  its('proxy_header') { should eq 'NONE' }\n  its('service') { should  match /\\/gcp-inspec-tcp-backend-service\\$/ }\nend",
     "description": null,
     "scope": "source.ruby.chef_inspec"
   },
   "google_compute_url_map": {
     "prefix": "google_compute_url_map",
-    "body": "describe google_compute_url_map(project: 'chef-gcp-inspec', name: 'inspec-gcp-url-map') do\n  it { should exist }\n  its('description') { should eq 'URL map description' }\n  its('default_service') { should match /\\/inspec-gcp-backend-service$/ }\n  its('host_rules.count') { should eq 1 }\n  its('host_rules.first.hosts') { should include 'site.com' }\n  its('path_matchers.count') { should eq 1 }\n  its('path_matchers.first.default_service') { should match /\\/inspec-gcp-backend-service$/ }\n  its('tests.count') { should eq 1 }\n  its('tests.first.host') { should eq 'test.com' }\n  its('tests.first.path') { should eq '/home' }\nend",
+    "body": "describe google_compute_url_map(project: 'chef-gcp-inspec', name: 'inspec-gcp-url-map') do\n  it { should exist }\n  its('description') { should eq 'URL map description' }\n  its('default_service') { should match /\\/inspec-gcp-backend-service\\$/ }\n  its('host_rules.count') { should eq 1 }\n  its('host_rules.first.hosts') { should include 'site.com' }\n  its('path_matchers.count') { should eq 1 }\n  its('path_matchers.first.default_service') { should match /\\/inspec-gcp-backend-service\\$/ }\n  its('tests.count') { should eq 1 }\n  its('tests.first.host') { should eq 'test.com' }\n  its('tests.first.path') { should eq '/home' }\nend",
     "description": null,
     "scope": "source.ruby.chef_inspec"
   },
@@ -2311,7 +2311,7 @@
   },
   "google_sourcerepo_repositories": {
     "prefix": "google_sourcerepo_repositories",
-    "body": "describe.one do\n  google_sourcerepo_repositories(project: 'chef-gcp-inspec').names.each do |name|\n    describe name do\n\tit { should match /\\/repos\\/#{repo_name}$/ }\nend",
+    "body": "describe.one do\n  google_sourcerepo_repositories(project: 'chef-gcp-inspec').names.each do |name|\n    describe name do\n\tit { should match /\\/repos\\/#{repo_name}\\$/ }\nend",
     "description": null,
     "scope": "source.ruby.chef_inspec"
   },
@@ -2708,7 +2708,7 @@
   "oracledb_listener_conf": {
     "prefix": "oracledb_listener_conf",
     "body": "describe oracledb_listener_conf do\n\tits('config item') { should eq 'value' }\nend",
-    "description": "Use the `oracledb_listener_conf` Chef InSpec audit resource to test the listeners settings of Oracle DB, typically located at `$ORACLE_HOME/network/admin/listener.ora` or `$ORACLE_HOME\\network\\admin\\listener.ora` depending upon the platform.",
+    "description": "Use the `oracledb_listener_conf` Chef InSpec audit resource to test the listeners settings of Oracle DB, typically located at `\\$ORACLE_HOME/network/admin/listener.ora` or `\\$ORACLE_HOME\\network\\admin\\listener.ora` depending upon the platform.",
     "scope": "source.ruby.chef_inspec"
   },
   "oracledb_session": {
