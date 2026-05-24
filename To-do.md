@@ -6,6 +6,7 @@
 - see other lists of items for this (spec in laptop folder)
 - bring to ARB from workstation team
 - create a new version, test succesfully
+- create a pipeline in GHA to publish a new version (ad hoc, uses new secret and version file)
 - publish under Progress, not chef (and deprecate chef if possible - not sure we have the login key anymore)
 
 ---
