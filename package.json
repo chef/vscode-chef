@@ -258,7 +258,7 @@
   "scripts": {
     "vscode:prepublish": "tsc -p ./",
     "compile": "tsc -watch -p ./",
-    "lint": "eslint src extension.ts",
+    "lint": "eslint src test extension.ts",
     "test": "tsc -p ./ && mocha 'out/test/**/*.test.js'",
     "package": "vsce package --out vscode-chef.vsix"
   }

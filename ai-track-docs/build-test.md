@@ -70,10 +70,16 @@ mocha 'out/test/**/*.test.js'
 ## Lint the Extension Source
 
 ```sh
-npm run lint    # runs: eslint extension.ts
+npm run lint    # runs: eslint src test extension.ts
 ```
 
 ESLint 9 with `@typescript-eslint` is used (replaces the deprecated `tslint`). Config is in `eslint.config.mjs`.
+
+To fail locally on any warnings (strict mode):
+
+```sh
+npm run lint -- --max-warnings=0
+```
 
 ---
 
