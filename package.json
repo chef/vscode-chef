@@ -35,15 +35,17 @@
   ],
   "main": "./out/extension",
   "devDependencies": {
+    "@types/mocha": "^10.0.10",
     "@types/node": "^25.9.1",
     "@types/vscode": "^1.120.0",
-    "path": "0.12.7",
-    "eslint": "^9.27.0",
     "@typescript-eslint/eslint-plugin": "^8.32.1",
     "@typescript-eslint/parser": "^8.32.1",
-    "typescript": "6.0.3",
+    "@vscode/test-electron": "^2.5.2",
     "@vscode/vsce": "^3.9.1",
-    "@vscode/test-electron": "^2.5.2"
+    "eslint": "^9.27.0",
+    "mocha": "^11.7.6",
+    "path": "0.12.7",
+    "typescript": "6.0.3"
   },
   "extensionDependencies": [
     "Shopify.ruby-lsp",
@@ -199,6 +201,16 @@
       {
         "language": "chef_metadata",
         "path": "./snippets/chef_metadata.json"
+      },
+      {
+        "language": "json",
+        "path": "./snippets/chef_job.json"
+      }
+    ],
+    "jsonValidation": [
+      {
+        "fileMatch": "**/*job.json",
+        "url": "./schema/job-schema.json"
       }
     ],
     "configuration": {
@@ -247,6 +259,7 @@
     "vscode:prepublish": "tsc -p ./",
     "compile": "tsc -watch -p ./",
     "lint": "eslint src extension.ts",
+    "test": "tsc -p ./ && mocha 'out/test/**/*.test.js'",
     "package": "vsce package --out vscode-chef.vsix"
   }
 }

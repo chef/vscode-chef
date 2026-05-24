@@ -277,13 +277,13 @@
   },
   "aws_iam_access_key": {
     "prefix": "aws_iam_access_key",
-    "body": "describe aws_iam_access_key(access_key_id: 'AKIA1111111111111111') do\n\tit { should exist }\nend",
+    "body": "describe aws_iam_access_key(access_key_id: 'AKIAIOSFODNN7EXAMPLE') do\n\tit { should exist }\nend",
     "description": "Use the `aws_iam_access_key` InSpec audit resource to test properties of a single AWS IAM Access Key.",
     "scope": "source.ruby.chef_inspec"
   },
   "aws_iam_access_keys": {
     "prefix": "aws_iam_access_keys",
-    "body": "describe aws_iam_access_keys do\n\t  it                    { should exist }\n\t  its('access_key_ids') { should include 'AKIA1111111111111111' }\n\tend",
+    "body": "describe aws_iam_access_keys do\n\t  it                    { should exist }\n\t  its('access_key_ids') { should include 'AKIAIOSFODNN7EXAMPLE' }\n\tend",
     "description": "Use the `aws_iam_access_keys` InSpec audit resource to test properties of some or all AWS IAM Access Keys.",
     "scope": "source.ruby.chef_inspec"
   },

@@ -1,10 +1,63 @@
-out
-node_modules
+# Build and package outputs
+out/
 *.vsix
+*.tgz
+*.tsbuildinfo
+
+# Dependency directories
+node_modules/
+
+# VS Code extension test artifacts
+.vscode-test/
+.vscode-test-web/
+
+# Logs and coverage
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+coverage/
+.nyc_output/
+
+# Caches and generated editor state
+.eslintcache
+
+# OS/editor noise
+.DS_Store
+
+# Ruby tooling artifacts (used by autogeneration)
 Gemfile.lock
-.bundle
-vendor
-.yardoc
-package-lock.json
+.bundle/
+vendor/
+.yardoc/
+
+# Project-generated content
 autogeneration/inspec
 autogeneration/chef
+
+# Local environment and secrets
+.env
+.env.*
+!.env.example
+*.local
+*.secret
+*.secrets
+secrets.*
+credentials.*
+auth.json
+
+# Keys and certificates that commonly contain private material
+*.pem
+*.key
+*.p12
+*.pfx
+*.jks
+*.keystore
+
+# Common credential files
+.npmrc
+.yarnrc.yml
+.netrc
+id_rsa
+id_ed25519

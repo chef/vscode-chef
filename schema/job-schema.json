@@ -1,0 +1,241 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://github.com/chef/vscode-chef/schema/job-schema.json",
+  "title": "Chef Courier Job",
+  "description": "Schema for Chef Courier job definition files (*job.json)",
+  "type": "object",
+  "required": ["name", "scheduleRule", "target", "actions"],
+  "additionalProperties": false,
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "A short, human-readable name for this job."
+    },
+    "description": {
+      "type": "string",
+      "description": "An optional longer description of what this job does."
+    },
+    "scheduleRule": {
+      "type": "string",
+      "description": "When the job should run. Use 'immediate' to trigger now, or a cron expression (e.g. '0 9 * * 1-5').",
+      "examples": ["immediate", "0 9 * * 1-5", "0 0 * * 0"]
+    },
+    "exceptionRules": {
+      "type": "array",
+      "description": "Dates or time windows when this job must NOT run.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "start": { "type": "string", "description": "ISO 8601 start datetime." },
+          "end":   { "type": "string", "description": "ISO 8601 end datetime." }
+        }
+      },
+      "default": []
+    },
+    "target": {
+      "type": "object",
+      "description": "Defines which nodes to run on and how.",
+      "required": ["executionType", "groups"],
+      "additionalProperties": false,
+      "properties": {
+        "executionType": {
+          "type": "string",
+          "description": "Whether groups run one after another or all at once.",
+          "enum": ["sequential", "parallel"]
+        },
+        "groups": {
+          "type": "array",
+          "description": "One or more node groups. Groups run in order when executionType is 'sequential'.",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "required": ["timeoutSeconds", "batchSize", "distributionMethod", "successCriteria", "nodeListType", "nodeIdentifiers"],
+            "additionalProperties": false,
+            "properties": {
+              "timeoutSeconds": {
+                "type": "integer",
+                "description": "Maximum seconds to wait for this group to complete.",
+                "minimum": 1
+              },
+              "batchSize": {
+                "type": "object",
+                "description": "How many nodes to target per batch.",
+                "required": ["type", "value"],
+                "additionalProperties": false,
+                "properties": {
+                  "type": {
+                    "type": "string",
+                    "enum": ["number", "percent"],
+                    "description": "'number' = exact count; 'percent' = percentage of total nodes."
+                  },
+                  "value": {
+                    "type": "number",
+                    "description": "The batch size value (count or percentage 1-100).",
+                    "minimum": 1
+                  }
+                }
+              },
+              "distributionMethod": {
+                "type": "string",
+                "description": "How runs are distributed across nodes.",
+                "enum": ["batching", "rolling"]
+              },
+              "successCriteria": {
+                "type": "array",
+                "description": "Rules that must be met for this group to be considered successful.",
+                "minItems": 1,
+                "items": {
+                  "type": "object",
+                  "required": ["numRuns", "status"],
+                  "additionalProperties": false,
+                  "properties": {
+                    "numRuns": {
+                      "type": "object",
+                      "required": ["type", "value"],
+                      "additionalProperties": false,
+                      "properties": {
+                        "type": {
+                          "type": "string",
+                          "enum": ["number", "percent"]
+                        },
+                        "value": {
+                          "type": "number",
+                          "minimum": 0,
+                          "maximum": 100
+                        }
+                      }
+                    },
+                    "status": {
+                      "type": "string",
+                      "enum": ["success", "failure", "skipped"],
+                      "description": "The run status that must be met."
+                    }
+                  }
+                }
+              },
+              "nodeListType": {
+                "type": "string",
+                "description": "How nodes are identified.",
+                "enum": ["nodes", "nodeGroup", "filter"]
+              },
+              "nodeIdentifiers": {
+                "type": "array",
+                "description": "List of node names, group names, or filter strings depending on nodeListType.",
+                "items": { "type": "string" },
+                "minItems": 1
+              }
+            }
+          }
+        }
+      }
+    },
+    "actions": {
+      "type": "object",
+      "description": "Defines what the job does on each node.",
+      "required": ["accessMode", "steps"],
+      "additionalProperties": false,
+      "properties": {
+        "accessMode": {
+          "type": "string",
+          "description": "How the action is delivered to nodes.",
+          "enum": ["agent", "ssh", "winrm"]
+        },
+        "steps": {
+          "type": "array",
+          "description": "Ordered list of steps to execute.",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "required": ["name", "interpreter", "command"],
+            "additionalProperties": false,
+            "properties": {
+              "name": {
+                "type": "string",
+                "description": "Human-readable name for this step."
+              },
+              "interpreter": {
+                "type": "object",
+                "description": "The skill/interpreter that runs the command.",
+                "required": ["name"],
+                "additionalProperties": false,
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "description": "Interpreter skill name (e.g. 'chef-platform/shell-interpreter').",
+                    "examples": ["chef-platform/shell-interpreter", "chef-platform/chef-client-interpreter"]
+                  },
+                  "skill": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                      "minVersion": { "type": "string", "description": "Minimum compatible skill version (semver)." },
+                      "maxVersion": { "type": "string", "description": "Maximum compatible skill version (semver)." }
+                    }
+                  }
+                }
+              },
+              "command": {
+                "type": "object",
+                "description": "Platform-specific commands to run.",
+                "additionalProperties": false,
+                "properties": {
+                  "linux":   { "type": "array", "items": { "type": "string" }, "description": "Commands for Linux nodes." },
+                  "windows": { "type": "array", "items": { "type": "string" }, "description": "Commands for Windows nodes." },
+                  "darwin":  { "type": "array", "items": { "type": "string" }, "description": "Commands for macOS nodes." }
+                }
+              },
+              "inputs":          { "type": "object", "description": "Static input values passed to the step." },
+              "expectedInputs":  { "type": "object", "description": "Declarations of inputs this step expects from previous steps." },
+              "outputFieldRules": { "type": "object", "description": "Rules for extracting output values." },
+              "retryCount": {
+                "type": "integer",
+                "description": "Number of times to retry this step on failure.",
+                "minimum": 0,
+                "maximum": 10,
+                "default": 0
+              },
+              "failureBehavior": {
+                "type": "object",
+                "description": "What to do when the step fails.",
+                "additionalProperties": false,
+                "properties": {
+                  "action": {
+                    "type": "string",
+                    "enum": ["retryThenFail", "fail", "continue", "retryThenContinue"],
+                    "description": "Action to take on step failure."
+                  },
+                  "retryBackoffStrategy": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                      "type": {
+                        "type": "string",
+                        "enum": ["linear", "exponential", "fixed"]
+                      },
+                      "delaySeconds": {
+                        "type": "number",
+                        "minimum": 0,
+                        "description": "Base delay between retries in seconds."
+                      },
+                      "arguments": {
+                        "type": "array",
+                        "items": { "type": "number" },
+                        "description": "Additional strategy arguments (e.g. multipliers)."
+                      }
+                    }
+                  }
+                }
+              },
+              "limits":     { "type": "object", "description": "Resource limits for this step." },
+              "conditions": {
+                "type": "array",
+                "description": "Conditions that must be true for this step to execute.",
+                "items": { "type": "object" }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

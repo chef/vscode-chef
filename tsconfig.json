@@ -9,9 +9,13 @@
 			"node_modules/@types",
 			"typings/"
 		],
-		"types": ["node"],
+		"types": ["node", "mocha"],
 		"lib": [
 			"ES2020"
 		]
-	}
+	},
+	"include": [
+		"extension.ts",
+		"test/**/*.ts"
+	]
 }

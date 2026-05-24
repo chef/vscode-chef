@@ -8,7 +8,7 @@
 | npm | bundled with Node | — |
 | Ruby + Bundler | 3.x | Only needed for snippet autogeneration |
 | Chef Workstation | latest | Provides `cookstyle`/`rubocop` at runtime |
-| `@vscode/vsce` | ^2.21.1 | Installed as a dev dependency |
+| `@vscode/vsce` | ^3.9.1 | Installed as a dev dependency |
 
 ---
 
@@ -18,13 +18,18 @@
 npm install
 ```
 
-This installs all `devDependencies` from `package.json` (TypeScript, vsce, type definitions).
+This installs all `devDependencies` from `package.json` (TypeScript, ESLint, Mocha, vsce, type definitions).
+
+> **Permission note:** If `node_modules/` or `out/` are owned by root from a previous `sudo npm install`, fix that first:
+> ```sh
+> sudo chown -R $(whoami) node_modules out
+> ```
 
 ---
 
 ## Compile TypeScript
 
-One-shot compile:
+One-shot compile (also used as the pre-publish step):
 
 ```sh
 npm run vscode:prepublish   # runs: tsc -p ./
@@ -36,7 +41,39 @@ Watch mode (rebuilds on save — useful during development):
 npm run compile             # runs: tsc -watch -p ./
 ```
 
-Compiled output lands in `out/`.
+Compiled output lands in `out/`. The `test/` directory is included in compilation and outputs to `out/test/`.
+
+---
+
+## Run Tests
+
+```sh
+npm test
+```
+
+This compiles TypeScript then runs all `*.test.js` files in `out/test/` via Mocha. No VS Code instance is required — tests run headlessly in Node.
+
+To run tests without recompiling (faster iteration):
+
+```sh
+mocha 'out/test/**/*.test.js'
+```
+
+### Current test coverage
+
+| File | Suite | What is tested |
+|---|---|---|
+| `test/chef_metadata.test.ts` | `snippets/chef_metadata.json` | Valid JSON, non-empty prefix/body/description on every snippet, `depends` prefix matches key, `chef_version` body has tab-stops |
+
+---
+
+## Lint the Extension Source
+
+```sh
+npm run lint    # runs: eslint extension.ts
+```
+
+ESLint 9 with `@typescript-eslint` is used (replaces the deprecated `tslint`). Config is in `eslint.config.mjs`.
 
 ---
 
@@ -82,14 +119,15 @@ npx vsce publish
 
 ---
 
-## Linting the Extension Source
+## Full clean build + test (recommended before opening a PR)
 
-There is no automated test runner configured for this extension today. Manual verification steps:
-
-1. Open a Chef cookbook in VS Code with the extension loaded.
-2. Save a `.rb` file and confirm Cookstyle diagnostics appear in the Problems panel.
-3. Trigger `Chef: Validate Workspace` from the Command Palette and verify the workspace-wide lint runs.
-4. Confirm snippet completions appear for `chef_recipe_yaml`, `chef_inspec`, and Ruby recipe files.
+```sh
+npm install
+npm run vscode:prepublish
+npm run lint
+npm test
+npm run package
+```
 
 ---
 
@@ -99,3 +137,4 @@ Expeditor (`.expeditor/`) drives version bumps and changelog updates. The releas
 
 1. Merge PR → Expeditor bumps `VERSION` and `CHANGELOG.md`.
 2. Tag is pushed → `vsce publish` runs (manual or via pipeline).
+
