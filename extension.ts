@@ -1,5 +1,3 @@
-// tslint:disable:typedef
-
 import fs = require("fs");
 import path = require("path");
 import vscode = require("vscode");
@@ -74,7 +72,7 @@ function updateRubyFileCountAndValidate(warn: boolean = false): void {
 		uri_array.forEach(uriCounter)
 		validate(warn);
 	}
-	vscode.workspace.findFiles("**/*.rb", null, stopAt, null)
+	vscode.workspace.findFiles("**/*.rb", undefined, stopAt, undefined)
 	                .then(countAndValidate)
 }
 
@@ -104,7 +102,9 @@ function validateOpenFiles(): void {
 }
 
 function validateEntireWorkspace(): void {
-	validatePaths([vscode.workspace.rootPath])
+	const rootPath = vscode.workspace.rootPath ?? vscode.workspace.workspaceFolders?.[0]?.uri.fsPath;
+	if (!rootPath) { return; }
+	validatePaths([rootPath]);
 }
 
 function validatePaths(paths: Array<string>): void {
@@ -118,10 +118,11 @@ function validatePaths(paths: Array<string>): void {
 		}
 		let rubocopOutput = JSON.parse(rubocop.stdout);
 		if (rubocop.status < 2) {
-			let arr = [];
+			const rootPath = vscode.workspace.rootPath ?? vscode.workspace.workspaceFolders?.[0]?.uri.fsPath ?? "";
+			let arr: [vscode.Uri, vscode.Diagnostic[]][] = [];
 			for (var r = 0; r < rubocopOutput.files.length; r++) {
 				var rubocopFile = rubocopOutput.files[r];
-				let uri: vscode.Uri = vscode.Uri.file((path.join(vscode.workspace.rootPath, rubocopFile.path)));
+				let uri: vscode.Uri = vscode.Uri.file((path.join(rootPath, rubocopFile.path)));
 				var offenses = rubocopFile.offenses;
 				let diagnostics: vscode.Diagnostic[] = [];
 				for (var i = 0; i < offenses.length; i++) {

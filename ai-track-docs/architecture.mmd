@@ -1,0 +1,43 @@
+%%  vscode-chef — high-level architecture
+%%  Render with: https://mermaid.live  or the VS Code Mermaid extension
+
+flowchart TD
+    subgraph VSCode["VS Code Host"]
+        ExtHost["Extension Host\n(Node.js)"]
+        DiagAPI["Diagnostics API\n(Problems panel)"]
+        LangAPI["Language API\n(grammars / snippets)"]
+        CmdAPI["Command API\n(Command Palette)"]
+    end
+
+    subgraph Ext["vscode-chef  (extension.ts → out/extension.js)"]
+        Activate["activate()"]
+        LintMgr["Linter Manager\n• on-save trigger\n• file-count threshold"]
+        DiagCol["DiagnosticCollection\nchef-rubocop"]
+        CmdReg["Command: Chef Validate Workspace"]
+    end
+
+    subgraph Runtime["Host Machine Runtime"]
+        CookStyle["cookstyle / rubocop\n(Chef Workstation)"]
+        RubyLSP["ruby-lsp\n(Shopify.ruby-lsp)"]
+        YAMLExt["vscode-yaml\n(redhat)"]
+    end
+
+    subgraph Assets["Static Assets"]
+        Grammars["syntaxes/\n*.plist / *.cson.json\n(TextMate grammars)"]
+        Snippets["snippets/\n*.json\n(IntelliSense completions)"]
+        AutoGen["autogeneration/\nRake → regenerated snippets"]
+    end
+
+    ExtHost --> Activate
+    Activate --> LintMgr
+    Activate --> CmdReg
+    Activate --> LangAPI
+    LintMgr -->|"spawn child process"| CookStyle
+    CookStyle -->|"JSON diagnostics"| DiagCol
+    DiagCol --> DiagAPI
+    CmdReg --> CmdAPI
+    LangAPI --> Grammars
+    LangAPI --> Snippets
+    AutoGen -->|"writes"| Snippets
+    ExtHost --> RubyLSP
+    ExtHost --> YAMLExt
