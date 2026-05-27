@@ -103,6 +103,7 @@ Problem
 
 Acceptance criteria
 - Increment version and changelog entry for release candidate.
+- update all deps
 - Build extension package (`npx vsce package`) successfully.
 - Perform smoke test install of generated VSIX and validate key scenarios:
   - Ruby lint diagnostics
@@ -150,6 +151,44 @@ Acceptance criteria
 Code links
 - [.github/workflows/ci.yml](.github/workflows/ci.yml)
 - [package.json](package.json)
+- [README.md](README.md)
+
+## BL-009: Plan and execute ESLint 10 major upgrade
+Priority: Medium
+
+Problem
+- `eslint` latest is 10.x while the project currently runs 9.x. This is a major-version jump and may require rule/config/plugin adjustments.
+
+Acceptance criteria
+- Create a dedicated upgrade PR moving `eslint` to latest 10.x.
+- Verify `@typescript-eslint` plugin/parser compatibility with ESLint 10 in the same PR.
+- Update lint config/rules as needed and document behavior changes.
+- CI passes for lint, test, and package after the upgrade.
+
+Code links
+- [package.json](package.json)
+- [eslint.config.mjs](eslint.config.mjs)
+- [.github/workflows/ci.yml](.github/workflows/ci.yml)
+- [ai-track-docs/build-test.md](ai-track-docs/build-test.md)
+
+## BL-010: Add auto-publishing GitHub Action for VS Code Marketplace
+Priority: High
+
+Problem
+- Publishing is currently manual. The repo packages in CI, but does not automatically publish a successfully tested and packaged VSIX to the VS Code Marketplace.
+
+Acceptance criteria
+- Add a dedicated GitHub Actions workflow for publish (for example, tag-triggered or manually dispatched).
+- Publish job is gated on successful lint, test, and package steps in the same workflow run.
+- Workflow uses a repository secret for Marketplace auth (for example `VSCE_PAT`) and does not echo credentials in logs.
+- Workflow publishes the validated VSIX artifact to the target publisher in Marketplace.
+- Add rollback guidance (unpublish/deprecate/version bump strategy) in release docs.
+
+Code links
+- [.github/workflows](.github/workflows)
+- [.github/workflows/ci.yml](.github/workflows/ci.yml)
+- [package.json](package.json)
+- [ai-track-docs/build-test.md](ai-track-docs/build-test.md)
 - [README.md](README.md)
 
 ## Notes
