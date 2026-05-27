@@ -16,6 +16,7 @@
 	},
 	"include": [
 		"extension.ts",
+		"src/**/*.ts",
 		"test/**/*.ts"
 	]
 }

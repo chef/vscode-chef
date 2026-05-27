@@ -37,6 +37,48 @@ Access any command via the **Command Palette**: `Ctrl+Shift+P` (Windows/Linux) o
 
 ---
 
+## Habitat Plan + Package Commands
+
+The extension includes command helpers for drafting and building Chef Habitat plans and packages.
+
+### `Chef: Create Habitat Plan Draft`
+
+**What it does:** Creates a starter `plan.sh` (or `plan.ps1` on Windows) with common `pkg_*` fields based on Habitat plan-writing guidance.
+
+**How to run:**
+1. Open the Command Palette.
+2. Type `Chef: Create Habitat Plan Draft`.
+3. Confirm or edit the destination path.
+
+### `Chef: Build Habitat Package (Local)`
+
+**What it does:** Runs `hab pkg build` locally in your workspace for the selected plan context.
+
+### `Chef: Build Habitat Package (Container)`
+
+**What it does:** Runs `hab pkg build` inside a container image you choose.
+
+**Notes:**
+- Uses `habitat.containerRuntime` (`docker` or `podman`).
+- Uses `habitat.containerImage` by default, and you can override it per run.
+
+### `Chef: Test Habitat Package Install (Container)`
+
+**What it does:** Runs `hab pkg install` in a container for a package identifier or `.hart` file path.
+
+---
+
+## Habitat Settings
+
+| Setting | Type | Default | Description |
+|---|---|---|---|
+| `habitat.defaultOrigin` | string | `myorigin` | Default origin used in drafted plan templates |
+| `habitat.containerRuntime` | string | `docker` | Container runtime for Habitat container commands (`docker` or `podman`) |
+| `habitat.containerImage` | string | `ghcr.io/habitat-sh/habitat:latest` | Default image used for containerized build/install commands |
+| `habitat.defaultBuildContext` | string | `habitat` | Default plan context path relative to workspace root |
+
+---
+
 ## Automatic Linting (no command needed)
 
 The extension also lints automatically on every file save — no command required. Diagnostics appear inline in the editor and in the Problems panel. To disable:

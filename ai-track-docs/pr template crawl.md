@@ -6,6 +6,7 @@ Summary
 
 Test & Risk
 - Tests: run with <command>; paste output.
+- Coverage Total: <xx.xx>% (from `npm run coverage` summary)
 - Risk: low/medium; rollback: revert <commit SHA> (or disable flag).
 
 Track

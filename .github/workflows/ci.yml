@@ -17,6 +17,16 @@
             do
               (cat ${json} | jq empty) || (echo "JSON parsing problem with ${json}" && exit 1)
             done
+        - name: Render Mermaid architecture diagram
+          run: |
+            docker run --rm \
+              -u "$(id -u):$(id -g)" \
+              -v "$PWD":/data \
+              minlag/mermaid-cli \
+              -i /data/ai-track-docs/architecture.mmd \
+              -o /data/ai-track-docs/architecture.ci.svg
+            test -s ai-track-docs/architecture.ci.svg
+            rm -f ai-track-docs/architecture.ci.svg
 
     build:
       needs: [validate]

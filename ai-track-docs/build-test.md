@@ -51,12 +51,12 @@ Compiled output lands in `out/`. The `test/` directory is included in compilatio
 npm test
 ```
 
-This compiles TypeScript then runs all `*.test.js` files in `out/test/` via Mocha. No VS Code instance is required — tests run headlessly in Node.
+This compiles TypeScript then runs all compiled `*.test.js` files under `out/` via Mocha. No VS Code instance is required — tests run headlessly in Node.
 
 To run tests without recompiling (faster iteration):
 
 ```sh
-mocha 'out/test/**/*.test.js'
+mocha 'out/**/*.test.js'
 ```
 
 ### Current test coverage
@@ -64,6 +64,33 @@ mocha 'out/test/**/*.test.js'
 | File | Suite | What is tested |
 |---|---|---|
 | `test/chef_metadata.test.ts` | `snippets/chef_metadata.json` | Valid JSON, non-empty prefix/body/description on every snippet, `depends` prefix matches key, `chef_version` body has tab-stops |
+
+---
+
+## Coverage Output
+
+Generate total coverage and LCOV output:
+
+```sh
+npm run coverage
+```
+
+This runs TypeScript compile plus Mocha tests under `c8` and writes:
+
+- Console summary with total percentages (`lines`, `statements`, `functions`, `branches`)
+- `coverage/lcov.info` for tooling/PR integrations
+
+Example PR snippet (copy/paste):
+
+```md
+### Coverage
+
+- Total Lines: <xx.xx>%
+- Total Statements: <xx.xx>%
+- Total Functions: <xx.xx>%
+- Total Branches: <xx.xx>%
+- Command: `npm run coverage`
+```
 
 ---
 

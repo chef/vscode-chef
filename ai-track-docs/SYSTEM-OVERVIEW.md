@@ -31,14 +31,38 @@ The extension activates on:
 
 ```
 vscode-chef/
-├── extension.ts          # Entry point — registers linter, commands, diagnostics
-├── out/                  # Compiled JS (gitignored, produced by tsc)
-├── syntaxes/             # TextMate grammar files (.plist, .cson.json)
-├── snippets/             # JSON snippet files
-├── autogeneration/       # Ruby/Rake tooling that regenerates auto-snippets
-├── ai-track-docs/        # AI-readable documentation (this folder)
-└── .copilot-track/       # Copilot crawl artefacts and prompt cache
+├── extension.ts                    # Runtime entrypoint in VS Code extension host
+├── package.json                    # Manifest (contributions, activation events, scripts)
+├── schema/job-schema.json          # JSON schema used for *job.json validation
+├── snippets/chef_job.json          # Courier job snippets (chef-job*)
+├── syntaxes/                       # TextMate grammars (*.plist, *.cson.json)
+├── snippets/                       # Snippet payloads consumed by VS Code IntelliSense
+├── src/utils.ts                    # Shared helper logic used by extension runtime/tests
+├── test/chef_metadata.test.ts      # Headless snippet structure tests
+├── .github/workflows/ci.yml        # PR CI (JSON validation + package + diagram render check)
+├── autogeneration/Rakefile         # Regenerates auto-generated snippet files
+└── ai-track-docs/architecture.mmd  # Mermaid architecture diagram source
 ```
+
+## Data Flows
+
+### 1) Ruby lint diagnostics flow
+
+1. VS Code activates [extension.ts](../extension.ts) on language/workspace triggers from [package.json](../package.json).
+2. `validate()`/`validatePaths()` in [extension.ts](../extension.ts) spawns `cookstyle`/`rubocop`.
+3. Rubocop JSON output is converted into VS Code diagnostics and pushed to the Problems panel.
+
+### 2) Courier job schema validation flow (`*job.json`)
+
+1. [package.json](../package.json) contributes JSON validation mapping: `**/*job.json` -> [schema/job-schema.json](../schema/job-schema.json).
+2. When a matching file is opened/edited, VS Code JSON validation applies schema constraints (required fields, enums, shapes).
+3. Authoring is accelerated by scaffold snippets from [snippets/chef_job.json](../snippets/chef_job.json), which should stay schema-aligned.
+
+### 3) Snippet generation and quality gate flow
+
+1. [autogeneration/Rakefile](../autogeneration/Rakefile) regenerates selected snippet files under [snippets](../snippets).
+2. PR CI in [.github/workflows/ci.yml](../.github/workflows/ci.yml) validates all snippet JSON files parse correctly.
+3. Packaging (`npx vsce package`) runs in CI to ensure extension artifact can be produced from current sources.
 
 ## Settings Reference
 

@@ -42,6 +42,7 @@
     "@typescript-eslint/parser": "^8.60.0",
     "@vscode/test-electron": "^2.5.2",
     "@vscode/vsce": "^3.9.1",
+    "c8": "^11.0.0",
     "eslint": "^9.27.0",
     "mocha": "^11.7.6",
     "path": "0.12.7",
@@ -205,6 +206,10 @@
       {
         "language": "json",
         "path": "./snippets/chef_job.json"
+      },
+      {
+        "language": "ruby",
+        "path": "./snippets/chef_habitat_plan.json"
       }
     ],
     "jsonValidation": [
@@ -236,6 +241,30 @@
           "type": "number",
           "default": 400,
           "description": "If there are are fewer than this many Ruby files, the extension will validate all files in the workspace. If greater, it will only validate the open files to keep the extension responsive."
+        },
+        "habitat.defaultOrigin": {
+          "type": "string",
+          "default": "myorigin",
+          "description": "Default Habitat origin used when drafting new plan files."
+        },
+        "habitat.containerRuntime": {
+          "type": "string",
+          "default": "docker",
+          "enum": [
+            "docker",
+            "podman"
+          ],
+          "description": "Container runtime used for Habitat build/test commands."
+        },
+        "habitat.containerImage": {
+          "type": "string",
+          "default": "ghcr.io/habitat-sh/habitat:latest",
+          "description": "Container image used for Habitat build/test commands. Must include the hab CLI."
+        },
+        "habitat.defaultBuildContext": {
+          "type": "string",
+          "default": "habitat",
+          "description": "Default plan context path (relative to workspace root) used by Habitat build commands."
         }
       }
     },
@@ -243,6 +272,22 @@
       {
         "command": "chef.validateEntireWorkspace",
         "title": "Chef: Validate Workspace"
+      },
+      {
+        "command": "chef.createHabitatPlanDraft",
+        "title": "Chef: Create Habitat Plan Draft"
+      },
+      {
+        "command": "chef.buildHabitatPackageLocal",
+        "title": "Chef: Build Habitat Package (Local)"
+      },
+      {
+        "command": "chef.buildHabitatPackageContainer",
+        "title": "Chef: Build Habitat Package (Container)"
+      },
+      {
+        "command": "chef.testHabitatPackageInstallInContainer",
+        "title": "Chef: Test Habitat Package Install (Container)"
       }
     ],
     "configurationDefaults": {
@@ -259,7 +304,8 @@
     "vscode:prepublish": "tsc -p ./",
     "compile": "tsc -watch -p ./",
     "lint": "eslint src test extension.ts",
-    "test": "tsc -p ./ && mocha 'out/test/**/*.test.js'",
+    "test": "tsc -p ./ && mocha 'out/**/*.test.js'",
+    "coverage": "npm run vscode:prepublish && c8 --reporter=text-summary --reporter=lcov mocha 'out/**/*.test.js'",
     "package": "vsce package --out vscode-chef.vsix"
   }
 }

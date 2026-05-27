@@ -1,0 +1,389 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>vscode-chef Data Flows</title>
+  <style>
+    :root {
+      --bg-a: #f7f4ee;
+      --bg-b: #e8f0e8;
+      --ink: #172126;
+      --muted: #55626b;
+      --panel: #ffffffcc;
+      --line: #96a7b0;
+      --flow1: #1b8f6b;
+      --flow2: #2f63c9;
+      --flow3: #d97706;
+      --shadow: 0 12px 30px rgba(24, 33, 38, 0.12);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: "IBM Plex Sans", "Segoe UI", Tahoma, sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(1000px 400px at 10% 0%, #f9e6c8 0%, transparent 70%),
+        radial-gradient(900px 350px at 90% 10%, #dbe9ff 0%, transparent 70%),
+        linear-gradient(160deg, var(--bg-a), var(--bg-b));
+      min-height: 100vh;
+      padding: 28px;
+    }
+
+    .layout {
+      display: grid;
+      grid-template-columns: 360px 1fr;
+      gap: 20px;
+      max-width: 1300px;
+      margin: 0 auto;
+    }
+
+    .panel {
+      background: var(--panel);
+      backdrop-filter: blur(8px);
+      border: 1px solid #ffffffa8;
+      border-radius: 18px;
+      box-shadow: var(--shadow);
+    }
+
+    .left {
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 1.3rem;
+      letter-spacing: 0.2px;
+    }
+
+    .subtitle {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.95rem;
+      line-height: 1.4;
+    }
+
+    .controls {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 4px;
+    }
+
+    button {
+      border: 0;
+      border-radius: 999px;
+      padding: 8px 12px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      color: #fff;
+      transition: transform 140ms ease, filter 140ms ease;
+    }
+
+    button:hover { transform: translateY(-1px); filter: brightness(1.05); }
+    button:active { transform: translateY(0); }
+
+    .b1 { background: var(--flow1); }
+    .b2 { background: var(--flow2); }
+    .b3 { background: var(--flow3); }
+    .ball { background: #2f3a44; }
+
+    .flow {
+      padding: 12px;
+      border-radius: 12px;
+      border: 1px solid #d6e1e6;
+      background: #fff;
+      transition: border-color 180ms ease, box-shadow 180ms ease;
+    }
+
+    .flow.active {
+      border-color: #7f97a3;
+      box-shadow: 0 0 0 3px #dce8ee;
+    }
+
+    .flow h2 {
+      margin: 0 0 6px;
+      font-size: 0.95rem;
+    }
+
+    .flow p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.86rem;
+      line-height: 1.35;
+    }
+
+    .canvas {
+      padding: 12px;
+      min-height: 680px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    svg {
+      width: 100%;
+      height: 100%;
+      min-height: 650px;
+    }
+
+    .node {
+      fill: #fff;
+      stroke: #8da3ad;
+      stroke-width: 1.3;
+      rx: 11;
+      filter: drop-shadow(0 8px 10px rgba(0, 0, 0, 0.07));
+    }
+
+    .node-title {
+      font-size: 13px;
+      font-weight: 700;
+      fill: #18252b;
+    }
+
+    .node-path {
+      font-size: 11px;
+      fill: #4a5b64;
+    }
+
+    .edge {
+      fill: none;
+      stroke: var(--line);
+      stroke-width: 2;
+      opacity: 0.45;
+    }
+
+    .edge.flow1 { stroke: var(--flow1); }
+    .edge.flow2 { stroke: var(--flow2); }
+    .edge.flow3 { stroke: var(--flow3); }
+
+    .edge.dim { opacity: 0.08; }
+    .edge.show { opacity: 0.92; }
+
+    .label {
+      font-size: 11px;
+      fill: #36505c;
+      opacity: 0.9;
+    }
+
+    .particle {
+      r: 4.2;
+      opacity: 0.95;
+    }
+
+    .p1 { fill: var(--flow1); }
+    .p2 { fill: var(--flow2); }
+    .p3 { fill: var(--flow3); }
+
+    @media (max-width: 980px) {
+      body { padding: 14px; }
+      .layout { grid-template-columns: 1fr; }
+      .canvas { min-height: 760px; }
+    }
+  </style>
+</head>
+<body>
+  <main class="layout">
+    <section class="panel left">
+      <h1>vscode-chef Data Flows</h1>
+      <p class="subtitle">Animated view mapped to real repository paths. Use buttons to isolate one flow.</p>
+
+      <div class="controls">
+        <button class="b1" data-flow="flow1">Lint Diagnostics</button>
+        <button class="b2" data-flow="flow2">Job Schema Validation</button>
+        <button class="b3" data-flow="flow3">Snippet Gen + CI</button>
+        <button class="ball" data-flow="all">Show All</button>
+      </div>
+
+      <article class="flow" id="f1">
+        <h2>1. Ruby lint diagnostics</h2>
+        <p>extension.ts spawns cookstyle/rubocop, parses JSON offenses, and updates VS Code diagnostics.</p>
+      </article>
+
+      <article class="flow" id="f2">
+        <h2>2. Courier job schema validation</h2>
+        <p>package.json maps **/*job.json to schema/job-schema.json; snippets scaffold valid structures.</p>
+      </article>
+
+      <article class="flow" id="f3">
+        <h2>3. Snippet generation + CI gate</h2>
+        <p>autogeneration regenerates snippets; CI validates JSON, renders Mermaid diagram, then packages VSIX.</p>
+      </article>
+    </section>
+
+    <section class="panel canvas">
+      <svg viewBox="0 0 920 680" role="img" aria-label="Animated data flow diagram">
+        <defs>
+          <marker id="arrow" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+            <polygon points="0 0, 10 3.5, 0 7" fill="#7e929d"></polygon>
+          </marker>
+        </defs>
+
+        <path id="e1" class="edge flow1" marker-end="url(#arrow)" d="M120 120 C250 120, 300 120, 410 120"></path>
+        <text class="label" x="225" y="108">activate + validate</text>
+
+        <path id="e2" class="edge flow1" marker-end="url(#arrow)" d="M540 120 C620 120, 680 110, 760 90"></path>
+        <text class="label" x="595" y="108">spawnSync</text>
+
+        <path id="e3" class="edge flow1" marker-end="url(#arrow)" d="M760 145 C690 180, 620 210, 545 240"></path>
+        <text class="label" x="645" y="180">JSON offenses</text>
+
+        <path id="e4" class="edge flow1" marker-end="url(#arrow)" d="M420 240 C300 280, 220 300, 120 312"></path>
+        <text class="label" x="245" y="285">DiagnosticCollection</text>
+
+        <path id="e5" class="edge flow2" marker-end="url(#arrow)" d="M120 520 C240 520, 300 520, 410 520"></path>
+        <text class="label" x="210" y="507">jsonValidation map</text>
+
+        <path id="e6" class="edge flow2" marker-end="url(#arrow)" d="M540 520 C620 520, 680 520, 760 520"></path>
+        <text class="label" x="620" y="507">schema constraints</text>
+
+        <path id="e7" class="edge flow2" marker-end="url(#arrow)" d="M760 552 C620 600, 500 610, 350 610"></path>
+        <text class="label" x="545" y="602">inline validation feedback</text>
+
+        <path id="e8" class="edge flow2" marker-end="url(#arrow)" d="M410 430 C500 430, 620 430, 760 430"></path>
+        <text class="label" x="555" y="416">snippet scaffolds</text>
+
+        <path id="e9" class="edge flow3" marker-end="url(#arrow)" d="M120 220 C260 220, 300 220, 410 220"></path>
+        <text class="label" x="210" y="208">regenerate snippets</text>
+
+        <path id="e10" class="edge flow3" marker-end="url(#arrow)" d="M540 220 C620 250, 680 280, 760 310"></path>
+        <text class="label" x="610" y="250">jq validate</text>
+
+        <path id="e11" class="edge flow3" marker-end="url(#arrow)" d="M540 220 C620 190, 680 170, 760 150"></path>
+        <text class="label" x="607" y="178">mermaid render check</text>
+
+        <path id="e12" class="edge flow3" marker-end="url(#arrow)" d="M760 350 C680 390, 620 410, 540 430"></path>
+        <text class="label" x="638" y="388">vsce package</text>
+
+        <rect class="node" x="40" y="78" width="170" height="78"></rect>
+        <text class="node-title" x="54" y="103">VS Code Runtime</text>
+        <text class="node-path" x="54" y="123">Problems + JSON validation</text>
+        <text class="node-path" x="54" y="139">Snippet engine</text>
+
+        <rect class="node" x="380" y="84" width="180" height="86"></rect>
+        <text class="node-title" x="394" y="109">Extension Runtime</text>
+        <text class="node-path" x="394" y="129">extension.ts</text>
+        <text class="node-path" x="394" y="145">validate(), validatePaths()</text>
+
+        <rect class="node" x="40" y="186" width="170" height="78"></rect>
+        <text class="node-title" x="54" y="211">Snippet Source</text>
+        <text class="node-path" x="54" y="231">autogeneration/Rakefile</text>
+        <text class="node-path" x="54" y="247">writes snippets/*.json</text>
+
+        <rect class="node" x="380" y="186" width="180" height="86"></rect>
+        <text class="node-title" x="394" y="211">Snippet Assets</text>
+        <text class="node-path" x="394" y="231">snippets/*.json</text>
+        <text class="node-path" x="394" y="247">snippets/chef_job.json</text>
+
+        <rect class="node" x="40" y="478" width="170" height="78"></rect>
+        <text class="node-title" x="54" y="503">Manifest</text>
+        <text class="node-path" x="54" y="523">package.json</text>
+        <text class="node-path" x="54" y="539">jsonValidation + scripts</text>
+
+        <rect class="node" x="380" y="478" width="180" height="86"></rect>
+        <text class="node-title" x="394" y="503">Job Schema</text>
+        <text class="node-path" x="394" y="523">schema/job-schema.json</text>
+        <text class="node-path" x="394" y="539">required, enum, structure</text>
+
+        <rect class="node" x="740" y="58" width="160" height="96"></rect>
+        <text class="node-title" x="754" y="84">Host Dependency</text>
+        <text class="node-path" x="754" y="104">cookstyle / rubocop</text>
+        <text class="node-path" x="754" y="122">JSON offenses</text>
+
+        <rect class="node" x="740" y="286" width="160" height="96"></rect>
+        <text class="node-title" x="754" y="312">CI Pipeline</text>
+        <text class="node-path" x="754" y="332">.github/workflows/ci.yml</text>
+        <text class="node-path" x="754" y="350">json + mermaid + package</text>
+
+        <rect class="node" x="740" y="470" width="160" height="96"></rect>
+        <text class="node-title" x="754" y="496">Job Authoring</text>
+        <text class="node-path" x="754" y="516">**/*job.json</text>
+        <text class="node-path" x="754" y="534">validated by schema</text>
+
+        <rect class="node" x="380" y="392" width="180" height="78"></rect>
+        <text class="node-title" x="394" y="418">Package Artifact</text>
+        <text class="node-path" x="394" y="438">vscode-chef.vsix</text>
+      </svg>
+    </section>
+  </main>
+
+  <script>
+    const flows = {
+      flow1: ["e1", "e2", "e3", "e4"],
+      flow2: ["e5", "e6", "e7", "e8"],
+      flow3: ["e9", "e10", "e11", "e12"]
+    };
+
+    const particles = [];
+    const svg = document.querySelector("svg");
+    const allEdges = Array.from(document.querySelectorAll(".edge"));
+
+    function makeParticle(edgeId, cssClass, speed) {
+      const path = document.getElementById(edgeId);
+      const circle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+      circle.setAttribute("class", `particle ${cssClass}`);
+      svg.appendChild(circle);
+      return {
+        path,
+        circle,
+        len: path.getTotalLength(),
+        t: Math.random(),
+        speed
+      };
+    }
+
+    flows.flow1.forEach(id => particles.push(makeParticle(id, "p1", 0.0016)));
+    flows.flow2.forEach(id => particles.push(makeParticle(id, "p2", 0.0014)));
+    flows.flow3.forEach(id => particles.push(makeParticle(id, "p3", 0.00125)));
+
+    function tick() {
+      particles.forEach(p => {
+        p.t += p.speed;
+        if (p.t > 1) p.t = 0;
+        const point = p.path.getPointAtLength(p.t * p.len);
+        p.circle.setAttribute("cx", point.x.toFixed(2));
+        p.circle.setAttribute("cy", point.y.toFixed(2));
+      });
+      requestAnimationFrame(tick);
+    }
+    tick();
+
+    function setFlow(mode) {
+      allEdges.forEach(e => {
+        e.classList.remove("show", "dim");
+      });
+
+      document.querySelectorAll(".flow").forEach(f => f.classList.remove("active"));
+
+      if (mode === "all") {
+        allEdges.forEach(e => e.classList.add("show"));
+        return;
+      }
+
+      const keep = new Set(flows[mode]);
+      allEdges.forEach(e => {
+        if (keep.has(e.id)) {
+          e.classList.add("show");
+        } else {
+          e.classList.add("dim");
+        }
+      });
+
+      if (mode === "flow1") document.getElementById("f1").classList.add("active");
+      if (mode === "flow2") document.getElementById("f2").classList.add("active");
+      if (mode === "flow3") document.getElementById("f3").classList.add("active");
+    }
+
+    document.querySelectorAll("button[data-flow]").forEach(btn => {
+      btn.addEventListener("click", () => setFlow(btn.dataset.flow));
+    });
+
+    setFlow("all");
+  </script>
+</body>
+</html>

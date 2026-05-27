@@ -1,43 +1,49 @@
-%%  vscode-chef — high-level architecture
-%%  Render with: https://mermaid.live  or the VS Code Mermaid extension
+%% vscode-chef architecture with concrete repository path mapping
 
 flowchart TD
-    subgraph VSCode["VS Code Host"]
-        ExtHost["Extension Host\n(Node.js)"]
-        DiagAPI["Diagnostics API\n(Problems panel)"]
-        LangAPI["Language API\n(grammars / snippets)"]
-        CmdAPI["Command API\n(Command Palette)"]
+    subgraph VSCode["VS Code Runtime"]
+        ExtHost["Extension Host"]
+        Problems["Problems Panel"]
+        JsonLS["JSON Validation"]
+        SnipEngine["Snippet Engine"]
+        CmdPalette["Command Palette"]
     end
 
-    subgraph Ext["vscode-chef  (extension.ts → out/extension.js)"]
-        Activate["activate()"]
-        LintMgr["Linter Manager\n• on-save trigger\n• file-count threshold"]
-        DiagCol["DiagnosticCollection\nchef-rubocop"]
-        CmdReg["Command: Chef Validate Workspace"]
+    subgraph Repo["Repository Paths"]
+        ExtTs["extension.ts\nactivate(), validate(), validatePaths()"]
+        Pkg["package.json\ncontributions + scripts"]
+        JobSchema["schema/job-schema.json"]
+        JobSnips["snippets/chef_job.json"]
+        OtherSnips["snippets/*.json"]
+        Grammars["syntaxes/*.plist | syntaxes/*.cson.json"]
+        AutoGen["autogeneration/Rakefile"]
+        CI[".github/workflows/ci.yml"]
     end
 
-    subgraph Runtime["Host Machine Runtime"]
-        CookStyle["cookstyle / rubocop\n(Chef Workstation)"]
-        RubyLSP["ruby-lsp\n(Shopify.ruby-lsp)"]
-        YAMLExt["vscode-yaml\n(redhat)"]
+    subgraph HostDeps["Host Dependencies"]
+        Cookstyle["cookstyle / rubocop"]
     end
 
-    subgraph Assets["Static Assets"]
-        Grammars["syntaxes/\n*.plist / *.cson.json\n(TextMate grammars)"]
-        Snippets["snippets/\n*.json\n(IntelliSense completions)"]
-        AutoGen["autogeneration/\nRake → regenerated snippets"]
-    end
+    ExtHost --> ExtTs
+    Pkg -->|"activation events + command IDs"| ExtTs
+    ExtTs -->|"register command\nchef.validateEntireWorkspace"| CmdPalette
 
-    ExtHost --> Activate
-    Activate --> LintMgr
-    Activate --> CmdReg
-    Activate --> LangAPI
-    LintMgr -->|"spawn child process"| CookStyle
-    CookStyle -->|"JSON diagnostics"| DiagCol
-    DiagCol --> DiagAPI
-    CmdReg --> CmdAPI
-    LangAPI --> Grammars
-    LangAPI --> Snippets
-    AutoGen -->|"writes"| Snippets
-    ExtHost --> RubyLSP
-    ExtHost --> YAMLExt
+    %% Data flow 1: Ruby lint diagnostics
+    ExtTs -->|"spawnSync --parallel -f j"| Cookstyle
+    Cookstyle -->|"JSON offenses"| ExtTs
+    ExtTs -->|"DiagnosticCollection.set(...)"| Problems
+
+    %% Data flow 2: job schema validation
+    Pkg -->|"jsonValidation: **/*job.json -> schema"| JsonLS
+    JobSchema -->|"required fields + enums"| JsonLS
+    JobSnips -->|"chef-job, chef-job-step, chef-job-group"| SnipEngine
+    JsonLS -->|"inline errors/warnings for invalid job.json"| Problems
+
+    %% Data flow 3: snippet generation + CI checks
+    AutoGen -->|"regenerate selected snippet JSON"| OtherSnips
+    CI -->|"jq validates snippets/*.json"| OtherSnips
+    CI -->|"renders this diagram (Mermaid)"| Mermaid["ai-track-docs/architecture.mmd"]
+    Pkg -->|"npx vsce package"| VSIX["vscode-chef.vsix"]
+
+    Pkg --> Grammars
+    Pkg --> JobSchema

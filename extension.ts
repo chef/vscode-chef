@@ -68,6 +68,254 @@ export function activate(context: vscode.ExtensionContext): void {
 		validateEntireWorkspace();
   };
   context.subscriptions.push(vscode.commands.registerCommand(command, commandHandler));
+
+	context.subscriptions.push(
+		vscode.commands.registerCommand("chef.createHabitatPlanDraft", createHabitatPlanDraft)
+	);
+	context.subscriptions.push(
+		vscode.commands.registerCommand("chef.buildHabitatPackageLocal", buildHabitatPackageLocal)
+	);
+	context.subscriptions.push(
+		vscode.commands.registerCommand("chef.buildHabitatPackageContainer", buildHabitatPackageContainer)
+	);
+	context.subscriptions.push(
+		vscode.commands.registerCommand("chef.testHabitatPackageInstallInContainer", testHabitatPackageInstallInContainer)
+	);
+}
+
+function getWorkspaceRootPath(): string | undefined {
+	return vscode.workspace.workspaceFolders?.[0]?.uri.fsPath;
+}
+
+function toRelativeWorkspacePath(workspaceRoot: string, inputPath: string): string {
+	if (path.isAbsolute(inputPath)) {
+		const rel = path.relative(workspaceRoot, inputPath);
+		return rel === "" ? "." : rel;
+	}
+	return inputPath;
+}
+
+function createTerminalAndRun(name: string, command: string, cwd?: string): void {
+	const terminal = vscode.window.createTerminal({ name, cwd });
+	terminal.show(true);
+	terminal.sendText(command, true);
+}
+
+function getHabitatConfig(): vscode.WorkspaceConfiguration {
+	return vscode.workspace.getConfiguration("habitat");
+}
+
+function buildContainerCommand(workspaceRoot: string, image: string, innerCommand: string): string {
+	const runtime = getHabitatConfig().get<string>("containerRuntime", "docker");
+	return `${runtime} run --rm -it -v "${workspaceRoot}":/workspace -w /workspace "${image}" sh -lc '${innerCommand}'`;
+}
+
+function getHabitatPlanTemplate(pkgName: string, pkgOrigin: string): string {
+	return [
+		`pkg_name=${pkgName}`,
+		`pkg_origin=${pkgOrigin}`,
+		"pkg_version=0.1.0",
+		"pkg_maintainer=\"Your Name <you@example.com>\"",
+		"pkg_license=('Apache-2.0')",
+		"pkg_description=\"Describe your package\"",
+		"pkg_upstream_url=https://example.com",
+		"pkg_source=https://example.com/src/${pkg_name}-${pkg_version}.tar.gz",
+		"pkg_filename=${pkg_name}-${pkg_version}.tar.gz",
+		"pkg_shasum=REPLACE_WITH_SHA256",
+		"pkg_deps=(core/glibc)",
+		"pkg_build_deps=(core/coreutils core/make core/gcc)",
+		"pkg_bin_dirs=(bin)",
+		"",
+		"do_build() {",
+		"  make",
+		"}",
+		"",
+		"do_install() {",
+		"  make install PREFIX=\"$pkg_prefix\"",
+		"}",
+		""
+	].join("\n");
+}
+
+function getHabitatPlanPs1Template(pkgName: string, pkgOrigin: string): string {
+	return [
+		`$pkg_name=\"${pkgName}\"`,
+		`$pkg_origin=\"${pkgOrigin}\"`,
+		"$pkg_version=\"0.1.0\"",
+		"$pkg_maintainer=\"Your Name <you@example.com>\"",
+		"$pkg_license=@(\"Apache-2.0\")",
+		"$pkg_description=\"Describe your package\"",
+		"$pkg_upstream_url=\"https://example.com\"",
+		"$pkg_source=\"https://example.com/src/$pkg_name-$pkg_version.zip\"",
+		"$pkg_shasum=\"REPLACE_WITH_SHA256\"",
+		"$pkg_deps=@(\"core/powershell\")",
+		"$pkg_build_deps=@()",
+		"",
+		"function Invoke-Build {",
+		"  Write-Host \"Implement build steps\"",
+		"}",
+		"",
+		"function Invoke-Install {",
+		"  Write-Host \"Implement install steps\"",
+		"}",
+		""
+	].join("\n");
+}
+
+async function createHabitatPlanDraft(): Promise<void> {
+	const workspaceRoot = getWorkspaceRootPath();
+	if (!workspaceRoot) {
+		vscode.window.showErrorMessage("Open a workspace folder before creating a Habitat plan draft.");
+		return;
+	}
+
+	const defaultOrigin = getHabitatConfig().get<string>("defaultOrigin", "myorigin");
+	const defaultFile = process.platform === "win32" ? "habitat/plan.ps1" : "habitat/plan.sh";
+	const requestedPath = await vscode.window.showInputBox({
+		prompt: "Enter path for new Habitat plan file (relative to workspace)",
+		value: defaultFile,
+		ignoreFocusOut: true
+	});
+	if (!requestedPath) {
+		return;
+	}
+
+	const fullPath = path.isAbsolute(requestedPath)
+		? requestedPath
+		: path.join(workspaceRoot, requestedPath);
+	const fileUri = vscode.Uri.file(fullPath);
+
+	try {
+		await vscode.workspace.fs.stat(fileUri);
+		const openExisting = await vscode.window.showWarningMessage(
+			`File already exists: ${requestedPath}`,
+			"Open Existing",
+			"Cancel"
+		);
+		if (openExisting === "Open Existing") {
+			const doc = await vscode.workspace.openTextDocument(fileUri);
+			await vscode.window.showTextDocument(doc);
+		}
+		return;
+	} catch {
+		// File does not exist.
+	}
+
+	await vscode.workspace.fs.createDirectory(vscode.Uri.file(path.dirname(fullPath)));
+
+	const pkgName = path.basename(workspaceRoot).toLowerCase().replace(/[^a-z0-9_-]+/g, "-");
+	const template = fullPath.endsWith(".ps1")
+		? getHabitatPlanPs1Template(pkgName, defaultOrigin)
+		: getHabitatPlanTemplate(pkgName, defaultOrigin);
+
+	await vscode.workspace.fs.writeFile(fileUri, new TextEncoder().encode(template));
+	const doc = await vscode.workspace.openTextDocument(fileUri);
+	await vscode.window.showTextDocument(doc);
+	vscode.window.showInformationMessage("Created Habitat plan draft. Update source, deps, and checksums before building.");
+}
+
+async function buildHabitatPackageLocal(): Promise<void> {
+	const workspaceRoot = getWorkspaceRootPath();
+	if (!workspaceRoot) {
+		vscode.window.showErrorMessage("Open a workspace folder before building a Habitat package.");
+		return;
+	}
+
+	const defaultContext = getHabitatConfig().get<string>("defaultBuildContext", "habitat");
+	const inputContext = await vscode.window.showInputBox({
+		prompt: "Habitat build context path (relative to workspace root)",
+		value: defaultContext,
+		ignoreFocusOut: true
+	});
+	if (!inputContext) {
+		return;
+	}
+
+	const relContext = toRelativeWorkspacePath(workspaceRoot, inputContext);
+	createTerminalAndRun("Chef Habitat Build (Local)", `hab pkg build "${relContext}"`, workspaceRoot);
+}
+
+async function buildHabitatPackageContainer(): Promise<void> {
+	const workspaceRoot = getWorkspaceRootPath();
+	if (!workspaceRoot) {
+		vscode.window.showErrorMessage("Open a workspace folder before containerized Habitat builds.");
+		return;
+	}
+
+	const cfg = getHabitatConfig();
+	const defaultContext = cfg.get<string>("defaultBuildContext", "habitat");
+	const defaultImage = cfg.get<string>("containerImage", "ghcr.io/habitat-sh/habitat:latest");
+
+	const inputContext = await vscode.window.showInputBox({
+		prompt: "Habitat build context path (relative to workspace root)",
+		value: defaultContext,
+		ignoreFocusOut: true
+	});
+	if (!inputContext) {
+		return;
+	}
+
+	const image = await vscode.window.showInputBox({
+		prompt: "Container image (must include hab CLI)",
+		value: defaultImage,
+		ignoreFocusOut: true
+	});
+	if (!image) {
+		return;
+	}
+
+	const relContext = toRelativeWorkspacePath(workspaceRoot, inputContext);
+	const contextInContainer = relContext === "." ? "/workspace" : `/workspace/${relContext}`;
+	const command = buildContainerCommand(workspaceRoot, image, `hab pkg build \"${contextInContainer}\"`);
+	createTerminalAndRun("Chef Habitat Build (Container)", command, workspaceRoot);
+}
+
+function looksLikePath(input: string): boolean {
+	return input.includes("/") || input.includes("\\") || input.endsWith(".hart") || input.includes("*");
+}
+
+async function testHabitatPackageInstallInContainer(): Promise<void> {
+	const workspaceRoot = getWorkspaceRootPath();
+	if (!workspaceRoot) {
+		vscode.window.showErrorMessage("Open a workspace folder before container package install tests.");
+		return;
+	}
+
+	const cfg = getHabitatConfig();
+	const defaultImage = cfg.get<string>("containerImage", "ghcr.io/habitat-sh/habitat:latest");
+	const image = await vscode.window.showInputBox({
+		prompt: "Container image used to test package install",
+		value: defaultImage,
+		ignoreFocusOut: true
+	});
+	if (!image) {
+		return;
+	}
+
+	const installTargetInput = await vscode.window.showInputBox({
+		prompt: "Package identifier or .hart path (relative to workspace)",
+		value: "results/*.hart",
+		ignoreFocusOut: true
+	});
+	if (!installTargetInput) {
+		return;
+	}
+
+	const pathLikeTarget = looksLikePath(installTargetInput);
+	const installTarget = pathLikeTarget
+		? `/workspace/${toRelativeWorkspacePath(workspaceRoot, installTargetInput)}`
+		: installTargetInput;
+
+	const postInstallCheck = pathLikeTarget
+		? "echo 'Install command finished. Verify package identifier from output.'"
+		: `hab pkg path ${installTarget}`;
+
+	const command = buildContainerCommand(
+		workspaceRoot,
+		image,
+		`hab pkg install ${installTarget} && ${postInstallCheck}`
+	);
+	createTerminalAndRun("Chef Habitat Install Test (Container)", command, workspaceRoot);
 }
 
 /**
