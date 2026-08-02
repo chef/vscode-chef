@@ -1,0 +1,23 @@
+# Default Cookstyle configuration for Chef Infra VSCode Extension
+# This file prevents unintended formatting changes and ensures consistent behavior
+# with Cookstyle CLI (Cookstyle 7.32.8+)
+
+AllCops:
+  TargetRubyVersion: 2.7
+  Exclude:
+    - 'vendor/**/*'
+    - 'Guardfile'
+
+# Prevent unintended %-escaped literal conversions
+# Example: ["a", "b"] should remain unchanged unless explicitly required
+Style/WordArray:
+  EnforcedStyle: brackets
+  
+Style/SymbolArray:
+  EnforcedStyle: brackets
+
+# Additional safeguards to prevent unexpected formatting
+Style/PercentLiteralDelimiters:
+  Enabled: false
+
+# Override this file with your own .rubocop.yml or use rubocop.configFile setting

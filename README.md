@@ -23,6 +23,39 @@ The Progress Chef Infra Extension for Visual Studio Code offers rich language su
 
 **Note**: While the configuration uses the `rubocop.*` namespace for historical reasons, this extension uses Cookstyle (Chef's customized RuboCop) for linting, not standard RuboCop.
 
+#### Overriding Cookstyle Rules
+
+To customize linting behavior and prevent unintended formatting changes:
+
+1. **Project-level configuration**: Create a `.rubocop.yml` file in your workspace root:
+   ```yaml
+   # Example: Prevent %-escaped literal conversions
+   Style/WordArray:
+     EnforcedStyle: brackets  # Keep ["a", "b"] instead of %w[a b]
+   
+   Style/SymbolArray:
+     EnforcedStyle: brackets  # Keep [:a, :b] instead of %i[a b]
+   ```
+
+2. **Use a shared configuration**: Set the path in VS Code settings:
+   ```json
+   {
+     "rubocop.configFile": ".rubocop_shared.yml"
+   }
+   ```
+
+3. **Disable specific cops**: Add to your `.rubocop.yml`:
+   ```yaml
+   Style/PercentLiteralDelimiters:
+     Enabled: false
+   ```
+
+For more information on customizing Cookstyle behavior, see the [Cookstyle documentation](https://docs.chef.io/workstation/cookstyle/).
+
+**Common Issues**:
+- **%-escaped literals appearing unexpectedly**: Ensure you're using Cookstyle 7.32.8+ and set `Style/WordArray: { EnforcedStyle: brackets }` in your `.rubocop.yml`
+- **Formatting differences between VSCode and CLI**: Verify both are using the same Cookstyle version and configuration file
+
 ### Snippet support (with tabbing) for all Chef Infra built-in Resources
 
 * Please review the [Resource snippets](snippets/chef_resources.json) for a complete list.
