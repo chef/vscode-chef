@@ -1,7 +1,8 @@
 {
   "name": "chef",
-  "description": "Official Chef Infra extension for VSCode with code linting support and snippets. Requires Cookstyle 8.7.7+ for best results.",
+  "description": "Official Chef Infra extension for VSCode with code linting support and snippets. Requires Cookstyle 7.32.8+ (latest: 8.7.6 in Chef Workstation 26.1.0).",
   "version": "2.2.14",
+>>>>>>> 0d03f85 (CHEF-33964: Remove hardcoded version, use latest Cookstyle 8.7.6)
   "publisher": "chef-software",
   "icon": "images/chef-logo.png",
   "displayName": "Chef Infra Extension for Visual Studio Code",

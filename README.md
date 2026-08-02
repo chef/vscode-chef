@@ -17,7 +17,7 @@ The Progress Chef Infra Extension for Visual Studio Code offers rich language su
 * Enabled by default (disable by adding ```{ "rubocop.enable": false }``` in user/workspace settings) and activated when the first Ruby file is loaded.
 * The entire repo will be linted when files are saved, unless there are more than 400 `*.rb` files in the workspace, in which case only open files will be linted. Adjust this threshold using the ```{ "rubocop.fileCountThreshold": 400 }``` setting in user/workspace settings.
 * You may lint the entire workspace, even if it is larger than the above threshold, using the `Chef: Validate Entire Workspace` command from the Command Pallette.
-* **Requirements**: This extension requires [Chef Workstation](https://downloads.chef.io/chef-workstation) **25.2.1077 or later** installed, which includes [Cookstyle](https://github.com/chef/cookstyle) **8.7.7** (the latest version as of 2026). Linting should "just work" on Windows, macOS, and Linux.
+* **Requirements**: This extension requires [Chef Workstation](https://downloads.chef.io/chef-workstation) installed with [Cookstyle](https://github.com/chef/cookstyle) **7.32.8 or later**. The latest Chef Workstation (26.1.0) includes Cookstyle 8.7.6. Linting should "just work" on Windows, macOS, and Linux.
 * If Chef Workstation is not installed in the default location, you can set the executable path by setting ```{ "rubocop.path": "c:\\path\\to\\cookstyle.bat"}``` in user/workspace settings).
 * To override the config file used by Cookstyle, use the ```{ "rubocop.configFile": "path/to/config.yml" }``` in user/workspace settings. See [Cookstyle configuration](https://docs.chef.io/workstation/cookstyle/) for more details.
 
@@ -27,12 +27,12 @@ The Progress Chef Infra Extension for Visual Studio Code offers rich language su
 
 **Option 1: Install Chef Workstation (Recommended)**
 - Download from: https://downloads.chef.io/chef-workstation
-- Includes Cookstyle 8.7.7 and all Chef tools
+- Latest version (26.1.0) includes Cookstyle 8.7.6 and all Chef tools
 - Works on Windows, macOS, and Linux
 
 **Option 2: Install Cookstyle gem directly**
 ```bash
-gem install cookstyle -v 8.7.7
+gem install cookstyle  # Installs latest version
 ```
 
 **Option 3: Use with existing Ruby LSP**

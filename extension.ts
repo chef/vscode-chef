@@ -12,7 +12,6 @@ let cookbookPaths: Array<string> = [];
 let fileCount: number;
 let cookstyleVersionChecked: boolean = false;
 const MINIMUM_COOKSTYLE_VERSION = "7.32.8";
-const RECOMMENDED_COOKSTYLE_VERSION = "8.7.7"; // Latest as of 2026
 
 export function activate(context: vscode.ExtensionContext): void {
 	diagnosticCollectionRubocop = vscode.languages.createDiagnosticCollection("rubocop");
@@ -84,7 +83,7 @@ function checkCookstyleVersion(): void {
 				
 				if (isOldVersion) {
 					vscode.window.showWarningMessage(
-						`Chef extension detected Cookstyle ${version}. Cookstyle ${RECOMMENDED_COOKSTYLE_VERSION}+ is recommended for best results and latest linting rules.`,
+						`Chef extension detected Cookstyle ${version}. Version ${MINIMUM_COOKSTYLE_VERSION}+ is required. Please upgrade to the latest Chef Workstation for best results.`,
 						"Upgrade Instructions"
 					).then(selection => {
 						if (selection === "Upgrade Instructions") {
@@ -92,7 +91,7 @@ function checkCookstyleVersion(): void {
 						}
 					});
 				} else {
-					console.log(`Cookstyle version ${version} is compatible (minimum: ${MINIMUM_COOKSTYLE_VERSION}, recommended: ${RECOMMENDED_COOKSTYLE_VERSION})`);
+					console.log(`Cookstyle version ${version} is compatible (minimum: ${MINIMUM_COOKSTYLE_VERSION})`);
 				}
 			}
 		}
