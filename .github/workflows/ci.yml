@@ -23,11 +23,11 @@
       runs-on: ubuntu-latest
       strategy:
         matrix:
-          node-version: [15.x]
+          node-version: [20.x]
       steps:
         - uses: actions/checkout@main
         - name: Use Node.js ${{ matrix.node-version }}
-          uses: actions/setup-node@v1
+          uses: actions/setup-node@v4
           with:
             node-version: ${{ matrix.node-version }}
         - run: npm ci
