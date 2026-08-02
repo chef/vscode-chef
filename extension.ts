@@ -10,6 +10,7 @@ let rubocopPath: string;
 let rubocopConfigFile: string;
 let cookbookPaths: Array<string> = [];
 let fileCount: number;
+let cookstyleVersionChecked: boolean = false;
 
 export function activate(context: vscode.ExtensionContext): void {
 	diagnosticCollectionRubocop = vscode.languages.createDiagnosticCollection("rubocop");
@@ -34,6 +35,7 @@ export function activate(context: vscode.ExtensionContext): void {
 	}
 
 	if (vscode.workspace.getConfiguration("rubocop").enable) {
+		checkCookstyleVersion();
 		updateRubyFileCountAndValidate(true);
 		context.subscriptions.push(startLintingOnSaveWatcher());
 		context.subscriptions.push(startLintingOnConfigurationChangeWatcher());
@@ -46,6 +48,49 @@ export function activate(context: vscode.ExtensionContext): void {
 		validateEntireWorkspace();
   };
   context.subscriptions.push(vscode.commands.registerCommand(command, commandHandler));
+}
+
+function checkCookstyleVersion(): void {
+	if (cookstyleVersionChecked) {
+		return;
+	}
+	
+	try {
+		let spawn = require("child_process").spawnSync;
+		let result = spawn(rubocopPath, ["--version"], { encoding: "utf-8" });
+		
+		if (result.status === 0 && result.stdout) {
+			let versionMatch = result.stdout.match(/(\d+\.\d+\.\d+)/);
+			if (versionMatch) {
+				let version = versionMatch[1];
+				console.log(`Detected Cookstyle version: ${version}`);
+				
+				// Recommend Chef Workstation 24.4+ which includes Cookstyle 7.32.8+
+				let parts = version.split('.').map(Number);
+				if (parts[0] < 7 || (parts[0] === 7 && parts[1] < 32)) {
+					vscode.window.showWarningMessage(
+						`Chef extension detected Cookstyle ${version}. Chef Workstation 24.4.1064+ (Cookstyle 7.32.8+) is recommended for best results.`,
+						"Learn More"
+					).then(selection => {
+						if (selection === "Learn More") {
+							vscode.env.openExternal(vscode.Uri.parse("https://downloads.chef.io/chef-workstation"));
+						}
+					});
+				}
+			}
+		}
+		cookstyleVersionChecked = true;
+	} catch (err) {
+		console.log("Could not check Cookstyle version:", err);
+		vscode.window.showWarningMessage(
+			"Chef extension could not detect Cookstyle. Please ensure Chef Workstation is installed.",
+			"Download Chef Workstation"
+		).then(selection => {
+			if (selection === "Download Chef Workstation") {
+				vscode.env.openExternal(vscode.Uri.parse("https://downloads.chef.io/chef-workstation"));
+			}
+		});
+	}
 }
 
 function convertSeverity(severity: string): vscode.DiagnosticSeverity {
