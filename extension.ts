@@ -99,7 +99,7 @@ function checkCookstyleVersion(): void {
 	} catch (err) {
 		console.log("Could not check Cookstyle version:", err);
 		vscode.window.showWarningMessage(
-			`Chef extension could not detect Cookstyle. Install Chef Workstation ${RECOMMENDED_COOKSTYLE_VERSION}+ for the latest linting features.`,
+			`Chef extension could not detect Cookstyle. Install the latest Chef Workstation for linting features.`,
 			"Download Chef Workstation"
 		).then(selection => {
 			if (selection === "Download Chef Workstation") {
