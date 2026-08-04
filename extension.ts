@@ -11,7 +11,7 @@ let rubocopConfigFile: string;
 let cookbookPaths: Array<string> = [];
 let fileCount: number;
 let cookstyleVersionChecked: boolean = false;
-const MINIMUM_COOKSTYLE_VERSION = "7.32.8";
+const MINIMUM_COOKSTYLE_VERSION = "8.6.10";
 
 export function activate(context: vscode.ExtensionContext): void {
 	diagnosticCollectionRubocop = vscode.languages.createDiagnosticCollection("rubocop");
