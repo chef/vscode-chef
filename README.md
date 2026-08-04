@@ -77,7 +77,7 @@ npm install
 To verify your build matches the locked dependencies:
 ```shell
 # Clean install with frozen lockfile
-rm -rf node_modules package-lock.json
+rm -rf node_modules
 npm ci
 
 # Build and package
