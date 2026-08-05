@@ -36,6 +36,25 @@ code --install-extension ./chef-<version>.vsix
 - **Exact versions only**: No `^` or `~` in `package.json`
 - All packages install from Harness Artifact Registry (HAR)
 
+### Team Policy
+
+- ✅ Always use `npm ci` for builds
+- ✅ Commit `package-lock.json` with any dependency changes
+- ✅ CI/CD uses `npm ci` (frozen lockfile enforced)
+- ❌ Never commit `node_modules/`
+- ❌ Never use `npm install` unless updating dependencies
+
+### Build Verification
+
+To verify your build matches the frozen lockfile:
+
+```bash
+rm -rf node_modules
+npm ci
+npm run vscode:prepublish
+npm run package
+```
+
 ### Pull Request Checklist
 
 Before submitting your PR, ensure:

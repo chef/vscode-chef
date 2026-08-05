@@ -57,40 +57,14 @@ This project contains development launch settings. A recent Node.js LTS build is
 
 ### Install dependencies
 
-**⚠️ IMPORTANT: Use `npm ci` for frozen lockfile installation**
+Dependencies for development work of this extension are maintained in the `package.json` file under the `devDependencies` key and can be installed via NPM:
 
-Dependencies for development work of this extension are maintained in the `package.json` file under the `devDependencies` key. All dependencies are locked to exact versions in `package-lock.json` for security and reproducibility.
-
-**For development (recommended):**
 ```shell
-npm ci
-```
-This command installs dependencies using the frozen lockfile, ensuring everyone uses identical versions. It will fail if package.json and package-lock.json are out of sync.
-
-**Only when updating dependencies:**
-```shell
-npm install
-```
-⚠️ Only use this when intentionally updating dependencies. After running, review and commit the updated `package-lock.json`.
-
-**Verification:**
-To verify your build matches the locked dependencies:
-```shell
-# Clean install with frozen lockfile
-rm -rf node_modules
-npm ci
-
-# Build and package
-npm run vscode:prepublish
-npm run package
+npm ci           # Recommended: installs from frozen lockfile
+npm install      # Only when updating dependencies
 ```
 
-**Team Policy:**
-- ✅ Always use `npm ci` for builds
-- ✅ Commit `package-lock.json` with any dependency changes
-- ✅ CI/CD uses `npm ci` (frozen lockfile enforced)
-- ❌ Never commit `node_modules/`
-- ❌ Never use `npm install` unless updating dependencies
+**Note:** For team development, always use `npm ci` to ensure reproducible builds. See [CONTRIBUTING.md](CONTRIBUTING.md) for details.
 
 ### Updating Snippets
 
