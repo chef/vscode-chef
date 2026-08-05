@@ -1,45 +1,56 @@
 # Contributing to vscode-chef
 
-General contribution guidelines: https://github.com/chef/chef/blob/master/CONTRIBUTING.md
+Thank you for your interest in contributing to the Progress Chef VS Code extension!
 
-## Project-Specific Development Guidelines
+## General Contribution Guidelines
 
-### Dependency Management (CRITICAL)
+For general Chef contribution guidelines, including DCO requirements, PR process, and code review standards, see:
+https://github.com/chef/chef/blob/master/CONTRIBUTING.md
 
-**✅ ALWAYS use `npm ci` for builds:**
-```bash
-npm ci  # Installs from frozen package-lock.json
-```
+## Development Setup
 
-**❌ NEVER use `npm install` unless updating dependencies:**
-```bash
-npm install  # Only when intentionally changing package.json
-```
-
-### Build Verification
-
-Verify your build matches the team's frozen lockfile:
-```bash
-rm -rf node_modules
-npm ci
-npm run vscode:prepublish
-npm run package
-```
-
-### Security Requirements
-
-- All packages must install from Harness Artifact Registry (HAR)
-- `package-lock.json` must be committed
-- No `^` or `~` version ranges in `package.json` (exact versions only)
-- DCO sign-off required on all commits (`git commit -s`)
+Complete build and development instructions are available in the README:  
+**[Building and releasing the extension](README.md#building-and-releasing-the-extension)**
 
 ### Quick Reference
 
-| Task | Command |
-|------|---------|
-| Install dependencies | `npm ci` |
-| Build extension | `npm run vscode:prepublish` |
-| Package .vsix | `npm run package` |
-| Update dependency | Edit package.json, then `npm install` |
+```bash
+# Install dependencies (always use npm ci, not npm install)
+npm ci
 
-For detailed guidelines, see README.md "Building and releasing the extension" section.
+# Build the extension
+npm run vscode:prepublish
+
+# Package for local testing
+npm run package
+
+# Test locally
+code --install-extension ./chef-<version>.vsix
+```
+
+### Key Requirements
+
+- **Always use `npm ci`** for builds (never `npm install` unless updating dependencies)
+- **Commit `package-lock.json`** with any dependency changes
+- **Sign-off all commits**: Use `git commit -s` (DCO requirement)
+- **Exact versions only**: No `^` or `~` in `package.json`
+- All packages install from Harness Artifact Registry (HAR)
+
+### Pull Request Checklist
+
+Before submitting your PR, ensure:
+
+- [ ] Code builds successfully (`npm run vscode:prepublish`)
+- [ ] Extension packages successfully (`npm run package`)
+- [ ] Tested locally by installing the `.vsix` file
+- [ ] All commits are signed-off (DCO)
+- [ ] `package-lock.json` updated if dependencies changed
+- [ ] No unrelated changes included
+
+### Need Help?
+
+- **Issues**: [GitHub Issues](https://github.com/chef/vscode-chef/issues)
+- **Detailed build instructions**: [README.md](README.md#building-and-releasing-the-extension)
+- **Chef Community**: [Community Slack](https://community-slack.chef.io/)
+
+For detailed explanations of dependency management, team policies, and security requirements, see the README.
