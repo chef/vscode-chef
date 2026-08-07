@@ -60,8 +60,11 @@ This project contains development launch settings. A recent Node.js LTS build is
 Dependencies for development work of this extension are maintained in the `package.json` file under the `devDependencies` key and can be installed via NPM:
 
 ```shell
-npm install
+npm ci           # Recommended: installs from frozen lockfile
+npm install      # Only when updating dependencies
 ```
+
+**Note:** For team development, always use `npm ci` to ensure reproducible builds. See [CONTRIBUTING.md](CONTRIBUTING.md) for details.
 
 ### Updating Snippets
 
