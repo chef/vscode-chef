@@ -1,16 +1,17 @@
 # vscode-chef Change Log
 
-<!-- latest_release 2.2.13 -->
-## [v2.2.13](https://github.com/chef/vscode-chef/tree/v2.2.13) (2026-04-17)
+<!-- latest_release 2.2.14 -->
+## [v2.2.14](https://github.com/chef/vscode-chef/tree/v2.2.14) (2026-08-07)
 
 #### Merged Pull Requests
-- CHEF-27227 - Replace CODE_OF_CONDUCT.md file [#265](https://github.com/chef/vscode-chef/pull/265) ([Saburesh07](https://github.com/Saburesh07))
+- CHEF-37521 -Configure npm to use Harness Artifact Registry (HAR) for security [#269](https://github.com/chef/vscode-chef/pull/269) ([nikhil2611](https://github.com/nikhil2611))
 <!-- latest_release -->
 
 <!-- release_rollup -->
 ### Changes not yet released
 
 #### Merged Pull Requests
+- CHEF-37521 -Configure npm to use Harness Artifact Registry (HAR) for security [#269](https://github.com/chef/vscode-chef/pull/269) ([nikhil2611](https://github.com/nikhil2611)) <!-- 2.2.14 -->
 - CHEF-27227 - Replace CODE_OF_CONDUCT.md file [#265](https://github.com/chef/vscode-chef/pull/265) ([Saburesh07](https://github.com/Saburesh07)) <!-- 2.2.13 -->
 - Update branding and copyright [#261](https://github.com/chef/vscode-chef/pull/261) ([clintoncwolfe](https://github.com/clintoncwolfe)) <!-- 2.2.12 -->
 - Upgrade dependencies to remove deprecation [#245](https://github.com/chef/vscode-chef/pull/245) ([sinfomicien](https://github.com/sinfomicien)) <!-- 2.2.11 -->
