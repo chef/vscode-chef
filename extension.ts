@@ -56,9 +56,14 @@ function checkCookstyleVersion(): void {
 		return;
 	}
 	
+	// Avoid executing workspace-provided binaries in untrusted workspaces
+	if (!vscode.workspace.isTrusted) {
+		return;
+	}
+	
 	try {
 		let spawn = require("child_process").spawnSync;
-		let result = spawn(rubocopPath, ["--version"], { encoding: "utf-8" });
+		let result = spawn(rubocopPath, ["--version"], { encoding: "utf-8", timeout: 5000, windowsHide: true });
 		
 		if (result.error || result.status !== 0) {
 			throw (result.error ?? new Error(`Cookstyle --version failed with status ${result.status}`));
