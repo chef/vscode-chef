@@ -60,7 +60,11 @@ function checkCookstyleVersion(): void {
 		let spawn = require("child_process").spawnSync;
 		let result = spawn(rubocopPath, ["--version"], { encoding: "utf-8" });
 		
-		if (result.status === 0 && result.stdout) {
+		if (result.error || result.status !== 0) {
+			throw (result.error ?? new Error(`Cookstyle --version failed with status ${result.status}`));
+		}
+		
+		if (result.stdout) {
 			let versionMatch = result.stdout.match(/(\d+\.\d+\.\d+)/);
 			if (versionMatch) {
 				let version = versionMatch[1];
