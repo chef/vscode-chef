@@ -16,7 +16,7 @@ The Progress Chef Infra Extension for Visual Studio Code offers rich language su
 
 * Enabled by default (disable by adding ```{ "rubocop.enable": false }``` in user/workspace settings) and activated when the first Ruby file is loaded.
 * The entire repo will be linted when files are saved, unless there are more than 400 `*.rb` files in the workspace, in which case only open files will be linted. Adjust this threshold using the ```{ "rubocop.fileCountThreshold": 400 }``` setting in user/workspace settings.
-* You may lint the entire workspace, even if it is larger than the above threshold, using the `Chef: Validate Entire Workspace` command from the Command Pallette.
+* You may lint the entire workspace, even if it is larger than the above threshold, using the `Chef: Validate Entire Workspace` command from the Command Palette.
 * **Requirements**: This extension requires [Chef Workstation](https://downloads.chef.io/chef-workstation) installed with [Cookstyle](https://github.com/chef/cookstyle) **8.6.10 or later**. For example, Chef Workstation 26.1.0 includes Cookstyle 8.7.6. Linting should "just work" on Windows, macOS, and Linux.
 * If Chef Workstation is not installed in the default location, you can set the executable path by setting ```{ "rubocop.path": "c:\\path\\to\\cookstyle.bat"}``` in user/workspace settings.
 * To override the config file used by Cookstyle, use the ```{ "rubocop.configFile": "path/to/config.yml" }``` in user/workspace settings. See [Cookstyle configuration](https://docs.chef.io/workstation/cookstyle/) for more details.
@@ -34,6 +34,14 @@ The Progress Chef Infra Extension for Visual Studio Code offers rich language su
 ```bash
 gem install cookstyle  # Installs latest version
 ```
+
+**Note:** If using the gem-installed Cookstyle, you'll need to configure the path in VS Code settings:
+```json
+{
+  "rubocop.path": "/path/to/cookstyle"
+}
+```
+Or ensure `cookstyle` is available in your PATH.
 
 **Option 3: Use with existing Ruby LSP**
 This extension works with the [Shopify Ruby LSP extension](https://marketplace.visualstudio.com/items?itemName=Shopify.ruby-lsp). Configure Ruby LSP to use Cookstyle:

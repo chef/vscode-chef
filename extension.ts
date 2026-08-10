@@ -103,7 +103,7 @@ function checkCookstyleVersion(): void {
 	} catch (err) {
 		console.log("Could not check Cookstyle version:", err);
 		vscode.window.showWarningMessage(
-			`Chef extension could not detect Cookstyle. Install the latest Chef Workstation for linting features.`,
+			`Chef extension could not detect Cookstyle at: ${rubocopPath}. Verify the path in rubocop.path setting or install Chef Workstation.`,
 			"Download Chef Workstation"
 		).then(selection => {
 			if (selection === "Download Chef Workstation") {
