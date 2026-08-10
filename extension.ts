@@ -112,7 +112,7 @@ function checkCookstyleVersion(): void {
 			"Download Chef Workstation"
 		).then(selection => {
 			if (selection === "Download Chef Workstation") {
-				vscode.env.openExternal(vscode.Uri.parse("https://downloads.chef.io/chef-workstation"));
+				vscode.env.openExternal(vscode.Uri.parse("https://docs.chef.io/workstation/install/"));
 			}
 		});
 	}
