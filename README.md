@@ -44,12 +44,13 @@ This extension works with the [Shopify Ruby LSP extension](https://marketplace.v
 }
 ```
 
-### Overriding Cookstyle Rules
+### Customizing Cookstyle Behavior
 
-Cookstyle behavior can be customized through RuboCop configuration. Create a `.rubocop.yml` file in your workspace root:
+Cookstyle (RuboCop) behavior can be customized by creating a `.rubocop.yml` file in your workspace root. This allows you to override default formatting and linting rules.
 
+**Example:** Customize array formatting
 ```yaml
-# Example: Customize array formatting behavior
+# .rubocop.yml in your workspace root
 Style/WordArray:
   EnforcedStyle: brackets  # Keep ["a", "b"] instead of %w[a b]
 
@@ -57,22 +58,19 @@ Style/SymbolArray:
   EnforcedStyle: brackets  # Keep [:a, :b] instead of %i[a b]
 ```
 
-You can also specify a custom config file in VS Code settings:
+You can also specify a custom config file path in VS Code settings:
 ```json
 {
   "rubocop.configFile": "path/to/your/config.yml"
 }
 ```
 
-See [Cookstyle documentation](https://docs.chef.io/workstation/cookstyle/) for available rules and configuration options.
+See the [Cookstyle documentation](https://docs.chef.io/workstation/cookstyle/) for a complete list of available rules and configuration options.
 
-#### Common Issues
-
-**Issue**: Arrays are being converted to `%w[]` or `%i[]` format unexpectedly  
-**Solution**: Add a `.rubocop.yml` file with `Style/WordArray` and `Style/SymbolArray` set to `brackets` (see above example)
+#### Troubleshooting
 
 **Issue**: Cookstyle version warning on startup  
-**Solution**: Update Chef Workstation to version 26.1.0+ which includes Cookstyle 8.7.6, or install the latest Cookstyle gem directly
+**Solution**: Update Chef Workstation to version 26.1.0+ which includes Cookstyle 8.7.6, or install the latest Cookstyle gem directly (`gem install cookstyle`)
 
 ### Snippet support (with tabbing) for all Chef Infra built-in Resources
 
