@@ -10,6 +10,8 @@ let rubocopPath: string;
 let rubocopConfigFile: string;
 let cookbookPaths: Array<string> = [];
 let fileCount: number;
+let cookstyleVersionChecked: boolean = false;
+const MINIMUM_COOKSTYLE_VERSION = "8.6.10";
 
 export function activate(context: vscode.ExtensionContext): void {
 	diagnosticCollectionRubocop = vscode.languages.createDiagnosticCollection("rubocop");
@@ -34,6 +36,7 @@ export function activate(context: vscode.ExtensionContext): void {
 	}
 
 	if (vscode.workspace.getConfiguration("rubocop").enable) {
+		checkCookstyleVersion();
 		updateRubyFileCountAndValidate(true);
 		context.subscriptions.push(startLintingOnSaveWatcher());
 		context.subscriptions.push(startLintingOnConfigurationChangeWatcher());
@@ -46,6 +49,64 @@ export function activate(context: vscode.ExtensionContext): void {
 		validateEntireWorkspace();
   };
   context.subscriptions.push(vscode.commands.registerCommand(command, commandHandler));
+}
+
+function checkCookstyleVersion(): void {
+	if (cookstyleVersionChecked) {
+		return;
+	}
+	
+	try {
+		let spawn = require("child_process").spawnSync;
+		let result = spawn(rubocopPath, ["--version"], { encoding: "utf-8" });
+		
+		if (result.status === 0 && result.stdout) {
+			let versionMatch = result.stdout.match(/(\d+\.\d+\.\d+)/);
+			if (versionMatch) {
+				let version = versionMatch[1];
+				console.log(`Detected Cookstyle version: ${version}`);
+				
+				// Parse version components
+				let parts = version.split('.').map(Number);
+				let minParts = MINIMUM_COOKSTYLE_VERSION.split('.').map(Number);
+				
+				// Check if version is below minimum
+				let isOldVersion = false;
+				for (let i = 0; i < 3; i++) {
+					if (parts[i] < minParts[i]) {
+						isOldVersion = true;
+						break;
+					} else if (parts[i] > minParts[i]) {
+						break;
+					}
+				}
+				
+				if (isOldVersion) {
+					vscode.window.showWarningMessage(
+						`Chef extension detected Cookstyle ${version}. Version ${MINIMUM_COOKSTYLE_VERSION}+ is required. Please upgrade to the latest Chef Workstation for best results.`,
+						"Upgrade Instructions"
+					).then(selection => {
+						if (selection === "Upgrade Instructions") {
+							vscode.env.openExternal(vscode.Uri.parse("https://docs.chef.io/workstation/install/"));
+						}
+					});
+				} else {
+					console.log(`Cookstyle version ${version} is compatible (minimum: ${MINIMUM_COOKSTYLE_VERSION})`);
+				}
+			}
+		}
+		cookstyleVersionChecked = true;
+	} catch (err) {
+		console.log("Could not check Cookstyle version:", err);
+		vscode.window.showWarningMessage(
+			`Chef extension could not detect Cookstyle. Install the latest Chef Workstation for linting features.`,
+			"Download Chef Workstation"
+		).then(selection => {
+			if (selection === "Download Chef Workstation") {
+				vscode.env.openExternal(vscode.Uri.parse("https://downloads.chef.io/chef-workstation"));
+			}
+		});
+	}
 }
 
 function convertSeverity(severity: string): vscode.DiagnosticSeverity {
