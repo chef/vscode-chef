@@ -26,10 +26,8 @@ export function activate(context: vscode.ExtensionContext): void {
 			
 			if (fs.existsSync(cw26Path)) {
 				rubocopPath = cw26Path;
-				console.log("Using Chef Workstation 26 path: " + rubocopPath);
 			} else {
 				rubocopPath = cw25Path;
-				console.log("Using Chef Workstation 25 path: " + rubocopPath);
 			}
 		} else {
 			// Unix/macOS/Linux: /usr/local/bin/cookstyle works for both CW25 and CW26
