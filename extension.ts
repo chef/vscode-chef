@@ -19,9 +19,23 @@ export function activate(context: vscode.ExtensionContext): void {
 
 	if (vscode.workspace.getConfiguration("rubocop").path === "") {
 		if (process.platform === "win32") {
-			rubocopPath = "C:\\opscode\\chef-workstation\\bin\\cookstyle.bat";
+			// Chef Workstation 26 (habitat-based) uses C:\hab\bin
+			// Chef Workstation 25 (omnibus-based) uses C:\opscode\chef-workstation\bin
+			const cw26Path = "C:\\hab\\bin\\cookstyle.bat";
+			const cw25Path = "C:\\opscode\\chef-workstation\\bin\\cookstyle.bat";
+			
+			if (fs.existsSync(cw26Path)) {
+				rubocopPath = cw26Path;
+				console.log("Using Chef Workstation 26 path: " + rubocopPath);
+			} else {
+				rubocopPath = cw25Path;
+				console.log("Using Chef Workstation 25 path: " + rubocopPath);
+			}
 		} else {
-			rubocopPath = "/opt/chef-workstation/bin/cookstyle";
+			// Unix/macOS/Linux: /usr/local/bin/cookstyle works for both CW25 and CW26
+			// CW25 creates symlink: /usr/local/bin/cookstyle -> /opt/chef-workstation/bin/cookstyle
+			// CW26 creates symlink: /usr/local/bin/cookstyle -> habitat package wrapper
+			rubocopPath = "/usr/local/bin/cookstyle";
 		}
 	} else {
 		rubocopPath = vscode.workspace.getConfiguration("rubocop").path;
