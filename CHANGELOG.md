@@ -1,16 +1,17 @@
 # vscode-chef Change Log
 
-<!-- latest_release 2.2.14 -->
-## [v2.2.14](https://github.com/chef/vscode-chef/tree/v2.2.14) (2026-08-07)
+<!-- latest_release 2.2.15 -->
+## [v2.2.15](https://github.com/chef/vscode-chef/tree/v2.2.15) (2026-08-13)
 
 #### Merged Pull Requests
-- CHEF-37521 -Configure npm to use Harness Artifact Registry (HAR) for security [#269](https://github.com/chef/vscode-chef/pull/269) ([nikhil2611](https://github.com/nikhil2611))
+- CHEF-37570: Add Chef Workstation 26 path support [#275](https://github.com/chef/vscode-chef/pull/275) ([nikhil2611](https://github.com/nikhil2611))
 <!-- latest_release -->
 
 <!-- release_rollup -->
 ### Changes not yet released
 
 #### Merged Pull Requests
+- CHEF-37570: Add Chef Workstation 26 path support [#275](https://github.com/chef/vscode-chef/pull/275) ([nikhil2611](https://github.com/nikhil2611)) <!-- 2.2.15 -->
 - CHEF-37521 -Configure npm to use Harness Artifact Registry (HAR) for security [#269](https://github.com/chef/vscode-chef/pull/269) ([nikhil2611](https://github.com/nikhil2611)) <!-- 2.2.14 -->
 - CHEF-27227 - Replace CODE_OF_CONDUCT.md file [#265](https://github.com/chef/vscode-chef/pull/265) ([Saburesh07](https://github.com/Saburesh07)) <!-- 2.2.13 -->
 - Update branding and copyright [#261](https://github.com/chef/vscode-chef/pull/261) ([clintoncwolfe](https://github.com/clintoncwolfe)) <!-- 2.2.12 -->
