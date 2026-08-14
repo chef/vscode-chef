@@ -1,5 +1,3 @@
-// tslint:disable:typedef
-
 import fs = require("fs");
 import path = require("path");
 import vscode = require("vscode");
@@ -10,20 +8,58 @@ let rubocopPath: string;
 let rubocopConfigFile: string;
 let cookbookPaths: Array<string> = [];
 let fileCount: number;
+let cookstyleVersionChecked: boolean = false;
+const MINIMUM_COOKSTYLE_VERSION = "8.6.10";
 
 export function activate(context: vscode.ExtensionContext): void {
 	diagnosticCollectionRubocop = vscode.languages.createDiagnosticCollection("rubocop");
 	context.subscriptions.push(diagnosticCollectionRubocop);
 
-	if (vscode.workspace.getConfiguration("rubocop").path === "") {
-		if (process.platform === "win32") {
-			rubocopPath = "C:\\opscode\\chef-workstation\\bin\\cookstyle.bat";
-		} else {
-			rubocopPath = "/opt/chef-workstation/bin/cookstyle";
-		}
-	} else {
-		rubocopPath = vscode.workspace.getConfiguration("rubocop").path;
+	// Find Cookstyle executable in multiple candidate locations
+	// Supports both Chef Workstation 25 (omnibus) and 26 (habitat)
+	const customPath = vscode.workspace.getConfiguration("rubocop").path;
+	
+	if (customPath !== "") {
+		// User-configured custom path takes priority
+		rubocopPath = customPath;
 		console.log("Using custom Rubocop path: " + rubocopPath);
+	} else {
+		// Auto-detect Cookstyle by checking candidate paths in priority order
+		let candidatePaths: string[] = [];
+		
+		if (process.platform === "win32") {
+			candidatePaths = [
+				"C:\\hab\\bin\\cookstyle.bat",                      // CW26 habitat
+				"C:\\opscode\\chef-workstation\\bin\\cookstyle.bat" // CW25 omnibus
+			];
+		} else if (process.platform === "darwin") {
+			candidatePaths = [
+				"/usr/local/bin/cookstyle",               // CW26 symlink (habitat wrapper)
+				"/opt/chef-workstation/bin/cookstyle"     // CW25 omnibus direct path
+			];
+		} else {
+			// Linux and other Unix platforms
+			candidatePaths = [
+				"/usr/bin/cookstyle",                     // CW26 symlink (common on Linux)
+				"/usr/local/bin/cookstyle",               // CW26 symlink (some distros)
+				"/opt/chef-workstation/bin/cookstyle"     // CW25 omnibus direct path
+			];
+		}
+		
+		// Find first existing executable
+		rubocopPath = "";
+		for (const candidatePath of candidatePaths) {
+			if (fs.existsSync(candidatePath)) {
+				rubocopPath = candidatePath;
+				break;
+			}
+		}
+		
+		// Fallback to first candidate if none found
+		// checkCookstyleVersion() will handle the error and show appropriate warning
+		if (!rubocopPath) {
+			rubocopPath = candidatePaths[0];
+		}
 	}
 
 	if (vscode.workspace.getConfiguration("rubocop").configFile === "") {
@@ -34,6 +70,7 @@ export function activate(context: vscode.ExtensionContext): void {
 	}
 
 	if (vscode.workspace.getConfiguration("rubocop").enable) {
+		checkCookstyleVersion();
 		updateRubyFileCountAndValidate(true);
 		context.subscriptions.push(startLintingOnSaveWatcher());
 		context.subscriptions.push(startLintingOnConfigurationChangeWatcher());
@@ -46,6 +83,73 @@ export function activate(context: vscode.ExtensionContext): void {
 		validateEntireWorkspace();
   };
   context.subscriptions.push(vscode.commands.registerCommand(command, commandHandler));
+}
+
+function checkCookstyleVersion(): void {
+	if (cookstyleVersionChecked) {
+		return;
+	}
+	
+	// Avoid executing workspace-provided binaries in untrusted workspaces
+	if (!vscode.workspace.isTrusted) {
+		return;
+	}
+	
+	try {
+		let spawn = require("child_process").spawnSync;
+		let result = spawn(rubocopPath, ["--version"], { encoding: "utf-8", timeout: 5000, windowsHide: true });
+		
+		if (result.error || result.status !== 0) {
+			throw (result.error ?? new Error(`Cookstyle --version failed with status ${result.status}`));
+		}
+		
+		if (result.stdout) {
+			let versionMatch = result.stdout.match(/(\d+\.\d+\.\d+)/);
+			if (versionMatch) {
+				let version = versionMatch[1];
+				console.log(`Detected Cookstyle version: ${version}`);
+				
+				// Parse version components
+				let parts = version.split('.').map(Number);
+				let minParts = MINIMUM_COOKSTYLE_VERSION.split('.').map(Number);
+				
+				// Check if version is below minimum
+				let isOldVersion = false;
+				for (let i = 0; i < 3; i++) {
+					if (parts[i] < minParts[i]) {
+						isOldVersion = true;
+						break;
+					} else if (parts[i] > minParts[i]) {
+						break;
+					}
+				}
+				
+				if (isOldVersion) {
+					vscode.window.showWarningMessage(
+						`Chef extension detected Cookstyle ${version}. Version ${MINIMUM_COOKSTYLE_VERSION}+ is required. Please upgrade to the latest Chef Workstation for best results.`,
+						"Upgrade Instructions"
+					).then(selection => {
+						if (selection === "Upgrade Instructions") {
+							vscode.env.openExternal(vscode.Uri.parse("https://docs.chef.io/workstation/install/"));
+						}
+					});
+				} else {
+					console.log(`Cookstyle version ${version} is compatible (minimum: ${MINIMUM_COOKSTYLE_VERSION})`);
+				}
+			}
+		}
+		cookstyleVersionChecked = true;
+	} catch (err) {
+		console.log("Could not check Cookstyle version:", err);
+		vscode.window.showWarningMessage(
+			`Chef extension could not detect Cookstyle at: ${rubocopPath}. Verify the path in rubocop.path setting or install Chef Workstation.`,
+			"Download Chef Workstation"
+		).then(selection => {
+			if (selection === "Download Chef Workstation") {
+				vscode.env.openExternal(vscode.Uri.parse("https://docs.chef.io/workstation/install/"));
+			}
+		});
+	}
 }
 
 function convertSeverity(severity: string): vscode.DiagnosticSeverity {

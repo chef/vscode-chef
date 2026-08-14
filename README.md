@@ -16,10 +16,10 @@ The Progress Chef Infra Extension for Visual Studio Code offers rich language su
 
 * Enabled by default (disable by adding ```{ "rubocop.enable": false }``` in user/workspace settings) and activated when the first Ruby file is loaded.
 * The entire repo will be linted when files are saved, unless there are more than 400 `*.rb` files in the workspace, in which case only open files will be linted. Adjust this threshold using the ```{ "rubocop.fileCountThreshold": 400 }``` setting in user/workspace settings.
-* You may lint the entire workspace, even if it is larger than the above threshold, using the `Chef: Validate Entire Workspace` command from the Command Pallette.
+* You may lint the entire workspace, even if it is larger than the above threshold, using the `Chef: Validate Entire Workspace` command from the Command Palette.
 * If you have [Chef Workstation](https://downloads.chef.io/chef-workstation) installed, linting should "just work" on Windows, macOS, and Linux. [Cookstyle](https://github.com/chef/cookstyle) will be used by default.
-* If you do not have Chef Workstation but do have Rubocop installed, you can set the executable path by setting ```{ "rubocop.path": "c:\\path\\to\\rubocop.bat"}``` in user/workspace settings).
-* To override the config file used by Rubocop/Cookstyle, use the ```{ "rubocop.configFile": "path/to/config.yml" }``` in user/workspace settings.
+* If you do not have Chef Workstation but do have Rubocop installed, you can set the executable path by setting ```{ "rubocop.path": "c:\\path\\to\\rubocop.bat"}``` in user/workspace settings.
+* To override the config file used by Rubocop/Cookstyle, use the ```{ "rubocop.configFile": "path/to/config.yml" }``` in user/workspace settings
 
 ### Snippet support (with tabbing) for all Chef Infra built-in Resources
 
@@ -60,8 +60,11 @@ This project contains development launch settings. A recent Node.js LTS build is
 Dependencies for development work of this extension are maintained in the `package.json` file under the `devDependencies` key and can be installed via NPM:
 
 ```shell
-npm install
+npm ci           # Recommended: installs from frozen lockfile
+npm install      # Only when updating dependencies
 ```
+
+**Note:** For team development, always use `npm ci` to ensure reproducible builds. See [CONTRIBUTING.md](CONTRIBUTING.md) for details.
 
 ### Updating Snippets
 
