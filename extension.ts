@@ -1,5 +1,3 @@
-// tslint:disable:typedef
-
 import fs = require("fs");
 import path = require("path");
 import vscode = require("vscode");

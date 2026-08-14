@@ -7,6 +7,8 @@
   jobs:
     validate:
       runs-on: ubuntu-latest
+      permissions:
+        contents: read
 
       steps:
         - name: Check out code
@@ -21,9 +23,11 @@
     build:
       needs: [validate]
       runs-on: ubuntu-latest
+      permissions:
+        contents: read
       strategy:
         matrix:
-          node-version: [20.x]
+          node-version: [22.19.0]
       steps:
         - uses: actions/checkout@v4
         - name: Use Node.js ${{ matrix.node-version }}
