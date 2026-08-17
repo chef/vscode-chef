@@ -135,7 +135,7 @@
       },
       {
         "language": "chef_berksfile",
-        "scopeName": "source.chef.chef_berksfile",
+        "scopeName": "source.chef.berksfile",
         "path": "./syntaxes/chef_berksfile.cson.json"
       },
       {

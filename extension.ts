@@ -220,13 +220,17 @@ function validatePaths(paths: Array<string>): void {
 		if (!vscode.workspace.workspaceFolders || vscode.workspace.workspaceFolders.length === 0) {
 			return;
 		}
+		if (!vscode.workspace.isTrusted) {
+			return;
+		}
 		const workspaceRoot = vscode.workspace.workspaceFolders[0].uri.fsPath;
+		const isWindows = process.platform === 'win32';
 		let spawn = require("child_process").spawnSync;
 		let rubocop: any;
 		if (rubocopConfigFile) {
-			rubocop = spawn(rubocopPath, ["--parallel", "--config", rubocopConfigFile, "-f", "j"].concat(paths), { shell: true, cwd: workspaceRoot });
+			rubocop = spawn(rubocopPath, ["--parallel", "--config", rubocopConfigFile, "-f", "j"].concat(paths), { shell: isWindows, cwd: workspaceRoot });
 		} else {
-			rubocop = spawn(rubocopPath, ["--parallel", "-f", "j"].concat(paths), { shell: true, cwd: workspaceRoot });
+			rubocop = spawn(rubocopPath, ["--parallel", "-f", "j"].concat(paths), { shell: isWindows, cwd: workspaceRoot });
 		}
 		let rubocopOutput = JSON.parse(rubocop.stdout);
 		if (rubocop.status < 2) {

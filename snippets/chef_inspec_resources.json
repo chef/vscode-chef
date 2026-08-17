@@ -1010,7 +1010,7 @@
   "cassandradb_conf": {
     "prefix": "cassandradb_conf",
     "body": "describe cassandradb_conf do\n\tits('config item') { should eq 'value' }\nend",
-    "description": "Use the `cassandradb_conf` Chef InSpec audit resource to test the configuration of a Cassandra database, which is typically located at `\\$CASSANDRA_HOME/cassandra.yaml` or `\\$CASSANDRA_HOME\\conf\\cassandra.yaml` depending upon the platform.",
+    "description": "Use the `cassandradb_conf` Chef InSpec audit resource to test the configuration of a Cassandra database, which is typically located at `$CASSANDRA_HOME/cassandra.yaml` or `$CASSANDRA_HOME\\conf\\cassandra.yaml` depending upon the platform.",
     "scope": "source.ruby.chef_inspec"
   },
   "cassandradb_session": {
@@ -2708,7 +2708,7 @@
   "oracledb_listener_conf": {
     "prefix": "oracledb_listener_conf",
     "body": "describe oracledb_listener_conf do\n\tits('config item') { should eq 'value' }\nend",
-    "description": "Use the `oracledb_listener_conf` Chef InSpec audit resource to test the listeners settings of Oracle DB, typically located at `\\$ORACLE_HOME/network/admin/listener.ora` or `\\$ORACLE_HOME\\network\\admin\\listener.ora` depending upon the platform.",
+    "description": "Use the `oracledb_listener_conf` Chef InSpec audit resource to test the listeners settings of Oracle DB, typically located at `$ORACLE_HOME/network/admin/listener.ora` or `$ORACLE_HOME\\network\\admin\\listener.ora` depending upon the platform.",
     "scope": "source.ruby.chef_inspec"
   },
   "oracledb_session": {
