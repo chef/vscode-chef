@@ -178,7 +178,7 @@ function updateRubyFileCountAndValidate(warn: boolean = false): void {
 		uri_array.forEach(uriCounter)
 		validate(warn);
 	}
-	vscode.workspace.findFiles("**/*.rb", null, stopAt, null)
+	vscode.workspace.findFiles("**/*.rb", null, stopAt)
 	                .then(countAndValidate)
 }
 
@@ -208,24 +208,36 @@ function validateOpenFiles(): void {
 }
 
 function validateEntireWorkspace(): void {
-	validatePaths([vscode.workspace.rootPath])
+	if (!vscode.workspace.workspaceFolders || vscode.workspace.workspaceFolders.length === 0) {
+		vscode.window.showErrorMessage('Chef: No workspace folder is open');
+		return;
+	}
+	validatePaths([vscode.workspace.workspaceFolders[0].uri.fsPath])
 }
 
 function validatePaths(paths: Array<string>): void {
 	try {
+		if (!vscode.workspace.workspaceFolders || vscode.workspace.workspaceFolders.length === 0) {
+			return;
+		}
+		if (!vscode.workspace.isTrusted) {
+			return;
+		}
+		const workspaceRoot = vscode.workspace.workspaceFolders[0].uri.fsPath;
+		const isWindows = process.platform === 'win32';
 		let spawn = require("child_process").spawnSync;
 		let rubocop: any;
 		if (rubocopConfigFile) {
-			rubocop = spawn(rubocopPath, ["--parallel", "--config", rubocopConfigFile, "-f", "j"].concat(paths), { cwd: vscode.workspace.rootPath });
+			rubocop = spawn(rubocopPath, ["--parallel", "--config", rubocopConfigFile, "-f", "j"].concat(paths), { shell: isWindows, cwd: workspaceRoot });
 		} else {
-			rubocop = spawn(rubocopPath, ["--parallel", "-f", "j"].concat(paths), { cwd: vscode.workspace.rootPath });
+			rubocop = spawn(rubocopPath, ["--parallel", "-f", "j"].concat(paths), { shell: isWindows, cwd: workspaceRoot });
 		}
 		let rubocopOutput = JSON.parse(rubocop.stdout);
 		if (rubocop.status < 2) {
 			let arr = [];
 			for (var r = 0; r < rubocopOutput.files.length; r++) {
 				var rubocopFile = rubocopOutput.files[r];
-				let uri: vscode.Uri = vscode.Uri.file((path.join(vscode.workspace.rootPath, rubocopFile.path)));
+				let uri: vscode.Uri = vscode.Uri.file((path.join(workspaceRoot, rubocopFile.path)));
 				var offenses = rubocopFile.offenses;
 				let diagnostics: vscode.Diagnostic[] = [];
 				for (var i = 0; i < offenses.length; i++) {

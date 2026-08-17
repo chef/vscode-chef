@@ -26,11 +26,6 @@
     "language"
   ],
   "activationEvents": [
-    "onLanguage:chef_berkshelf",
-    "onLanguage:chef_inspec",
-    "onLanguage:chef_metadata",
-    "onLanguage:chef_policyfile",
-    "onLanguage:chef_recipe_yaml",
     "workspaceContains:**/metadata.rb"
   ],
   "main": "./out/extension",
@@ -139,9 +134,9 @@
         "path": "./syntaxes/chef_inspec.cson.json"
       },
       {
-        "language": "chef_berkshelf",
-        "scopeName": "source.chef.berkshelf",
-        "path": "./syntaxes/chef_berkshelf.cson.json"
+        "language": "chef_berksfile",
+        "scopeName": "source.chef.berksfile",
+        "path": "./syntaxes/chef_berksfile.cson.json"
       },
       {
         "language": "chef_policyfile",
