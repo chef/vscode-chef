@@ -1,16 +1,17 @@
 # vscode-chef Change Log
 
-<!-- latest_release 2.2.17 -->
-## [v2.2.17](https://github.com/chef/vscode-chef/tree/v2.2.17) (2026-08-17)
+<!-- latest_release 2.2.18 -->
+## [v2.2.18](https://github.com/chef/vscode-chef/tree/v2.2.18) (2026-08-17)
 
 #### Merged Pull Requests
-- Bump fast-uri from 3.1.4 to 3.1.5 [#281](https://github.com/chef/vscode-chef/pull/281) ([dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump @types/node from 20.17.15 to 26.1.2 [#278](https://github.com/chef/vscode-chef/pull/278) ([dependabot[bot]](https://github.com/dependabot[bot]))
 <!-- latest_release -->
 
 <!-- release_rollup -->
 ### Changes not yet released
 
 #### Merged Pull Requests
+- Bump @types/node from 20.17.15 to 26.1.2 [#278](https://github.com/chef/vscode-chef/pull/278) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 2.2.18 -->
 - Bump fast-uri from 3.1.4 to 3.1.5 [#281](https://github.com/chef/vscode-chef/pull/281) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 2.2.17 -->
 - Address security vulnerabilities in transitive dependencies and docs updates [#273](https://github.com/chef/vscode-chef/pull/273) ([nikhil2611](https://github.com/nikhil2611)) <!-- 2.2.16 -->
 - CHEF-37570: Add Chef Workstation 26 path support [#275](https://github.com/chef/vscode-chef/pull/275) ([nikhil2611](https://github.com/nikhil2611)) <!-- 2.2.15 -->
