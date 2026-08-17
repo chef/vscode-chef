@@ -1,16 +1,17 @@
 # vscode-chef Change Log
 
-<!-- latest_release 2.2.19 -->
-## [v2.2.19](https://github.com/chef/vscode-chef/tree/v2.2.19) (2026-08-17)
+<!-- latest_release 2.2.20 -->
+## [v2.2.20](https://github.com/chef/vscode-chef/tree/v2.2.20) (2026-08-17)
 
 #### Merged Pull Requests
-- Repair rubocop refusing to run (#97) [#262](https://github.com/chef/vscode-chef/pull/262) ([sinfomicien](https://github.com/sinfomicien))
+- CHEF-30536 Update and standardize copyright notices to Progress Software Corporation - copyright_update [#267](https://github.com/chef/vscode-chef/pull/267) ([clintoncwolfe](https://github.com/clintoncwolfe))
 <!-- latest_release -->
 
 <!-- release_rollup -->
 ### Changes not yet released
 
 #### Merged Pull Requests
+- CHEF-30536 Update and standardize copyright notices to Progress Software Corporation - copyright_update [#267](https://github.com/chef/vscode-chef/pull/267) ([clintoncwolfe](https://github.com/clintoncwolfe)) <!-- 2.2.20 -->
 - Repair rubocop refusing to run (#97) [#262](https://github.com/chef/vscode-chef/pull/262) ([sinfomicien](https://github.com/sinfomicien)) <!-- 2.2.19 -->
 - Bump @types/node from 20.17.15 to 26.1.2 [#278](https://github.com/chef/vscode-chef/pull/278) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 2.2.18 -->
 - Bump fast-uri from 3.1.4 to 3.1.5 [#281](https://github.com/chef/vscode-chef/pull/281) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 2.2.17 -->
