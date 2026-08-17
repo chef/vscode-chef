@@ -216,5 +216,6 @@ This extension is licensed under an [Apache 2](LICENSE) license.
    limitations under the License.
 ```
 
-# Copyright
+## Copyright
+
 See [COPYRIGHT.md](./COPYRIGHT.md).
