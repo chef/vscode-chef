@@ -208,24 +208,32 @@ function validateOpenFiles(): void {
 }
 
 function validateEntireWorkspace(): void {
+	if (!vscode.workspace.workspaceFolders || vscode.workspace.workspaceFolders.length === 0) {
+		vscode.window.showErrorMessage('Chef: No workspace folder is open');
+		return;
+	}
 	validatePaths([vscode.workspace.workspaceFolders[0].uri.fsPath])
 }
 
 function validatePaths(paths: Array<string>): void {
 	try {
+		if (!vscode.workspace.workspaceFolders || vscode.workspace.workspaceFolders.length === 0) {
+			return;
+		}
+		const workspaceRoot = vscode.workspace.workspaceFolders[0].uri.fsPath;
 		let spawn = require("child_process").spawnSync;
 		let rubocop: any;
 		if (rubocopConfigFile) {
-			rubocop = spawn(rubocopPath, ["--parallel", "--config", rubocopConfigFile, "-f", "j"].concat(paths), { shell: true, cwd: vscode.workspace.workspaceFolders[0].uri.fsPath });
+			rubocop = spawn(rubocopPath, ["--parallel", "--config", rubocopConfigFile, "-f", "j"].concat(paths), { shell: true, cwd: workspaceRoot });
 		} else {
-			rubocop = spawn(rubocopPath, ["--parallel", "-f", "j"].concat(paths), { shell: true, cwd: vscode.workspace.workspaceFolders[0].uri.fsPath });
+			rubocop = spawn(rubocopPath, ["--parallel", "-f", "j"].concat(paths), { shell: true, cwd: workspaceRoot });
 		}
 		let rubocopOutput = JSON.parse(rubocop.stdout);
 		if (rubocop.status < 2) {
 			let arr = [];
 			for (var r = 0; r < rubocopOutput.files.length; r++) {
 				var rubocopFile = rubocopOutput.files[r];
-				let uri: vscode.Uri = vscode.Uri.file((path.join(vscode.workspace.workspaceFolders[0].uri.fsPath, rubocopFile.path)));
+				let uri: vscode.Uri = vscode.Uri.file((path.join(workspaceRoot, rubocopFile.path)));
 				var offenses = rubocopFile.offenses;
 				let diagnostics: vscode.Diagnostic[] = [];
 				for (var i = 0; i < offenses.length; i++) {
