@@ -51,20 +51,57 @@ The Progress Chef Infra Extension for Visual Studio Code offers rich language su
 
 Contributions are welcomed, please file issues and pull requests via the [project homepage](https://github.com/chef/vscode-chef).
 
+- **Community Slack**: [Chef Community](https://community-slack.chef.io/)
+
 ## Building and releasing the extension
 
 This project contains development launch settings. A recent Node.js LTS build is required.
 
-### Install dependencies
+### Quick Reference
 
-Dependencies for development work of this extension are maintained in the `package.json` file under the `devDependencies` key and can be installed via NPM:
+```bash
+# Install dependencies (always use npm ci, not npm install)
+npm ci
 
-```shell
-npm ci           # Recommended: installs from frozen lockfile
-npm install      # Only when updating dependencies
+# Build the extension
+npm run vscode:prepublish
+
+# Package for local testing
+npm run package
+
+# Test locally
+code --install-extension ./chef-<version>.vsix
 ```
 
-**Note:** For team development, always use `npm ci` to ensure reproducible builds. See [CONTRIBUTING.md](CONTRIBUTING.md) for details.
+**Note:** Always commit `package-lock.json` when updating dependencies.
+
+### Build Verification
+
+To verify your build matches the frozen lockfile:
+
+```bash
+rm -rf node_modules
+npm ci
+npm run vscode:prepublish
+npm run package
+```
+
+### Pull Request Checklist
+
+Before submitting your PR, ensure:
+
+- [ ] Code builds successfully (`npm run vscode:prepublish`)
+- [ ] Extension packages successfully (`npm run package`)
+- [ ] Tested locally by installing the `.vsix` file
+- [ ] All commits are signed-off (DCO): Use `git commit -s`
+- [ ] `package-lock.json` updated if dependencies changed
+- [ ] No unrelated changes included
+
+### Need Help?
+
+- **Issues**: [GitHub Issues](https://github.com/chef/vscode-chef/issues)
+- **Detailed build instructions**: See sections above
+- **Chef Community**: [Community Slack](https://community-slack.chef.io/)
 
 ### Updating Snippets
 
@@ -139,7 +176,7 @@ To test the extension locally:
 code --install-extension C:\projects\chef\vscode-chef\chef-1.4.0.vsix
 ```
 
-To release requires a PAT token for the relevant publisher on the Visual Studio Marketplace.
+To release requires a PAT token for the relevant publisher on the Visual Studio Marketplace:
 
 ```plain
 vsce publish
