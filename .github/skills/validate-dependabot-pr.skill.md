@@ -75,8 +75,11 @@ instructions: |
 
      d. **Packaging verification**
         - Check out the PR into an isolated git worktree so the user's current
-          branch/working tree is never disturbed:
+          branch/working tree is never disturbed. Capture the original repo
+          directory first so cleanup can reliably return to it (don't hardcode
+          a developer-specific path):
           ```bash
+          REPO_ROOT="$(pwd)"
           git fetch origin "pull/<n>/head:pr-<n>-validate"
           git worktree add /tmp/vscode-chef-pr-<n> pr-<n>-validate
           cd /tmp/vscode-chef-pr-<n>
@@ -105,9 +108,11 @@ instructions: |
           as a stronger signal. If `code` is not available, skip this step without
           failing the PR for that reason alone — note it as "not checked (no code CLI)".
         - **Always clean up** after each PR, even on failure, so no scratch state
-          leaks between PRs or back into the user's main checkout:
+          leaks between PRs or back into the user's main checkout. Use the
+          `REPO_ROOT` captured before entering the worktree — never hardcode a
+          path:
           ```bash
-          cd /Users/ngupta/Documents/chef-workstation-hab-pkg/rel/CW26/vscode-chef
+          cd "$REPO_ROOT"
           git worktree remove /tmp/vscode-chef-pr-<n> --force
           git branch -D pr-<n>-validate
           rm -f /tmp/vscode-chef-pr-<n>.vsix /tmp/pr-<n>-manifest.json
