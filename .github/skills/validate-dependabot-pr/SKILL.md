@@ -42,11 +42,16 @@ path or host ever changes:
 
 ```bash
 HAR_HOST="$(grep '^registry=' .npmrc | sed -E 's#^registry=https?://([^/]+)/.*#\1#')"
+if [ -z "$HAR_HOST" ]; then echo "ERROR: could not derive HAR_HOST from .npmrc" >&2; exit 1; fi
 gh pr diff <n> --repo chef/vscode-chef | grep -A 20 '^diff --git a/\.npmrc '
 gh pr diff <n> --repo chef/vscode-chef | grep -A 40 '^diff --git a/package\.json '
 gh pr diff <n> --repo chef/vscode-chef | grep '"resolved"' | grep '^+' | grep -v "$HAR_HOST"
 ```
 
+- **Never skip this check if `HAR_HOST` is empty** — an empty pattern passed to
+  `grep -v` would suppress all output and make the bypass check falsely appear
+  clean. The `exit 1` guard above prevents this; if it fires, stop and report
+  that HAR compliance could not be verified rather than assuming a pass.
 - FAIL if the `.npmrc` hunk removes or weakens any of: the `$HAR_HOST`
   registry URL, `@jsr:registry`, `ignore-scripts=true`, `min-release-age=14`
   (raising it above 14 is fine; lowering below 14 is not), or
@@ -92,14 +97,17 @@ a developer-specific path):
 
 ```bash
 REPO_ROOT="$(pwd)"
-git fetch https://github.com/chef/vscode-chef.git "pull/<n>/head:pr-<n>-validate"
+git fetch https://github.com/chef/vscode-chef.git "+pull/<n>/head:pr-<n>-validate"
 git worktree add /tmp/vscode-chef-pr-<n> pr-<n>-validate
 cd /tmp/vscode-chef-pr-<n>
 ```
 
 Fetch from the canonical `chef/vscode-chef` URL explicitly rather than
 `origin` — a developer's local `origin` may point at a personal fork,
-in which case `pull/<n>/head` wouldn't resolve there.
+in which case `pull/<n>/head` wouldn't resolve there. Use the forced
+refspec (`+pull/<n>/head:...`) so the fetch reliably updates the local
+branch even if Dependabot has force-pushed (rebased/refreshed) the PR
+since a previous validation run.
 
 Run the same steps as the `build` CI job:
 
