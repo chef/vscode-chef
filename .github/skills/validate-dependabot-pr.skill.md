@@ -83,10 +83,13 @@ instructions: |
           a developer-specific path):
           ```bash
           REPO_ROOT="$(pwd)"
-          git fetch origin "pull/<n>/head:pr-<n>-validate"
+          git fetch https://github.com/chef/vscode-chef.git "pull/<n>/head:pr-<n>-validate"
           git worktree add /tmp/vscode-chef-pr-<n> pr-<n>-validate
           cd /tmp/vscode-chef-pr-<n>
           ```
+          Fetch from the canonical `chef/vscode-chef` URL explicitly rather than
+          `origin` — a developer's local `origin` may point at a personal fork,
+          in which case `pull/<n>/head` wouldn't resolve there.
         - Run the same steps as the `build` CI job:
           ```bash
           npm ci
@@ -114,11 +117,13 @@ instructions: |
         - **Always clean up** after each PR, even on failure, so no scratch state
           leaks between PRs or back into the user's main checkout. Use the
           `REPO_ROOT` captured before entering the worktree — never hardcode a
-          path:
+          path. Each step is tolerant of partial failure (e.g. an earlier step in
+          this same check aborted before the worktree/branch/file existed), so
+          suffix with `|| true` and keep going rather than stopping cleanup short:
           ```bash
           cd "$REPO_ROOT"
-          git worktree remove /tmp/vscode-chef-pr-<n> --force
-          git branch -D pr-<n>-validate
+          git worktree remove /tmp/vscode-chef-pr-<n> --force || true
+          git branch -D pr-<n>-validate || true
           rm -f /tmp/vscode-chef-pr-<n>.vsix /tmp/pr-<n>-manifest.json
           ```
 
