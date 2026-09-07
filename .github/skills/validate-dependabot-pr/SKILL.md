@@ -11,11 +11,20 @@ post PR comments unless the user explicitly asks you to after seeing the report.
 This repo uses **npm only** (no pnpm-workspace.yaml or yarn.lock). Its HAR baseline
 lives in the root `.npmrc`:
 ```
+# REQUIRED - DO NOT REMOVE OR CIRCUMVENT
+# HAR (Harness Artifact Registry) configuration for chef org
 registry=https://pkg.harness.io/pkg/ct8onj8YTdaXtKaFsYCRLg/org-chef-npm/npm/
 @jsr:registry=https://pkg.harness.io/pkg/ct8onj8YTdaXtKaFsYCRLg/org-chef-npm/npm/
+
+# Block risky lifecycle scripts by default
 ignore-scripts=true
-min-release-age=14   # stricter than the HAR doc's 7-day default — treat 14 as
-                      # this repo's authoritative floor; never suggest lowering it.
+
+# npm safety gate (days; 14-day cooldown for supply-chain attack mitigation)
+# stricter than the HAR doc's 7-day default — treat 14 as this repo's
+# authoritative floor; never suggest lowering it.
+min-release-age=14
+
+# Ensure lockfile is enabled even if a developer has package-lock=false globally
 package-lock=true
 ```
 
@@ -43,19 +52,22 @@ path or host ever changes:
 ```bash
 HAR_HOST="$(grep '^registry=' .npmrc | sed -E 's#^registry=https?://([^/]+)/.*#\1#')"
 if [ -z "$HAR_HOST" ]; then echo "ERROR: could not derive HAR_HOST from .npmrc" >&2; exit 1; fi
-gh pr diff <n> --repo chef/vscode-chef | sed -n '/^diff --git a\/\.npmrc /,/^diff --git /p'
-gh pr diff <n> --repo chef/vscode-chef | sed -n '/^diff --git a\/package\.json /,/^diff --git /p'
-gh pr diff <n> --repo chef/vscode-chef | sed -n '/^diff --git a\/package-lock\.json /,/^diff --git /p' | grep '"resolved"' | grep '^+' | grep -F -v -- "$HAR_HOST" || true
+PR_DIFF="$(gh pr diff <n> --repo chef/vscode-chef)"
+printf '%s\n' "$PR_DIFF" | sed -n '/^diff --git a\/\.npmrc /,/^diff --git /p'
+printf '%s\n' "$PR_DIFF" | sed -n '/^diff --git a\/package\.json /,/^diff --git /p'
+printf '%s\n' "$PR_DIFF" | sed -n '/^diff --git a\/package-lock\.json /,/^diff --git /p' | grep '"resolved"' | grep '^+' | grep -F -v -- "$HAR_HOST" || true
 ```
 
-Use `sed` ranges (not `grep -A <n>`) so the full `.npmrc`/`package.json`
-diff hunks are captured regardless of how many lines they span, and scope
-the resolved-URL bypass check to the `package-lock.json` diff section
-specifically (that's the only file where `"resolved"` lines matter). Append
-`|| true` to the last pipeline — under `set -e` (or when this snippet's
-exit status is checked), a `grep -v` that matches nothing exits non-zero,
-and "no non-HAR resolved lines found" must be treated as a clean pass, not
-a script failure.
+Fetch the diff once into `PR_DIFF` and reuse it for all three extracts —
+calling `gh pr diff` three times per PR is slow and needlessly increases
+the chance of hitting GitHub API rate limits. Use `sed` ranges (not
+`grep -A <n>`) so the full `.npmrc`/`package.json` diff hunks are captured
+regardless of how many lines they span, and scope the resolved-URL bypass
+check to the `package-lock.json` diff section specifically (that's the
+only file where `"resolved"` lines matter). Append `|| true` to the last
+pipeline — under `set -e` (or when this snippet's exit status is checked),
+a `grep -v` that matches nothing exits non-zero, and "no non-HAR resolved
+lines found" must be treated as a clean pass, not a script failure.
 
 - **Never skip this check if `HAR_HOST` is empty** — an empty pattern passed to
   `grep -v` would suppress all output and make the bypass check falsely appear
