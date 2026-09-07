@@ -45,7 +45,7 @@ HAR_HOST="$(grep '^registry=' .npmrc | sed -E 's#^registry=https?://([^/]+)/.*#\
 if [ -z "$HAR_HOST" ]; then echo "ERROR: could not derive HAR_HOST from .npmrc" >&2; exit 1; fi
 gh pr diff <n> --repo chef/vscode-chef | grep -A 20 '^diff --git a/\.npmrc '
 gh pr diff <n> --repo chef/vscode-chef | grep -A 40 '^diff --git a/package\.json '
-gh pr diff <n> --repo chef/vscode-chef | grep '"resolved"' | grep '^+' | grep -v "$HAR_HOST"
+gh pr diff <n> --repo chef/vscode-chef | grep '"resolved"' | grep '^+' | grep -F -v -- "$HAR_HOST"
 ```
 
 - **Never skip this check if `HAR_HOST` is empty** — an empty pattern passed to
@@ -72,7 +72,13 @@ gh pr diff <n> --repo chef/vscode-chef | grep '"resolved"' | grep '^+' | grep -v
 - Flag major-version bumps distinctly from minor/patch — they need closer
   human review of changelogs/breaking changes.
 
-### c. CI workflow check (`.github/workflows/ci.yml`: jobs `validate`, `build (22.19.0)`)
+### c. CI workflow check (`.github/workflows/ci.yml`: jobs `validate`, `build (<node-version>)`)
+
+The `build` job name embeds the Node version from the workflow's matrix
+(currently `22.19.0`), so never hardcode `build (22.19.0)` — that string
+breaks silently the next time the matrix version is bumped. Instead match
+the `build (` prefix, and optionally cross-check it against the workflow
+file's current matrix value:
 
 ```bash
 gh pr checks <n> --repo chef/vscode-chef
@@ -83,10 +89,11 @@ status column (e.g. `build (22.19.0)  pass  1m6s  <url>`). For a JSON view
 instead, use `gh pr view <n> --repo chef/vscode-chef --json statusCheckRollup`
 (conclusions there are `SUCCESS`/`FAILURE`/etc.).
 
-- PASS only if both the `validate` and `build (22.19.0)` rows show `pass`
-  (or `SUCCESS` in the JSON form) for the latest commit. Anything else
-  (`fail`, `pending`, `queued`) is a FAIL — call out which job failed and
-  include its URL from the output.
+- PASS only if the `validate` row and the row whose name starts with
+  `build (` both show `pass` (or `SUCCESS` in the JSON form) for the latest
+  commit. Anything else (`fail`, `pending`, `queued`, or a missing `build (`
+  row) is a FAIL — call out which job failed and include its URL from the
+  output.
 
 ### d. Packaging verification
 
