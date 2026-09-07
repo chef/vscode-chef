@@ -43,10 +43,19 @@ path or host ever changes:
 ```bash
 HAR_HOST="$(grep '^registry=' .npmrc | sed -E 's#^registry=https?://([^/]+)/.*#\1#')"
 if [ -z "$HAR_HOST" ]; then echo "ERROR: could not derive HAR_HOST from .npmrc" >&2; exit 1; fi
-gh pr diff <n> --repo chef/vscode-chef | grep -A 20 '^diff --git a/\.npmrc '
-gh pr diff <n> --repo chef/vscode-chef | grep -A 40 '^diff --git a/package\.json '
-gh pr diff <n> --repo chef/vscode-chef | grep '"resolved"' | grep '^+' | grep -F -v -- "$HAR_HOST"
+gh pr diff <n> --repo chef/vscode-chef | sed -n '/^diff --git a\/\.npmrc /,/^diff --git /p'
+gh pr diff <n> --repo chef/vscode-chef | sed -n '/^diff --git a\/package\.json /,/^diff --git /p'
+gh pr diff <n> --repo chef/vscode-chef | sed -n '/^diff --git a\/package-lock\.json /,/^diff --git /p' | grep '"resolved"' | grep '^+' | grep -F -v -- "$HAR_HOST" || true
 ```
+
+Use `sed` ranges (not `grep -A <n>`) so the full `.npmrc`/`package.json`
+diff hunks are captured regardless of how many lines they span, and scope
+the resolved-URL bypass check to the `package-lock.json` diff section
+specifically (that's the only file where `"resolved"` lines matter). Append
+`|| true` to the last pipeline — under `set -e` (or when this snippet's
+exit status is checked), a `grep -v` that matches nothing exits non-zero,
+and "no non-HAR resolved lines found" must be treated as a clean pass, not
+a script failure.
 
 - **Never skip this check if `HAR_HOST` is empty** — an empty pattern passed to
   `grep -v` would suppress all output and make the bypass check falsely appear
@@ -104,6 +113,8 @@ a developer-specific path):
 
 ```bash
 REPO_ROOT="$(pwd)"
+git worktree remove /tmp/vscode-chef-pr-<n> --force || true
+git branch -D pr-<n>-validate || true
 git fetch https://github.com/chef/vscode-chef.git "+pull/<n>/head:pr-<n>-validate"
 git worktree add /tmp/vscode-chef-pr-<n> pr-<n>-validate
 cd /tmp/vscode-chef-pr-<n>
@@ -115,6 +126,13 @@ in which case `pull/<n>/head` wouldn't resolve there. Use the forced
 refspec (`+pull/<n>/head:...`) so the fetch reliably updates the local
 branch even if Dependabot has force-pushed (rebased/refreshed) the PR
 since a previous validation run.
+
+Run the pre-clean (`git worktree remove` / `git branch -D`, both tolerant
+of failure via `|| true`) before the fetch so re-running this skill is
+idempotent: a lingering worktree directory or an already-checked-out
+`pr-<n>-validate` branch from a prior/interrupted run would otherwise
+cause `git fetch` to refuse updating a checked-out branch, or
+`git worktree add` to fail on an existing directory.
 
 Run the same steps as the `build` CI job:
 
