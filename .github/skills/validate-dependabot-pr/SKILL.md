@@ -55,18 +55,25 @@ if [ -z "$HAR_HOST" ]; then echo "ERROR: could not derive HAR_HOST from .npmrc" 
 HAR_ORIGIN="$(grep '^registry=' .npmrc | sed -E 's#^registry=(https?://[^/]+)/.*#\1#')"
 if [ -z "$HAR_ORIGIN" ]; then echo "ERROR: could not derive HAR_ORIGIN from .npmrc" >&2; exit 1; fi
 PR_DIFF="$(gh pr diff <n> --repo chef/vscode-chef)"
-printf '%s\n' "$PR_DIFF" | sed -n '/^diff --git a\/\.npmrc /,/^diff --git /p'
-printf '%s\n' "$PR_DIFF" | sed -n '/^diff --git a\/package\.json /,/^diff --git /p'
-printf '%s\n' "$PR_DIFF" | sed -n '/^diff --git a\/package-lock\.json /,/^diff --git /p' | grep '"resolved"' | grep '^+' | grep -F -v -- "$HAR_ORIGIN/" || true
+extract_diff_block() { awk -v pat="^diff --git a/$1 " '$0 ~ pat {p=1; print; next} /^diff --git / {p=0} p'; }
+printf '%s\n' "$PR_DIFF" | extract_diff_block '\.npmrc'
+printf '%s\n' "$PR_DIFF" | extract_diff_block 'package\.json'
+printf '%s\n' "$PR_DIFF" | extract_diff_block 'package-lock\.json' | grep '"resolved"' | grep '^+' | grep -F -v -- "$HAR_ORIGIN/" || true
 ```
 
 Fetch the diff once into `PR_DIFF` and reuse it for all three extracts —
 calling `gh pr diff` three times per PR is slow and needlessly increases
-the chance of hitting GitHub API rate limits. Use `sed` ranges (not
-`grep -A <n>`) so the full `.npmrc`/`package.json` diff hunks are captured
-regardless of how many lines they span, and scope the resolved-URL bypass
-check to the `package-lock.json` diff section specifically (that's the
-only file where `"resolved"` lines matter). Append `|| true` to the last
+the chance of hitting GitHub API rate limits. Use the `extract_diff_block`
+awk helper (not a `sed '/start/,/end/p'` range or `grep -A <n>`) so the
+full `.npmrc`/`package.json` diff hunks are captured regardless of how many
+lines they span: the helper turns off printing only when a *later* line
+starts a new `diff --git` header, so it can't be tripped up by the opening
+header line itself also matching that same broad end pattern — a real risk
+with a `sed` range whose start and end addresses can both match on line
+one, where behavior differs across sed implementations and can otherwise
+degenerate into printing just the header. Scope the resolved-URL bypass
+check to the `package-lock.json` diff block specifically (that's the only
+file where `"resolved"` lines matter). Append `|| true` to the last
 pipeline — under `set -e` (or when this snippet's exit status is checked),
 a `grep -v` that matches nothing exits non-zero, and "no non-HAR resolved
 lines found" must be treated as a clean pass, not a script failure.
