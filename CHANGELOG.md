@@ -1,16 +1,17 @@
 # vscode-chef Change Log
 
-<!-- latest_release 2.2.23 -->
-## [v2.2.23](https://github.com/chef/vscode-chef/tree/v2.2.23) (2026-09-08)
+<!-- latest_release 2.2.24 -->
+## [v2.2.24](https://github.com/chef/vscode-chef/tree/v2.2.24) (2026-09-08)
 
 #### Merged Pull Requests
-- Bump fast-uri from 3.1.5 to 3.1.7 [#284](https://github.com/chef/vscode-chef/pull/284) ([dependabot[bot]](https://github.com/dependabot[bot]))
+- Add validate-dependabot-pr Copilot CLI skill [#286](https://github.com/chef/vscode-chef/pull/286) ([nikhil2611](https://github.com/nikhil2611))
 <!-- latest_release -->
 
 <!-- release_rollup -->
 ### Changes not yet released
 
 #### Merged Pull Requests
+- Add validate-dependabot-pr Copilot CLI skill [#286](https://github.com/chef/vscode-chef/pull/286) ([nikhil2611](https://github.com/nikhil2611)) <!-- 2.2.24 -->
 - Bump fast-uri from 3.1.5 to 3.1.7 [#284](https://github.com/chef/vscode-chef/pull/284) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 2.2.23 -->
 - Bump @types/node from 26.1.2 to 26.2.0 [#283](https://github.com/chef/vscode-chef/pull/283) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 2.2.22 -->
 - Replace CONTRIBUTING.md file with standard template [#282](https://github.com/chef/vscode-chef/pull/282) ([nikhil2611](https://github.com/nikhil2611)) <!-- 2.2.21 -->
