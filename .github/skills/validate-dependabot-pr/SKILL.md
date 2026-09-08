@@ -1,0 +1,245 @@
+---
+name: validate-dependabot-pr
+description: Validates open Dependabot npm PRs in chef/vscode-chef against Harness Artifact Registry (HAR) compliance, reviews the actual dependency change, confirms the ci GitHub workflow (validate + build) is green, and verifies the extension still packages and installs correctly. Produces a per-PR merge-readiness report. Never approves, comments on, or merges PRs — a human always merges manually. Use this when asked to validate, review, or check open Dependabot PRs in vscode-chef before merging.
+---
+
+You are running the Dependabot PR validation skill for chef/vscode-chef.
+
+IMPORTANT: You only report. Never run `gh pr merge`, `gh pr review --approve`, or
+post PR comments unless the user explicitly asks you to after seeing the report.
+
+This repo uses **npm only** (no pnpm-workspace.yaml or yarn.lock). Its HAR baseline
+lives in the root `.npmrc`:
+```
+# REQUIRED - DO NOT REMOVE OR CIRCUMVENT
+# HAR (Harness Artifact Registry) configuration for chef org
+registry=https://pkg.harness.io/pkg/ct8onj8YTdaXtKaFsYCRLg/org-chef-npm/npm/
+@jsr:registry=https://pkg.harness.io/pkg/ct8onj8YTdaXtKaFsYCRLg/org-chef-npm/npm/
+
+# Block risky lifecycle scripts by default
+ignore-scripts=true
+
+# npm safety gate (days; 14-day cooldown for supply-chain attack mitigation)
+# stricter than the HAR doc's 7-day default — treat 14 as this repo's
+# authoritative floor; never suggest lowering it.
+min-release-age=14
+
+# Ensure lockfile is enabled even if a developer has package-lock=false globally
+package-lock=true
+```
+
+When invoked, do the following:
+
+## 1. Discover open Dependabot PRs
+
+```bash
+gh pr list --repo chef/vscode-chef --author "app/dependabot" --state open \
+  --json number,title,headRefName,headRefOid,url
+```
+
+If none are open, report that and stop.
+
+## 2. For each PR, run all of the following checks
+
+### a. HAR compliance check
+
+`gh pr diff <n>` does NOT support path filters (`-- <path>` is rejected with
+"accepts at most 1 arg(s)") — always pull the full diff and grep/filter it
+via pipes (no temp files needed). Derive the HAR host from this repo's own
+`.npmrc` rather than hardcoding it, so the check stays correct if the org
+path or host ever changes:
+
+```bash
+HAR_HOST="$(grep '^registry=' .npmrc | sed -E 's#^registry=https?://([^/]+)/.*#\1#')"
+if [ -z "$HAR_HOST" ]; then echo "ERROR: could not derive HAR_HOST from .npmrc" >&2; exit 1; fi
+HAR_ORIGIN="$(grep '^registry=' .npmrc | sed -E 's#^registry=(https?://[^/]+)/.*#\1#')"
+if [ -z "$HAR_ORIGIN" ]; then echo "ERROR: could not derive HAR_ORIGIN from .npmrc" >&2; exit 1; fi
+PR_DIFF="$(gh pr diff <n> --repo chef/vscode-chef)"
+extract_diff_block() { awk -v pat="^diff --git a/$1 " '$0 ~ pat {p=1; print; next} /^diff --git / {p=0} p'; }
+printf '%s\n' "$PR_DIFF" | extract_diff_block '\.npmrc'
+printf '%s\n' "$PR_DIFF" | extract_diff_block 'package\.json'
+printf '%s\n' "$PR_DIFF" | extract_diff_block 'package-lock\.json' | grep '"resolved"' | grep '^+' | grep -F -v -- "$HAR_ORIGIN/" || true
+```
+
+Fetch the diff once into `PR_DIFF` and reuse it for all three extracts —
+calling `gh pr diff` three times per PR is slow and needlessly increases
+the chance of hitting GitHub API rate limits. Use the `extract_diff_block`
+awk helper (not a `sed '/start/,/end/p'` range or `grep -A <n>`) so the
+full `.npmrc`/`package.json` diff hunks are captured regardless of how many
+lines they span: the helper turns off printing only when a *later* line
+starts a new `diff --git` header, so it can't be tripped up by the opening
+header line itself also matching that same broad end pattern — a real risk
+with a `sed` range whose start and end addresses can both match on line
+one, where behavior differs across sed implementations and can otherwise
+degenerate into printing just the header. Scope the resolved-URL bypass
+check to the `package-lock.json` diff block specifically (that's the only
+file where `"resolved"` lines matter). Append `|| true` to the last
+pipeline — under `set -e` (or when this snippet's exit status is checked),
+a `grep -v` that matches nothing exits non-zero, and "no non-HAR resolved
+lines found" must be treated as a clean pass, not a script failure.
+
+The bypass check matches `$HAR_ORIGIN/` (the full registry origin plus a
+trailing slash), not just `$HAR_HOST`, so a lookalike domain that merely
+contains the host as a substring (e.g. `pkg.harness.io.attacker.example`)
+is correctly flagged instead of slipping past as a false-negative match.
+`HAR_HOST` alone is still used for the `.npmrc`-hardening prose below.
+
+- **Never skip this check if `HAR_HOST` or `HAR_ORIGIN` is empty** — an empty
+  pattern passed to `grep -v` would suppress all output and make the bypass
+  check falsely appear clean. The `exit 1` guards above prevent this; if
+  either fires, stop and report that HAR compliance could not be verified
+  rather than assuming a pass.
+- FAIL if the `.npmrc` hunk removes or weakens any of: the `$HAR_HOST`
+  registry URL, `@jsr:registry`, `ignore-scripts=true`, `min-release-age=14`
+  (raising it above 14 is fine; lowering below 14 is not), or
+  `package-lock=true`.
+- FAIL if the third command above prints any added (`+`) `"resolved"` line
+  not pointing at `$HAR_ORIGIN/` — that means the lockfile was regenerated
+  bypassing HAR (resolved against `registry.npmjs.org` or a lookalike host).
+- PASS if only version/integrity/resolved-HAR-URL fields changed and the
+  hardening lines above are untouched (this is the normal, expected case
+  for routine Dependabot bumps).
+
+### b. Dependency change check
+
+- From the same diff, extract: package name(s) changed, old → new version,
+  whether it's in `dependencies` or `devDependencies`, and whether it's a
+  direct top-level bump (matches a `package.json` line) or purely transitive
+  (only appears in `package-lock.json`).
+- Flag major-version bumps distinctly from minor/patch — they need closer
+  human review of changelogs/breaking changes.
+
+### c. CI workflow check (`.github/workflows/ci.yml`: jobs `validate`, `build (<node-version>)`)
+
+The `build` job name embeds the Node version from the workflow's matrix
+(currently `22.19.0`), so never hardcode `build (22.19.0)` — that string
+breaks silently the next time the matrix version is bumped. Instead match
+the `build (` prefix, and optionally cross-check it against the workflow
+file's current matrix value:
+
+```bash
+gh pr checks <n> --repo chef/vscode-chef
+```
+
+This prints one line per check with a `pass`/`fail`/`pending`/`skipping`
+status column (e.g. `build (22.19.0)  pass  1m6s  <url>`). For a JSON view
+instead, use `gh pr view <n> --repo chef/vscode-chef --json statusCheckRollup`
+(conclusions there are `SUCCESS`/`FAILURE`/etc.).
+
+- PASS only if the `validate` row and the row whose name starts with
+  `build (` both show `pass` (or `SUCCESS` in the JSON form) for the latest
+  commit. Anything else (`fail`, `pending`, `queued`, or a missing `build (`
+  row) is a FAIL — call out which job failed and include its URL from the
+  output.
+
+### d. Packaging verification
+
+**Gate this step on HAR compliance (check a).** Only run the local `npm ci` /
+`vsce package` steps below if check (a) PASSED — i.e. `.npmrc` hardening was
+untouched (or only strengthened) and no non-HAR `"resolved"` lines were
+found. If check (a) FAILED, or HAR compliance could not be verified (for
+example the `HAR_HOST`/`HAR_ORIGIN` guard tripped), skip packaging and
+installation (section e) entirely and report both as "not run — HAR
+compliance failed/unverifiable" in the final table. Running `npm ci` against
+a weakened `.npmrc` (e.g. `ignore-scripts` removed) or a lockfile resolving
+outside HAR risks executing untrusted lifecycle scripts or pulling packages
+from a non-HAR registry — never do this locally even to "confirm" a failure.
+
+Check out the PR into an isolated git worktree so the user's current
+branch/working tree is never disturbed. Capture the original repo
+directory first so cleanup can reliably return to it (don't hardcode
+a developer-specific path):
+
+```bash
+REPO_ROOT="$(pwd)"
+git worktree remove /tmp/vscode-chef-pr-<n> --force || true
+git branch -D pr-<n>-validate || true
+git fetch https://github.com/chef/vscode-chef.git "+pull/<n>/head:pr-<n>-validate"
+git worktree add /tmp/vscode-chef-pr-<n> pr-<n>-validate
+cd /tmp/vscode-chef-pr-<n>
+```
+
+Fetch from the canonical `chef/vscode-chef` URL explicitly rather than
+`origin` — a developer's local `origin` may point at a personal fork,
+in which case `pull/<n>/head` wouldn't resolve there. Use the forced
+refspec (`+pull/<n>/head:...`) so the fetch reliably updates the local
+branch even if Dependabot has force-pushed (rebased/refreshed) the PR
+since a previous validation run.
+
+Run the pre-clean (`git worktree remove` / `git branch -D`, both tolerant
+of failure via `|| true`) before the fetch so re-running this skill is
+idempotent: a lingering worktree directory or an already-checked-out
+`pr-<n>-validate` branch from a prior/interrupted run would otherwise
+cause `git fetch` to refuse updating a checked-out branch, or
+`git worktree add` to fail on an existing directory.
+
+Run the same install + package steps as the `build` CI job (adding `--out`
+so the artifact has a deterministic path — CI itself doesn't pass `--out`):
+
+```bash
+npm ci
+npx vsce package --out /tmp/vscode-chef-pr-<n>.vsix
+```
+
+PASS only if both commands exit 0 and the `.vsix` file exists and is not
+suspiciously small (e.g. non-empty and comfortably above a minimal
+threshold such as 100KB, via `stat -f%z` on macOS or `stat -c%s` on Linux
+against `/tmp/vscode-chef-pr-<n>.vsix`).
+
+### e. Installation verification
+
+Unzip the produced `.vsix` (it's a zip archive):
+
+```bash
+unzip -p /tmp/vscode-chef-pr-<n>.vsix extension/package.json > /tmp/pr-<n>-manifest.json
+```
+
+Confirm `/tmp/pr-<n>-manifest.json` is valid JSON, its `version` matches
+`package.json` on the PR branch, and required fields (`engines.vscode`,
+`main`, `contributes`) are present and structurally unchanged from `main`.
+
+If a `code` CLI is available in this environment, optionally try:
+
+```bash
+code --install-extension /tmp/vscode-chef-pr-<n>.vsix
+```
+
+as a stronger signal. If `code` is not available, skip this step without
+failing the PR for that reason alone — note it as "not checked (no code CLI)".
+
+**Always clean up** after each PR, even on failure, so no scratch state
+leaks between PRs or back into the user's main checkout. Use the
+`REPO_ROOT` captured before entering the worktree — never hardcode a
+path. Each step is tolerant of partial failure (e.g. an earlier step in
+this same check aborted before the worktree/branch/file existed), so
+suffix with `|| true` and keep going rather than stopping cleanup short:
+
+```bash
+cd "$REPO_ROOT"
+git worktree remove /tmp/vscode-chef-pr-<n> --force || true
+git branch -D pr-<n>-validate || true
+rm -f /tmp/vscode-chef-pr-<n>.vsix /tmp/pr-<n>-manifest.json
+```
+
+## 3. Report
+
+Print one summary table across all open Dependabot PRs, one row per PR:
+
+| PR # | Title | HAR | Deps Changed | CI (validate/build) | Package | Install | Verdict |
+|------|-------|-----|---------------|----------------------|---------|---------|---------|
+| 285  | Bump @types/vscode 1.83.3→1.134.0 | ✅ | @types/vscode (dev, minor) | ✅ / ❌ build failed | ⚠️ not run (CI red) | ⚠️ not run | ⚠️ Needs attention: build job failing |
+
+- Verdict is **"✅ Ready to merge manually"** only when every check passes.
+- Otherwise **"⚠️ Needs attention"** with the specific failing check(s) named.
+- If CI is already failing for a PR, it's fine to skip the local packaging and
+  installation steps for that PR (note as "not run — CI red") rather than spend
+  time re-deriving a failure GitHub already reported. Still run the packaging
+  and installation steps locally whenever CI is green, or whenever the user
+  explicitly asks you to double-check a CI failure yourself.
+- If the HAR compliance check (a) fails or can't be verified, always skip
+  packaging and installation for that PR regardless of CI status (note both
+  as "not run — HAR compliance failed/unverifiable") — never run `npm ci` or
+  `vsce package` locally against a PR with weakened `.npmrc` hardening or a
+  non-HAR-resolved lockfile.
+- Do not approve, comment on, or merge any PR. End the report by reminding the
+  user that merging is manual, per team policy.
