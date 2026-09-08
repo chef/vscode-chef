@@ -52,10 +52,12 @@ path or host ever changes:
 ```bash
 HAR_HOST="$(grep '^registry=' .npmrc | sed -E 's#^registry=https?://([^/]+)/.*#\1#')"
 if [ -z "$HAR_HOST" ]; then echo "ERROR: could not derive HAR_HOST from .npmrc" >&2; exit 1; fi
+HAR_ORIGIN="$(grep '^registry=' .npmrc | sed -E 's#^registry=(https?://[^/]+)/.*#\1#')"
+if [ -z "$HAR_ORIGIN" ]; then echo "ERROR: could not derive HAR_ORIGIN from .npmrc" >&2; exit 1; fi
 PR_DIFF="$(gh pr diff <n> --repo chef/vscode-chef)"
 printf '%s\n' "$PR_DIFF" | sed -n '/^diff --git a\/\.npmrc /,/^diff --git /p'
 printf '%s\n' "$PR_DIFF" | sed -n '/^diff --git a\/package\.json /,/^diff --git /p'
-printf '%s\n' "$PR_DIFF" | sed -n '/^diff --git a\/package-lock\.json /,/^diff --git /p' | grep '"resolved"' | grep '^+' | grep -F -v -- "$HAR_HOST" || true
+printf '%s\n' "$PR_DIFF" | sed -n '/^diff --git a\/package-lock\.json /,/^diff --git /p' | grep '"resolved"' | grep '^+' | grep -F -v -- "$HAR_ORIGIN/" || true
 ```
 
 Fetch the diff once into `PR_DIFF` and reuse it for all three extracts —
@@ -69,17 +71,24 @@ pipeline — under `set -e` (or when this snippet's exit status is checked),
 a `grep -v` that matches nothing exits non-zero, and "no non-HAR resolved
 lines found" must be treated as a clean pass, not a script failure.
 
-- **Never skip this check if `HAR_HOST` is empty** — an empty pattern passed to
-  `grep -v` would suppress all output and make the bypass check falsely appear
-  clean. The `exit 1` guard above prevents this; if it fires, stop and report
-  that HAR compliance could not be verified rather than assuming a pass.
+The bypass check matches `$HAR_ORIGIN/` (the full registry origin plus a
+trailing slash), not just `$HAR_HOST`, so a lookalike domain that merely
+contains the host as a substring (e.g. `pkg.harness.io.attacker.example`)
+is correctly flagged instead of slipping past as a false-negative match.
+`HAR_HOST` alone is still used for the `.npmrc`-hardening prose below.
+
+- **Never skip this check if `HAR_HOST` or `HAR_ORIGIN` is empty** — an empty
+  pattern passed to `grep -v` would suppress all output and make the bypass
+  check falsely appear clean. The `exit 1` guards above prevent this; if
+  either fires, stop and report that HAR compliance could not be verified
+  rather than assuming a pass.
 - FAIL if the `.npmrc` hunk removes or weakens any of: the `$HAR_HOST`
   registry URL, `@jsr:registry`, `ignore-scripts=true`, `min-release-age=14`
   (raising it above 14 is fine; lowering below 14 is not), or
   `package-lock=true`.
 - FAIL if the third command above prints any added (`+`) `"resolved"` line
-  not pointing at `$HAR_HOST` — that means the lockfile was regenerated
-  bypassing HAR (resolved against `registry.npmjs.org`).
+  not pointing at `$HAR_ORIGIN/` — that means the lockfile was regenerated
+  bypassing HAR (resolved against `registry.npmjs.org` or a lookalike host).
 - PASS if only version/integrity/resolved-HAR-URL fields changed and the
   hardening lines above are untouched (this is the normal, expected case
   for routine Dependabot bumps).
@@ -146,7 +155,8 @@ idempotent: a lingering worktree directory or an already-checked-out
 cause `git fetch` to refuse updating a checked-out branch, or
 `git worktree add` to fail on an existing directory.
 
-Run the same steps as the `build` CI job:
+Run the same install + package steps as the `build` CI job (adding `--out`
+so the artifact has a deterministic path — CI itself doesn't pass `--out`):
 
 ```bash
 npm ci
