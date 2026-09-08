@@ -1,16 +1,17 @@
 # vscode-chef Change Log
 
-<!-- latest_release 2.2.21 -->
-## [v2.2.21](https://github.com/chef/vscode-chef/tree/v2.2.21) (2026-08-17)
+<!-- latest_release 2.2.22 -->
+## [v2.2.22](https://github.com/chef/vscode-chef/tree/v2.2.22) (2026-09-08)
 
 #### Merged Pull Requests
-- Replace CONTRIBUTING.md file with standard template [#282](https://github.com/chef/vscode-chef/pull/282) ([nikhil2611](https://github.com/nikhil2611))
+- Bump @types/node from 26.1.2 to 26.2.0 [#283](https://github.com/chef/vscode-chef/pull/283) ([dependabot[bot]](https://github.com/dependabot[bot]))
 <!-- latest_release -->
 
 <!-- release_rollup -->
 ### Changes not yet released
 
 #### Merged Pull Requests
+- Bump @types/node from 26.1.2 to 26.2.0 [#283](https://github.com/chef/vscode-chef/pull/283) ([dependabot[bot]](https://github.com/dependabot[bot])) <!-- 2.2.22 -->
 - Replace CONTRIBUTING.md file with standard template [#282](https://github.com/chef/vscode-chef/pull/282) ([nikhil2611](https://github.com/nikhil2611)) <!-- 2.2.21 -->
 - CHEF-30536 Update and standardize copyright notices to Progress Software Corporation - copyright_update [#267](https://github.com/chef/vscode-chef/pull/267) ([clintoncwolfe](https://github.com/clintoncwolfe)) <!-- 2.2.20 -->
 - Repair rubocop refusing to run (#97) [#262](https://github.com/chef/vscode-chef/pull/262) ([sinfomicien](https://github.com/sinfomicien)) <!-- 2.2.19 -->
