@@ -134,6 +134,17 @@ instead, use `gh pr view <n> --repo chef/vscode-chef --json statusCheckRollup`
 
 ### d. Packaging verification
 
+**Gate this step on HAR compliance (check a).** Only run the local `npm ci` /
+`vsce package` steps below if check (a) PASSED — i.e. `.npmrc` hardening was
+untouched (or only strengthened) and no non-HAR `"resolved"` lines were
+found. If check (a) FAILED, or HAR compliance could not be verified (for
+example the `HAR_HOST`/`HAR_ORIGIN` guard tripped), skip packaging and
+installation (section e) entirely and report both as "not run — HAR
+compliance failed/unverifiable" in the final table. Running `npm ci` against
+a weakened `.npmrc` (e.g. `ignore-scripts` removed) or a lockfile resolving
+outside HAR risks executing untrusted lifecycle scripts or pulling packages
+from a non-HAR registry — never do this locally even to "confirm" a failure.
+
 Check out the PR into an isolated git worktree so the user's current
 branch/working tree is never disturbed. Capture the original repo
 directory first so cleanup can reliably return to it (don't hardcode
@@ -225,5 +236,10 @@ Print one summary table across all open Dependabot PRs, one row per PR:
   time re-deriving a failure GitHub already reported. Still run the packaging
   and installation steps locally whenever CI is green, or whenever the user
   explicitly asks you to double-check a CI failure yourself.
+- If the HAR compliance check (a) fails or can't be verified, always skip
+  packaging and installation for that PR regardless of CI status (note both
+  as "not run — HAR compliance failed/unverifiable") — never run `npm ci` or
+  `vsce package` locally against a PR with weakened `.npmrc` hardening or a
+  non-HAR-resolved lockfile.
 - Do not approve, comment on, or merge any PR. End the report by reminding the
   user that merging is manual, per team policy.
