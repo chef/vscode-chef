@@ -35,7 +35,7 @@
     "@vscode/test-electron": "3.1.0",
     "@vscode/vsce": "3.9.2",
     "path": "0.12.7",
-    "typescript": "5.7.2"
+    "typescript": "7.0.2"
   },
   "overrides": {
     "js-yaml": "5.2.2",
